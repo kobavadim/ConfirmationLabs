@@ -5,12 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConfirmationLabsTests
 {
     [TestFixture]
-    public class Class1
+    public class Loanscan
     {
         private IWebDriver driver;
 
@@ -18,6 +19,8 @@ namespace ConfirmationLabsTests
         public void ReturnFalseGivenValueOf1()
         {
             driver = new ChromeDriver();
+            Thread.Sleep(3000);
+            driver.Close();
         }
     }
 }
