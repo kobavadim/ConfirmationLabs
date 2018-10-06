@@ -29,7 +29,6 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\b
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\nunit.framework.xml
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\WebDriver.xml
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\WebDriver.Support.xml
-C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll

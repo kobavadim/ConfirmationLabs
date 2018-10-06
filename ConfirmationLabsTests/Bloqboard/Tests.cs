@@ -11,16 +11,19 @@ using System.Threading.Tasks;
 namespace ConfirmationLabsTests
 {
     [TestFixture]
-    public class Loanscan
+    public class BloqboardTests
     {
         private IWebDriver driver;
 
+        [Category("Bloqboard")]
         [Test]
-        public void ReturnFalseGivenValueOf1()
+        public void BloqboardHealthCheck()
         {
+            Console.WriteLine("Bloqboard " + TestData.DefineBaseUrlDependingOnEnvironment());
             driver = new ChromeDriver();
             Thread.Sleep(3000);
             driver.Close();
         }
+
     }
 }
