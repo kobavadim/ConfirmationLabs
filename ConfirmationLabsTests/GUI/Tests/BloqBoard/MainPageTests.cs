@@ -26,7 +26,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CreateLoan()
         {
-            Wallets.LoginToMetaMaskWallet();
+            //Wallets.LoginToMetaMaskWallet();
         }
 
         [TearDown]

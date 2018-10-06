@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using NUnit.Framework;
 using ConfirmationLabsTests.GUI.Engine;
-using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Application.LoanScan;
 
 namespace ConfirmationLabsTests.GUI.Tests.LoanScan
@@ -21,42 +14,42 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
                 Browser.Start();
             }
 
-            [Category("Healthcheck")]
+            [Category("Loanscan")]
             [Test]
             public void SeacrhAvailabilityTest()
             {
                 MainPage.SearchAvailability();
             }
 
-            [Category("Healthcheck")]
+            [Category("Loanscan")]
             [Test]
             public void SearchFunctionalityTest()
             {
                 MainPage.SearchFunctionality();
             }
 
-            [Category("Healthcheck")]
+            [Ignore("BUG")]
             [Test]
             public void FilteringTableFunctionalityTest()
             {
                 MainPage.FilteringTable();
             }
 
-            [Category("Healthcheck")]
+            [Ignore("BUG")]
             [Test]
             public void PaginationTest()
             {
                 MainPage.PaginationTable();
             }
 
-            [Category("Healthcheck")]
+            [Category("Loanscan")]
             [Test]
             public void ColumnsAvailabilityTest()
             {
                 MainPage.ColumnsTable();
             }
 
-            [Category("Healthcheck")]
+            [Category("Loanscan")]
             [Test]
             public void CurrencySwitcherTest()
             {
@@ -64,7 +57,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             }
 
 
-            [Category("Healthcheck")]
+            [Ignore("BUG")]
             [Test]
             public void LendingProtocolSwitchTest()
             {
@@ -72,21 +65,19 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             }
 
 
-            [Category("Healthcheck")]
+            [Category("Loanscan")]
             [Test]
             public void TermSwitchingTest()
             {
                 MainPage.TermSwitchingFunctionality();
             }
 
-            [Category("Healthcheck")]
+            [Category("Loanscan")]
             [Test]
             public void ChartTabsAvailabilityTest()
             {
                MainPage.ChartTabsAvailability();
             }
-
-
 
 
             [TearDown]

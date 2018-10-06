@@ -61,11 +61,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
             if (Env == "PROD")
             {
+                Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.LoanScanMainPageProd);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageProd);
             }
             else
             {
-
+                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.LoanScanMainPageKovan);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageKovan);
             }
             
@@ -113,7 +114,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             foreach (var value in values2)
             {
                 string result = value.Text;
-                Assert.IsTrue(result.Contains("MakerDao"));
+                Assert.IsTrue(result.Contains("Maker DAO"));
 
             }
             Engine.Browser.ShortPause();
@@ -256,7 +257,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             string mkvalue = makerdao.Text;
             Assert.IsTrue(allvalue.Contains("All"));
             Assert.IsTrue(dhvalue.Contains("Dharma"));
-            Assert.IsTrue(mkvalue.Contains("MakerDao"));
+            Assert.IsTrue(mkvalue.Contains("Maker DAO"));
 
         }
 
