@@ -22,7 +22,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Bloqboard")]
-        [Category("Login")]
+        [Test]
+        public void PageElementsAvailability()
+        {
+            Wallets.LoginToMetaMaskWallet();
+        }
+
+        [Category("Bloqboard")]
         [Test]
         public void CreateLoan()
         {

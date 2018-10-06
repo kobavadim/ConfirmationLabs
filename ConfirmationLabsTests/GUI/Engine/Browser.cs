@@ -15,7 +15,6 @@ namespace ConfirmationLabsTests.GUI.Engine
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("no-sandbox");
-            Console.WriteLine("Running test locally...");
             CurrentBrowser = new ChromeDriver(chromeOptions);
             CurrentBrowser.Manage().Window.Maximize();
         }
