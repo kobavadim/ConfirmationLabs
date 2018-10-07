@@ -116,17 +116,40 @@ namespace ConfirmationLabsTests.Helpers
             SendKeys.SendWait("{END}");
             Browser.MiddlePause();
         }
+        static class KeyboardSend
+        {
+            [System.Runtime.InteropServices.DllImport("user32.dll")]
+            private static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
+            private const int KEYEVENTF_EXTENDEDKEY = 1;
+            private const int KEYEVENTF_KEYUP = 2;
+
+            public static void KeyDown(System.Windows.Forms.Keys vKey)
+            {
+                keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY, 0);
+            }
+
+            public static void KeyUp(System.Windows.Forms.Keys vKey)
+            {
+                keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+            }
+        }
         public static void AcceptInstallation()
         {
             Browser.ShortPause();
-            SendKeys.SendWait("{TAB}");
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
+
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.D6);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.D6);
+
             Browser.ShortPause();
             SendKeys.SendWait("{TAB}");
             Browser.ShortPause();
-            //SendKeys.SendWait("{ENTER}");
-            //Browser.ShortPause();
-            //SendKeys.SendWait("%{Tab}");
+            SendKeys.SendWait("{ENTER}");
+            Browser.ShortPause();
         }
     }
 }
