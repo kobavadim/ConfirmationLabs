@@ -22,10 +22,22 @@ namespace ConfirmationLabsTests.Helpers
         [DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
 
+        [DllImport("user32.dll")]
+        public static extern bool IsIconic(IntPtr handle);
+
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr handle, int nCmdShow);
+
         public static void LoginToMetaMaskWallet()
         {
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskChromeLanding);
-            Browser.ShortPause();
+            Browser.MiddlePause();
+            const int SW_RESTORE = 9;
+            var hWnd = FindWindow(null, "MetaMask - Chrome Web Store");
+            if (IsIconic(hWnd))
+                ShowWindow(hWnd, SW_RESTORE);
+            SetForegroundWindow(hWnd);
+
             IList<IWebElement> all = Browser.CurrentBrowser.FindElements(By.CssSelector("[role='button']"));
             foreach (var element in all)
             {
@@ -35,6 +47,14 @@ namespace ConfirmationLabsTests.Helpers
                     break;
                 }
             }
+            Browser.MiddlePause();
+
+            const int SW_RESTOREDouble = 9;
+            var hWndDouble = FindWindow(null, "MetaMask - Chrome Web Store");
+            if (IsIconic(hWndDouble))
+                ShowWindow(hWndDouble, SW_RESTOREDouble);
+            SetForegroundWindow(hWndDouble);
+
             AcceptInstallation();
             Browser.CloseAdditionalWindows();
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
