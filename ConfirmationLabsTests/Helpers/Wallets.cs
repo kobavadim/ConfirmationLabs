@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -136,9 +137,17 @@ namespace ConfirmationLabsTests.Helpers
         }
         public static void AcceptInstallation()
         {
+            Process p = Process.GetProcessesByName("chrome").FirstOrDefault();
+            if (p != null)
+            {
+                IntPtr h = p.MainWindowHandle;
+                SetForegroundWindow(h);
+      
+            }
+
             Browser.ShortPause();
-            KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
-            KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
+            //KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
+            //KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
 
             KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
             KeyboardSend.KeyDown(System.Windows.Forms.Keys.D6);
