@@ -24,28 +24,31 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void OpenBloqBoard()
         {
-            Wallets.LoginToMetaMaskWallet();
+            //Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
 
             string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
             if (Env == "PROD")
             {
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
-                var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
-                Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.BloqBoardProd);
-               
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
+                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
+                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.BloqBoardProd);
+
             }
             else
             {
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
-                var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
+                //Browser.CurrentBrowser.WindowHandles[0]
+                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
+                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
                 //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.MetaMaskWeb);
                 //Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[2]);
 
-                Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.BloqBoardKovan);
-               
+                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.BloqBoardKovan);
+
             }
 
             Engine.Browser.MiddlePause();
