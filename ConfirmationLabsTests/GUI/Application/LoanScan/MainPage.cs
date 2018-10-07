@@ -303,6 +303,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void SearchAvailability()
         {
+            IList<IWebElement> MyElements = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("[text-anchor='start']"));
+
+
+
             Open();
             IWebElement searchinput = Engine.Browser.CurrentBrowser.FindElement(SearchInput);
             Assert.IsTrue(searchinput.Displayed);
@@ -357,6 +361,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Open();
             ChartTabsSwitching();
         }
+
+
+
 
 
     }
