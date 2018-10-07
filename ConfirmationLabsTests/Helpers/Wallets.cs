@@ -52,7 +52,7 @@ namespace ConfirmationLabsTests.Helpers
                     break;
                 }
             }
-            Thread.Sleep(30000);
+            Thread.Sleep(15000);
             Screen();
 
             AcceptInstallation();
@@ -150,6 +150,7 @@ namespace ConfirmationLabsTests.Helpers
             KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
             KeyboardSend.KeyUp(System.Windows.Forms.Keys.D6);
             Browser.ShortPause();
+            Thread.Sleep(15000);
 
             KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
             KeyboardSend.KeyDown(System.Windows.Forms.Keys.D6);
@@ -161,6 +162,7 @@ namespace ConfirmationLabsTests.Helpers
             Browser.ShortPause();
             SendKeys.SendWait("{ENTER}");
             Browser.MiddlePause();
+            Thread.Sleep(15000);
         }
     }
 }
