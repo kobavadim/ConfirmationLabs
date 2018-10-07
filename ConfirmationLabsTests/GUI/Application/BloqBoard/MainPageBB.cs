@@ -51,7 +51,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             }
 
-            Engine.Browser.MiddlePause();
+            Engine.Browser.LongPause();
 
         }
 
@@ -69,10 +69,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
             termschecbox.Click();
-            Browser.ShortPause();
+            Browser.LongPause();
             IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
             continuebtn.Click();
-
+            Browser.LongPause();
         }
 
       

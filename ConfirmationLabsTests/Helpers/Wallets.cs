@@ -48,8 +48,15 @@ namespace ConfirmationLabsTests.Helpers
             AcceptInstallation();
             Browser.CloseAdditionalWindows();
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
-            Browser.MiddlePause();
+            Browser.LongPause();
             Browser.CloseAdditionalWindows();
+
+            var screenname = TestData.GenerateConstant("Screen ");
+            ITakesScreenshot screenshotDriver = Browser.CurrentBrowser as ITakesScreenshot;
+            Screenshot screenshot = screenshotDriver.GetScreenshot();
+            String fp = "C:\\Users\\Administrator\\Documents\\" + "snapshot" + "_" + DateTime.Now.ToString("dd_MMMM_hh_mm_ss_tt") + ".png";
+            screenshot.SaveAsFile(fp, OpenQA.Selenium.ScreenshotImageFormat.Png);
+
 
             IWebElement proceed = Browser.CurrentBrowser.FindElement(By.CssSelector(".positive"));
             proceed.Click();
