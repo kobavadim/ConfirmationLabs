@@ -32,11 +32,11 @@ namespace ConfirmationLabsTests.Helpers
         {
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskChromeLanding);
             Browser.MiddlePause();
-            const int SW_RESTORE = 9;
-            var hWnd = FindWindow(null, "MetaMask - Chrome Web Store");
-            if (IsIconic(hWnd))
-                ShowWindow(hWnd, SW_RESTORE);
-            SetForegroundWindow(hWnd);
+            //const int SW_RESTORE = 9;
+            //var hWnd = FindWindow(null, "MetaMask - Chrome Web Store");
+            //if (IsIconic(hWnd))
+            //    ShowWindow(hWnd, SW_RESTORE);
+            //SetForegroundWindow(hWnd);
 
             IList<IWebElement> all = Browser.CurrentBrowser.FindElements(By.CssSelector("[role='button']"));
             foreach (var element in all)
@@ -47,13 +47,13 @@ namespace ConfirmationLabsTests.Helpers
                     break;
                 }
             }
-            Browser.MiddlePause();
+            Browser.ShortPause();
 
-            const int SW_RESTOREDouble = 9;
-            var hWndDouble = FindWindow(null, "MetaMask - Chrome Web Store");
-            if (IsIconic(hWndDouble))
-                ShowWindow(hWndDouble, SW_RESTOREDouble);
-            SetForegroundWindow(hWndDouble);
+            //const int SW_RESTOREDouble = 9;
+            //var hWndDouble = FindWindow(null, "MetaMask - Chrome Web Store");
+            //if (IsIconic(hWndDouble))
+            //    ShowWindow(hWndDouble, SW_RESTOREDouble);
+            //SetForegroundWindow(hWndDouble);
 
             AcceptInstallation();
             Browser.CloseAdditionalWindows();
@@ -120,10 +120,11 @@ namespace ConfirmationLabsTests.Helpers
         public static void AcceptInstallation()
         {
             Browser.ShortPause();
-            SendKeys.SendWait("{TAB}");
-            Browser.ShortPause();
+            //SendKeys.SendWait("{TAB}");
+            //Browser.ShortPause();
             SendKeys.SendWait("{ENTER}");
-            Browser.LongPause();
+            Browser.ShortPause();
+            //SendKeys.SendWait("%{Tab}");
         }
     }
 }
