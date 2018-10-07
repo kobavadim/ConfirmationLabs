@@ -24,7 +24,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void OpenBloqBoard()
         {
-            //Wallets.LoginToMetaMaskWallet();
+            Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
 
             string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
