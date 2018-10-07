@@ -120,10 +120,12 @@ namespace ConfirmationLabsTests.Helpers
         public static void AcceptInstallation()
         {
             Browser.ShortPause();
-            //SendKeys.SendWait("{TAB}");
-            //Browser.ShortPause();
-            SendKeys.SendWait("{ENTER}");
+            SendKeys.SendWait("{TAB}");
             Browser.ShortPause();
+            SendKeys.SendWait("{TAB}");
+            Browser.ShortPause();
+            //SendKeys.SendWait("{ENTER}");
+            //Browser.ShortPause();
             //SendKeys.SendWait("%{Tab}");
         }
     }
