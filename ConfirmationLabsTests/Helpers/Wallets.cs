@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -22,10 +23,17 @@ namespace ConfirmationLabsTests.Helpers
         [DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
 
+        [DllImport("user32.dll")]
+        public static extern bool IsIconic(IntPtr handle);
+
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr handle, int nCmdShow);
+
         public static void LoginToMetaMaskWallet()
         {
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskChromeLanding);
-            Browser.ShortPause();
+            Browser.MiddlePause();
+
             IList<IWebElement> all = Browser.CurrentBrowser.FindElements(By.CssSelector("[role='button']"));
             foreach (var element in all)
             {
@@ -35,6 +43,8 @@ namespace ConfirmationLabsTests.Helpers
                     break;
                 }
             }
+            Browser.ShortPause();
+
             AcceptInstallation();
             Browser.CloseAdditionalWindows();
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
@@ -96,14 +106,43 @@ namespace ConfirmationLabsTests.Helpers
             SendKeys.SendWait("{END}");
             Browser.MiddlePause();
         }
+        static class KeyboardSend
+        {
+            [System.Runtime.InteropServices.DllImport("user32.dll")]
+            private static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
+            private const int KEYEVENTF_EXTENDEDKEY = 1;
+            private const int KEYEVENTF_KEYUP = 2;
+
+            public static void KeyDown(System.Windows.Forms.Keys vKey)
+            {
+                keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY, 0);
+            }
+
+            public static void KeyUp(System.Windows.Forms.Keys vKey)
+            {
+                keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
+            }
+        }
         public static void AcceptInstallation()
         {
             Browser.ShortPause();
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.D6);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.D6);
+            Browser.ShortPause();
+
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.D6);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.D6);
+
+            Browser.MiddlePause();
             SendKeys.SendWait("{TAB}");
             Browser.ShortPause();
             SendKeys.SendWait("{ENTER}");
-            Browser.LongPause();
+            Browser.MiddlePause();
         }
     }
 }

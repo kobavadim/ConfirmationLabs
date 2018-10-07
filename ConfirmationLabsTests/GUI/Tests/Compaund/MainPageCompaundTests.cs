@@ -7,39 +7,36 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.Helpers;
-using ConfirmationLabsTests.GUI.Application.BloqBoard;
+using ConfirmationLabsTests.GUI.Application.Compaund;
 
 
-
-namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
+namespace ConfirmationLabsTests.GUI.Tests.Compaund
 {
+
     [TestFixture]
-    public class MainPageTests
+    class MainPageCompaundTests
     {
+
         [SetUp]
         public void TestInitialize()
         {
             Browser.Start();
         }
 
-        [Category("Bloqboard")]
+        [Category("Compaund")]
         [Test]
         public void PageisOpenedTest()
         {
-            MainPageBB.VerifyPageisOpened();
+            MainPageCompaund.VerifyPageisOpened();
         }
 
-        [Category("Bloqboard")]
-        [Test]
-        public void CreateLoan()
-        {
-            //Wallets.LoginToMetaMaskWallet();
-        }
+        
 
         [TearDown]
         public void TestCleanUp()
         {
             Browser.Close();
         }
+
     }
 }

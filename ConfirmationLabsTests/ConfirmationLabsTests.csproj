@@ -54,11 +54,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GUI\Application\BloqBoard\MainPageBB.cs" />
+    <Compile Include="GUI\Application\Compaund\MainPageCompaund.cs" />
     <Compile Include="GUI\Application\LoanScan\CardPage.cs" />
     <Compile Include="GUI\Application\LoanScan\Integration.cs" />
     <Compile Include="GUI\Application\LoanScan\MainPage.cs" />
     <Compile Include="GUI\Engine\Browser.cs" />
     <Compile Include="GUI\Tests\BloqBoard\MainPageTests.cs" />
+    <Compile Include="GUI\Tests\Compaund\MainPageCompaundTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\CardPageTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\IntegrationTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\LoanScanMainPageTests.cs" />
@@ -73,9 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\" />
-    <Folder Include="GUI\Application\BloqBoard\" />
-    <Folder Include="GUI\Application\Compaund\" />
-    <Folder Include="GUI\Tests\Compaund\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.42.0.1\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.42.0.1\build\Selenium.WebDriver.ChromeDriver.targets')" />

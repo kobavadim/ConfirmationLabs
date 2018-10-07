@@ -21,6 +21,14 @@ namespace ConfirmationLabsTests.Helpers
                 public static string MetaMaskMainPageKovan = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#unlock";
                 public static string LoanScanMainPageProd = "https://loanscan.io/";
                 public static string LoanScanMainPageKovan = "https://kovan.loanscan.io/";
+                public static string BloqBoardProd = "https://app.bloqboard.com/";
+                public static string BloqBoardKovan = "https://kovan-app.bloqboard.com/";
+                public static string CompaundProd = "https://compound.bloqboard.com/";
+                public static string CompaundKovan = "http://compound-rinkeby.bloqboard.com.s3-website-us-east-1.amazonaws.com/";
+                public static string MetaMaskWeb = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#";
+
+
+
 
             }
 

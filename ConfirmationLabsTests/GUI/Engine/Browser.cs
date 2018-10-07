@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using OpenQA.Selenium.Interactions;
+using System.Diagnostics;
 
 namespace ConfirmationLabsTests.GUI.Engine
 {
@@ -15,7 +16,6 @@ namespace ConfirmationLabsTests.GUI.Engine
         {
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("no-sandbox");
-            Console.WriteLine("Running test locally...");
             CurrentBrowser = new ChromeDriver(chromeOptions);
             CurrentBrowser.Manage().Window.Maximize();
         }
@@ -281,6 +281,24 @@ namespace ConfirmationLabsTests.GUI.Engine
         public static void Close()
         {
             CurrentBrowser.Quit();
+
+            Process[] processes = Process.GetProcesses();
+
+            foreach (Process process in processes)
+            {
+                if (process.ProcessName.Contains("chromedriver") || process.ProcessName.Contains("chrome"))
+                {
+                    try
+                    {
+                        process.Kill();
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                }
+            }
         }
     }
 }
