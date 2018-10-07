@@ -74,3 +74,4 @@ C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\WebDriver.Support.xml
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache

@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using OpenQA.Selenium.Interactions;
+using System.Diagnostics;
 
 namespace ConfirmationLabsTests.GUI.Engine
 {
@@ -280,6 +281,24 @@ namespace ConfirmationLabsTests.GUI.Engine
         public static void Close()
         {
             CurrentBrowser.Quit();
+
+            Process[] processes = Process.GetProcesses();
+
+            foreach (Process process in processes)
+            {
+                if (process.ProcessName.Contains("chromedriver") || process.ProcessName.Contains("chrome"))
+                {
+                    try
+                    {
+                        process.Kill();
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                }
+            }
         }
     }
 }

@@ -33,11 +33,6 @@ namespace ConfirmationLabsTests.Helpers
         {
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskChromeLanding);
             Browser.MiddlePause();
-            //const int SW_RESTORE = 9;
-            //var hWnd = FindWindow(null, "MetaMask - Chrome Web Store");
-            //if (IsIconic(hWnd))
-            //    ShowWindow(hWnd, SW_RESTORE);
-            //SetForegroundWindow(hWnd);
 
             IList<IWebElement> all = Browser.CurrentBrowser.FindElements(By.CssSelector("[role='button']"));
             foreach (var element in all)
@@ -49,12 +44,6 @@ namespace ConfirmationLabsTests.Helpers
                 }
             }
             Browser.ShortPause();
-
-            //const int SW_RESTOREDouble = 9;
-            //var hWndDouble = FindWindow(null, "MetaMask - Chrome Web Store");
-            //if (IsIconic(hWndDouble))
-            //    ShowWindow(hWndDouble, SW_RESTOREDouble);
-            //SetForegroundWindow(hWndDouble);
 
             AcceptInstallation();
             Browser.CloseAdditionalWindows();
@@ -137,28 +126,23 @@ namespace ConfirmationLabsTests.Helpers
         }
         public static void AcceptInstallation()
         {
-            Process p = Process.GetProcessesByName("chrome").FirstOrDefault();
-            if (p != null)
-            {
-                IntPtr h = p.MainWindowHandle;
-                SetForegroundWindow(h);
-      
-            }
-
             Browser.ShortPause();
-            //KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
-            //KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyDown(System.Windows.Forms.Keys.D6);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
+            KeyboardSend.KeyUp(System.Windows.Forms.Keys.D6);
+            Browser.ShortPause();
 
             KeyboardSend.KeyDown(System.Windows.Forms.Keys.LWin);
             KeyboardSend.KeyDown(System.Windows.Forms.Keys.D6);
             KeyboardSend.KeyUp(System.Windows.Forms.Keys.LWin);
             KeyboardSend.KeyUp(System.Windows.Forms.Keys.D6);
 
-            Browser.ShortPause();
+            Browser.MiddlePause();
             SendKeys.SendWait("{TAB}");
             Browser.ShortPause();
             SendKeys.SendWait("{ENTER}");
-            Browser.ShortPause();
+            Browser.MiddlePause();
         }
     }
 }
