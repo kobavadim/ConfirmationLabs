@@ -52,7 +52,7 @@ namespace ConfirmationLabsTests.Helpers
                     break;
                 }
             }
-            Browser.ShortPause();
+            Thread.Sleep(30000);
             Screen();
 
             AcceptInstallation();
