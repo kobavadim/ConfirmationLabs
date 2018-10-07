@@ -29,10 +29,19 @@ namespace ConfirmationLabsTests.Helpers
         [DllImport("user32.dll")]
         public static extern bool ShowWindow(IntPtr handle, int nCmdShow);
 
+        public static void Screen()
+        {
+            ITakesScreenshot screenshotDriver = Browser.CurrentBrowser as ITakesScreenshot;
+            Screenshot screenshot = screenshotDriver.GetScreenshot();
+            String fp = "C:\\Users\\Administrator\\Documents\\" + "snapshot" + "_" + DateTime.Now.ToString("dd_MMMM_hh_mm_ss_tt") + ".png";
+            screenshot.SaveAsFile(fp, OpenQA.Selenium.ScreenshotImageFormat.Png);
+        }
+
         public static void LoginToMetaMaskWallet()
         {
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskChromeLanding);
             Browser.MiddlePause();
+            Screen();
 
             IList<IWebElement> all = Browser.CurrentBrowser.FindElements(By.CssSelector("[role='button']"));
             foreach (var element in all)
@@ -44,18 +53,20 @@ namespace ConfirmationLabsTests.Helpers
                 }
             }
             Browser.ShortPause();
+            Screen();
 
             AcceptInstallation();
+
+            Screen();
+
             Browser.CloseAdditionalWindows();
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
             Browser.LongPause();
             Browser.CloseAdditionalWindows();
 
-            var screenname = TestData.GenerateConstant("Screen ");
-            ITakesScreenshot screenshotDriver = Browser.CurrentBrowser as ITakesScreenshot;
-            Screenshot screenshot = screenshotDriver.GetScreenshot();
-            String fp = "C:\\Users\\Administrator\\Documents\\" + "snapshot" + "_" + DateTime.Now.ToString("dd_MMMM_hh_mm_ss_tt") + ".png";
-            screenshot.SaveAsFile(fp, OpenQA.Selenium.ScreenshotImageFormat.Png);
+
+            Screen();
+
 
 
             IWebElement proceed = Browser.CurrentBrowser.FindElement(By.CssSelector(".positive"));
