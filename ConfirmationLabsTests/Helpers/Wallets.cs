@@ -1,4 +1,5 @@
-﻿using ConfirmationLabsTests.GUI.Engine;
+﻿using AutoIt;
+using ConfirmationLabsTests.GUI.Engine;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -52,9 +53,20 @@ namespace ConfirmationLabsTests.Helpers
                     break;
                 }
             }
-            Thread.Sleep(15000);
+            Thread.Sleep(7000);
             Screen();
+            Thread.Sleep(3000);
+            var x = Cursor.Position.X;
+            var Y = Cursor.Position.Y;
 
+            // sample code
+            //Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
+
+            AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
+            AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
+            AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
+            Thread.Sleep(3000);
+            Screen();
             AcceptInstallation();
 
             Screen();

@@ -68,3 +68,7 @@ C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.dll
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3_x64.dll
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.dll
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.xml
