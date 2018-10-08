@@ -65,7 +65,7 @@ namespace ConfirmationLabsTests.Helpers
             AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
             AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
             AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
-            Thread.Sleep(3000);
+            Thread.Sleep(20000);
             Screen();
             AcceptInstallation();
 
