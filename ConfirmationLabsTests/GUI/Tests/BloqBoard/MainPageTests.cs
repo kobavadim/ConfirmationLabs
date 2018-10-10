@@ -32,10 +32,48 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Bloqboard")]
         [Test]
-        public void CreateLoan()
+        public void BalanceTableDisplayedTest()
         {
-            //Wallets.LoginToMetaMaskWallet();
+            MainPageBB.VerifyBalanceTableDisplayed();
+
+
         }
+
+        [Category("Bloqboard")]
+        [Test]
+        public void RequestsToBorrowDisplayedTest()
+        {
+            MainPageBB.VerifyRequestsToBorrowTableDisplayed();
+            
+        }
+
+        [Category("Bloqboard")]
+        [Test]
+        public void MyRequestsToBorrowDisplayedTest()
+        {
+            MainPageBB.VerifyMyRequestsToBorrowTableDisplayed();
+            
+        }
+
+        [Category("Bloqboard")]
+        [Test]
+        public void MyLoanedTokensTableDisplayedTest()
+        {
+            MainPageBB.VerifyMyLoanedTokensTableDisplayed();
+
+
+        }
+        [Category("Bloqboard")]
+        [Test]
+        public void UnwrapBrnAvailableTest()
+        {
+            MainPageBB.VerifyUnwrapbtnDisplayed();
+
+
+        }
+
+
+
 
         [TearDown]
         public void TestCleanUp()

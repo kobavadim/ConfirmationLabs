@@ -18,6 +18,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By TermsAndCOnditionsCheckBox = By.CssSelector("div.terms-checkbox > label > input");
         private static readonly By Continuebtn = By.CssSelector("button.btn-green");
         private static readonly By MyBorrowedTokens = By.CssSelector(".app__small-table:nth-child(2) .undefined");
+        private static readonly By BalanceTable = By.CssSelector(".balances-table__table-wrapper");
+        private static readonly By RequesttoBorrowTable = By.CssSelector(".app__content-sub .col-sm:nth-child(1)");
+        private static readonly By MyRequestsToBorrowTable = By.CssSelector(".tabs__container .undefined");
+        private static readonly By MyLoanedTokens = By.CssSelector(".app__small-table~ .app__small-table+ .app__small-table");
+        private static readonly By WethBtn = By.CssSelector(".wallet-info__currency_active+ .wallet-info__currency");
+        private static readonly By AmountInput = By.CssSelector(".wallet-info__value-input");
+        private static readonly By Wrap = By.CssSelector(".wallet-info__exchange-button+ .wallet-info__exchange-button");
+
+
+
+
 
 
         //Methods
@@ -103,6 +114,54 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement table = Browser.CurrentBrowser.FindElement(MyBorrowedTokens);
             Assert.IsTrue(table.Displayed);
         }
+
+        public static void VerifyBalanceTableDisplayed()
+        {
+            OpenBloqBoard();
+            TermsandConditionAceptance();
+            IWebElement balancetable = Browser.CurrentBrowser.FindElement(BalanceTable);
+            Assert.IsTrue(balancetable.Displayed);
+        }
+
+        public static void VerifyMyRequestsToBorrowTableDisplayed()
+        {
+            OpenBloqBoard();
+            TermsandConditionAceptance();
+            IWebElement requestsTable = Browser.CurrentBrowser.FindElement(MyRequestsToBorrowTable);
+            Assert.IsTrue(requestsTable.Displayed);
+        }
+
+        public static void VerifyRequestsToBorrowTableDisplayed()
+        {
+            OpenBloqBoard();
+            TermsandConditionAceptance();
+            IWebElement requestsTable = Browser.CurrentBrowser.FindElement(RequesttoBorrowTable);
+            Assert.IsTrue(requestsTable.Displayed);
+        }
+
+        public static void VerifyMyLoanedTokensTableDisplayed()
+        {
+            OpenBloqBoard();
+            TermsandConditionAceptance();
+            IWebElement loanedtable = Browser.CurrentBrowser.FindElement(MyLoanedTokens);
+            Assert.IsTrue(loanedtable.Displayed);
+        }
+
+        public static void VerifyUnwrapbtnDisplayed()
+        {
+            OpenBloqBoard();
+            TermsandConditionAceptance();
+            IWebElement weth = Browser.CurrentBrowser.FindElement(WethBtn);
+            weth.Click();
+            Browser.MiddlePause();
+
+            
+            IWebElement wrapbtn = Browser.CurrentBrowser.FindElement(Wrap);
+            Assert.IsTrue(wrapbtn.Text.Contains("UNWRAP"));
+        }
+
+
+
 
     }
 }

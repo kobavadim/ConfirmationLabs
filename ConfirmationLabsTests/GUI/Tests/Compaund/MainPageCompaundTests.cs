@@ -30,7 +30,42 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyPageisOpened();
         }
 
-        
+        [Category("Compaund")]
+        [Test]
+        public void AssetsDisplayTest()
+        {
+            MainPageCompaund.VerifyAssetsDisplayed();
+        }
+
+        [Category("Compaund")]
+        [Test]
+        public void PriceDisplayedTest()
+        {
+            MainPageCompaund.VerifyPriceDisplayed();
+        }
+
+        [Category("Compaund")]
+        [Test]
+        public void LendButtonsDisplayedTest()
+        {
+            MainPageCompaund.VerifyLendBtnDisplayed();
+        }
+
+        [Category("Compaund")]
+        [Test]
+        public void BorrowButtonsDisplayedTest()
+        {
+            MainPageCompaund.VerifyBorrowdBtnDisplayed();
+        }
+
+        [Category("Compaund")]
+        [Test]
+        public void BalanceTableDisplayTest()
+        {
+            MainPageCompaund.VerifyBalanceTableDisplayed();
+        }
+
+
 
         [TearDown]
         public void TestCleanUp()

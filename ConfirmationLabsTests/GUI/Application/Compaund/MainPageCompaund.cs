@@ -18,6 +18,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         private static readonly By TermsAndCOnditionsCheckBox = By.CssSelector("div.terms-checkbox > label > input");
         private static readonly By Continuebtn = By.CssSelector("button.btn-green");
         private static readonly By Table = By.CssSelector(".content-table-row");
+        private static readonly By AssetsNames = By.CssSelector(".content-table-cell:nth-child(1) .top-cell");
+        private static readonly By Price = By.CssSelector(".w-10 .bottom-cell");
+        private static readonly By Lendbtn = By.ClassName(".btn-red");
+        private static readonly By Borrowed = By.CssSelector(".btn-green");
+        private static readonly By Balancetable = By.CssSelector(".balances-table__table-wrapper");
 
         //Methods
 
@@ -43,15 +48,15 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.MetaMaskWeb);
                 //Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[2]);
 
-                Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.CompaundKovan);
+                Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, TestData.Urls.CompaundKovan);
 
             }
 
-            Engine.Browser.MiddlePause();
+            Browser.MiddlePause();
 
         }
 
-       
+
 
         public static void TermsandConditionAceptance()
         {
@@ -76,6 +81,56 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             Assert.IsTrue(table.Displayed);
         }
 
+        public static void VerifyAssetsDisplayed()
+        {
+            OpenCompaund();
+            TermsandConditionAceptance();
+            IList<IWebElement> assets = Browser.CurrentBrowser.FindElements(AssetsNames);
+
+            Assert.IsTrue(assets[0].Text.Contains("wETH"));
+            Assert.IsTrue(assets[1].Text.Contains("BAT"));
+            Assert.IsTrue(assets[2].Text.Contains("REP"));
+            Assert.IsTrue(assets[3].Text.Contains("ZRX"));
+
+
+        }
+
+        public static void VerifyPriceDisplayed()
+        {
+            OpenCompaund();
+            TermsandConditionAceptance();
+            IList<IWebElement> prices = Browser.CurrentBrowser.FindElements(Price);
+            foreach (var price in prices)
+            {
+                Assert.IsTrue(price.Text.Contains("USD"));
+            }
+        }
+
+        public static void VerifyLendBtnDisplayed()
+        {
+            OpenCompaund();
+            TermsandConditionAceptance();
+            IList<IWebElement> lend = Browser.CurrentBrowser.FindElements(Lendbtn);
+            Assert.IsTrue(lend.Count.Equals(4));
+        }
+
+        public static void VerifyBorrowdBtnDisplayed()
+        {
+            OpenCompaund();
+            TermsandConditionAceptance();
+            IList<IWebElement> borrow = Browser.CurrentBrowser.FindElements(Borrowed);
+            Assert.IsTrue(borrow.Count.Equals(4));
+        }
+
+        public static void VerifyBalanceTableDisplayed()
+        {
+            OpenCompaund();
+            TermsandConditionAceptance();
+
+            IWebElement balance = Browser.CurrentBrowser.FindElement(Balancetable);
+            Assert.IsTrue(balance.Displayed);
+
+        }
 
     }
 }
