@@ -30,6 +30,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
             if (Env == "PROD")
             {
+                //Browser.ShortPause();
+                //IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+
+                //IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                //Browser.ShortPause();
+                //values[5].Click();
+
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
                 //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
@@ -39,6 +47,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             else
             {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                values[5].Click();
+
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
                 //Browser.CurrentBrowser.WindowHandles[0]
