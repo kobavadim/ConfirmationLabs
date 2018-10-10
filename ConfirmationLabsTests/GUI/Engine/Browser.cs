@@ -20,6 +20,15 @@ namespace ConfirmationLabsTests.GUI.Engine
             CurrentBrowser.Manage().Window.Maximize();
         }
 
+        public static void StartWithExstension()
+        {
+            ChromeOptions chromeoptions = new ChromeOptions();
+            chromeoptions.AddExtensions("C:\\Users\\Administrator\\Documents\\Exstensions\\MetaMask_v4.13.0.crx");
+            CurrentBrowser = new ChromeDriver(chromeoptions);
+            MiddlePause();
+            CurrentBrowser.Manage().Window.Maximize();
+        }
+
         public static void CloseAdditionalWindows()
         {
             String mainWindow = Browser.CurrentBrowser.CurrentWindowHandle;

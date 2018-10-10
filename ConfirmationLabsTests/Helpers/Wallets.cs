@@ -1,6 +1,7 @@
 ﻿using AutoIt;
 using ConfirmationLabsTests.GUI.Engine;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -40,46 +41,10 @@ namespace ConfirmationLabsTests.Helpers
 
         public static void LoginToMetaMaskWallet()
         {
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskChromeLanding);
-            Browser.MiddlePause();
-            Screen();
-
-            IList<IWebElement> all = Browser.CurrentBrowser.FindElements(By.CssSelector("[role='button']"));
-            foreach (var element in all)
-            {
-                if (element.Text.Contains("Add to Chrome") || element.Text.Contains("Установить"))
-                {
-                    element.Click();
-                    break;
-                }
-            }
-            Thread.Sleep(7000);
-            Screen();
-            Thread.Sleep(3000);
-            var x = Cursor.Position.X;
-            var Y = Cursor.Position.Y;
-
-            // sample code
-            //Console.WriteLine("x: " + Cursor.Position.X + " y: " + Cursor.Position.Y);
-
-            AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
-            AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
-            AutoItX.MouseClick("LEFT", 818, 304, 1, -1);
-            Thread.Sleep(20000);
-            Screen();
-            AcceptInstallation();
-
-            Screen();
-
             Browser.CloseAdditionalWindows();
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
-            Browser.LongPause();
+            Browser.MiddlePause();
             Browser.CloseAdditionalWindows();
-
-
-            Screen();
-
-
 
             IWebElement proceed = Browser.CurrentBrowser.FindElement(By.CssSelector(".positive"));
             proceed.Click();
@@ -111,14 +76,40 @@ namespace ConfirmationLabsTests.Helpers
 
             IWebElement proceedPhrase = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
             proceedPhrase.Click();
-            ScrollAgreement();
+            Browser.ShortPause();
+
+            try
+            {
+
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".markdown p"));
+
+                Actions actions = new Actions(Browser.CurrentBrowser);
+                actions.MoveToElement(values[54]);
+                actions.Perform();
+                Actions actions2 = new Actions(Browser.CurrentBrowser);
+                actions2.SendKeys(OpenQA.Selenium.Keys.End).Build().Perform();
+
+                IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                js.ExecuteScript("arguments[0].scrollIntoView();", values[54]);
+                Browser.ShortPause();
+            }
+            catch (Exception exe)
+            {
+
+
+            }
+
+            IWebElement Button1 = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)Browser.CurrentBrowser;
+            executor.ExecuteScript("arguments[0].click();", Button1);
+            Browser.ShortPause();
 
             IWebElement agrementFirstScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
             agrementFirstScreen.Click();
             Browser.ShortPause();
-            IWebElement agrementSecondScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
-            agrementSecondScreen.Click();
-            Browser.ShortPause();
+
             IWebElement agrementThirdScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
             agrementThirdScreen.Click();
             Browser.MiddlePause();

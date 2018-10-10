@@ -35,8 +35,6 @@ namespace ConfirmationLabsTests.Helpers
             public static string MetaMaskWeb = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#";
 
 
-
-
         }
 
         public static string DefineBaseUrlDependingOnEnvironment()

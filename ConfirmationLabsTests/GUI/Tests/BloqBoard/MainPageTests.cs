@@ -8,8 +8,9 @@ using OpenQA.Selenium;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Application.BloqBoard;
-
-
+using OpenQA.Selenium.Chrome;
+using System.Threading;
+using OpenQA.Selenium.Interactions;
 
 namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 {
@@ -19,7 +20,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [SetUp]
         public void TestInitialize()
         {
-            Browser.Start();
+            Browser.StartWithExstension();
         }
 
         [Category("Bloqboard")]
