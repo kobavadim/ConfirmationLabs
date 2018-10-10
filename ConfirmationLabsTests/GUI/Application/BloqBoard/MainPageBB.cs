@@ -69,6 +69,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     if(val.Text.Contains("Kovan"))
                     {
                         val.Click();
+                        break;
                     }
                 }
  
