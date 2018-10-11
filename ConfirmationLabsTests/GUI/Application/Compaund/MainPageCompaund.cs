@@ -20,7 +20,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         private static readonly By Table = By.CssSelector(".content-table-row");
         private static readonly By AssetsNames = By.CssSelector(".content-table-cell:nth-child(1) .top-cell");
         private static readonly By Price = By.CssSelector(".w-10 .bottom-cell");
-        private static readonly By Lendbtn = By.ClassName(".btn-red");
+        private static readonly By Lendbtn = By.CssSelector(".btn-red");
         private static readonly By Borrowed = By.CssSelector(".btn-green");
         private static readonly By Balancetable = By.CssSelector(".balances-table__table-wrapper");
 
@@ -129,8 +129,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             OpenCompaund();
             TermsandConditionAceptance();
-            IList<IWebElement> borrow = Browser.CurrentBrowser.FindElements(Borrowed);
-            Assert.IsTrue(borrow.Count.Equals(4));
+            IWebElement borrow = Browser.CurrentBrowser.FindElement(Borrowed);
+            Assert.IsTrue(borrow.Displayed);
         }
 
         public static void VerifyBalanceTableDisplayed()
