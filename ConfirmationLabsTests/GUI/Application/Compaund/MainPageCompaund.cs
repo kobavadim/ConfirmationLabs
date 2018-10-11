@@ -85,12 +85,9 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             OpenCompaund();
             TermsandConditionAceptance();
-            IList<IWebElement> assets = Browser.CurrentBrowser.FindElements(AssetsNames);
+            IWebElement assets = Browser.CurrentBrowser.FindElement(AssetsNames);
 
-            Assert.IsTrue(assets[0].Text.Contains("wETH"));
-            Assert.IsTrue(assets[1].Text.Contains("BAT"));
-            Assert.IsTrue(assets[2].Text.Contains("REP"));
-            Assert.IsTrue(assets[3].Text.Contains("ZRX"));
+            Assert.IsTrue(assets.Displayed);
 
 
         }
@@ -110,8 +107,9 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             OpenCompaund();
             TermsandConditionAceptance();
-            IList<IWebElement> lend = Browser.CurrentBrowser.FindElements(Lendbtn);
-            Assert.IsTrue(lend.Count.Equals(4));
+            IWebElement lend = Browser.CurrentBrowser.FindElement(Lendbtn);
+
+            Assert.IsTrue(lend.Displayed);
         }
 
         public static void VerifyBorrowdBtnDisplayed()
