@@ -35,20 +35,23 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             if (Env == "PROD")
             {
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.CompaundProd);
-                var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
-                Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.CompaundProd);
-
+                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
+                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
+                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.CompaundProd);
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.CompaundProd);
             }
             else
             {
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.CompaundKovan);
-                var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
-                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.MetaMaskWeb);
-                //Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[2]);
+                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
+                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
+                ////Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.MetaMaskWeb);
+                ////Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[2]);
+                //Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
 
-                Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, TestData.Urls.CompaundKovan);
+                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, TestData.Urls.CompaundKovan);
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.CompaundKovan);
+
 
             }
 
@@ -63,8 +66,18 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
             termschecbox.Click();
             Browser.ShortPause();
-            IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
-            continuebtn.Click();
+
+            IList<IWebElement> continuebtns = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("button.btn-green"));
+
+            foreach(var con in continuebtns)
+            {
+                if(con.Text.Contains("Continue"))
+                {
+                    con.Click();
+                    break;
+                }
+            }
+        
 
         }
 

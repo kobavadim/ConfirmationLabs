@@ -64,7 +64,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
 
                 Browser.ShortPause();
-                values[5].Click();
+                foreach(var val in values)
+                {
+                    if(val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+ 
+                Browser.MiddlePause();
 
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);

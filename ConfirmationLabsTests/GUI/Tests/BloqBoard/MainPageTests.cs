@@ -52,7 +52,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void MyRequestsToBorrowDisplayedTest()
         {
             MainPageBB.VerifyMyRequestsToBorrowTableDisplayed();
-            
         }
 
         [Category("Bloqboard")]
@@ -60,19 +59,14 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void MyLoanedTokensTableDisplayedTest()
         {
             MainPageBB.VerifyMyLoanedTokensTableDisplayed();
-
-
         }
+
         [Category("Bloqboard")]
         [Test]
         public void UnwrapBrnAvailableTest()
         {
             MainPageBB.VerifyUnwrapbtnDisplayed();
-
-
         }
-
-
 
 
         [TearDown]

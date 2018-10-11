@@ -20,7 +20,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [SetUp]
         public void TestInitialize()
         {
-            Browser.Start();
+            Browser.StartWithExstension(); 
         }
 
         [Category("Compound")]
