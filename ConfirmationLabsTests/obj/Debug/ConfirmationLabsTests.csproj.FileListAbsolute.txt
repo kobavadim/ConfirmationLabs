@@ -50,6 +50,10 @@ C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojResolveAssemblyReference.cache
+C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.dll
+C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3_x64.dll
+C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.dll
+C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.xml
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.pdb
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\nunit.engine.dll
@@ -71,8 +75,3 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\o
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
-C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
-C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.dll
-C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3_x64.dll
-C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.dll
-C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.xml
