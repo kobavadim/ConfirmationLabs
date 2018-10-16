@@ -130,7 +130,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement borrow = Browser.CurrentBrowser.FindElement(Borrowed);
-            Assert.IsTrue(borrow.Displayed);
+            Assert.IsTrue(borrow.Displayed );
         }
 
         public static void VerifyBalanceTableDisplayed()
