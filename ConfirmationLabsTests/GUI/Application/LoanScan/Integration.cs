@@ -14,7 +14,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By Row = By.CssSelector(".loan-row:nth-child(1) .nowrap");
         private static readonly By LoanAmount = By.CssSelector(".loan-row:nth-child(1) td:nth-child(3) .nowrap");
         private static readonly By DharmaColumn = By.CssSelector(".mr-auto .btn-sm:nth-child(1)");
-        private static readonly By LaonAmountCard = By.CssSelector(".col - sm - 9:nth - child(4) > span");
+        private static readonly By LaonAmountCard = By.CssSelector("dl.row > dd:nth-of-type(2) > span");
 
         //Methods
         public static void Open()
