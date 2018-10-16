@@ -20,7 +20,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
 
         [Category("Loanscan")]
         [Category("Integration")]
-        //[Test]
+        [Test]
         public void CardisOpenedfromTableTest()
         {
            Integration.VerifySingleCardOpening();
