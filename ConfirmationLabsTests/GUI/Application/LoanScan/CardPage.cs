@@ -14,6 +14,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By DharmaColumn = By.CssSelector(".mr-auto .btn-sm:nth-child(1)");
         private static readonly By Row = By.CssSelector(".loan-row:nth-child(1) .nowrap");
         private static readonly By ElementsonCardPageDharma = By.CssSelector(".col-sm-3");
+        private static readonly By MakerDaoColumn = By.CssSelector("div.btn-group.btn-group-toggle.mr-auto > label:nth-of-type(2)");
+
 
         //METHODS
 
@@ -79,6 +81,39 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
 
         }
+
+        public static void VerifyElementsonMakerDaoSingleCard()
+        {
+
+            Open();
+            IWebElement column = Engine.Browser.CurrentBrowser.FindElement(MakerDaoColumn);
+            column.Click();
+            Engine.Browser.MiddlePause();
+
+            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+            firstrow.Click();
+            Engine.Browser.MiddlePause();
+
+            IList<IWebElement> elements = Engine.Browser.CurrentBrowser.FindElements(ElementsonCardPageDharma);
+            Assert.IsTrue(elements[0].Text.Contains("Repayment progress"));
+            Assert.IsTrue(elements[1].Text.Contains("Loan balance"));
+            Assert.IsTrue(elements[2].Text.Contains("Loan interest rate (annual)"));
+            Assert.IsTrue(elements[3].Text.Contains("Loan-to-value (LTV) current"));
+            Assert.IsTrue(elements[4].Text.Contains("Debtor address"));
+            Assert.IsTrue(elements[5].Text.Contains("Creditor address"));
+            Assert.IsTrue(elements[6].Text.Contains("Loan draws"));
+            Assert.IsTrue(elements[7].Text.Contains("Collateral"));
+            Assert.IsTrue(elements[9].Text.Contains("Repayments"));
+            Assert.IsTrue(elements[10].Text.Contains("Cumulative liquidation fee"));
+            Assert.IsTrue(elements[11].Text.Contains("CDP creation link"));
+            Assert.IsTrue(elements[12].Text.Contains("Lending protocol/system"));
+            
+
+
+        }
+
+
+
 
     }
 }

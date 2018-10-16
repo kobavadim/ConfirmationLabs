@@ -25,12 +25,17 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
 
         [Category("Loanscan")]
         [Test]
-        public void CardisOpenedfromTableTest()
+        public void CardsElementsDharmaPrortocolTest()
         {
             CardPage.VerifyElementsonDharmaSingleCard();
         }
 
-
+        [Category("Loanscan")]
+        [Test]
+        public void CardsElementsMakerDaoPrortocolTest()
+        {
+            CardPage.VerifyElementsonMakerDaoSingleCard();
+        }
 
 
         [TearDown]
