@@ -64,18 +64,18 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Assert.IsTrue(elements[9].Text.Contains("Creditor address"));
             Assert.IsTrue(elements[10].Text.Contains("Collateral"));
             Assert.IsTrue(elements[11].Text.Contains("Repayments"));
-            Assert.IsTrue(elements[6].Text.Contains("Repayment frequency"));
-            Assert.IsTrue(elements[7].Text.Contains("Agreement Id"));
-            Assert.IsTrue(elements[8].Text.Contains("Relayer name"));
-            Assert.IsTrue(elements[9].Text.Contains("Relayer address"));
-            Assert.IsTrue(elements[10].Text.Contains("Relayer fees"));
-            Assert.IsTrue(elements[11].Text.Contains("Underwriter name"));
-            Assert.IsTrue(elements[6].Text.Contains("Underwriter address"));
-            Assert.IsTrue(elements[7].Text.Contains("Underwriter fees"));
-            Assert.IsTrue(elements[8].Text.Contains("Underwriter risk rating"));
-            Assert.IsTrue(elements[9].Text.Contains("Loan issuance link"));
-            Assert.IsTrue(elements[10].Text.Contains("Loan contract"));
-            Assert.IsTrue(elements[11].Text.Contains("Lending protocol/system"));
+            Assert.IsTrue(elements[12].Text.Contains("Repayment frequency"));
+            Assert.IsTrue(elements[13].Text.Contains("Agreement Id"));
+            Assert.IsTrue(elements[14].Text.Contains("Relayer name"));
+            Assert.IsTrue(elements[15].Text.Contains("Relayer address"));
+            Assert.IsTrue(elements[16].Text.Contains("Relayer fees"));
+            Assert.IsTrue(elements[17].Text.Contains("Underwriter name"));
+            Assert.IsTrue(elements[18].Text.Contains("Underwriter address"));
+            Assert.IsTrue(elements[19].Text.Contains("Underwriter fees"));
+            Assert.IsTrue(elements[20].Text.Contains("Underwriter risk rating"));
+            Assert.IsTrue(elements[21].Text.Contains("Loan issuance link"));
+            Assert.IsTrue(elements[22].Text.Contains("Loan contract"));
+            Assert.IsTrue(elements[23].Text.Contains("Lending protocol/system"));
 
 
         }
