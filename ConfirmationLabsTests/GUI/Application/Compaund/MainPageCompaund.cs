@@ -88,25 +88,38 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyPageisOpened()
         {
+            try { 
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement table = Browser.CurrentBrowser.FindElement(Table);
             Assert.IsTrue(table.Displayed);
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void VerifyAssetsDisplayed()
         {
+            try { 
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement assets = Browser.CurrentBrowser.FindElement(AssetsNames);
 
             Assert.IsTrue(assets.Displayed);
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
 
 
         }
 
         public static void VerifyPriceDisplayed()
         {
+            try { 
             OpenCompaund();
             TermsandConditionAceptance();
             IList<IWebElement> prices = Browser.CurrentBrowser.FindElements(Price);
@@ -114,33 +127,55 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             {
                 Assert.IsTrue(price.Text.Contains("USD"));
             }
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void VerifyLendBtnDisplayed()
         {
+            try { 
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement lend = Browser.CurrentBrowser.FindElement(Lendbtn);
 
             Assert.IsTrue(lend.Displayed);
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void VerifyBorrowdBtnDisplayed()
         {
+            try { 
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement borrow = Browser.CurrentBrowser.FindElement(Borrowed);
             Assert.IsTrue(borrow.Displayed );
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void VerifyBalanceTableDisplayed()
         {
+            try { 
             OpenCompaund();
             TermsandConditionAceptance();
 
             IWebElement balance = Browser.CurrentBrowser.FindElement(Balancetable);
             Assert.IsTrue(balance.Displayed);
-
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
     }

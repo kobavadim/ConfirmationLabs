@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using ConfirmationLabsTests.Helpers;
 using OpenQA.Selenium;
 
 namespace ConfirmationLabsTests.GUI.Application.LoanScan
@@ -304,7 +305,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void SearchAvailability()
         {
-            IList<IWebElement> MyElements = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("[text-anchor='start']"));
+        
+
+           try
+        {
+
+    IList<IWebElement> MyElements = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("[text-anchor='start']"));
 
 
 
@@ -313,54 +319,108 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Assert.IsTrue(searchinput.Displayed);
         }
 
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
+        }
+
         public static void SearchFunctionality()
         {
-            Open();
-            PerformSearch();
-
+            try
+            {
+                Open();
+                PerformSearch();
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void FilteringTable()
         {
+            try { 
             Open();
             FilteringTablebyLendingProtocol();
         }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
+}
 
         public static void PaginationTable()
         {
+            try { 
             Open();
             PaginationbyTheTable();
-
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void ColumnsTable()
         {
+            try { 
             Open();
             ColumnsAvailabilityintheTable();
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void CurrencySwtichingTest()
         {
+            try { 
             Open();
             SwitchCurrency();
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void LendingProtocolSwitch()
         {
+            try
+            {                            
             Open();
             LendingProtocolsSwitch();
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void TermSwitchingFunctionality()
         {
+            try { 
             Open();
             TermSwitch();
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void ChartTabsAvailability()
         {
+            try { 
             Open();
             ChartTabsSwitching();
+                 }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
         }
 
 

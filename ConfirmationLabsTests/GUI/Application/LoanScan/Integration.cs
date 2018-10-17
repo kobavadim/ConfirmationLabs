@@ -152,7 +152,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void VerifyLoanAmountisTheSameinTableandOnCard()
         {
-            Open();
+            try
+            {
+                Open();
             IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
             dharmacolumn.Click();
             Engine.Browser.MiddlePause();
@@ -172,7 +174,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             IWebElement loanamountCard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
             Assert.IsTrue(loanamountCard.Text.Contains(dollar));
+            }
 
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
 
 
         }
