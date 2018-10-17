@@ -83,3 +83,5 @@ C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationL
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
 >>>>>>> 90151e463d52dd77fe1a09a0e792ba61b75761ae
+C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
