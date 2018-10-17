@@ -38,7 +38,6 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         }
 
         //Tests
-
         public static void VerifySingleCardOpening()
         {
             try
@@ -66,12 +65,6 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             {
                 SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
             }
-            
-
-
         }
-
-
-
     }
 }
