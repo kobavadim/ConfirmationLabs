@@ -64,6 +64,18 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         }
 
+        public static void VerifyDataonDharmaCardcorrespondsDataFromTable()
+        {
+            Open();
+            IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+            dharmacolumn.Click();
+            Engine.Browser.MiddlePause();
+
+            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+
+
+
+        }
 
 
     }
