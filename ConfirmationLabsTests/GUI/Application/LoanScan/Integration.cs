@@ -66,5 +66,23 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
             }
         }
+<<<<<<< HEAD
+=======
+
+        public static void VerifyDataonDharmaCardcorrespondsDataFromTable()
+        {
+            Open();
+            IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+            dharmacolumn.Click();
+            Engine.Browser.MiddlePause();
+
+            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+
+
+
+        }
+
+
+>>>>>>> 3e939955a414c1c16ad21bd5d651b02ec12d59f0
     }
 }
