@@ -84,13 +84,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             try
             {
 
-<<<<<<< HEAD
                 Open();
                 IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
                 dharmacolumn.Click();
                 Engine.Browser.MiddlePause();
 
-                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+               // IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
 
 
 
@@ -105,9 +104,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
 
 
-=======
+
             IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
->>>>>>> 126182165d71edf27ff3d14fa944952a2e27d161
         }
     }
 }
