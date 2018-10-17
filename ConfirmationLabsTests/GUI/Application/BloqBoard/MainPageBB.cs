@@ -118,56 +118,103 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyPageisOpened()
         {
-            OpenBloqBoard();
-            TermsandConditionAceptance();
-            IWebElement table = Browser.CurrentBrowser.FindElement(MyBorrowedTokens);
-            Assert.IsTrue(table.Displayed);
+            try
+            {
+                OpenBloqBoard();
+                TermsandConditionAceptance();
+                IWebElement table = Browser.CurrentBrowser.FindElement(MyBorrowedTokens);
+                Assert.IsTrue(table.Displayed);
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("PageisOpenedTest" + " failed. Please check Loanscan system manualy...");
+            }
         }
 
         public static void VerifyBalanceTableDisplayed()
         {
-            OpenBloqBoard();
-            TermsandConditionAceptance();
-            IWebElement balancetable = Browser.CurrentBrowser.FindElement(BalanceTable);
-            Assert.IsTrue(balancetable.Displayed);
-        }
+            try
+            {
+                OpenBloqBoard();
+                TermsandConditionAceptance();
+                IWebElement balancetable = Browser.CurrentBrowser.FindElement(BalanceTable);
+                Assert.IsTrue(balancetable.Displayed);
+            
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("BalanceTableDisplayedTest" + " failed. Please check Loanscan system manualy...");
+            }
+}
 
         public static void VerifyMyRequestsToBorrowTableDisplayed()
         {
-            OpenBloqBoard();
-            TermsandConditionAceptance();
-            IWebElement requestsTable = Browser.CurrentBrowser.FindElement(MyRequestsToBorrowTable);
-            Assert.IsTrue(requestsTable.Displayed);
-        }
+            try
+            {
+                OpenBloqBoard();
+                TermsandConditionAceptance();
+                IWebElement requestsTable = Browser.CurrentBrowser.FindElement(MyRequestsToBorrowTable);
+                Assert.IsTrue(requestsTable.Displayed);
+            
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("RequestsToBorrowDisplayedTest" + " failed. Please check Loanscan system manualy...");
+            }
+}
 
         public static void VerifyRequestsToBorrowTableDisplayed()
         {
-            OpenBloqBoard();
-            TermsandConditionAceptance();
-            IWebElement requestsTable = Browser.CurrentBrowser.FindElement(RequesttoBorrowTable);
-            Assert.IsTrue(requestsTable.Displayed);
-        }
+            try
+            {
+                OpenBloqBoard();
+                TermsandConditionAceptance();
+                IWebElement requestsTable = Browser.CurrentBrowser.FindElement(RequesttoBorrowTable);
+                Assert.IsTrue(requestsTable.Displayed);
+            }
+            
+            catch (Exception)
+            {
+                SlackClient.PostMessage("MyRequestsToBorrowDisplayedTest" + " failed. Please check Loanscan system manualy...");
+            }
+}
 
         public static void VerifyMyLoanedTokensTableDisplayed()
         {
-            OpenBloqBoard();
-            TermsandConditionAceptance();
-            IWebElement loanedtable = Browser.CurrentBrowser.FindElement(MyLoanedTokens);
-            Assert.IsTrue(loanedtable.Displayed);
-        }
+            try
+            {
+                OpenBloqBoard();
+                TermsandConditionAceptance();
+                IWebElement loanedtable = Browser.CurrentBrowser.FindElement(MyLoanedTokens);
+                Assert.IsTrue(loanedtable.Displayed);
+            }
+            
+            catch (Exception)
+            {
+                SlackClient.PostMessage("MyLoanedTokensTableDisplayedTest" + " failed. Please check Loanscan system manualy...");
+            }
+}
 
         public static void VerifyUnwrapbtnDisplayed()
         {
-            OpenBloqBoard();
-            TermsandConditionAceptance();
-            IWebElement weth = Browser.CurrentBrowser.FindElement(WethBtn);
-            weth.Click();
-            Browser.MiddlePause();
+            try
+            {
+                OpenBloqBoard();
+                TermsandConditionAceptance();
+                IWebElement weth = Browser.CurrentBrowser.FindElement(WethBtn);
+                weth.Click();
+                Browser.MiddlePause();
 
+
+                IWebElement wrapbtn = Browser.CurrentBrowser.FindElement(Wrap);
+                Assert.IsTrue(wrapbtn.Text.Contains("UNWRAP"));
+            }
             
-            IWebElement wrapbtn = Browser.CurrentBrowser.FindElement(Wrap);
-            Assert.IsTrue(wrapbtn.Text.Contains("UNWRAP"));
-        }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("UnwrapBrnAvailableTest" + " failed. Please check Loanscan system manualy...");
+            }
+}
 
 
 

@@ -96,7 +96,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("PageisOpenedTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -111,7 +111,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("AssetsDisplayTest" + " failed. Please check Loanscan system manualy...");
             }
 
 
@@ -130,7 +130,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("PriceDisplayedTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -145,7 +145,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("LendButtonsDisplayedTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -159,7 +159,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("BorrowButtonsDisplayedTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -174,7 +174,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("BalanceTableDisplayTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 

@@ -321,7 +321,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("SeacrhAvailabilityTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -334,7 +334,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("SearchFunctionalityTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -346,7 +346,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("FilteringTableFunctionalityTest" + " failed. Please check Loanscan system manualy...");
             }
 }
 
@@ -358,7 +358,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("PaginationTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -370,7 +370,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("ColumnsAvailabilityTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -382,7 +382,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("CurrencySwitcherTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -395,7 +395,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("LendingProtocolSwitchTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -407,7 +407,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("TermSwitchingTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -419,7 +419,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                  }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("ChartTabsAvailabilityTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 

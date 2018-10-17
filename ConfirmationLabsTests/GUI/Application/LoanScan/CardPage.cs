@@ -83,7 +83,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch(Exception)
             {
-                SlackClient.PostMessage("VerifyElementsonDharmaSingleCard" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("CardsElementsDharmaPrortocolTest" + " failed. Please check Loanscan system manualy...");
             }
         }
 
@@ -116,7 +116,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifyElementsonMakerDaoSingleCard" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("CardsElementsMakerDaoPrortocolTest" + " failed. Please check Loanscan system manualy...");
             }
   
 
