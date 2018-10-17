@@ -29,6 +29,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By RepayedCard = By.CssSelector(".progress-label");
         private static readonly By CollateralCard = By.CssSelector(".loan-time+ div");
         private static readonly By UnderwrietrNameCard = By.CssSelector(".col-sm-9:nth-child(38)");
+        private static readonly By RelayerNameCard = By.CssSelector(".col-sm-9:nth-child(32)");
 
 
         //Methods
@@ -132,7 +133,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 IWebElement underwritercard = Engine.Browser.CurrentBrowser.FindElement(UnderwrietrNameCard);
                 Assert.IsTrue(underwritercard.Text.Contains(underwriterNameTableValue));
 
-
+                IWebElement relayername = Engine.Browser.CurrentBrowser.FindElement(RelayerNameCard);
+                Assert.IsTrue(relayername.Text.Contains(relayerNameTableValue));
 
 
 
@@ -147,5 +149,34 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             
         }
+
+        public static void VerifyLoanAmountisTheSameinTableandOnCard()
+        {
+            Open();
+            IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+            dharmacolumn.Click();
+            Engine.Browser.MiddlePause();
+
+            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+
+            IWebElement loanamount = Engine.Browser.CurrentBrowser.FindElement(LoanAmount);
+            string loanamountvalue = loanamount.Text;
+            string[] stringSeparators = new string[] { "(" };
+            var result = loanamountvalue.Split(stringSeparators, StringSplitOptions.None);
+            
+            string token = result[0];
+            string dollar = result[1];
+
+            firstrow.Click();
+            Engine.Browser.MiddlePause();
+
+            IWebElement loanamountCard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
+            Assert.IsTrue(loanamountCard.Text.Contains(dollar));
+
+
+
+        }
+
+
     }
 }

@@ -28,11 +28,23 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
 
         [Category("Loanscan")]
         [Category("Integration")]
-        //[Test]
+        [Test]
+        //bug LN-77
         public void DataonDharmaCardformTableCorrespondingTest()
         {
             Integration.VerifyDataonDharmaCardcorrespondsDataFromTable();
         }
+
+        [Category("Loanscan")]
+        [Category("Integration")]
+        //bug LN-77
+        [Test]
+        public void LoanAmountDisplayTest()
+        {
+            Integration.VerifyLoanAmountisTheSameinTableandOnCard();
+        }
+
+
 
 
         [TearDown]
