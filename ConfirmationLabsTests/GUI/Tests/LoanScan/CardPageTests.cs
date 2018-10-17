@@ -21,13 +21,18 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             Browser.Start();
         }
 
-
-
         [Category("Loanscan")]
         [Test]
         public void CardsElementsDharmaPrortocolTest()
         {
             CardPage.VerifyElementsonDharmaSingleCard();
+        }
+
+        [Category("Loanscan")]
+        [Test]
+        public void PaidOfCardsElementsValueDharmaPrortocolTest()
+        {
+            CardPage.VerifyPaidOfDharmaSingleCard();
         }
 
         [Category("Loanscan")]

@@ -56,7 +56,11 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IList<IWebElement> elements = Engine.Browser.CurrentBrowser.FindElements(ElementsonCardPageDharma);
-                Assert.IsTrue(elements[0].Text.Contains("Repayment progress"));
+                //Assert.IsTrue(elements[0].Text.Contains("Repayment progress"));
+                if(!elements[0].Text.Contains("Repayment progress"))
+                {
+                    throw new Exception("LOANSCAN: Repayment progress field is abcent. Please check manually.");
+                }
                 Assert.IsTrue(elements[1].Text.Contains("Loan amount"));
                 Assert.IsTrue(elements[2].Text.Contains("Loan term"));
                 Assert.IsTrue(elements[3].Text.Contains("Loan interest rate"));
@@ -84,6 +88,33 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch(Exception)
             {
                 SlackClient.PostMessage("CardsElementsDharmaPrortocolTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+            }
+        }
+
+        public static void VerifyPaidOfDharmaSingleCard()
+        {
+            try
+            {
+                Engine.Browser.CurrentBrowser.Navigate().GoToUrl("https://loanscan.io/Agreements/Dharma/0xa17912dffc430b2d9e346905e695d74e432fb45edaa9b6fe6fc216b41ec117c1");
+                Engine.Browser.MiddlePause();
+
+                string valuesStr = "";
+                IList<IWebElement> values = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("span"));
+                foreach(var val in values)
+                {
+                    valuesStr += val.Text;
+                }
+                if(valuesStr != "BETA100% of 0.000202 WETH repaidrepaid0.0002 WETH ($0.04) paid offpaid off1 hour8,760.00% / 1.00%September-25-2018 17:03:29 PM UTCSeptember-25-2018 18:03:29 PM UTC10.0%0xd840d02bb3a715027343fc8428b61a7f83dcb6e70xd840d02bb3a715027343fc8428b61a7f83dcb6e7heldin a smart contract0.000202 WETH ($0.04)1Hourly0xa17912dffc430b2d9e346905e695d74e432fb45edaa9b6fe6fc216b41ec117c10xa17912dffc430b2d9e346905e695d74e432fb45edaa9b6fe6fc216b41ec117c1Bloqboard0x00f34ad48a326b406bf995e04189e42d285d57730x860c058b354b0a63066cd030ac80a60df0cbce933da6ad86c2165cf5db0c60010x5de2538838b4eb7fa2dbdea09d642b88546e5f20Dharma")
+                {
+                    throw new Exception("LOANSCAN: paid of values are broken. Please check manually.");
+                }
+               
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifyPaidOfDharmaSingleCard" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
             }
         }
 
