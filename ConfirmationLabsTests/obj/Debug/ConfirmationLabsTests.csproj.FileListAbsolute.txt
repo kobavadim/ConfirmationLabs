@@ -35,7 +35,6 @@ C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.dll
-C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.pdb
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\nunit.engine.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\nunit.engine.api.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Mono.Cecil.dll
@@ -55,8 +54,6 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\o
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
-<<<<<<< HEAD
-=======
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.dll
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\nunit.engine.dll
@@ -80,10 +77,8 @@ C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationL
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojResolveAssemblyReference.cache
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
->>>>>>> 3e939955a414c1c16ad21bd5d651b02ec12d59f0
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
->>>>>>> 90151e463d52dd77fe1a09a0e792ba61b75761ae
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Mono.Cecil.Pdb.dll
