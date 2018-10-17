@@ -16,6 +16,18 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By LoanAmount = By.CssSelector(".loan-row:nth-child(1) td:nth-child(3) .nowrap");
         private static readonly By DharmaColumn = By.CssSelector(".mr-auto .btn-sm:nth-child(1)");
         private static readonly By LaonAmountCard = By.CssSelector("dl.row > dd:nth-of-type(2) > span");
+        private static readonly By AnnaulInterestRateTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(4)");
+        private static readonly By LoanTermTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(5) .nowrap");
+        private static readonly By Ltvtable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(6) span");
+        private static readonly By CollateralTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(7) .nowrap");
+        private static readonly By RepayedTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(9)");
+        private static readonly By UnderwriterNameTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(10)");
+        private static readonly By RelayerNameTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(11)");
+        private static readonly By LoanTermCard = By.CssSelector(".col-sm-9:nth-child(6) span");
+        private static readonly By AnnualInterestRateCard = By.CssSelector("br+ span");
+
+
+
 
         //Methods
         public static void Open()
@@ -73,13 +85,27 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void VerifyDataonDharmaCardcorrespondsDataFromTable()
         {
-            Open();
-            IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
-            dharmacolumn.Click();
-            Engine.Browser.MiddlePause();
+            try
+            {
 
-            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                Open();
+                IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+                dharmacolumn.Click();
+                Engine.Browser.MiddlePause();
 
+                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+
+
+
+
+
+
+            }
+
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
 
 
         }
