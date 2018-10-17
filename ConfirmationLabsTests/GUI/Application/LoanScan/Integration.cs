@@ -12,6 +12,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
     class Integration
     {
         //ELEMENTS
+
         private static readonly By Row = By.CssSelector(".loan-row:nth-child(1) .nowrap");
         private static readonly By LoanAmount = By.CssSelector(".loan-row:nth-child(1) td:nth-child(3) .nowrap");
         private static readonly By DharmaColumn = By.CssSelector(".mr-auto .btn-sm:nth-child(1)");
@@ -25,8 +26,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By RelayerNameTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(11)");
         private static readonly By LoanTermCard = By.CssSelector(".col-sm-9:nth-child(6) span");
         private static readonly By AnnualInterestRateCard = By.CssSelector("br+ span");
-
-
+        private static readonly By RepayedCard = By.CssSelector(".progress-label");
+        private static readonly By CollateralCard = By.CssSelector(".loan-time+ div");
+        private static readonly By UnderwrietrNameCard = By.CssSelector(".col-sm-9:nth-child(38)");
 
 
         //Methods
@@ -50,6 +52,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         }
 
         //Tests
+
         public static void VerifySingleCardOpening()
         {
             try
@@ -60,18 +63,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
-                IWebElement loanamount = Engine.Browser.CurrentBrowser.FindElement(LoanAmount);
-                string amount = loanamount.Text;
-
-                string[] stringSeparators = new string[] { "$" };
-                var result = amount.Split(stringSeparators, StringSplitOptions.None);
-
+                IWebElement annualintrate = Engine.Browser.CurrentBrowser.FindElement(AnnaulInterestRateTable);
+                string value = annualintrate.Text;
 
                 firstrow.Click();
                 Engine.Browser.MiddlePause();
 
-                IWebElement loanamountcard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
-                Assert.IsTrue(loanamountcard.Text.Contains(result[1]));
+                IWebElement annualinterestratecard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
+                Assert.IsTrue(annualinterestratecard.Text.Contains(value));
             }
             catch (Exception)
             {
@@ -88,9 +87,50 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
                 dharmacolumn.Click();
                 Engine.Browser.MiddlePause();
+                IWebElement row = Engine.Browser.CurrentBrowser.FindElement(Row);
 
-               // IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                IWebElement annaulInterestRateTable = Engine.Browser.CurrentBrowser.FindElement(AnnaulInterestRateTable);
+                string annaulintRateTableValue = annaulInterestRateTable.Text;
 
+                IWebElement loanTermTable = Engine.Browser.CurrentBrowser.FindElement(LoanTermTable);
+                string loanTermtableValue = loanTermTable.Text;
+                
+                
+                IWebElement collateralTable = Engine.Browser.CurrentBrowser.FindElement(CollateralTable);
+                string collateralTableValue = collateralTable.Text;
+
+                string[] stringSeparators = new string[] { "$" };
+                var result = collateralTableValue.Split(stringSeparators, StringSplitOptions.None);
+
+
+                IWebElement repayedTable = Engine.Browser.CurrentBrowser.FindElement(RepayedTable);
+                string repayedTableValue = repayedTable.Text;
+
+                IWebElement underwriterNameTable = Engine.Browser.CurrentBrowser.FindElement(UnderwriterNameTable);
+                string underwriterNameTableValue = underwriterNameTable.Text;
+
+                IWebElement relayerNameTable = Engine.Browser.CurrentBrowser.FindElement(RelayerNameTable);
+                string relayerNameTableValue = relayerNameTable.Text;
+
+                row.Click();
+                Engine.Browser.MiddlePause();
+
+
+                IWebElement annualInterestRateCard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
+                string annaulVlaueCard = annualInterestRateCard.Text;
+                Assert.IsTrue(annaulVlaueCard.Contains(annaulintRateTableValue));
+
+                IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
+                Assert.IsTrue(repayedCard.Text.Contains(repayedTableValue));
+
+                IWebElement loanTermCard = Engine.Browser.CurrentBrowser.FindElement(LoanTermCard);
+                Assert.IsTrue(loanTermCard.Text.Contains(loanTermtableValue));
+
+                IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
+                Assert.IsTrue(collateralCard.Text.Contains(result[1]));
+
+                IWebElement underwritercard = Engine.Browser.CurrentBrowser.FindElement(UnderwrietrNameCard);
+                Assert.IsTrue(underwritercard.Text.Contains(underwriterNameTableValue));
 
 
 
@@ -105,7 +145,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
 
 
-            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+            
         }
     }
 }

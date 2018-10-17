@@ -26,7 +26,13 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
            Integration.VerifySingleCardOpening();
         }
 
-
+        [Category("Loanscan")]
+        [Category("Integration")]
+        //[Test]
+        public void DataonDharmaCardformTableCorrespondingTest()
+        {
+            Integration.VerifyDataonDharmaCardcorrespondsDataFromTable();
+        }
 
 
         [TearDown]

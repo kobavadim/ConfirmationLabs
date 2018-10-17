@@ -288,6 +288,7 @@ namespace ConfirmationLabsTests.GUI.Engine
 
 
         public static void Close()
+
         {
             CurrentBrowser.Quit();
 
