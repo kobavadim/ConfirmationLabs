@@ -36,6 +36,9 @@
     <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoItX.Dotnet.3.3.14.2\lib\AutoItX3.Assembly.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.core, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnitTestAdapter.WithFramework.2.0.0\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -87,6 +90,7 @@
     <Compile Include="GUI\Tests\LoanScan\LoanScanMainPageTests.cs" />
     <Compile Include="Helpers\Log.cs" />
     <Compile Include="Helpers\ScreenShot.cs" />
+    <Compile Include="Helpers\SlackClient.cs" />
     <Compile Include="Helpers\TestData.cs" />
     <Compile Include="Helpers\Wallets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

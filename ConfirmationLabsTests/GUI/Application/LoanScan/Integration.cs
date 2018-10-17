@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConfirmationLabsTests.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
@@ -40,26 +41,32 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void VerifySingleCardOpening()
         {
-            Open();
-            IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
-            dharmacolumn.Click();
-            Engine.Browser.MiddlePause();
+            try
+            {
+                Open();
+                IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+                dharmacolumn.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                IWebElement loanamount = Engine.Browser.CurrentBrowser.FindElement(LoanAmount);
+                string amount = loanamount.Text;
+
+                string[] stringSeparators = new string[] { "$" };
+                var result = amount.Split(stringSeparators, StringSplitOptions.None);
+
+
+                firstrow.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement loanamountcard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
+                Assert.IsTrue(loanamountcard.Text.Contains(result[1]));
+            }
+            catch (Exception)
+            {
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+            }
             
-            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
-            IWebElement loanamount = Engine.Browser.CurrentBrowser.FindElement(LoanAmount);
-            string amount = loanamount.Text;
-
-            string[] stringSeparators = new string[] { "$" };
-            var result = amount.Split(stringSeparators, StringSplitOptions.None);
-
-
-
-
-            firstrow.Click();
-            Engine.Browser.MiddlePause();
-
-            IWebElement loanamountcard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
-            Assert.IsTrue(loanamountcard.Text.Contains(result[1]));
 
 
         }

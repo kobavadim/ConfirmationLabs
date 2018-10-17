@@ -76,3 +76,5 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\o
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
