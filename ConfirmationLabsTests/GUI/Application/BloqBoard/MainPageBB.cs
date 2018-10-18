@@ -128,6 +128,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             catch (Exception)
             {
                 SlackClient.PostMessage("PageisOpenedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -144,8 +146,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             catch (Exception)
             {
                 SlackClient.PostMessage("BalanceTableDisplayedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
-}
+        }
 
         public static void VerifyMyRequestsToBorrowTableDisplayed()
         {
@@ -160,8 +164,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             catch (Exception)
             {
                 SlackClient.PostMessage("RequestsToBorrowDisplayedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
-}
+        }
 
         public static void VerifyRequestsToBorrowTableDisplayed()
         {
@@ -176,8 +182,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             catch (Exception)
             {
                 SlackClient.PostMessage("MyRequestsToBorrowDisplayedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
-}
+        }
 
         public static void VerifyMyLoanedTokensTableDisplayed()
         {
@@ -192,8 +200,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             catch (Exception)
             {
                 SlackClient.PostMessage("MyLoanedTokensTableDisplayedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
-}
+        }
 
         public static void VerifyUnwrapbtnDisplayed()
         {
@@ -213,8 +223,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             catch (Exception)
             {
                 SlackClient.PostMessage("UnwrapBrnAvailableTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
-}
+        }
 
 
 

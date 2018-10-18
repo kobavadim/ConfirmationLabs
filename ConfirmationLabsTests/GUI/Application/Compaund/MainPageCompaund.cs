@@ -97,6 +97,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             catch (Exception)
             {
                 SlackClient.PostMessage("PageisOpenedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -112,6 +114,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             catch (Exception)
             {
                 SlackClient.PostMessage("AssetsDisplayTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
 
 
@@ -131,6 +135,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             catch (Exception)
             {
                 SlackClient.PostMessage("PriceDisplayedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -146,6 +152,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             catch (Exception)
             {
                 SlackClient.PostMessage("LendButtonsDisplayedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -160,6 +168,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             catch (Exception)
             {
                 SlackClient.PostMessage("BorrowButtonsDisplayedTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -175,6 +185,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             catch (Exception)
             {
                 SlackClient.PostMessage("BalanceTableDisplayTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 

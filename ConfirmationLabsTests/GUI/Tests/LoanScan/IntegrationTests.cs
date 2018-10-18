@@ -37,14 +37,38 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
 
         [Category("Loanscan")]
         [Category("Integration")]
-        //bug LN-77
+        //bug LN-90
         [Test]
-        public void LoanAmountDisplayTest()
+        public void LoanAmountDisplayDharmaTest()
         {
             Integration.VerifyLoanAmountisTheSameinTableandOnCard();
         }
 
+        [Category("Loanscan")]
+        [Category("Integration")]
+        //bug LN-90
+        [Test]
+        public void CollateralAmountDisplayeDharmaTest()
+        {
+            Integration.VerifyCollateralistheSameThroughTableandCard();
+        }
 
+
+        [Category("Loanscan")]
+        [Category("Integration")]
+        [Test]
+        public void DataonMakerDaoCardthroughTableandCardTest()
+        {
+            Integration.VerifyDataonMakerDaoCardcorrespondsDataFromTable();
+        }
+
+        [Category("Loanscan")]
+        [Category("Integration")]
+        [Test]
+        public void CollateralAmountDisplayeMakerDaoTest()
+        {
+            Integration.VerifyCollateralistheSameThroughTableandCardMakerDao();
+        }
 
 
         [TearDown]

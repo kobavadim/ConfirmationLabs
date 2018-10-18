@@ -56,38 +56,129 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IList<IWebElement> elements = Engine.Browser.CurrentBrowser.FindElements(ElementsonCardPageDharma);
-                //Assert.IsTrue(elements[0].Text.Contains("Repayment progress"));
+                
                 if(!elements[0].Text.Contains("Repayment progress"))
                 {
-                    throw new Exception("LOANSCAN: Repayment progress field is abcent. Please check manually.");
+                    throw new Exception("LOANSCAN: Repayment progress element is abcent. Please check manually.");
                 }
-                Assert.IsTrue(elements[1].Text.Contains("Loan amount"));
-                Assert.IsTrue(elements[2].Text.Contains("Loan term"));
-                Assert.IsTrue(elements[3].Text.Contains("Loan interest rate"));
-                Assert.IsTrue(elements[4].Text.Contains("Loan issuance date"));
-                Assert.IsTrue(elements[5].Text.Contains("Loan maturity date"));
-                Assert.IsTrue(elements[6].Text.Contains("Loan-to-value (LTV) at origination"));
-                Assert.IsTrue(elements[7].Text.Contains("Loan-to-value (LTV) current"));
-                Assert.IsTrue(elements[8].Text.Contains("Debtor address"));
-                Assert.IsTrue(elements[9].Text.Contains("Creditor address"));
-                Assert.IsTrue(elements[10].Text.Contains("Collateral"));
-                Assert.IsTrue(elements[11].Text.Contains("Repayments"));
-                Assert.IsTrue(elements[12].Text.Contains("Repayment frequency"));
-                Assert.IsTrue(elements[13].Text.Contains("Agreement Id"));
-                Assert.IsTrue(elements[14].Text.Contains("Relayer name"));
-                Assert.IsTrue(elements[15].Text.Contains("Relayer address"));
-                Assert.IsTrue(elements[16].Text.Contains("Relayer fees"));
-                Assert.IsTrue(elements[17].Text.Contains("Underwriter name"));
-                Assert.IsTrue(elements[18].Text.Contains("Underwriter address"));
-                Assert.IsTrue(elements[19].Text.Contains("Underwriter fees"));
-                Assert.IsTrue(elements[20].Text.Contains("Underwriter risk rating"));
-                Assert.IsTrue(elements[21].Text.Contains("Loan issuance link"));
-                Assert.IsTrue(elements[22].Text.Contains("Loan contract"));
-                Assert.IsTrue(elements[23].Text.Contains("Lending protocol/system"));
+                
+                if (!elements[1].Text.Contains("Loan amount"))
+                {
+                    throw new Exception("LOANSCAN: Loan amount field is element. Please check manually.");
+                }
+                
+                if (!elements[2].Text.Contains("Loan term"))
+                {
+                    throw new Exception("LOANSCAN: Loan term field is element. Please check manually.");
+                }
+
+                if (!elements[3].Text.Contains("Loan interest rate"))
+                {
+                    throw new Exception("LOANSCAN: Loan interest rate field is element. Please check manually.");
+                }
+                
+                if (!elements[4].Text.Contains("Loan issuance date"))
+                {
+                    throw new Exception("LOANSCAN: Loan issuance date field is element. Please check manually.");
+                }
+               
+                if (!elements[5].Text.Contains("Loan maturity date"))
+                {
+                    throw new Exception("LOANSCAN: Loan maturity date field is element. Please check manually.");
+                }
+                
+                if (!elements[6].Text.Contains("Loan-to-value (LTV) at origination"))
+                {
+                    throw new Exception("LOANSCAN: Loan-to-value (LTV) at origination field is element. Please check manually.");
+                }
+
+                if (!elements[7].Text.Contains("Loan-to-value (LTV) current"))
+                {
+                    throw new Exception("LOANSCAN: Loan-to-value (LTV) current field is element. Please check manually.");
+                }
+                
+                if (!elements[8].Text.Contains("Debtor address"))
+                {
+                    throw new Exception("LOANSCAN: Debtor address field is element. Please check manually.");
+                }
+                
+                if (!elements[9].Text.Contains("Creditor address"))
+                {
+                    throw new Exception("LOANSCAN: Creditor address field is element. Please check manually.");
+                }
+
+                if (!elements[10].Text.Contains("Collateral"))
+                {
+                    throw new Exception("LOANSCAN: Collateral field is element. Please check manually.");
+                }
+                
+                if (!elements[11].Text.Contains("Repayments"))
+                {
+                    throw new Exception("LOANSCAN: Repayments field is element. Please check manually.");
+                }
+
+                if (!elements[12].Text.Contains("Repayment frequency"))
+                {
+                    throw new Exception("LOANSCAN: Repayment frequency field is element. Please check manually.");
+                }
+                
+                if (!elements[13].Text.Contains("Agreement Id"))
+                {
+                    throw new Exception("LOANSCAN: Agreement Id field is element. Please check manually.");
+                }
+
+                if (!elements[14].Text.Contains("Relayer name"))
+                {
+                    throw new Exception("LOANSCAN: Relayer name field is element. Please check manually.");
+                }
+                if (!elements[15].Text.Contains("Relayer address"))
+                {
+                    throw new Exception("LOANSCAN: Relayer address field is element. Please check manually.");
+                }
+                
+                if (!elements[16].Text.Contains("Relayer fees"))
+                {
+                    throw new Exception("LOANSCAN: Relayer fees field is element. Please check manually.");
+                }
+                
+                if (!elements[17].Text.Contains("Underwriter name"))
+                {
+                    throw new Exception("LOANSCAN: Underwriter name field is element. Please check manually.");
+                }
+                                
+                if (!elements[18].Text.Contains("Underwriter address"))
+                {
+                    throw new Exception("LOANSCAN: Underwriter address field is element. Please check manually.");
+                }
+                
+                if (!elements[19].Text.Contains("Underwriter fees"))
+                {
+                    throw new Exception("LOANSCAN:Underwriter fees field is element. Please check manually.");
+                }
+                
+                if (!elements[20].Text.Contains("Underwriter risk rating"))
+                {
+                    throw new Exception("LOANSCAN: Underwriter risk rating field is element. Please check manually.");
+                }
+                
+                if (!elements[21].Text.Contains("Loan issuance link"))
+                {
+                    throw new Exception("LOANSCAN: Loan issuance link field is element. Please check manually.");
+                }
+               
+                if (!elements[22].Text.Contains("Loan contract"))
+                {
+                    throw new Exception("LOANSCAN: Loan contract field is element. Please check manually.");
+                }
+                
+                if (!elements[23].Text.Contains("Lending protocol/system"))
+                {
+                    throw new Exception("LOANSCAN: Lending protocol/system field is element. Please check manually.");
+                }
             }
             catch(Exception)
             {
-                SlackClient.PostMessage("CardsElementsDharmaPrortocolTest" + " failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("CardsElementsDharmaPrortocolTest" + " failed. Please check Loanscan system manually...");
                 ScreenShot.TakeScreenshot();
             }
         }
@@ -132,22 +223,72 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IList<IWebElement> elements = Engine.Browser.CurrentBrowser.FindElements(ElementsonCardPageDharma);
-                Assert.IsTrue(elements[0].Text.Contains("Repayment progress"));
-                Assert.IsTrue(elements[1].Text.Contains("Loan balance"));
-                Assert.IsTrue(elements[2].Text.Contains("Loan interest rate (annual)"));
-                Assert.IsTrue(elements[3].Text.Contains("Loan-to-value (LTV) current"));
-                Assert.IsTrue(elements[4].Text.Contains("Debtor address"));
-                Assert.IsTrue(elements[5].Text.Contains("Creditor address"));
-                Assert.IsTrue(elements[6].Text.Contains("Loan draws"));
-                Assert.IsTrue(elements[7].Text.Contains("Collateral"));
-                Assert.IsTrue(elements[9].Text.Contains("Repayments"));
-                Assert.IsTrue(elements[10].Text.Contains("Cumulative liquidation fee"));
-                Assert.IsTrue(elements[11].Text.Contains("CDP creation link"));
-                Assert.IsTrue(elements[12].Text.Contains("Lending protocol/system"));
+
+                if (!elements[0].Text.Contains("Repayment progress"))
+                {
+                    throw new Exception("LOANSCAN: Repayment progress field is element. Please check manually.");
+                }
+
+                if (!elements[1].Text.Contains("Loan balance"))
+                {
+                    throw new Exception("LOANSCAN: Loan balance field is element. Please check manually.");
+                }
+
+                if (!elements[2].Text.Contains("Loan interest rate (annual)"))
+                {
+                    throw new Exception("LOANSCAN: Loan interest rate (annual) field is element. Please check manually.");
+                }
+
+                if (!elements[3].Text.Contains("Loan-to-value (LTV) current"))
+                {
+                    throw new Exception("LOANSCAN: Loan-to-value (LTV) current field is element. Please check manually.");
+                }
+                
+                if (!elements[4].Text.Contains("Debtor address"))
+                {
+                    throw new Exception("LOANSCAN: Debtor addresst field is element. Please check manually.");
+                }
+                
+                if (!elements[5].Text.Contains("Creditor address"))
+                {
+                    throw new Exception("LOANSCAN: Creditor address field is element. Please check manually.");
+                }
+               
+                if (!elements[6].Text.Contains("Loan draws"))
+                {
+                    throw new Exception("LOANSCAN: Loan draws field is element. Please check manually.");
+                }
+                
+                if (!elements[7].Text.Contains("Collateral"))
+                {
+                    throw new Exception("LOANSCAN: Collateral field is element. Please check manually.");
+                }
+                
+                if (!elements[9].Text.Contains("Repayments"))
+                {
+                    throw new Exception("LOANSCAN: Repayments field is element. Please check manually.");
+                }
+                
+                if (!elements[10].Text.Contains("Cumulative liquidation fee"))
+                {
+                    throw new Exception("LOANSCAN: Cumulative liquidation fee field is element. Please check manually.");
+                }
+
+                
+                if (!elements[11].Text.Contains("CDP creation link"))
+                {
+                    throw new Exception("LOANSCAN: CDP creation link field is element. Please check manually.");
+                }
+                
+                if (!elements[12].Text.Contains("Lending protocol/system"))
+                {
+                    throw new Exception("LOANSCAN: Lending protocol/system field is element. Please check manually.");
+                }
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("CardsElementsMakerDaoPrortocolTest" + " failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("CardsElementsMakerDaoPrortocolTest" + " failed. Please check Loanscan system manually...");
+                ScreenShot.TakeScreenshot();
             }
   
 

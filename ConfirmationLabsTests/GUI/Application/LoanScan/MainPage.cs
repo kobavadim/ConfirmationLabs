@@ -310,7 +310,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
            try
         {
 
-    IList<IWebElement> MyElements = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("[text-anchor='start']"));
+             // IList<IWebElement> MyElements = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("[text-anchor='start']"));
 
 
 
@@ -322,6 +322,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("SeacrhAvailabilityTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -335,20 +337,26 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("SearchFunctionalityTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
         public static void FilteringTable()
         {
-            try { 
+            try
+        { 
             Open();
             FilteringTablebyLendingProtocol();
         }
+
             catch (Exception)
             {
                 SlackClient.PostMessage("FilteringTableFunctionalityTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
-}
+        }
 
         public static void PaginationTable()
         {
@@ -359,6 +367,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("PaginationTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -371,6 +381,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("ColumnsAvailabilityTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -383,6 +395,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("CurrencySwitcherTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -396,6 +410,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("LendingProtocolSwitchTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -408,6 +424,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("TermSwitchingTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -420,6 +438,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("ChartTabsAvailabilityTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 

@@ -31,6 +31,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By UnderwrietrNameCard = By.CssSelector(".col-sm-9:nth-child(38)");
         private static readonly By RelayerNameCard = By.CssSelector(".col-sm-9:nth-child(32)");
 
+        private static readonly By MakerDaoColumn = By.CssSelector("div.btn-group.btn-group-toggle.mr-auto > label:nth-of-type(2)");
+        private static readonly By LendingProtocolTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(12) .nowrap");
+        private static readonly By AnnualInterestRateCardMakerDao = By.CssSelector(".col-sm-9:nth-child(6) span");
+        private static readonly By LendingProtocolCard = By.CssSelector(".col-sm-9:nth-child(28) span");
+        private static readonly By CollateralTableMakerDao = By.CssSelector(".loan-list .loan-summary");
+
 
         //Methods
         public static void Open()
@@ -71,11 +77,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement annualinterestratecard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
+
                 Assert.IsTrue(annualinterestratecard.Text.Contains(value));
             }
             catch (Exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manualy...");
+                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manually...");
+                ScreenShot.TakeScreenshot();
+
             }
         }
 
@@ -96,14 +105,6 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 IWebElement loanTermTable = Engine.Browser.CurrentBrowser.FindElement(LoanTermTable);
                 string loanTermtableValue = loanTermTable.Text;
                 
-                
-                IWebElement collateralTable = Engine.Browser.CurrentBrowser.FindElement(CollateralTable);
-                string collateralTableValue = collateralTable.Text;
-
-                string[] stringSeparators = new string[] { "$" };
-                var result = collateralTableValue.Split(stringSeparators, StringSplitOptions.None);
-
-
                 IWebElement repayedTable = Engine.Browser.CurrentBrowser.FindElement(RepayedTable);
                 string repayedTableValue = repayedTable.Text;
 
@@ -119,23 +120,35 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement annualInterestRateCard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
                 string annaulVlaueCard = annualInterestRateCard.Text;
-                Assert.IsTrue(annaulVlaueCard.Contains(annaulintRateTableValue));
+
+                if (!annaulVlaueCard.Contains(annaulintRateTableValue))
+                {
+                    throw new Exception("LOANSCAN: Annual Interest Rate value doesn't match through the table and the card. Please check manually.");
+                }
+                
 
                 IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
-                Assert.IsTrue(repayedCard.Text.Contains(repayedTableValue));
+                if (!repayedCard.Text.Contains(repayedTableValue))
+                {
+                    throw new Exception("LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
+                }
 
                 IWebElement loanTermCard = Engine.Browser.CurrentBrowser.FindElement(LoanTermCard);
-                Assert.IsTrue(loanTermCard.Text.Contains(loanTermtableValue));
-
-                IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
-                Assert.IsTrue(collateralCard.Text.Contains(result[1]));
-
+                if (!loanTermCard.Text.Contains(loanTermtableValue))
+                {
+                    throw new Exception("LOANSCAN: Loan Term value doesn't match through the table and the card. Please check manually.");
+                }
+                
                 IWebElement underwritercard = Engine.Browser.CurrentBrowser.FindElement(UnderwrietrNameCard);
-                Assert.IsTrue(underwritercard.Text.Contains(underwriterNameTableValue));
-
+                if (!underwritercard.Text.Contains(underwriterNameTableValue))
+                {
+                    throw new Exception("LOANSCAN: Underwriter Name value doesn't match through the table and the card. Please check manually.");
+                }
                 IWebElement relayername = Engine.Browser.CurrentBrowser.FindElement(RelayerNameCard);
-                Assert.IsTrue(relayername.Text.Contains(relayerNameTableValue));
-
+                if (!relayername.Text.Contains(relayerNameTableValue))
+                {
+                    throw new Exception("LOANSCAN: Relayer Name value doesn't match through the table and the card. Please check manually.");
+                }
 
 
             }
@@ -143,11 +156,13 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("DataonDharmaCardformTableCorrespondingTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
 
 
 
-            
+
         }
 
         public static void VerifyLoanAmountisTheSameinTableandOnCard()
@@ -179,8 +194,148 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             catch (Exception)
             {
                 SlackClient.PostMessage("LoanAmountDisplayTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
             }
 
+
+        }
+
+        public static void VerifyCollateralistheSameThroughTableandCard()
+        {
+            try
+            {
+                Open();
+                IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+                dharmacolumn.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement collateralTable = Engine.Browser.CurrentBrowser.FindElement(CollateralTable);
+                string collateralTableValue = collateralTable.Text;
+                string[] stringSeparators = new string[] { "(" };
+                var result = collateralTableValue.Split(stringSeparators, StringSplitOptions.None);
+
+                string token = result[0];
+                string dollar = result[1];
+                               
+
+                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                firstrow.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
+                Assert.IsTrue(collateralCard.Text.Contains(dollar));
+
+
+            }
+
+            catch (Exception)
+            {
+                SlackClient.PostMessage("CollateralAmountDisplayeDharmaTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
+            }
+
+        }
+
+        public static void VerifyDataonMakerDaoCardcorrespondsDataFromTable()
+        {
+            try
+            {
+
+                Open();
+                IWebElement makerDaoColumn = Engine.Browser.CurrentBrowser.FindElement(MakerDaoColumn);
+                makerDaoColumn.Click();
+                Engine.Browser.MiddlePause();
+                IWebElement row = Engine.Browser.CurrentBrowser.FindElement(Row);
+
+                IWebElement annaulInterestRateTable = Engine.Browser.CurrentBrowser.FindElement(AnnaulInterestRateTable);
+                string annaulintRateTableValue = annaulInterestRateTable.Text;
+                
+                IWebElement repayedTable = Engine.Browser.CurrentBrowser.FindElement(RepayedTable);
+                string repayedTableValue = repayedTable.Text;
+
+                IWebElement lendingProtocol = Engine.Browser.CurrentBrowser.FindElement(LendingProtocolTable);
+                string lendingProtocolValue = lendingProtocol.Text;
+
+
+
+                row.Click();
+                Engine.Browser.MiddlePause();
+
+
+                IWebElement annualInterestRateCard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCardMakerDao);
+                string annaulVlaueCard = annualInterestRateCard.Text;
+
+                if (!annaulVlaueCard.Contains(annaulintRateTableValue))
+                {
+                    throw new Exception("LOANSCAN: Annual Interest Rate value doesn't match through the table and the card of Maker DAO lending protocol. Please check manually.");
+                }
+
+
+                IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
+                if (!repayedCard.Text.Contains(repayedTableValue))
+                {
+                    throw new Exception("LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
+                }
+
+                IWebElement lendingProtocolCard = Engine.Browser.CurrentBrowser.FindElement(LendingProtocolCard);
+                if (!lendingProtocolCard.Text.Contains(lendingProtocolValue))
+                {
+                    throw new Exception("LOANSCAN: Lending Protocol type doesn't match through the table and the card. Please check manually.");
+                }
+
+
+
+
+            }
+
+            catch (Exception)
+            {
+                SlackClient.PostMessage("DataonMakerDaoCardthroughTableandCardTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
+            }
+
+
+
+
+        }
+
+        public static void VerifyCollateralistheSameThroughTableandCardMakerDao()
+        {
+            try
+            {
+                Open();
+                IWebElement makerDaoColumn = Engine.Browser.CurrentBrowser.FindElement(MakerDaoColumn);
+                makerDaoColumn.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement collateralTable = Engine.Browser.CurrentBrowser.FindElement(CollateralTable);
+                string collateralTableValue = collateralTable.Text;
+                string[] stringSeparators = new string[] { "(" };
+                var result = collateralTableValue.Split(stringSeparators, StringSplitOptions.None);
+
+                string token = result[0];
+                string dollar = result[1];
+
+
+                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                firstrow.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralTableMakerDao);
+                Assert.IsTrue(collateralCard.Text.Contains(dollar));
+
+
+            }
+
+            catch (Exception)
+            {
+                SlackClient.PostMessage("CollateralAmountDisplayeMakerDaoTest" + " failed. Please check Loanscan system manualy...");
+                ScreenShot.TakeScreenshot();
+
+            }
 
         }
 
