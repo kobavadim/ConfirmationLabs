@@ -80,6 +80,6 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\b
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\tan_v\OneDrive\Документы\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Mono.Cecil.Pdb.dll
-C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Mono.Cecil.Mdb.dll
-C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Mono.Cecil.Rocks.dll
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\nunit.framework.pdb
