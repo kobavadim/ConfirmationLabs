@@ -111,10 +111,22 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.LongPause();
         }
 
-      
+
 
 
         //Tests
+        public static void TCTest()
+        {
+            try
+            {
+                Browser.CurrentBrowser.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Shady_XV");
+                //Asert.IsTrue(false, "BLOQBOARD", "some error");
+            }
+            catch (Exception exception)
+            {
+                Asert.FinilizeErrors(exception);
+            }
+        }
 
         public static void VerifyPageisOpened()
         {
