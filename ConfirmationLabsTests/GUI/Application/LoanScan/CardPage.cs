@@ -176,10 +176,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                     throw new Exception("LOANSCAN: Lending protocol/system field is element. Please check manually.");
                 }
             }
-            catch(Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("CardsElementsDharmaPrortocolTest" + " failed. Please check Loanscan system manually...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
+
             }
         }
 
@@ -202,10 +202,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 }
                
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("VerifyPaidOfDharmaSingleCard" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
+
             }
         }
 
@@ -285,12 +285,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                     throw new Exception("LOANSCAN: Lending protocol/system field is element. Please check manually.");
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("CardsElementsMakerDaoPrortocolTest" + " failed. Please check Loanscan system manually...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
+
             }
-  
+
 
         }
 

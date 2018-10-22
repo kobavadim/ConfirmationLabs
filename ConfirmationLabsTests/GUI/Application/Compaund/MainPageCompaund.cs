@@ -92,12 +92,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement table = Browser.CurrentBrowser.FindElement(Table);
-            Assert.IsTrue(table.Displayed);
+            Assert.IsTrue(table.Displayed, "Compound", "Compound page is not loaded properly");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("PageisOpenedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -109,12 +108,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             TermsandConditionAceptance();
             IWebElement assets = Browser.CurrentBrowser.FindElement(AssetsNames);
 
-            Assert.IsTrue(assets.Displayed);
+            Assert.IsTrue(assets.Displayed, "Compound", "Assets are not displayed properly");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("AssetsDisplayTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
 
@@ -129,13 +127,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             IList<IWebElement> prices = Browser.CurrentBrowser.FindElements(Price);
             foreach (var price in prices)
             {
-                Assert.IsTrue(price.Text.Contains("USD"));
+                Assert.IsTrue(price.Text.Contains("USD"), "Compound", "Prices are displayed not properly");
             }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("PriceDisplayedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -147,12 +144,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             TermsandConditionAceptance();
             IWebElement lend = Browser.CurrentBrowser.FindElement(Lendbtn);
 
-            Assert.IsTrue(lend.Displayed);
+            Assert.IsTrue(lend.Displayed, "Compound", "Lend button is not displayed");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("LendButtonsDisplayedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -163,12 +159,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement borrow = Browser.CurrentBrowser.FindElement(Borrowed);
-            Assert.IsTrue(borrow.Displayed );
+            Assert.IsTrue(borrow.Displayed, "Compound", "Borrow button is not displayed");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("BorrowButtonsDisplayedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -180,12 +175,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             TermsandConditionAceptance();
 
             IWebElement balance = Browser.CurrentBrowser.FindElement(Balancetable);
-            Assert.IsTrue(balance.Displayed);
+            Assert.IsTrue(balance.Displayed, "Compound", "Balance table is not displayed");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("BalanceTableDisplayTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }

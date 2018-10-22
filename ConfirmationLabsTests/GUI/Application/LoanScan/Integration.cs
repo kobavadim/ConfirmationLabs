@@ -78,13 +78,11 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement annualinterestratecard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
 
-                Assert.IsTrue(annualinterestratecard.Text.Contains(value));
+                Assert.IsTrue(annualinterestratecard.Text.Contains(value), "LoanScan", "The appopriate card is not opened from the table");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("VerifySingleCardOpening" + " test failed. Please check Loanscan system manually...");
-                ScreenShot.TakeScreenshot();
-
+                Asert.FinilizeErrors(exception);
             }
         }
 
@@ -153,11 +151,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             }
 
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("DataonDharmaCardformTableCorrespondingTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
-
+                Asert.FinilizeErrors(exception);
             }
 
 
@@ -188,14 +184,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Engine.Browser.MiddlePause();
 
             IWebElement loanamountCard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
-            Assert.IsTrue(loanamountCard.Text.Contains(dollar));
+            Assert.IsTrue(loanamountCard.Text.Contains(dollar), "LoanScan", "Loan amount in the card is not the same as in the table");
             }
 
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("LoanAmountDisplayTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
-
+                Asert.FinilizeErrors(exception);
             }
 
 
@@ -224,16 +218,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar));
+                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LoanScan", "Collateral vlaue on the card is not the same as in the table");
 
 
             }
 
-            catch (Exception)
-            {
-                SlackClient.PostMessage("CollateralAmountDisplayeDharmaTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
-
+            catch (Exception exception)
+            {                
+                Asert.FinilizeErrors(exception);
             }
 
         }
@@ -290,11 +282,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             }
 
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("DataonMakerDaoCardthroughTableandCardTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
-
+               Asert.FinilizeErrors(exception);
             }
 
 
@@ -325,15 +315,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralTableMakerDao);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar));
+                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LoanScan", "Collateral vlaue on the card is not the same as in the table");
 
 
             }
 
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("CollateralAmountDisplayeMakerDaoTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
 

@@ -135,12 +135,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement table = Browser.CurrentBrowser.FindElement(MyBorrowedTokens);
-                Assert.IsTrue(table.Displayed);
+                Assert.IsTrue(table.Displayed, "BloqBoard", "BloqBoard page is not loaded correctly");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("PageisOpenedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -152,13 +151,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement balancetable = Browser.CurrentBrowser.FindElement(BalanceTable);
-                Assert.IsTrue(balancetable.Displayed);
+                Assert.IsTrue(balancetable.Displayed, "BloqBoard", "Balance Table is not loaded properly");
             
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("BalanceTableDisplayedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -170,13 +168,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement requestsTable = Browser.CurrentBrowser.FindElement(MyRequestsToBorrowTable);
-                Assert.IsTrue(requestsTable.Displayed);
+                Assert.IsTrue(requestsTable.Displayed, "BloqBoard", "My Requests to Borrow table is not loaded properly");
             
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("RequestsToBorrowDisplayedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -188,13 +185,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement requestsTable = Browser.CurrentBrowser.FindElement(RequesttoBorrowTable);
-                Assert.IsTrue(requestsTable.Displayed);
+                Assert.IsTrue(requestsTable.Displayed, "BloqBoard", "Requests to borro table is not loaded properly");
             }
-            
-            catch (Exception)
+
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("MyRequestsToBorrowDisplayedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -206,13 +202,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement loanedtable = Browser.CurrentBrowser.FindElement(MyLoanedTokens);
-                Assert.IsTrue(loanedtable.Displayed);
+                Assert.IsTrue(loanedtable.Displayed, "BloqBoard", "My Loaned tokens table is not loaded properly");
             }
-            
-            catch (Exception)
+
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("MyLoanedTokensTableDisplayedTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
@@ -229,13 +224,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
                 IWebElement wrapbtn = Browser.CurrentBrowser.FindElement(Wrap);
-                Assert.IsTrue(wrapbtn.Text.Contains("UNWRAP"));
+                Assert.IsTrue(wrapbtn.Text.Contains("UNWRAP"), "BloqBoard", "Unwrap button is not dipslayed properly");
             }
-            
-            catch (Exception)
+
+            catch (Exception exception)
             {
-                SlackClient.PostMessage("UnwrapBrnAvailableTest" + " failed. Please check Loanscan system manualy...");
-                ScreenShot.TakeScreenshot();
+                Asert.FinilizeErrors(exception);
 
             }
         }
