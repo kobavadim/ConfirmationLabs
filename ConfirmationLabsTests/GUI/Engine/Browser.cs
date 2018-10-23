@@ -23,6 +23,7 @@ namespace ConfirmationLabsTests.GUI.Engine
         public static void StartWithExstension()
         {
             ChromeOptions chromeoptions = new ChromeOptions();
+            chromeoptions.AddArgument("no-sandbox");
             chromeoptions.AddExtensions("C:\\Users\\Administrator\\Documents\\Exstensions\\MetaMask_v4.13.0.crx");
             CurrentBrowser = new ChromeDriver(chromeoptions);
             MiddlePause();

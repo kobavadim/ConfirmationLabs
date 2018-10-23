@@ -35,6 +35,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void OpenBloqBoard()
         {
+            Console.WriteLine("Logging Metamask");
             Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
 
