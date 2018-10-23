@@ -291,7 +291,13 @@ namespace ConfirmationLabsTests.GUI.Engine
         public static void Close()
 
         {
-            CurrentBrowser.Quit();
+            try
+            {
+                Browser.CurrentBrowser.Close();
+                Browser.CurrentBrowser.Quit();
+            }
+            catch (Exception)
+            { }
 
             Process[] processes = Process.GetProcesses();
 

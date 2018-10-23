@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConfirmationLabsTests.GUI.Engine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,14 @@ namespace ConfirmationLabsTests.Helpers
             {
 
             }
+            try
+            {
+                Browser.CurrentBrowser.Close();
+
+                Browser.CurrentBrowser.Quit();
+            }
+            catch(Exception)
+            { }
         }
     }
 }
