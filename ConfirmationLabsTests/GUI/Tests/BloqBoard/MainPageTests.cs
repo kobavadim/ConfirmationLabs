@@ -79,7 +79,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [TearDown]
         public void TestCleanUp()
         {
-            Browser.Close();
+            //Browser.Close();
         }
     }
 }
