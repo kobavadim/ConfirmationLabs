@@ -42,12 +42,10 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             CardPage.VerifyElementsonMakerDaoSingleCard();
         }
 
-
         [TearDown]
         public void TestCleanUp()
         {
             Browser.Close();
         }
-
     }
 }
