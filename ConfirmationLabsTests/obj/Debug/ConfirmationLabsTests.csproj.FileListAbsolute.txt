@@ -120,7 +120,6 @@ C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\N
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\nunit.framework.xml
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\WebDriver.xml
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\WebDriver.Support.xml
-C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CoreCompileInputs.cache
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using ConfirmationLabsTests.Helpers;
 using OpenQA.Selenium;
+using Assert = ConfirmationLabsTests.Helpers.Assert;
 
 namespace ConfirmationLabsTests.GUI.Application.LoanScan
 {
@@ -87,7 +88,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             foreach (var value in values)
             {
                 string result = value.Text;
-                Assert.IsTrue(result.Contains("Dharma"), "LoanScan", "LoanScan search is not working as expected");
+                Assert.IsTrue(result.Contains("Dharma"), "LOANSCAN", "LoanScan search is not working as expected");
 
             }
 
@@ -103,7 +104,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             foreach (var value in values)
             {
                 string result = value.Text;
-                Assert.IsTrue(result.Contains("Dharma"), "LoanScan", "Filtering by Landing Protocol is not working as expected");
+                Assert.IsTrue(result.Contains("Dharma"), "LOANSCAN", "Filtering by Landing Protocol is not working as expected");
 
             }
 
@@ -115,7 +116,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             foreach (var value in values2)
             {
                 string result = value.Text;
-                Assert.IsTrue(result.Contains("Maker DAO"), "LoanScan", "Filtering by Landing Protocol is not working as expected");
+                Assert.IsTrue(result.Contains("Maker DAO"), "LOANSCAN", "Filtering by Landing Protocol is not working as expected");
 
             }
             Engine.Browser.ShortPause();
@@ -155,7 +156,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                     Engine.Browser.MiddlePause();
                 }
             }
-            Assert.IsTrue(countM > 0 && countD > 0, "LoanScan", "Filtering by Landing Protocol is not working as expected");
+            Assert.IsTrue(countM > 0 && countD > 0, "LOANSCAN", "Filtering by Landing Protocol is not working as expected");
 
         }
 
@@ -165,7 +166,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             paginationbox.Click();
             Engine.Browser.MiddlePause();
             IList<IWebElement> creationcolumn = Engine.Browser.CurrentBrowser.FindElements(CreationDate);
-            Assert.IsTrue(creationcolumn.Count.Equals(50), "LoanScan", "The table is not displayed properly");
+            Assert.IsTrue(creationcolumn.Count.Equals(50), "LOANSCAN", "The table is not displayed properly");
 
             IWebElement lastpagenavigationicon = Engine.Browser.CurrentBrowser.FindElement(LastPageNavigationIcon);
             lastpagenavigationicon.Click();
@@ -173,9 +174,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             IWebElement selectedlastpage = Engine.Browser.CurrentBrowser.FindElement(LastPageNumber);
             string selectedpage = selectedlastpage.Text;
 
-            Assert.IsTrue(selectedpage.Contains("current"), "LoanScan", "The table is not displayed properly");
+            Assert.IsTrue(selectedpage.Contains("current"), "LOANSCAN", "The table is not displayed properly");
             IWebElement creationcolumnlast = Engine.Browser.CurrentBrowser.FindElement(CreationDate);
-            Assert.IsTrue(creationcolumnlast.Displayed, "LoanScan", "The table is not displayed properly");
+            Assert.IsTrue(creationcolumnlast.Displayed, "LOANSCAN", "The table is not displayed properly");
 
             IWebElement previouspageicon = Engine.Browser.CurrentBrowser.FindElement(PreviousPageIcon);
             previouspageicon.Click();
@@ -184,7 +185,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             IWebElement previouspagenumber = Engine.Browser.CurrentBrowser.FindElement(PreviousPageNumber);
 
             string previouspage = previouspagenumber.Text;
-            Assert.IsTrue(previouspage.Contains("current"), "LoanScan", "The table is not displayed properly");
+            Assert.IsTrue(previouspage.Contains("current"), "LOANSCAN", "The table is not displayed properly");
 
 
 
@@ -194,31 +195,31 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         {
 
             IWebElement loanamountcolumn = Engine.Browser.CurrentBrowser.FindElement(LoanAmount);
-            Assert.IsTrue(loanamountcolumn.Text.Contains("Loan amount"), "LoanScan", "The table doesn't contain the 'Loan Amount' value");
+            Assert.IsTrue(loanamountcolumn.Text.Contains("Loan amount"), "LOANSCAN", "The table doesn't contain the 'Loan Amount' value");
 
             IWebElement annaulInterestRate = Engine.Browser.CurrentBrowser.FindElement(AnnaulInterestRate);
-            Assert.IsTrue(annaulInterestRate.Text.Contains("Annual interest rate"), "LoanScan", "The table doesn't contain the 'Annual Interest Rate' value");
+            Assert.IsTrue(annaulInterestRate.Text.Contains("Annual interest rate"), "LOANSCAN", "The table doesn't contain the 'Annual Interest Rate' value");
 
             IWebElement loanterm = Engine.Browser.CurrentBrowser.FindElement(LoanTerm);
-            Assert.IsTrue(loanterm.Text.Contains("Loan term"), "LoanScan", "The table doesn't contain the 'Loan term' value");
+            Assert.IsTrue(loanterm.Text.Contains("Loan term"), "LOANSCAN", "The table doesn't contain the 'Loan term' value");
 
             IWebElement ltv = Engine.Browser.CurrentBrowser.FindElement(LTV);
-            Assert.IsTrue(ltv.Text.Contains("LTV"), "LoanScan", "The table doesn't contain the 'LTV' value");
+            Assert.IsTrue(ltv.Text.Contains("LTV"), "LOANSCAN", "The table doesn't contain the 'LTV' value");
 
             IWebElement collateral = Engine.Browser.CurrentBrowser.FindElement(Collateral);
-            Assert.IsTrue(collateral.Text.Contains("Collateral"), "LoanScan", "The table doesn't contain the 'Collateral' value");
+            Assert.IsTrue(collateral.Text.Contains("Collateral"), "LOANSCAN", "The table doesn't contain the 'Collateral' value");
 
             IWebElement loanstatus = Engine.Browser.CurrentBrowser.FindElement(LoanStatus);
-            Assert.IsTrue(loanstatus.Text.Contains("Loan status"), "LoanScan", "The table doesn't contain the 'Loan status' value");
+            Assert.IsTrue(loanstatus.Text.Contains("Loan status"), "LOANSCAN", "The table doesn't contain the 'Loan status' value");
 
             IWebElement repaid = Engine.Browser.CurrentBrowser.FindElement(Repaid);
-            Assert.IsTrue(repaid.Text.Contains("% repaid"), "LoanScan", "The table doesn't contain the '% Repaid' value");
+            Assert.IsTrue(repaid.Text.Contains("% repaid"), "LOANSCAN", "The table doesn't contain the '% Repaid' value");
 
             IWebElement underwrirename = Engine.Browser.CurrentBrowser.FindElement(UnderwriterName);
-            Assert.IsTrue(underwrirename.Text.Contains("Underwriter name"), "LoanScan", "The table doesn't contain the 'Underwriter name' value");
+            Assert.IsTrue(underwrirename.Text.Contains("Underwriter name"), "LOANSCAN", "The table doesn't contain the 'Underwriter name' value");
 
             IWebElement relayerName = Engine.Browser.CurrentBrowser.FindElement(RelayerName);
-            Assert.IsTrue(relayerName.Text.Contains("Relayer name"), "LoanScan", "The table doesn't contain the 'Relayer name' value");
+            Assert.IsTrue(relayerName.Text.Contains("Relayer name"), "LOANSCAN", "The table doesn't contain the 'Relayer name' value");
 
 
         }
@@ -230,21 +231,21 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Engine.Browser.MiddlePause();
             IWebElement btconBanner = Engine.Browser.CurrentBrowser.FindElement(CurrencyBanner);
             string bannervalue = btconBanner.Text;
-            Assert.IsTrue(bannervalue.Contains("BTC"), "LoanScan", "The currency on banner is not displayed as expected");
+            Assert.IsTrue(bannervalue.Contains("BTC"), "LOANSCAN", "The currency on banner is not displayed as expected");
 
             IWebElement ethButton = Engine.Browser.CurrentBrowser.FindElement(EthButton);
             ethButton.Click();
             Engine.Browser.MiddlePause();
             IWebElement ethonBanner = Engine.Browser.CurrentBrowser.FindElement(CurrencyBanner);
             string ethonBannervalue = ethonBanner.Text;
-            Assert.IsTrue(ethonBannervalue.Contains("ETH"), "LoanScan", "The currency on banner is not displayed as expected");
+            Assert.IsTrue(ethonBannervalue.Contains("ETH"), "LOANSCAN", "The currency on banner is not displayed as expected");
 
             IWebElement usdButton = Engine.Browser.CurrentBrowser.FindElement(UsdButton);
             usdButton.Click();
             Engine.Browser.MiddlePause();
             IWebElement usdonBanner = Engine.Browser.CurrentBrowser.FindElement(CurrencyBanner);
             string usdonBannervalue = usdonBanner.Text;
-            Assert.IsTrue(usdonBannervalue.Contains("$"), "LoanScan", "The currency on banner is not displayed as expected");
+            Assert.IsTrue(usdonBannervalue.Contains("$"), "LOANSCAN", "The currency on banner is not displayed as expected");
 
         }
 
@@ -256,9 +257,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             string dhvalue = dharma.Text;
             IWebElement makerdao = Engine.Browser.CurrentBrowser.FindElement(MakerDaoLoanProtocol);
             string mkvalue = makerdao.Text;
-            Assert.IsTrue(allvalue.Contains("All"), "LoanScan", "The landing protocol is not switched as expected");
-            Assert.IsTrue(dhvalue.Contains("Dharma"), "LoanScan", "The landing protocol is not switched as expected");
-            Assert.IsTrue(mkvalue.Contains("Maker DAO"), "LoanScan", "The landing protocol is not switched as expected");
+            Assert.IsTrue(allvalue.Contains("All"), "LOANSCAN", "The landing protocol is not switched as expected");
+            Assert.IsTrue(dhvalue.Contains("Dharma"), "LOANSCAN", "The landing protocol is not switched as expected");
+            Assert.IsTrue(mkvalue.Contains("Maker DAO"), "LOANSCAN", "The landing protocol is not switched as expected");
 
         }
 
@@ -268,20 +269,20 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             hoursTerm.Click();
             Engine.Browser.MiddlePause();
             IWebElement bannervaluehours = Engine.Browser.CurrentBrowser.FindElement(TermonBanner);
-            Assert.IsTrue(bannervaluehours.Text.Contains("24 hours"), "LoanScan", "The term is not switched as expected");
+            Assert.IsTrue(bannervaluehours.Text.Contains("24 hours"), "LOANSCAN", "The term is not switched as expected");
 
             IWebElement sevenTerm = Engine.Browser.CurrentBrowser.FindElement(SevenDaysTab);
             sevenTerm.Click();
             Engine.Browser.MiddlePause();
             IWebElement bannervalueSevenDays = Engine.Browser.CurrentBrowser.FindElement(TermonBanner);
-            Assert.IsTrue(bannervalueSevenDays.Text.Contains("7 days"), "LoanScan", "The term is not switched as expected");
+            Assert.IsTrue(bannervalueSevenDays.Text.Contains("7 days"), "LOANSCAN", "The term is not switched as expected");
 
 
             IWebElement thirtyTerm = Engine.Browser.CurrentBrowser.FindElement(ThirtyDaysTab);
             thirtyTerm.Click();
             Engine.Browser.MiddlePause();
             IWebElement bannervalueThirtyDays = Engine.Browser.CurrentBrowser.FindElement(TermonBanner);
-            Assert.IsTrue(bannervalueThirtyDays.Text.Contains("30 days"), "LoanScan", "The term is not switched as expected");
+            Assert.IsTrue(bannervalueThirtyDays.Text.Contains("30 days"), "LOANSCAN", "The term is not switched as expected");
 
 
 
@@ -316,12 +317,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             Open();
             IWebElement searchinput = Engine.Browser.CurrentBrowser.FindElement(SearchInput);
-            Assert.IsTrue(searchinput.Displayed, "LoanScan", "Search is not available on the page");
+            Assert.IsTrue(searchinput.Displayed, "LOANSCAN", "Search is not available on the page");
         }
 
             catch (Exception exception)
             {
-                 Asert.FinilizeErrors(exception);
+                 Assert.FinilizeErrors(exception);
 
             }
         }
@@ -335,7 +336,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-              Asert.FinilizeErrors(exception);
+              Assert.FinilizeErrors(exception);
             }
         }
 
@@ -349,7 +350,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-               Asert.FinilizeErrors(exception);
+               Assert.FinilizeErrors(exception);
             }
         }
 
@@ -361,7 +362,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -374,7 +375,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -387,7 +388,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                 Asert.FinilizeErrors(exception);
+                 Assert.FinilizeErrors(exception);
 
             }
         }
@@ -401,7 +402,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -414,7 +415,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                 Asert.FinilizeErrors(exception);
+                 Assert.FinilizeErrors(exception);
             }
         }
 
@@ -426,7 +427,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                  }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }

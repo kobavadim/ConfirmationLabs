@@ -7,6 +7,7 @@ using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Engine;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using Assert = ConfirmationLabsTests.Helpers.Assert;
 
 namespace ConfirmationLabsTests.GUI.Application.Compaund
 {
@@ -96,7 +97,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -112,7 +113,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
 
@@ -132,7 +133,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -148,7 +149,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -163,7 +164,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -179,7 +180,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }

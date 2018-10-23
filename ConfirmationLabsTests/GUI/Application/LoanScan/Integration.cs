@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ConfirmationLabsTests.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using Assert = ConfirmationLabsTests.Helpers.Assert;
 
 namespace ConfirmationLabsTests.GUI.Application.LoanScan
 {
@@ -78,11 +79,11 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement annualinterestratecard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
 
-                Assert.IsTrue(annualinterestratecard.Text.Contains(value), "LoanScan", "The appopriate card is not opened from the table");
+                Assert.IsTrue(annualinterestratecard.Text.Contains(value), "LOANSCAN", "The appopriate card is not opened from the table");
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
             }
         }
 
@@ -153,7 +154,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
             }
 
 
@@ -184,12 +185,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Engine.Browser.MiddlePause();
 
             IWebElement loanamountCard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
-            Assert.IsTrue(loanamountCard.Text.Contains(dollar), "LoanScan", "Loan amount in the card is not the same as in the table");
+            Assert.IsTrue(loanamountCard.Text.Contains(dollar), "LOANSCAN", "Loan amount in the card is not the same as in the table");
             }
 
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
             }
 
 
@@ -218,14 +219,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LoanScan", "Collateral vlaue on the card is not the same as in the table");
+                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
 
 
             }
 
             catch (Exception exception)
             {                
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
             }
 
         }
@@ -284,7 +285,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-               Asert.FinilizeErrors(exception);
+               Assert.FinilizeErrors(exception);
             }
 
 
@@ -315,14 +316,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralTableMakerDao);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LoanScan", "Collateral vlaue on the card is not the same as in the table");
+                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
 
 
             }
 
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
 

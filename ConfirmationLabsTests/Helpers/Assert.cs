@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConfirmationLabsTests.Helpers
 {
-    public class Asert
+    public class Assert
     {
         public static void IsTrue(bool condition, string component, string error)
         {
@@ -26,7 +26,15 @@ namespace ConfirmationLabsTests.Helpers
 
             try
             {
-                SlackClient.PostMessage(exception.Message.ToString());
+                if (exception.Message.Contains("WebDriver") || exception.Message.Contains("Selenium"))
+                {
+
+                }
+                else
+                {
+                    SlackClient.PostMessage(exception.Message);
+                }
+
             }
             catch (Exception)
             {

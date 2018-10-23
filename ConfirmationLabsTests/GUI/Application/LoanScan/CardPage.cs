@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ConfirmationLabsTests.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using Assert = ConfirmationLabsTests.Helpers.Assert;
 
 namespace ConfirmationLabsTests.GUI.Application.LoanScan
 {
@@ -178,7 +179,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -204,7 +205,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
         }
@@ -287,7 +288,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Asert.FinilizeErrors(exception);
+                Assert.FinilizeErrors(exception);
 
             }
 
