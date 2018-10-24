@@ -299,23 +299,23 @@ namespace ConfirmationLabsTests.GUI.Engine
             catch (Exception)
             { }
 
-            Process[] processes = Process.GetProcesses();
+            //Process[] processes = Process.GetProcesses();
 
-            foreach (Process process in processes)
-            {
-                if (process.ProcessName.Contains("chromedriver") || process.ProcessName.Contains("chrome"))
-                {
-                    try
-                    {
-                        process.Kill();
-                    }
-                    catch (Exception)
-                    {
+            //foreach (Process process in processes)
+            //{
+            //    if (process.ProcessName.Contains("chromedriver") || process.ProcessName.Contains("chrome"))
+            //    {
+            //        try
+            //        {
+            //            process.Kill();
+            //        }
+            //        catch (Exception)
+            //        {
 
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
         }
     }
 }

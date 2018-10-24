@@ -126,3 +126,5 @@ C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\C
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
+C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
+C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
