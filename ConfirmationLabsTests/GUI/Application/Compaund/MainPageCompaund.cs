@@ -24,6 +24,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         private static readonly By Lendbtn = By.CssSelector(".btn-red");
         private static readonly By Borrowed = By.CssSelector(".btn-green");
         private static readonly By Balancetable = By.CssSelector(".balances-table__table-wrapper");
+        static string Env = "";
 
         //Methods
 
@@ -35,25 +36,13 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
             if (Env == "PROD")
             {
-                Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.CompaundProd);
-                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
-                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.CompaundProd);
+                Console.WriteLine("running tests on PROD " + TestData.Urls.CompaundProd);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.CompaundProd);
             }
             else
             {
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.CompaundKovan);
-                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
-                ////Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.MetaMaskWeb);
-                ////Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[2]);
-                //Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
-
-                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, TestData.Urls.CompaundKovan);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.CompaundKovan);
-
-
             }
 
             Browser.MiddlePause();
@@ -68,7 +57,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             termschecbox.Click();
             Browser.ShortPause();
 
-            IList<IWebElement> continuebtns = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("button.btn-green"));
+            IList<IWebElement> continuebtns = Browser.CurrentBrowser.FindElements(By.CssSelector("button.btn-green"));
 
             foreach(var con in continuebtns)
             {
@@ -78,11 +67,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     break;
                 }
             }
-        
-
         }
-
-
 
 
         //Tests
@@ -93,7 +78,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement table = Browser.CurrentBrowser.FindElement(Table);
-            Assert.IsTrue(table.Displayed, "Compound", "Compound page is not loaded properly");
+            Assert.IsTrue(table.Displayed, "[" + Env + "] COMPOUND", "Compound page is not loaded properly");
             }
             catch (Exception exception)
             {
@@ -109,7 +94,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             TermsandConditionAceptance();
             IWebElement assets = Browser.CurrentBrowser.FindElement(AssetsNames);
 
-            Assert.IsTrue(assets.Displayed, "Compound", "Assets are not displayed properly");
+            Assert.IsTrue(assets.Displayed, "[" + Env + "] COMPOUND", "Assets are not displayed properly");
             }
             catch (Exception exception)
             {
@@ -128,7 +113,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             IList<IWebElement> prices = Browser.CurrentBrowser.FindElements(Price);
             foreach (var price in prices)
             {
-                Assert.IsTrue(price.Text.Contains("USD"), "Compound", "Prices are displayed not properly");
+                Assert.IsTrue(price.Text.Contains("USD"), "[" + Env + "] COMPOUND", "Prices are displayed not properly");
             }
             }
             catch (Exception exception)
@@ -145,7 +130,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             TermsandConditionAceptance();
             IWebElement lend = Browser.CurrentBrowser.FindElement(Lendbtn);
 
-            Assert.IsTrue(lend.Displayed, "Compound", "Lend button is not displayed");
+            Assert.IsTrue(lend.Displayed, "[" + Env + "] COMPOUND", "Lend button is not displayed");
             }
             catch (Exception exception)
             {
@@ -160,7 +145,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             OpenCompaund();
             TermsandConditionAceptance();
             IWebElement borrow = Browser.CurrentBrowser.FindElement(Borrowed);
-            Assert.IsTrue(borrow.Displayed, "Compound", "Borrow button is not displayed");
+            Assert.IsTrue(borrow.Displayed, "[" + Env + "] COMPOUND", "Borrow button is not displayed");
             }
             catch (Exception exception)
             {
@@ -176,7 +161,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             TermsandConditionAceptance();
 
             IWebElement balance = Browser.CurrentBrowser.FindElement(Balancetable);
-            Assert.IsTrue(balance.Displayed, "Compound", "Balance table is not displayed");
+            Assert.IsTrue(balance.Displayed, "[" + Env + "] COMPOUND", "Balance table is not displayed");
             }
             catch (Exception exception)
             {

@@ -27,7 +27,7 @@ namespace ConfirmationLabsTests.Helpers
 
             try
             {
-                if (exception.Message.Contains("WebDriver") || exception.Message.Contains("Selenium"))
+                if (exception.Message.Contains("WebDriver") || exception.Message.Contains("WebException") || exception.Message.Contains("Selenium"))
                 {
 
                 }
@@ -41,6 +41,7 @@ namespace ConfirmationLabsTests.Helpers
             {
 
             }
+
             try
             {
                 Browser.CurrentBrowser.Close();
@@ -49,6 +50,8 @@ namespace ConfirmationLabsTests.Helpers
             }
             catch(Exception)
             { }
+
+            //throw new Exception(exception.Message);
         }
     }
 }

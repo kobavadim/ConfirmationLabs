@@ -31,19 +31,18 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By CollateralCard = By.CssSelector(".loan-time+ div");
         private static readonly By UnderwrietrNameCard = By.CssSelector(".col-sm-9:nth-child(38)");
         private static readonly By RelayerNameCard = By.CssSelector(".col-sm-9:nth-child(32)");
-
         private static readonly By MakerDaoColumn = By.CssSelector("div.btn-group.btn-group-toggle.mr-auto > label:nth-of-type(2)");
         private static readonly By LendingProtocolTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(12) .nowrap");
         private static readonly By AnnualInterestRateCardMakerDao = By.CssSelector(".col-sm-9:nth-child(6) span");
         private static readonly By LendingProtocolCard = By.CssSelector(".col-sm-9:nth-child(28) span");
         private static readonly By CollateralTableMakerDao = By.CssSelector(".loan-list .loan-summary");
-
+        static string Env = "";
 
         //Methods
         public static void Open()
         {
 
-            string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
+            Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
             if (Env == "PROD")
             {
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.LoanScanMainPageProd);
@@ -122,31 +121,31 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 if (!annaulVlaueCard.Contains(annaulintRateTableValue))
                 {
-                    throw new Exception("LOANSCAN: Annual Interest Rate value doesn't match through the table and the card. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Annual Interest Rate value doesn't match through the table and the card. Please check manually.");
                 }
                 
 
                 IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
                 if (!repayedCard.Text.Contains(repayedTableValue))
                 {
-                    throw new Exception("LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
                 }
 
                 IWebElement loanTermCard = Engine.Browser.CurrentBrowser.FindElement(LoanTermCard);
                 if (!loanTermCard.Text.Contains(loanTermtableValue))
                 {
-                    throw new Exception("LOANSCAN: Loan Term value doesn't match through the table and the card. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan Term value doesn't match through the table and the card. Please check manually.");
                 }
                 
                 IWebElement underwritercard = Engine.Browser.CurrentBrowser.FindElement(UnderwrietrNameCard);
                 if (!underwritercard.Text.Contains(underwriterNameTableValue))
                 {
-                    throw new Exception("LOANSCAN: Underwriter Name value doesn't match through the table and the card. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Underwriter Name value doesn't match through the table and the card. Please check manually.");
                 }
                 IWebElement relayername = Engine.Browser.CurrentBrowser.FindElement(RelayerNameCard);
                 if (!relayername.Text.Contains(relayerNameTableValue))
                 {
-                    throw new Exception("LOANSCAN: Relayer Name value doesn't match through the table and the card. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Relayer Name value doesn't match through the table and the card. Please check manually.");
                 }
 
 
@@ -262,20 +261,20 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 if (!annaulVlaueCard.Contains(annaulintRateTableValue))
                 {
-                    throw new Exception("LOANSCAN: Annual Interest Rate value doesn't match through the table and the card of Maker DAO lending protocol. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Annual Interest Rate value doesn't match through the table and the card of Maker DAO lending protocol. Please check manually.");
                 }
 
 
                 IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
                 if (!repayedCard.Text.Contains(repayedTableValue))
                 {
-                    throw new Exception("LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
                 }
 
                 IWebElement lendingProtocolCard = Engine.Browser.CurrentBrowser.FindElement(LendingProtocolCard);
                 if (!lendingProtocolCard.Text.Contains(lendingProtocolValue))
                 {
-                    throw new Exception("LOANSCAN: Lending Protocol type doesn't match through the table and the card. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Lending Protocol type doesn't match through the table and the card. Please check manually.");
                 }
 
 

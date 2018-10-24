@@ -51,7 +51,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By MedianLoanAmount = By.CssSelector("#medianLoanAmount");
         private static readonly By TopBorrowedTokens = By.CssSelector("#topTokensByVolume");
         private static readonly By TopRelayers = By.CssSelector("#topRelayersByVolume");
-
+        static string Env = "";
 
 
 
@@ -104,7 +104,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             foreach (var value in values)
             {
                 string result = value.Text;
-                Assert.IsTrue(result.Contains("Dharma"), "LOANSCAN", "Filtering by Landing Protocol is not working as expected");
+                Assert.IsTrue(result.Contains("Dharma"), "[" + Env + "] LOANSCAN", "Filtering by Landing Protocol is not working as expected");
 
             }
 
@@ -116,7 +116,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             foreach (var value in values2)
             {
                 string result = value.Text;
-                Assert.IsTrue(result.Contains("Maker DAO"), "LOANSCAN", "Filtering by Landing Protocol is not working as expected");
+                Assert.IsTrue(result.Contains("Maker DAO"), "[" + Env + "] LOANSCAN", "Filtering by Landing Protocol is not working as expected");
 
             }
             Engine.Browser.ShortPause();
@@ -156,7 +156,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                     Engine.Browser.MiddlePause();
                 }
             }
-            Assert.IsTrue(countM > 0 && countD > 0, "LOANSCAN", "Filtering by Landing Protocol is not working as expected");
+            Assert.IsTrue(countM > 0 && countD > 0, "[" + Env + "] LOANSCAN", "Filtering by Landing Protocol is not working as expected");
 
         }
 
@@ -166,7 +166,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             paginationbox.Click();
             Engine.Browser.MiddlePause();
             IList<IWebElement> creationcolumn = Engine.Browser.CurrentBrowser.FindElements(CreationDate);
-            Assert.IsTrue(creationcolumn.Count.Equals(50), "LOANSCAN", "The table is not displayed properly");
+            Assert.IsTrue(creationcolumn.Count.Equals(50), "[" + Env + "] LOANSCAN", "The table is not displayed properly");
 
             IWebElement lastpagenavigationicon = Engine.Browser.CurrentBrowser.FindElement(LastPageNavigationIcon);
             lastpagenavigationicon.Click();
@@ -174,9 +174,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             IWebElement selectedlastpage = Engine.Browser.CurrentBrowser.FindElement(LastPageNumber);
             string selectedpage = selectedlastpage.Text;
 
-            Assert.IsTrue(selectedpage.Contains("current"), "LOANSCAN", "The table is not displayed properly");
+            Assert.IsTrue(selectedpage.Contains("current"), "[" + Env + "] LOANSCAN", "The table is not displayed properly");
             IWebElement creationcolumnlast = Engine.Browser.CurrentBrowser.FindElement(CreationDate);
-            Assert.IsTrue(creationcolumnlast.Displayed, "LOANSCAN", "The table is not displayed properly");
+            Assert.IsTrue(creationcolumnlast.Displayed, "[" + Env + "] LOANSCAN", "The table is not displayed properly");
 
             IWebElement previouspageicon = Engine.Browser.CurrentBrowser.FindElement(PreviousPageIcon);
             previouspageicon.Click();
@@ -185,7 +185,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             IWebElement previouspagenumber = Engine.Browser.CurrentBrowser.FindElement(PreviousPageNumber);
 
             string previouspage = previouspagenumber.Text;
-            Assert.IsTrue(previouspage.Contains("current"), "LOANSCAN", "The table is not displayed properly");
+            Assert.IsTrue(previouspage.Contains("current"), "[" + Env + "] LOANSCAN", "The table is not displayed properly");
 
 
 
@@ -195,16 +195,16 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         {
 
             IWebElement loanamountcolumn = Engine.Browser.CurrentBrowser.FindElement(LoanAmount);
-            Assert.IsTrue(loanamountcolumn.Text.Contains("Loan amount"), "LOANSCAN", "The table doesn't contain the 'Loan Amount' value");
+            Assert.IsTrue(loanamountcolumn.Text.Contains("Loan amount"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Loan Amount' value");
 
             IWebElement annaulInterestRate = Engine.Browser.CurrentBrowser.FindElement(AnnaulInterestRate);
-            Assert.IsTrue(annaulInterestRate.Text.Contains("Annual interest rate"), "LOANSCAN", "The table doesn't contain the 'Annual Interest Rate' value");
+            Assert.IsTrue(annaulInterestRate.Text.Contains("Annual interest rate"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Annual Interest Rate' value");
 
             IWebElement loanterm = Engine.Browser.CurrentBrowser.FindElement(LoanTerm);
-            Assert.IsTrue(loanterm.Text.Contains("Loan term"), "LOANSCAN", "The table doesn't contain the 'Loan term' value");
+            Assert.IsTrue(loanterm.Text.Contains("Loan term"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Loan term' value");
 
             IWebElement ltv = Engine.Browser.CurrentBrowser.FindElement(LTV);
-            Assert.IsTrue(ltv.Text.Contains("LTV"), "LOANSCAN", "The table doesn't contain the 'LTV' value");
+            Assert.IsTrue(ltv.Text.Contains("LTV"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'LTV' value");
 
             IWebElement collateral = Engine.Browser.CurrentBrowser.FindElement(Collateral);
             Assert.IsTrue(collateral.Text.Contains("Collateral"), "LOANSCAN", "The table doesn't contain the 'Collateral' value");
@@ -317,7 +317,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             Open();
             IWebElement searchinput = Engine.Browser.CurrentBrowser.FindElement(SearchInput);
-            Assert.IsTrue(searchinput.Displayed, "LOANSCAN", "Search is not available on the page");
+            Assert.IsTrue(searchinput.Displayed, "[" + Env + "] LOANSCAN", "Search is not available on the page");
         }
 
             catch (Exception exception)

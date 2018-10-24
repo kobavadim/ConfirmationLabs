@@ -16,7 +16,6 @@ C:\Users\Administrator\source\repos\ConfirmationLabsTests\ConfirmationLabsTests\
 C:\Users\Administrator\source\repos\ConfirmationLabsTests\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Administrator\source\repos\ConfirmationLabsTests\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\Administrator\source\repos\ConfirmationLabsTests\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
-C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CoreCompileInputs.cache
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.dll
@@ -128,3 +127,10 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\b
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
+C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
+C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.dll
+C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3_x64.dll
+C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.dll
+C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.xml
+C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml

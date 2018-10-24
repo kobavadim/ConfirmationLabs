@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Engine;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using Assert = ConfirmationLabsTests.Helpers.Assert;
 
@@ -26,14 +22,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By WethBtn = By.CssSelector(".wallet-info__currency_active+ .wallet-info__currency");
         private static readonly By AmountInput = By.CssSelector(".wallet-info__value-input");
         private static readonly By Wrap = By.CssSelector(".wallet-info__exchange-button+ .wallet-info__exchange-button");
-
-
-
+        static string Env = "";
 
 
 
         //Methods
-
         public static void OpenBloqBoard()
         {
             Console.WriteLine("Logging Metamask");
@@ -43,20 +36,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
             if (Env == "PROD")
             {
-                //Browser.ShortPause();
-                //IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
-
-                //IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
-
-                //Browser.ShortPause();
-                //values[5].Click();
-
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
-                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
-                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.BloqBoardProd);
-
             }
             else
             {
@@ -76,17 +57,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
  
                 Browser.MiddlePause();
-
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
-                //Browser.CurrentBrowser.WindowHandles[0]
-                //var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
-                //Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
-                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.MetaMaskWeb);
-                //Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[2]);
-
-                //Assert.AreEqual(Browser.CurrentBrowser.SwitchTo().Window(popup).Url, Helpers.TestData.Urls.BloqBoardKovan);
-
             }
 
             Engine.Browser.LongPause();
@@ -137,7 +109,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement table = Browser.CurrentBrowser.FindElement(MyBorrowedTokens);
-                Assert.IsTrue(table.Displayed, "BloqBoard", "BloqBoard page is not loaded correctly");
+                Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "BloqBoard page is not loaded correctly");
             }
             catch (Exception exception)
             {
@@ -153,7 +125,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement balancetable = Browser.CurrentBrowser.FindElement(BalanceTable);
-                Assert.IsTrue(balancetable.Displayed, "BloqBoard", "Balance Table is not loaded properly");
+                Assert.IsTrue(balancetable.Displayed, "[" + Env + "] BLOQBOARD", "Balance Table is not loaded properly");
             
             }
             catch (Exception exception)
@@ -170,7 +142,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement requestsTable = Browser.CurrentBrowser.FindElement(MyRequestsToBorrowTable);
-                Assert.IsTrue(requestsTable.Displayed, "BloqBoard", "My Requests to Borrow table is not loaded properly");
+                Assert.IsTrue(requestsTable.Displayed, "[" + Env + "] BLOQBOARD", "My Requests to Borrow table is not loaded properly");
             
             }
             catch (Exception exception)
@@ -187,7 +159,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement requestsTable = Browser.CurrentBrowser.FindElement(RequesttoBorrowTable);
-                Assert.IsTrue(requestsTable.Displayed, "BloqBoard", "Requests to borro table is not loaded properly");
+                Assert.IsTrue(requestsTable.Displayed, "[" + Env + "] BLOQBOARD", "Requests to borro table is not loaded properly");
             }
 
             catch (Exception exception)
@@ -204,7 +176,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard();
                 TermsandConditionAceptance();
                 IWebElement loanedtable = Browser.CurrentBrowser.FindElement(MyLoanedTokens);
-                Assert.IsTrue(loanedtable.Displayed, "BloqBoard", "My Loaned tokens table is not loaded properly");
+                Assert.IsTrue(loanedtable.Displayed, "[" + Env + "] BLOQBOARD", "My Loaned tokens table is not loaded properly");
             }
 
             catch (Exception exception)
@@ -226,7 +198,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
                 IWebElement wrapbtn = Browser.CurrentBrowser.FindElement(Wrap);
-                Assert.IsTrue(wrapbtn.Text.Contains("UNWRAP"), "BloqBoard", "Unwrap button is not dipslayed properly");
+                Assert.IsTrue(wrapbtn.Text.Contains("UNWRAP"), "[" + Env + "] BLOQBOARD", "Unwrap button is not dipslayed properly");
             }
 
             catch (Exception exception)
