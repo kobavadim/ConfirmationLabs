@@ -51,7 +51,7 @@ namespace ConfirmationLabsTests.Helpers
             catch(Exception)
             { }
 
-            //throw new Exception(exception.Message);
+            throw new Exception(exception.Message);
         }
     }
 }
