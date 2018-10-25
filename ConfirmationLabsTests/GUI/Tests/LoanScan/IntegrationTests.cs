@@ -16,8 +16,6 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             Browser.Start();
         }
 
-
-
         [Category("Loanscan")]
         [Category("Integration")]
         [Test]
