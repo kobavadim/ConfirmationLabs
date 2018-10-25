@@ -128,3 +128,4 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\b
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
+C:\Users\tan_v\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe

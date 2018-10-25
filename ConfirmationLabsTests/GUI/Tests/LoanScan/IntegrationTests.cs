@@ -70,6 +70,21 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             Integration.VerifyCollateralistheSameThroughTableandCardMakerDao();
         }
 
+        [Category("Loanscan")]
+        [Category("Integration")]
+        [Test]
+        public void DharmaDataAvailabilityonCardTest()
+        {
+            Integration.VerifyAllDataloadedDharma();
+        }
+
+        [Category("Loanscan")]
+        [Category("Integration")]
+        [Test]
+        public void MakerDaoDataAvailabilityonCardTest()
+        {
+            Integration.VerifyAllDataloadedMakerDao();
+        }
 
         [TearDown]
         public void TestCleanUp()
