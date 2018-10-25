@@ -23,13 +23,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
-        [Category("Test")]
-        [Test]
-        public void TCTest()
-        {
-            MainPageBB.TCTest();
-        }
-
         [Category("Bloqboard")]
         [Test]
         public void PageisOpenedTest()

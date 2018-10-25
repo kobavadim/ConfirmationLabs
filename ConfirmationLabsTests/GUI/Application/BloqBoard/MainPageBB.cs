@@ -89,19 +89,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
         //Tests
-        public static void TCTest()
-        {
-            try
-            {
-                Browser.CurrentBrowser.Navigate().GoToUrl("https://en.wikipedia.org/wiki/Shady_XV");
-                //Asert.IsTrue(false, "BLOQBOARD", "some error");
-            }
-            catch (Exception exception)
-            {
-                Assert.FinilizeErrors(exception);
-            }
-        }
-
         public static void VerifyPageisOpened()
         {
             try
@@ -113,8 +100,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
 
@@ -130,8 +116,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
 
@@ -147,8 +132,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
 
@@ -164,8 +148,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
 
@@ -181,8 +164,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
 
@@ -203,8 +185,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
 

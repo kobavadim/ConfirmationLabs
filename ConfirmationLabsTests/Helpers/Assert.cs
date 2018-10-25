@@ -17,8 +17,9 @@ namespace ConfirmationLabsTests.Helpers
             }
         }
 
-        public static void FinilizeErrors(Exception exception)
+        public static void FinilizeErrors(string ENV, string component, Exception exception)
         {
+            string errormessage = "";
             try
             {
                 ScreenShot.TakeScreenshot();
@@ -29,11 +30,19 @@ namespace ConfirmationLabsTests.Helpers
             {
                 if (exception.Message.Contains("WebDriver") || exception.Message.Contains("WebException") || exception.Message.Contains("Selenium"))
                 {
-
+                    errormessage = "Page wasn't loaded during wait time... Please rerun tests or check manually";
                 }
                 else
                 {
-                    SlackClient.PostMessage(exception.Message);
+                    if (exception.Message.Contains("Unable to locate element"))
+                    {
+                        SlackClient.PostMessage("[" + ENV + "] " + component + ": site wasn't loaded correctly. Probably we have an issue. Please recheck manually.");
+                    }
+                    else
+                    {
+                        SlackClient.PostMessage(exception.Message);
+                    }
+
                 }
 
             }
@@ -51,7 +60,15 @@ namespace ConfirmationLabsTests.Helpers
             catch(Exception)
             { }
 
-            throw new Exception(exception.Message);
+            if (errormessage == "")
+            {
+                throw new Exception(exception.Message);
+            }
+            else
+            {
+                throw new Exception(errormessage);
+            }
+            
         }
     }
 }
