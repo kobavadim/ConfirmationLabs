@@ -20,6 +20,13 @@ namespace ConfirmationLabsTests.GUI.Engine
             CurrentBrowser.Manage().Window.Maximize();
         }
 
+        public static void StartMobile()
+        {
+            ChromeOptions chromeCapabilities = new ChromeOptions();
+            chromeCapabilities.EnableMobileEmulation("Nexus 5");
+            IWebDriver driver = new ChromeDriver(chromeCapabilities);
+        }
+
         public static void StartWithExstension()
         {
             ChromeOptions chromeoptions = new ChromeOptions();
