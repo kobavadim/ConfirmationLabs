@@ -126,10 +126,7 @@ C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\C
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
 C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
-C:\Users\v.koba\Documents\Git\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
-<<<<<<< HEAD
 C:\Users\tan_v\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
-=======
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\chromedriver.exe
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.dll
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3_x64.dll
@@ -138,4 +135,3 @@ C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\AutoItX3.Assembly.xml
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Вадим\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
->>>>>>> f3b0993a23f5c9903e7616c511ad5360a65bef44

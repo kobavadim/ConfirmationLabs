@@ -82,8 +82,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "COMPOUND", exception);
             }
         }
 
@@ -98,9 +97,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
-
+                Assert.FinilizeErrors(Env, "COMPOUND", exception);
             }
 
 
@@ -119,8 +116,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "COMPOUND", exception);
             }
         }
 
@@ -135,8 +131,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "COMPOUND", exception);
             }
         }
 
@@ -150,8 +145,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "COMPOUND", exception);
             }
         }
 
@@ -166,8 +160,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(exception);
-
+                Assert.FinilizeErrors(Env, "COMPOUND", exception);
             }
         }
 
