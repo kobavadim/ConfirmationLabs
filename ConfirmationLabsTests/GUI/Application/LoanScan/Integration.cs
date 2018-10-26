@@ -36,15 +36,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By AnnualInterestRateCardMakerDao = By.CssSelector(".col-sm-9:nth-child(6) span");
         private static readonly By LendingProtocolCard = By.CssSelector(".col-sm-9:nth-child(28) span");
         private static readonly By CollateralTableMakerDao = By.CssSelector(".loan-list .loan-summary");
-<<<<<<< HEAD
-
         private static readonly By AllDataDharma = By.CssSelector("span , .col-sm-9:nth-child(44) , .col-sm-9:nth-child(40) , .col-sm-9:nth-child(38)");
         private static readonly By AllDataMakerDao = By.CssSelector(".col-sm-9");
 
 
-=======
+
         static string Env = "";
->>>>>>> f3b0993a23f5c9903e7616c511ad5360a65bef44
 
         //Methods
         public static void Open()
