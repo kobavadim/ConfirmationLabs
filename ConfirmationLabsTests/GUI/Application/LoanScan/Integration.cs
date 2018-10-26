@@ -38,15 +38,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By CollateralTableMakerDao = By.CssSelector(".loan-list .loan-summary");
         private static readonly By AllDataDharma = By.CssSelector("span , .col-sm-9:nth-child(44) , .col-sm-9:nth-child(40) , .col-sm-9:nth-child(38)");
         private static readonly By AllDataMakerDao = By.CssSelector(".col-sm-9");
-<<<<<<< HEAD
+
 
 
 
         static string Env = "";
-=======
-        static string Env = "";
 
->>>>>>> 2dcca26cc3dc3b6bf9040cd16bae7a14f3a77d75
+       
+
 
         //Methods
         public static void Open()
