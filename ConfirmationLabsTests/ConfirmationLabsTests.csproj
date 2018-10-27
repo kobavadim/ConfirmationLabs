@@ -80,11 +80,12 @@
     <Compile Include="GUI\Application\Compaund\MainPageCompaund.cs" />
     <Compile Include="GUI\Application\LoanScan\CardPage.cs" />
     <Compile Include="GUI\Application\LoanScan\Integration.cs" />
+    <Compile Include="GUI\Application\LoanScan\LoanScanMobile.cs" />
     <Compile Include="GUI\Application\LoanScan\MainPage.cs" />
     <Compile Include="GUI\Engine\Browser.cs" />
     <Compile Include="GUI\Tests\BloqBoard\MainPageTests.cs" />
     <Compile Include="GUI\Tests\Compaund\MainPageCompaundTests.cs" />
-    <Compile Include="GUI\Tests\LoanScan\MobileTests.cs" />
+    <Compile Include="GUI\Tests\LoanScan\LoanScanMobileTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\CardPageTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\IntegrationTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\LoanScanMainPageTests.cs" />

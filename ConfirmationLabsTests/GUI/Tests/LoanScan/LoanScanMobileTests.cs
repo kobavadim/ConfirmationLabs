@@ -8,7 +8,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
 
     [TestFixture]
 
-    class MobileTests
+    class LoanScanMobileTests
     {
         [SetUp]
         public void TestInitialize()
