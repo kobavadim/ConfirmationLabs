@@ -24,6 +24,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By Wrap = By.CssSelector(".wallet-info__exchange-button+ .wallet-info__exchange-button");
         static string Env = "";
 
+        private static readonly By NewRequest = By.CssSelector(".loan-table__header-btn");
+        private static readonly By AmountInputbyNewRequest = By.CssSelector("[name='amount']");
+        private static readonly By InterestInputByNewRequest = By.CssSelector("[name='interestRate']");
+        private static readonly By CollateralAmountNewRequest = By.CssSelector("[name='collateralAmount']");
+        private static readonly By AddRequestBtn = By.CssSelector("button.loan-request-form__place-btn");
+
 
 
         //Methods
@@ -85,7 +91,30 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.LongPause();
         }
 
+        public static void CreateNewRequest()
+        {
 
+            IWebElement createrequestbtn = Browser.CurrentBrowser.FindElement(NewRequest);
+            createrequestbtn.Click();
+
+            IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
+            amount.SendKeys("0.005");
+
+            IWebElement interest = Browser.CurrentBrowser.FindElement(InterestInputByNewRequest);
+            interest.SendKeys("5");
+
+            IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
+            collateral.SendKeys("0.05");
+
+            IWebElement create = Browser.CurrentBrowser.FindElement(AddRequestBtn);
+            create.Click();
+           
+            var popup = Browser.CurrentBrowser.WindowHandles[0];
+            Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[1]);
+            Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+
+
+        }
 
 
         //Tests
@@ -187,6 +216,21 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             {
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
+        }
+
+        public static void VerifyNewRequestCanbeCreated()
+        {
+            
+            Wallets.LoginToMetaMaskWallet();
+            Browser.MiddlePause();
+
+            Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/");
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            CreateNewRequest();
+
+
+
         }
 
 

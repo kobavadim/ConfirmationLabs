@@ -68,6 +68,15 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyUnwrapbtnDisplayed();
         }
 
+        [Category("Bloqboard")]
+        //[Test]
+        public void CreateNewRequestTest()
+        {
+            MainPageBB.VerifyNewRequestCanbeCreated();
+        }
+
+
+
 
         [TearDown]
         public void TestCleanUp()

@@ -2,6 +2,9 @@
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.GUI.Application.LoanScan;
 
+
+
+
 namespace ConfirmationLabsTests.GUI.Tests.LoanScan
 {
 
@@ -17,10 +20,10 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
         }
 
         [Category("LoanscanMobile")]
-        [Test]
+        //[Test]
         public void CheckMobileMainPage()
         {
-            
+           LoanScanMobile.VerifyCurrencySwitchedonMobile();
         }
 
         [TearDown]

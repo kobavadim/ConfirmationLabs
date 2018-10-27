@@ -340,44 +340,58 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void VerifyAllDataloadedDharma()
         {
-            Open();
-            IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
-            dharmacolumn.Click();
-            Engine.Browser.MiddlePause();
-
-            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
-            firstrow.Click();
-            Engine.Browser.MiddlePause();
-
-            IList<IWebElement> datadharma = Engine.Browser.CurrentBrowser.FindElements(AllDataDharma);
-            foreach(var value in datadharma)
+            try
             {
-                string valuetext = value.Text;
-                Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "LoanScan", "Some values are missing on the Dharma Single Card");
-            }
+                Open();
+                IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+                dharmacolumn.Click();
+                Engine.Browser.MiddlePause();
 
+                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                firstrow.Click();
+                Engine.Browser.MiddlePause();
+
+                IList<IWebElement> datadharma = Engine.Browser.CurrentBrowser.FindElements(AllDataDharma);
+                foreach (var value in datadharma)
+                {
+                    string valuetext = value.Text;
+                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "LoanScan", "Some values are missing on the Dharma Single Card");
+                }
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+
+            }
 
         }
 
         public static void VerifyAllDataloadedMakerDao()
         {
-            Open();
-            IWebElement makerDaoColumn = Engine.Browser.CurrentBrowser.FindElement(MakerDaoColumn);
-            makerDaoColumn.Click();
-            Engine.Browser.MiddlePause();
-
-            IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
-            firstrow.Click();
-            Engine.Browser.MiddlePause();
-
-            IList<IWebElement> datamakerdao = Engine.Browser.CurrentBrowser.FindElements(AllDataMakerDao);
-            foreach (var value in datamakerdao)
+            try
             {
-                string valuetext = value.Text;
-                Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "LoanScan", "Some values are missing on the MakerDao Single Card");
+                Open();
+                IWebElement makerDaoColumn = Engine.Browser.CurrentBrowser.FindElement(MakerDaoColumn);
+                makerDaoColumn.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                firstrow.Click();
+                Engine.Browser.MiddlePause();
+
+                IList<IWebElement> datamakerdao = Engine.Browser.CurrentBrowser.FindElements(AllDataMakerDao);
+                foreach (var value in datamakerdao)
+                {
+                    string valuetext = value.Text;
+                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "LoanScan", "Some values are missing on the MakerDao Single Card");
+                }
+
             }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
 
-
+            }
         }
 
 
