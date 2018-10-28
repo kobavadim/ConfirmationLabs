@@ -21,10 +21,41 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
 
         [Category("LoanscanMobile")]
         [Test]
-        public void CheckMobileMainPage()
+        public void CurrencyDisplayMobileTest()
         {
            LoanScanMobile.VerifyCurrencySwitchedonMobile();
         }
+
+        [Category("LoanscanMobile")]
+        [Test]
+        public void LandingProtocolSwitchMobileTest()
+        {
+            LoanScanMobile.VerifyLendingProtocolsAvailability();
+        }
+
+        [Category("LoanscanMobile")]
+        [Test]
+        public void TermSwitchMobileTest()
+        {
+            LoanScanMobile.VerifyTermSwitch();
+        }
+
+        [Category("LoanscanMobile")]
+        [Test]
+        public void SearchFunctionalityMobileTest()
+        {
+            LoanScanMobile.VerifySearchPerformed();
+        }
+
+        [Category("LoanscanMobile")]
+        [Test]
+        public void PaginationMobileTest()
+        {
+            LoanScanMobile.VerifyPagination();
+        }
+
+        
+
 
         [TearDown]
         public void TestCleanUp()
