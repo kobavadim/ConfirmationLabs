@@ -20,7 +20,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
         }
 
         [Category("LoanscanMobile")]
-        //[Test]
+        [Test]
         public void CheckMobileMainPage()
         {
            LoanScanMobile.VerifyCurrencySwitchedonMobile();

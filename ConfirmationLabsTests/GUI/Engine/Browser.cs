@@ -24,7 +24,7 @@ namespace ConfirmationLabsTests.GUI.Engine
         {
             ChromeOptions chromeCapabilities = new ChromeOptions();
             chromeCapabilities.EnableMobileEmulation("Nexus 5");
-            IWebDriver driver = new ChromeDriver(chromeCapabilities);
+            CurrentBrowser = new ChromeDriver(chromeCapabilities);
         }
 
         public static void StartWithExstension()

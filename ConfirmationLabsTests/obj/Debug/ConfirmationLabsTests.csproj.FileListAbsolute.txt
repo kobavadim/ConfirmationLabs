@@ -78,7 +78,6 @@ C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\o
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\Administrator\Documents\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
-C:\Users\tan_v\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojResolveAssemblyReference.cache
 C:\Users\tan_v\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\tan_v\GitHub\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
 C:\Users\tan_v\GitHub\ConfirmationLabs\ConfirmationLabsTests\bin\Debug\NUnit3.TestAdapter.dll

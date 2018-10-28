@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Engine;
 using OpenQA.Selenium;
-using Assert = ConfirmationLabsTests.Helpers.Assert;
-
+using System.Collections.ObjectModel;
 
 namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 {
@@ -106,11 +105,39 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
             collateral.SendKeys("0.05");
 
+
+
+            Browser.CurrentBrowser.FindElement(By.CssSelector("body")).SendKeys(Keys.Control + "t");
+
+
             IWebElement create = Browser.CurrentBrowser.FindElement(AddRequestBtn);
             create.Click();
-           
-            var popup = Browser.CurrentBrowser.WindowHandles[0];
+
+
+
+
+            string BaseWindow = Browser.CurrentBrowser.CurrentWindowHandle;
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+            
+            var popup1 = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
+            NUnit.Framework.Assert.IsTrue(!string.IsNullOrEmpty(popup1)); // tab was opened
+            NUnit.Framework.Assert.IsTrue(Browser.CurrentBrowser.SwitchTo().Window(popup1).Url == ""); // url is OK  
+            Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[0]); // close the tab
             Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[1]);
+
+
+   
+
+
+
+
+
+
+
+
+
             Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
 
 
@@ -220,11 +247,35 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyNewRequestCanbeCreated()
         {
-            
+
+ 
+
+
+
+
             Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
 
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab); 
+            Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
             Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/");
+
+
+
+
+
+
+
             Browser.MiddlePause();
             TermsandConditionAceptance();
             CreateNewRequest();

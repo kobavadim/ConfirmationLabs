@@ -42,7 +42,6 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
 
         //TESTS
-
         public static void VerifyCurrencySwitchedonMobile()
         {
             Open();
