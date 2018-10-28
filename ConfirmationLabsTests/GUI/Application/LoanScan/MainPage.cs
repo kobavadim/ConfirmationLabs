@@ -88,7 +88,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             foreach (var value in values)
             {
                 string result = value.Text;
-                Assert.IsTrue(result.Contains("Dharma"), "LOANSCAN", "LoanScan search is not working as expected");
+                Assert.IsTrue(result.Contains("Dharma"), "[" + Env + "] LOANSCAN", "LoanScan search is not working as expected");
 
             }
 
@@ -207,19 +207,19 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Assert.IsTrue(ltv.Text.Contains("LTV"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'LTV' value");
 
             IWebElement collateral = Engine.Browser.CurrentBrowser.FindElement(Collateral);
-            Assert.IsTrue(collateral.Text.Contains("Collateral"), "LOANSCAN", "The table doesn't contain the 'Collateral' value");
+            Assert.IsTrue(collateral.Text.Contains("Collateral"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Collateral' value");
 
             IWebElement loanstatus = Engine.Browser.CurrentBrowser.FindElement(LoanStatus);
-            Assert.IsTrue(loanstatus.Text.Contains("Loan status"), "LOANSCAN", "The table doesn't contain the 'Loan status' value");
+            Assert.IsTrue(loanstatus.Text.Contains("Loan status"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Loan status' value");
 
             IWebElement repaid = Engine.Browser.CurrentBrowser.FindElement(Repaid);
-            Assert.IsTrue(repaid.Text.Contains("% repaid"), "LOANSCAN", "The table doesn't contain the '% Repaid' value");
+            Assert.IsTrue(repaid.Text.Contains("% repaid"), "[" + Env + "] LOANSCAN", "The table doesn't contain the '% Repaid' value");
 
             IWebElement underwrirename = Engine.Browser.CurrentBrowser.FindElement(UnderwriterName);
-            Assert.IsTrue(underwrirename.Text.Contains("Underwriter name"), "LOANSCAN", "The table doesn't contain the 'Underwriter name' value");
+            Assert.IsTrue(underwrirename.Text.Contains("Underwriter name"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Underwriter name' value");
 
             IWebElement relayerName = Engine.Browser.CurrentBrowser.FindElement(RelayerName);
-            Assert.IsTrue(relayerName.Text.Contains("Relayer name"), "LOANSCAN", "The table doesn't contain the 'Relayer name' value");
+            Assert.IsTrue(relayerName.Text.Contains("Relayer name"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Relayer name' value");
 
 
         }
@@ -231,21 +231,21 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Engine.Browser.MiddlePause();
             IWebElement btconBanner = Engine.Browser.CurrentBrowser.FindElement(CurrencyBanner);
             string bannervalue = btconBanner.Text;
-            Assert.IsTrue(bannervalue.Contains("BTC"), "LOANSCAN", "The currency on banner is not displayed as expected");
+            Assert.IsTrue(bannervalue.Contains("BTC"), "[" + Env + "] LOANSCAN", "The currency on banner is not displayed as expected");
 
             IWebElement ethButton = Engine.Browser.CurrentBrowser.FindElement(EthButton);
             ethButton.Click();
             Engine.Browser.MiddlePause();
             IWebElement ethonBanner = Engine.Browser.CurrentBrowser.FindElement(CurrencyBanner);
             string ethonBannervalue = ethonBanner.Text;
-            Assert.IsTrue(ethonBannervalue.Contains("ETH"), "LOANSCAN", "The currency on banner is not displayed as expected");
+            Assert.IsTrue(ethonBannervalue.Contains("ETH"), "[" + Env + "] LOANSCAN", "The currency on banner is not displayed as expected");
 
             IWebElement usdButton = Engine.Browser.CurrentBrowser.FindElement(UsdButton);
             usdButton.Click();
             Engine.Browser.MiddlePause();
             IWebElement usdonBanner = Engine.Browser.CurrentBrowser.FindElement(CurrencyBanner);
             string usdonBannervalue = usdonBanner.Text;
-            Assert.IsTrue(usdonBannervalue.Contains("$"), "LOANSCAN", "The currency on banner is not displayed as expected");
+            Assert.IsTrue(usdonBannervalue.Contains("$"), "[" + Env + "] LOANSCAN", "The currency on banner is not displayed as expected");
 
         }
 

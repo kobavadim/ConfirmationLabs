@@ -87,7 +87,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement annualinterestratecard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
 
-                Assert.IsTrue(annualinterestratecard.Text.Contains(value), "LOANSCAN", "The appopriate card is not opened from the table");
+                Assert.IsTrue(annualinterestratecard.Text.Contains(value), "[" + Env + "] LOANSCAN", "The appopriate card is not opened from the table");
             }
             catch (Exception exception)
             {
@@ -193,7 +193,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Engine.Browser.MiddlePause();
 
             IWebElement loanamountCard = Engine.Browser.CurrentBrowser.FindElement(LaonAmountCard);
-            Assert.IsTrue(loanamountCard.Text.Contains(dollar), "LOANSCAN", "Loan amount in the card is not the same as in the table");
+            Assert.IsTrue(loanamountCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Loan amount in the card is not the same as in the table");
             }
 
             catch (Exception exception)
@@ -227,7 +227,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
+                Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
 
 
             }
@@ -324,7 +324,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Engine.Browser.MiddlePause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralTableMakerDao);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar), "LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
+                Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
 
 
             }
@@ -355,7 +355,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 foreach (var value in datadharma)
                 {
                     string valuetext = value.Text;
-                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "LoanScan", "Some values are missing on the Dharma Single Card");
+                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "[" + Env + "] LOANSCAN", "Some values are missing on the Dharma Single Card");
                 }
             }
             catch (Exception exception)
@@ -383,7 +383,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 foreach (var value in datamakerdao)
                 {
                     string valuetext = value.Text;
-                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "LoanScan", "Some values are missing on the MakerDao Single Card");
+                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "[" + Env + "] LOANSCAN", "Some values are missing on the MakerDao Single Card");
                 }
 
             }
