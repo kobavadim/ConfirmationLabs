@@ -32,6 +32,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By PreviousPageIcon = By.CssSelector(".page-item:nth-child(2) span");
         private static readonly By FirstPageNavigationIcon = By.CssSelector(".page-item:nth-child(1) span");
         private static readonly By NextPageNavigationIcon = By.CssSelector(".page-item:nth-child(8) span");
+        private static readonly By Row = By.CssSelector(".loan-row:nth-child(1) .nowrap");
+        private static readonly By LoanAmount = By.CssSelector(".loan-row:nth-child(1) td:nth-child(3) .nowrap");
+        private static readonly By DharmaColumn = By.CssSelector(".mr-auto .btn-sm:nth-child(1)");
+        private static readonly By LaonAmountCard = By.CssSelector("dl.row > dd:nth-of-type(2) > span");
+        private static readonly By AnnaulInterestRateTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(4)");
+        private static readonly By AnnualInterestRateCard = By.CssSelector("br+ span");
 
 
 
@@ -210,6 +216,32 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
         }
 
+
+        public static void VerifySingleCardOpening()
+        {
+            try
+            {
+                Open();
+                IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
+                dharmacolumn.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
+                IWebElement annualintrate = Engine.Browser.CurrentBrowser.FindElement(AnnaulInterestRateTable);
+                string value = annualintrate.Text;
+
+                firstrow.Click();
+                Engine.Browser.MiddlePause();
+
+                IWebElement annualinterestratecard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCard);
+
+                Assert.IsTrue(annualinterestratecard.Text.Contains(value), "[" + Env + "] LOANSCANMOBILE", "The appopriate card is not opened from the table");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "LOANSCANMOBILE", exception);
+            }
+        }
     }
 
 }

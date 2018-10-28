@@ -54,7 +54,12 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             LoanScanMobile.VerifyPagination();
         }
 
-        
+        [Category("LoanscanMobile")]
+        [Test]
+        public void CardOpeningMobileTest()
+        {
+            LoanScanMobile.VerifySingleCardOpening();
+        }
 
 
         [TearDown]
