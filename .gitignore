@@ -4,3 +4,11 @@
 ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.csproj.FileListAbsolute.txt
 ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.csproj.FileListAbsolute.txt
 *.tmp
+ConfirmationLabsTests/bin/Debug/ConfirmationLabsTests.pdb
+ConfirmationLabsTests/bin/Debug/ConfirmationLabsTests.dll
+.vs/ConfirmationLabsTests/v15/Server/sqlite3/storage.ide-wal
+.vs/ConfirmationLabsTests/v15/Server/sqlite3/storage.ide-shm
+.vs/ConfirmationLabsTests/v15/Server/sqlite3/storage.ide
+.vs/ConfirmationLabsTests/v15/.suo
+ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.dll
+ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.pdb

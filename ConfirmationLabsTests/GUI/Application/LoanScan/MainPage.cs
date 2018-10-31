@@ -71,7 +71,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.LoanScanMainPageKovan);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageKovan);
             }
-            
+
             Engine.Browser.MiddlePause();
 
         }
@@ -306,19 +306,19 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void SearchAvailability()
         {
-        
-
-           try
-        {
-
-             // IList<IWebElement> MyElements = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("[text-anchor='start']"));
 
 
+            try
+            {
 
-            Open();
-            IWebElement searchinput = Engine.Browser.CurrentBrowser.FindElement(SearchInput);
-            Assert.IsTrue(searchinput.Displayed, "[" + Env + "] LOANSCAN", "Search is not available on the page");
-        }
+                // IList<IWebElement> MyElements = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("[text-anchor='start']"));
+
+
+
+                Open();
+                IWebElement searchinput = Engine.Browser.CurrentBrowser.FindElement(SearchInput);
+                Assert.IsTrue(searchinput.Displayed, "[" + Env + "] LOANSCAN", "Search is not available on the page");
+            }
 
             catch (Exception exception)
             {
@@ -342,10 +342,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         public static void FilteringTable()
         {
             try
-        { 
-            Open();
-            FilteringTablebyLendingProtocol();
-        }
+            {
+                Open();
+                FilteringTablebyLendingProtocol();
+            }
 
             catch (Exception exception)
             {
@@ -355,9 +355,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void PaginationTable()
         {
-            try { 
-            Open();
-            PaginationbyTheTable();
+            try
+            {
+                Open();
+                PaginationbyTheTable();
             }
             catch (Exception exception)
             {
@@ -367,9 +368,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void ColumnsTable()
         {
-            try { 
-            Open();
-            ColumnsAvailabilityintheTable();
+            try
+            {
+                Open();
+                ColumnsAvailabilityintheTable();
             }
             catch (Exception exception)
             {
@@ -379,9 +381,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void CurrencySwtichingTest()
         {
-            try { 
-            Open();
-            SwitchCurrency();
+            try
+            {
+                Open();
+                SwitchCurrency();
             }
             catch (Exception exception)
             {
@@ -392,9 +395,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         public static void LendingProtocolSwitch()
         {
             try
-            {                            
-            Open();
-            LendingProtocolsSwitch();
+            {
+                Open();
+                LendingProtocolsSwitch();
             }
             catch (Exception exception)
             {
@@ -404,9 +407,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void TermSwitchingFunctionality()
         {
-            try { 
-            Open();
-            TermSwitch();
+            try
+            {
+                Open();
+                TermSwitch();
             }
             catch (Exception exception)
             {
@@ -416,19 +420,16 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
         public static void ChartTabsAvailability()
         {
-            try { 
-            Open();
-            ChartTabsSwitching();
-                 }
+            try
+            {
+                Open();
+                ChartTabsSwitching();
+                //ScreenShot.TakeScreenshotFullPageWithScroll(Engine.Browser.CurrentBrowser);
+            }
             catch (Exception exception)
             {
                 Assert.FinilizeErrors(Env, "LOANSCAN", exception);
             }
         }
-
-
-
-
-
     }
 }
