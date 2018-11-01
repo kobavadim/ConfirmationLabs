@@ -355,7 +355,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 foreach (var value in datadharma)
                 {
                     string valuetext = value.Text;
-                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "[" + Env + "] LOANSCAN", "Some values are missing on the Dharma Single Card");
+                    Assert.IsTrue(!valuetext.Contains(""), "[" + Env + "] LOANSCAN", "Some values are missing on the Dharma Single Card");
                 }
             }
             catch (Exception exception)
@@ -383,7 +383,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 foreach (var value in datamakerdao)
                 {
                     string valuetext = value.Text;
-                    Assert.IsTrue(!valuetext.Contains("") && !valuetext.Contains("N/A"), "[" + Env + "] LOANSCAN", "Some values are missing on the MakerDao Single Card");
+                    Assert.IsTrue(!valuetext.Contains(""), "[" + Env + "] LOANSCAN", "Some values are missing on the MakerDao Single Card");
                 }
 
             }
