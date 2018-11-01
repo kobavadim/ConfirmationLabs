@@ -3,4 +3,10 @@
 *.ide-wal
 ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.csproj.FileListAbsolute.txt
 ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.csproj.FileListAbsolute.txt
+<<<<<<< HEAD
 *.tmp
+=======
+*.cache
+*.cache
+.vs/ConfirmationLabsTests/v15/Server/sqlite3/storage.ide-shm
+>>>>>>> 6e69f1edd8f99d4397a8d2d67dccd5646a264fed
