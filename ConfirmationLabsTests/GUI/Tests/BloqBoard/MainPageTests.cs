@@ -110,7 +110,12 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
-
+        [Category("Bloqboard")]
+       // [Test]
+        public void OpeningCardfromBloqBoardTest()
+        {
+            MainPageBB.VerifyLoanScanCardisOpenedfromBloqBoard();
+        }
 
         [TearDown]
         public void TestCleanUp()

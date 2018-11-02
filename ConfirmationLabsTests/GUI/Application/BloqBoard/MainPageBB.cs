@@ -45,6 +45,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By MyClosedRequestsTable = By.CssSelector(".part-side+ .part-side");
         private static readonly By CancelRequestBtn = By.CssSelector("#cancelPopover-0");
         private static readonly By CancelledCreationTime = By.CssSelector(".part-side+ .part-side .content-table-row:nth-child(1) .first+ .bottom-cell");
+        private static readonly By ConfirmCancellationRequest = By.CssSelector("button.confirm-btn");
+        private static readonly By LoanIssuedDateBloqBoard = By.CssSelector(".first .content-table-row:nth-child(1) .first+ .bottom-cell");
+        private static readonly By LoanIssuedDateLoanscan = By.CssSelector(".col-sm-9:nth-child(10) span");
 
 
 
@@ -412,6 +415,25 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string date = creationDate.Text;
                 IWebElement cancelbtn = Browser.CurrentBrowser.FindElement(CancelRequestBtn);
                 cancelbtn.Click();
+                Browser.ShortPause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmCancellationRequest);
+                confirm.Click();
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+
+                Browser.CurrentBrowser.Navigate().Refresh();
+
+                Browser.ShortPause();
+
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+
+                //добавить ообработку длинных транзакций
                 IWebElement cancelledcreationtime = Browser.CurrentBrowser.FindElement(CancelledCreationTime);
                 string cancelledtime = cancelledcreationtime.Text;
 
@@ -426,6 +448,43 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
+        public static void VerifyLoanScanCardisOpenedfromBloqBoard()
+        {
+            try
+            {
+                OpenBloqBoard();
+                TermsandConditionAceptance();
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
+                Browser.MiddlePause();
+
+                IWebElement date = Browser.CurrentBrowser.FindElement(LoanIssuedDateBloqBoard);
+                string dateissued = date.Text;
+
+                date.Click();
+                Browser.LongPause();
+
+               // ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+                string Loanscan = handles[1];
+                string BloqboardTab = handles[0];
+
+                Browser.CurrentBrowser.SwitchTo().Window(Loanscan);
+                Browser.MiddlePause();
+                IWebElement dateloanscan = Browser.CurrentBrowser.FindElement(LoanIssuedDateLoanscan);
+                string dateissuedloanscan = date.Text;
+                
+                Assert.IsTrue(dateissuedloanscan.Contains(dateissued), "[" + Env + "] BLOQBOARD", "The card opened from Bloqboard in Loanscan seems to be incorrect");
+
+
+            }
+
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
 
     }
 }
