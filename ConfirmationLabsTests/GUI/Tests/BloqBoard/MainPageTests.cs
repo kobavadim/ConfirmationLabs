@@ -103,6 +103,15 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewRequestCanbeCreated();
         }
 
+        [Category("Bloqboard")]
+        [Test]
+        public void CancelRequestTest()
+        {
+            MainPageBB.VerifyRequestCanbeCancelled();
+        }
+
+
+
         [TearDown]
         public void TestCleanUp()
         {

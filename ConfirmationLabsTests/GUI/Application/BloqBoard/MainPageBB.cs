@@ -43,7 +43,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By MyLandedTokensTable = By.CssSelector(".part-side+ .part-side");
         private static readonly By MyOpenedRequestsTable = By.CssSelector(".part-side:nth-child(1)");
         private static readonly By MyClosedRequestsTable = By.CssSelector(".part-side+ .part-side");
-
+        private static readonly By CancelRequestBtn = By.CssSelector("#cancelPopover-0");
+        private static readonly By CancelledCreationTime = By.CssSelector(".part-side+ .part-side .content-table-row:nth-child(1) .first+ .bottom-cell");
 
 
 
@@ -381,7 +382,49 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
+        public static void VerifyRequestCanbeCancelled()
+        {
 
+            try
+            {
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                                
+                CreateNewRequest();
+
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                Browser.MiddlePause();
+
+                IWebElement creationDate= Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                string date = creationDate.Text;
+                IWebElement cancelbtn = Browser.CurrentBrowser.FindElement(CancelRequestBtn);
+                cancelbtn.Click();
+                IWebElement cancelledcreationtime = Browser.CurrentBrowser.FindElement(CancelledCreationTime);
+                string cancelledtime = cancelledcreationtime.Text;
+
+                Assert.IsTrue(cancelledtime.Contains(date), "[" + Env + "] BLOQBOARD", "Cancelled request is not displayed in the 'Cancelled requests' table");
+            
+                
+
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
 
 
     }
