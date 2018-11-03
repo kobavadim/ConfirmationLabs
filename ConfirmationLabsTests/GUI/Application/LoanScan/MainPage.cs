@@ -60,7 +60,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         public static void Open()
         {
 
-            string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
+            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
             if (Env == "PROD")
             {
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.LoanScanMainPageProd);

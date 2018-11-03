@@ -22,7 +22,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By DaiBtn = By.CssSelector(".token-item:nth-child(2) .token-item-name");
         private static readonly By AmountInput = By.CssSelector(".wallet-info__value-input");
         private static readonly By Wrap = By.CssSelector(".wallet-info__exchange-button+ .wallet-info__exchange-button");
-        static string Env = "";
+        static string Env = TestData.DefineEnvironmentDependingOnEnvironment();
 
         private static readonly By NewRequest = By.CssSelector(".token-item:nth-child(1) .token-item-name");
         private static readonly By AmountInputbyNewRequest = By.CssSelector("[name='amount']");
@@ -57,34 +57,34 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Console.WriteLine("Logging Metamask");
             Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
-            Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardStaging);
-            //string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
-            //if (Env == "PROD")
-            //{
-            //    Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
-            //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
-            //}
-            //else
-            //{
-            //    Browser.ShortPause();
-            //    IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
-            //    Button.Click();
-            //    IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+            //Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardStaging);
+            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Env == "PROD")
+            {
+                Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+            }
+            else
+            {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
 
-            //    Browser.ShortPause();
-            //    foreach(var val in values)
-            //    {
-            //        if(val.Text.Contains("Kovan"))
-            //        {
-            //            val.Click();
-            //            break;
-            //        }
-            //    }
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
 
-            //    Browser.MiddlePause();
-            //    Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
-            //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
-            //}
+                Browser.MiddlePause();
+                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
+            }
 
             Engine.Browser.LongPause();
 
@@ -115,6 +115,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             IWebElement createrequestbtn = Browser.CurrentBrowser.FindElement(NewRequest);
             createrequestbtn.Click();
+            Browser.ShortPause();
 
             IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
             amount.SendKeys("0.005");
@@ -139,7 +140,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
             Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
             Browser.LongPause();
-
+            //Wallets.ChangeToKovan();
             Browser.CurrentBrowser.Navigate().Refresh();
 
             Browser.ShortPause();
@@ -350,7 +351,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             {
                 Wallets.LoginToMetaMaskWallet();
                 Browser.MiddlePause();
-
+                Wallets.ChangeToKovan();
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
@@ -363,16 +364,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
+                Browser.ShortPause();
                 IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                 string recentrequest = lastrequest.Text;
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
                 Browser.MiddlePause();
                 CreateNewRequest();
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-                Browser.MiddlePause();
+                Browser.LongPause();
 
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                 string newcreatedrequest = newrequest.Text;

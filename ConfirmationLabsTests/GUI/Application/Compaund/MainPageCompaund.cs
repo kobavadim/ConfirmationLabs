@@ -33,7 +33,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
 
-            string Env = Helpers.TestData.DefineBaseUrlDependingOnEnvironment();
+            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
             if (Env == "PROD")
             {
                 Console.WriteLine("running tests on PROD " + TestData.Urls.CompaundProd);
