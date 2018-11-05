@@ -111,10 +111,18 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Bloqboard")]
-       // [Test]
+        [Test]
         public void OpeningCardfromBloqBoardTest()
         {
             MainPageBB.VerifyLoanScanCardisOpenedfromBloqBoard();
+        }
+
+
+        [Category("Bloqboard")]
+        [Test]
+        public void LendRequestTest()
+        {
+            MainPageBB.VerifyRequestCanBeLended();
         }
 
         [TearDown]

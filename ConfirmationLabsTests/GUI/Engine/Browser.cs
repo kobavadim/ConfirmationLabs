@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using OpenQA.Selenium.Interactions;
 using System.Diagnostics;
+using OpenQA.Selenium.Firefox;
 
 namespace ConfirmationLabsTests.GUI.Engine
 {
@@ -33,6 +34,8 @@ namespace ConfirmationLabsTests.GUI.Engine
             chromeoptions.AddArgument("no-sandbox");
             chromeoptions.AddExtensions("C:\\Users\\Administrator\\Documents\\Exstensions\\MetaMask_v4.13.0.crx");
             CurrentBrowser = new ChromeDriver(chromeoptions);
+            CurrentBrowser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(300);
+            CurrentBrowser.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(300);
             MiddlePause();
             CurrentBrowser.Manage().Window.Maximize();
         }
