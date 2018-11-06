@@ -125,6 +125,15 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanBeLended();
         }
 
+
+        [Category("Bloqboard")]
+        //[Test]
+        public void RepayFunctionalityTest()
+        {
+            MainPageBB.VerifyRepayFunctionality();
+        }
+
+
         [TearDown]
         public void TestCleanUp()
         {

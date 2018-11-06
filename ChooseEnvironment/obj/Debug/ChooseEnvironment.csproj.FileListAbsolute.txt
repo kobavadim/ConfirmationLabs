@@ -6,3 +6,4 @@ C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnviron
 C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csproj.GenerateResource.Cache
 C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.exe
 C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.pdb
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csprojResolveAssemblyReference.cache

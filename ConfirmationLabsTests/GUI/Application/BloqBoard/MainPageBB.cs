@@ -58,6 +58,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By FundLoanRequest = By.CssSelector("button.loan-details-btn.fill");
         private static readonly By TransactionSuccessfulMsg = By.CssSelector("div.loan-details-actions-header");
         private static readonly By LendMenuBtn = By.CssSelector(".active+ .sidebar-block-item");
+        private static readonly By LoansMenuBtn = By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)");
+        private static readonly By RepayBtn = By.CssSelector("#repayPopover-0");
+        private static readonly By InputRepayAmount = By.CssSelector("input.repay-input");
+        private static readonly By ConfirmRepay = By.CssSelector("button.confirm-repay-btn");
+
+        private static readonly By FirstTransactionLoaned = By.CssSelector(".first .content-table-row:nth-child(1) .first");
+        private static readonly By RepaymanrAmountLoanscan = By.CssSelector("li > span.loan-amount.repayment");
+
+
 
 
         //Methods
@@ -126,7 +135,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
 
             IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
-            amount.SendKeys("0.005");
+            amount.SendKeys("0.00005");
 
             IWebElement interest = Browser.CurrentBrowser.FindElement(InterestInputByNewRequest);
             interest.SendKeys("5");
@@ -205,6 +214,34 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             proceedPhrase.Click();
             Browser.ShortPause();
         }
+
+        public static void LoginWalletwithFirstUser()
+        {
+            IWebElement loginwithseed = Browser.CurrentBrowser.FindElement(LoginWithSeedBtn);
+            loginwithseed.Click();
+            Browser.ShortPause();
+
+            IWebElement seed = Browser.CurrentBrowser.FindElement(By.CssSelector(".import-account__secret-phrase"));
+            seed.Click();
+            seed.SendKeys(TestData.Input.seedPhrase);
+            Browser.ShortPause();
+
+            IWebElement password = Browser.CurrentBrowser.FindElement(By.CssSelector("#password"));
+            password.Click();
+            password.SendKeys(TestData.Input.password);
+            Browser.ShortPause();
+
+            IWebElement confirmpassword = Browser.CurrentBrowser.FindElement(By.CssSelector("#confirm-password"));
+            confirmpassword.Click();
+            confirmpassword.SendKeys(TestData.Input.password);
+            Browser.MiddlePause();
+
+            IWebElement proceedPhrase = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+            proceedPhrase.Click();
+            Browser.ShortPause();
+        }
+
+
 
         //Tests
         public static void VerifyPageisOpened()
@@ -612,5 +649,127 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             
 
         }
+
+        public static void VerifyRepayFunctionality()
+        {
+            Wallets.LoginToMetaMaskWallet();
+            Browser.MiddlePause();
+            Wallets.ChangeToKovan();
+            Browser.MiddlePause();
+
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+
+            CreateNewRequest();
+
+
+            IWebElement creationDate = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+            string date = creationDate.Text;
+
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+
+            LogoutWallet();
+
+            LoginWalletwithNewUser();
+
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            IWebElement lendbtn = Browser.CurrentBrowser.FindElement(LendMenuBtn);
+            lendbtn.Click();
+            Browser.MiddlePause();
+
+            //поиск в таблтце
+            IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(LendPeerToPeerRows);
+            if (requests[0].Text.Contains(date))
+            {
+                IWebElement lendBtn = Browser.CurrentBrowser.FindElement(LendBtn);
+                lendBtn.Click();
+
+            }
+            else
+            {
+                IWebElement lendBtn2 = Browser.CurrentBrowser.FindElement(LendBtn2);
+                lendBtn2.Click();
+            }
+            Browser.MiddlePause();
+
+            IWebElement fundBtn = Browser.CurrentBrowser.FindElement(FundLoanRequest);
+            fundBtn.Click();
+
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+
+            Browser.ShortPause();
+
+            SignRequest();
+
+            LogoutWallet();
+            LoginWalletwithFirstUser();
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
+            loansbtn.Click();
+
+            IWebElement repaybtn = Browser.CurrentBrowser.FindElement(RepayBtn);
+            repaybtn.Click();
+            Browser.MiddlePause();
+            IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
+            amountrepay.SendKeys("0.0001");
+
+            IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
+            confirmrepaybtn.Click();
+
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+
+            Browser.ShortPause();
+            SignRequest();
+
+            Browser.LongPause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+
+            IWebElement firsttransaction = Browser.CurrentBrowser.FindElement(FirstTransactionLoaned);
+            firsttransaction.Click();
+
+            Browser.LongPause();
+
+            ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
+
+            string Loanscan = handles[2];
+            string BloqboardTabNew = handles[1];
+            
+
+            Browser.CurrentBrowser.SwitchTo().Window(Loanscan);
+            Browser.MiddlePause();
+
+            IWebElement loanscanamount = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
+            string amountrepayed = loanscanamount.Text;
+            Assert.IsTrue(amountrepayed.Contains("0.0001"), "[" + Env + "] BLOQBOARD", "Transaction is not repayed as expected, please, check manually");
+        }
+
     }
-}
+
+
+
+    }
+
