@@ -67,8 +67,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By RepaymanrAmountLoanscan = By.CssSelector("li > span.loan-amount.repayment");
         private static readonly By WholeAmountToRepay = By.CssSelector("div > div:nth-of-type(2) > div.content-value.text-right > div:first-child");
         private static readonly By SeizeCollarealBtn = By.CssSelector("div.content-table-body > div:first-child > div:nth-of-type(6) > div.top-cell > button.collateral-act-btn");
-         
-
+        private static readonly By ConfirmReturnCollateralBtn = By.CssSelector("button.confirm-btn");
+        private static readonly By CollateralReturnedBtn = By.CssSelector("div.content-table-body > div:first-child > div:nth-of-type(6) > div.top-cell.labeled > div.action-label");
 
 
         //Methods
@@ -815,6 +815,26 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
 
             //дальше надо еще дописать нажатие на кнопку и вернуть коллатерал
+            seaizecollateralbtn.Click();
+            Browser.ShortPause();
+            IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmReturnCollateralBtn);
+            confirm.Click();
+
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+
+            Browser.ShortPause();
+            SignRequest();
+
+            Browser.LongPause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+
+            IWebElement returnedcollateraloutout = Browser.CurrentBrowser.FindElement(CollateralReturnedBtn);
+            Assert.IsTrue(returnedcollateraloutout.Text.Contains("Returned"), "[" + Env + "] BLOQBOARD", "Collateral is not returned properly");
+ 
+
         }
 
     }
