@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using NUnit.Framework;
 using ConfirmationLabsTests.GUI.Engine;
-using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Application.BloqBoard;
-using OpenQA.Selenium.Chrome;
-using System.Threading;
-using OpenQA.Selenium.Interactions;
 
 namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 {
@@ -35,16 +25,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void TokensTableDisplayedTest()
         {
             MainPageBB.VerifyTokensTableDisplayed();
-
-
         }
 
         [Category("Bloqboard")]
         [Test]
         public void RecentLoansTableDisplayedTest()
         {
-            MainPageBB.VerifyRecentLoansTableDisplayed();
-            
+            MainPageBB.VerifyRecentLoansTableDisplayed();  
         }
 
         [Category("Bloqboard")]
@@ -98,48 +85,10 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Bloqboard")]
         [Test]
-        public void CreateNewRequestTest()
-        {
-            MainPageBB.VerifyNewRequestCanbeCreated();
-        }
-
-        [Category("Bloqboard")]
-        [Test]
-        public void CancelRequestTest()
-        {
-            MainPageBB.VerifyRequestCanbeCancelled();
-        }
-
-        [Category("Bloqboard")]
-        [Test]
         public void OpeningCardfromBloqBoardTest()
         {
             MainPageBB.VerifyLoanScanCardisOpenedfromBloqBoard();
         }
-
-
-        [Category("Bloqboard")]
-        [Test]
-        public void LendRequestTest()
-        {
-            MainPageBB.VerifyRequestCanBeLended();
-        }
-
-
-        [Category("Bloqboard")]
-        [Test]
-        public void RepayFunctionalityTest()
-        {
-            MainPageBB.VerifyRepayFunctionality();
-        }
-
-        [Category("Bloqboard")]
-        [Test]
-        public void ReturnCollateralButton()
-        {
-            MainPageBB.VerifyCollatrealCanbeReturned();
-        }
-
 
         [TearDown]
         public void TestCleanUp()

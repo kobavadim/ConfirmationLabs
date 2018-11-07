@@ -40,3 +40,10 @@ ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.pdb
 ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.dll
 >>>>>>> 2b76cfa877b9f2d06333f91c0e721386b6be607a
 ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.csproj.FileListAbsolute.txt
+*.ide
+*.ide-shm
+*.ide-wal
+ChooseEnvironment/obj/Debug/ChooseEnvironment.csproj.FileListAbsolute.txt
+ConfirmationLabsTests/bin/Debug/ConfirmationLabsTests.pdb
+ConfirmationLabsTests/obj/Debug/ConfirmationLabsTests.csproj.CoreCompileInputs.cache
+ConfirmationLabsTests/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

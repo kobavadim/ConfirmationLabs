@@ -833,8 +833,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             IWebElement returnedcollateraloutout = Browser.CurrentBrowser.FindElement(CollateralReturnedBtn);
             Assert.IsTrue(returnedcollateraloutout.Text.Contains("Returned"), "[" + Env + "] BLOQBOARD", "Collateral is not returned properly");
- 
-
         }
 
     }

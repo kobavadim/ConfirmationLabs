@@ -122,7 +122,7 @@ namespace ConfirmationLabsTests.GUI.Engine
                 amount += sleep;
             }
 
-                                   throw new TimeoutException();
+            throw new TimeoutException();
         }
 
         private static bool ClickByElement(IWebElement element, Action<IWebElement> customAction, string actionName)
@@ -139,7 +139,7 @@ namespace ConfirmationLabsTests.GUI.Engine
 
             return false;
         }
-        
+
         public static void ClickByElement(IWebElement element)
         {
             int waitTry = 0;
@@ -337,5 +337,5 @@ namespace ConfirmationLabsTests.GUI.Engine
         }
     }
 }
-    
+
 
