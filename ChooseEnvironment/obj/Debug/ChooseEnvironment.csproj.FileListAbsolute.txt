@@ -16,4 +16,3 @@ C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csproj.CoreCompileInputs.cache
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.exe
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.pdb
-C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csprojAssemblyReference.cache

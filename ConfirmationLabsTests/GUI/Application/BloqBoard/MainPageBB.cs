@@ -80,6 +80,22 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
             if (Env == "PROD")
             {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+
+                Browser.MiddlePause();
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
             }
