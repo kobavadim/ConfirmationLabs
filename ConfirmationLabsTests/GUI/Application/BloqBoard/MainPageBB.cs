@@ -69,6 +69,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By SeizeCollarealBtn = By.CssSelector("div.content-table-body > div:first-child > div:nth-of-type(6) > div.top-cell > button.collateral-act-btn");
         private static readonly By ConfirmReturnCollateralBtn = By.CssSelector("button.confirm-btn");
         private static readonly By CollateralReturnedBtn = By.CssSelector("div.content-table-body > div:first-child > div:nth-of-type(6) > div.top-cell.labeled > div.action-label");
+        private static readonly By SeizeCollateralSimilarBtns = By.CssSelector(".collateral-act-btn");
+        private static readonly By NextPage = By.CssSelector("ul.pagination > li:nth-of-type(6) > a.page-link > span");
+        private static readonly By ConfirmSeizing = By.CssSelector("button.confirm-btn");
+
 
 
         //Methods
@@ -153,6 +157,89 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             continuebtn.Click();
             Browser.MiddlePause();
         }
+
+        public static void foreachRows()
+        {
+            IList<IWebElement> elementList = Browser.CurrentBrowser.FindElements(SeizeCollateralSimilarBtns);
+
+            bool isClicked = false;
+
+            for (int i = 0; i < 4; i++)
+            {
+                foreach (var el in elementList)
+                {
+                    if (el.Text == "Seize collateral")
+                    {
+                        el.Click();
+                        isClicked = true;
+                        break;
+                    }
+                }
+
+                if (isClicked)
+                {
+                    break;
+                }
+                else
+                {
+                    IWebElement nextpage = Browser.CurrentBrowser.FindElement(NextPage);
+                    nextpage.Click();
+                }
+
+            }
+        }
+
+        public static string ClickCollateralButtonAndReturnDate()
+        {
+            var clickedTime = "no collateral found";
+
+            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table-row"));
+            foreach (var el in elementListRows)
+            {
+                var children = el.FindElements(By.XPath(".//*"));
+
+                var time = children[0].Text;
+                var button = children[children.Count - 1];
+                if (button.Text == "SEIZE COLLATERAL")
+                {
+                    button.Click();
+                    clickedTime = time;
+                    break;
+                }
+
+            }
+
+            return clickedTime;
+        }
+
+        public static bool CheckIfCollateralSiezed(string date)
+        {
+            bool result = false;
+
+            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table-row"));
+            foreach (var el in elementListRows)
+            {
+                var children = el.FindElements(By.XPath(".//*"));
+
+                var time = children[0].Text;
+                if(time == date)
+                {
+                    var button = children[children.Count - 1];
+                    if (button.Text.Contains("Seized"))
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+
+
+
 
         public static void CreateNewRequest()
         {
@@ -855,6 +942,60 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement returnedcollateraloutout = Browser.CurrentBrowser.FindElement(CollateralReturnedBtn);
             Assert.IsTrue(returnedcollateraloutout.Text.Contains("Returned"), "[" + Env + "] BLOQBOARD", "Collateral is not returned properly");
         }
+
+        public static void VerifyCollateralCanBeSeized()
+        {
+            Wallets.LoginToMetaMaskWallet();
+            Browser.MiddlePause();
+            Wallets.ChangeToKovan();
+            Browser.MiddlePause();
+
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
+            loansbtn.Click();
+            Browser.MiddlePause();
+
+
+
+            var dateOfClickedCollateral = ClickCollateralButtonAndReturnDate();
+
+
+
+            Browser.ShortPause();
+            IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmSeizing);
+            confirm.Click();
+
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+
+            Browser.ShortPause();
+            SignRequest();
+
+            Browser.LongPause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+
+
+
+            bool isSiezed = CheckIfCollateralSiezed(dateOfClickedCollateral);
+
+            Assert.IsTrue(isSiezed, "[" + Env + "] BLOQBOARD", "Collateral is not seized properly");
+
+        }
+
+
 
     }
 
