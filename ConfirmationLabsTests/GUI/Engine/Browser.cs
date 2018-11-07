@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using OpenQA.Selenium.Interactions;
 using System.Diagnostics;
+using OpenQA.Selenium.Firefox;
 
 namespace ConfirmationLabsTests.GUI.Engine
 {
@@ -35,6 +36,14 @@ namespace ConfirmationLabsTests.GUI.Engine
             CurrentBrowser = new ChromeDriver(chromeoptions);
             MiddlePause();
             CurrentBrowser.Manage().Window.Maximize();
+        }
+
+        public static void StartFirefox()
+        {
+            //FirefoxProfile firefoxProfile = new FirefoxProfile();
+            //firefoxProfile.AddExtension("C:\\Users\\Administrator\\Documents\\Exstensions\\MetaMask_v4.13.0.crx");
+            //IWebDriver fireDriver = new FirefoxDriver(firefoxProfile);
+            //fireDriver.Manage().Window.Maximize();
         }
 
         public static void CloseAdditionalWindows()

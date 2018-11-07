@@ -20,6 +20,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [SetUp]
         public void TestInitialize()
         {
+            Browser.StartFirefox();
             Browser.StartWithExstension(); 
         }
 
