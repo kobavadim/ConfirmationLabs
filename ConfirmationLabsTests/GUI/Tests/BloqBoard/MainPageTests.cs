@@ -127,10 +127,17 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
 
         [Category("Bloqboard")]
-        //[Test]
+        [Test]
         public void RepayFunctionalityTest()
         {
             MainPageBB.VerifyRepayFunctionality();
+        }
+
+        [Category("Bloqboard")]
+        [Test]
+        public void ReturnCollateralButton()
+        {
+            MainPageBB.VerifyCollatrealCanbeReturned();
         }
 
 
