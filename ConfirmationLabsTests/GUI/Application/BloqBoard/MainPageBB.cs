@@ -97,7 +97,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.MiddlePause();
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
-                //Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+
+                //try
+                //{
+                //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+                //}
+                //catch (Exception ex)
+                //{
+                //    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                //    js.ExecuteScript("return window.stop");
+                //}
             }
             else
             {
@@ -452,6 +461,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
