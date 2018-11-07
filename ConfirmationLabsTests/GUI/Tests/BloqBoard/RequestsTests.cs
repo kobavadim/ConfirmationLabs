@@ -20,35 +20,35 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewRequestCanbeCreated();
         }
 
-        [Category("Bloqboard")]
+        //[Category("Bloqboard")]
         [Test]
         public void CancelRequestTest()
         {
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
-        [Category("Bloqboard")]
+        //[Category("Bloqboard")]
         [Test]
         public void LendRequestTest()
         {
             MainPageBB.VerifyRequestCanBeLended();
         }
         
-        [Category("Bloqboard")]
+        //[Category("Bloqboard")]
         [Test]
         public void RepayFunctionalityTest()
         {
             MainPageBB.VerifyRepayFunctionality();
         }
 
-        [Category("Bloqboard")]
+        //[Category("Bloqboard")]
         [Test]
         public void ReturnCollateralTest()
         {
             MainPageBB.VerifyCollatrealCanbeReturned();
         }
 
-        [Category("Bloqboard")]
+        //[Category("Bloqboard")]
         [Test]
         public void SeizeCollateralTest()
         {

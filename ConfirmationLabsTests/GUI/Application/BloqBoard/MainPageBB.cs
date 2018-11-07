@@ -97,7 +97,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.MiddlePause();
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
-                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+                //Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
             }
             else
             {
@@ -164,28 +164,22 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             interest.Submit();
             Browser.MiddlePause();
 
-
-
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
            
             string MetamaskTab = handles[0];
             string BloqboardTab = handles[1];
 
-
             Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
             Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
             Browser.LongPause();
             Browser.CurrentBrowser.Navigate().Refresh();
-
             Browser.ShortPause();
-            
+
+            Console.WriteLine("Signing request...");
             SignRequest();
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
             Browser.LongPause();
-
-
-
         }
 
         public static void SignRequest()
@@ -449,7 +443,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 OpenBloqBoard(); 
                 Browser.MiddlePause();
 
-
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
@@ -469,6 +462,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
                 Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
                 CreateNewRequest();
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
