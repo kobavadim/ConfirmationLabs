@@ -111,11 +111,35 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Bloqboard")]
-       // [Test]
+        [Test]
         public void OpeningCardfromBloqBoardTest()
         {
             MainPageBB.VerifyLoanScanCardisOpenedfromBloqBoard();
         }
+
+
+        [Category("Bloqboard")]
+        [Test]
+        public void LendRequestTest()
+        {
+            MainPageBB.VerifyRequestCanBeLended();
+        }
+
+
+        [Category("Bloqboard")]
+        [Test]
+        public void RepayFunctionalityTest()
+        {
+            MainPageBB.VerifyRepayFunctionality();
+        }
+
+        [Category("Bloqboard")]
+        [Test]
+        public void ReturnCollateralButton()
+        {
+            MainPageBB.VerifyCollatrealCanbeReturned();
+        }
+
 
         [TearDown]
         public void TestCleanUp()

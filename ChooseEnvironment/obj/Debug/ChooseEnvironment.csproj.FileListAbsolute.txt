@@ -1,0 +1,9 @@
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\bin\Debug\ChooseEnvironment.exe.config
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\bin\Debug\ChooseEnvironment.exe
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\bin\Debug\ChooseEnvironment.pdb
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.Form1.resources
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.Properties.Resources.resources
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csproj.GenerateResource.Cache
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.exe
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.pdb
+C:\Users\tan_v\GitHub\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csprojResolveAssemblyReference.cache

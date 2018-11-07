@@ -79,6 +79,8 @@ namespace ConfirmationLabsTests.Helpers
                 IWebElement proceedPhrase = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
                 proceedPhrase.Click();
                 Browser.ShortPause();
+
+
             }
             catch(Exception)
             {
