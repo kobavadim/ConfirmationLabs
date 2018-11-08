@@ -692,7 +692,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = handles[1];
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
@@ -713,7 +713,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
@@ -722,6 +722,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
 
                 //поиск в таблтце
+                IWebElement el = Browser.CurrentBrowser.FindElement(By.CssSelector(".dropdown__header"));
+                el.Click();
+
+                IWebElement filter =
+                    Browser.CurrentBrowser.FindElement(
+                        By.CssSelector("div.dropdown__list > div:nth-of-type(2) > div.sort-dropdown__item"));
+                filter.Click();
+
+
                 IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(LendPeerToPeerRows);
                 if (requests[0].Text.Contains(date))
                 {
@@ -779,7 +788,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = handles[1];
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
@@ -876,7 +885,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string BloqboardTab = handles[1];
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
             Browser.MiddlePause();
             TermsandConditionAceptance();
@@ -954,7 +963,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string BloqboardTab = handles[1];
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
             Browser.MiddlePause();
             TermsandConditionAceptance();

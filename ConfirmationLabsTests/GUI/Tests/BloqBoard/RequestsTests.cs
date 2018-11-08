@@ -22,6 +22,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewRequestCanbeCreated();
         }
 
+        [Ignore("Issue with cancel table")]
         [Category("Bloqboard")]
         [Test]
         public void CancelRequestTest()
@@ -29,28 +30,29 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
-        //[Category("Bloqboard")]
+        [Category("Bloqboard")]
         [Test]
         public void LendRequestTest()
         {
             MainPageBB.VerifyRequestCanBeLended();
         }
         
-        //[Category("Bloqboard")]
+        [Category("Bloqboard")]
         [Test]
         public void RepayFunctionalityTest()
         {
             MainPageBB.VerifyRepayFunctionality();
         }
 
-        //[Category("Bloqboard")]
+        [Category("Bloqboard")]
         [Test]
         public void ReturnCollateralTest()
         {
             MainPageBB.VerifyCollatrealCanbeReturned();
         }
 
-        //[Category("Bloqboard")]
+        [Ignore("Issue with collateral")]
+        [Category("Bloqboard")]
         [Test]
         public void SeizeCollateralTest()
         {
