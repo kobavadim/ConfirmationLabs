@@ -52,6 +52,15 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyBorrowFunctionality();
         }
 
+
+        [Category("Compound")]
+        [Test]
+        public void RepayFinctionaltityTest()
+        {
+            MainPageCompaund.VerifyRepaytoLiquidityPoolFunctionality();
+        }
+
+
         [TearDown]
         public void TestCleanUp()
         {

@@ -33,6 +33,10 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         private static readonly By BorrowBtn = By.CssSelector(".btn-green");
         private static readonly By BorrowGreenBtn = By.CssSelector("button.on-demand-modal__button.btn-green");
         private static readonly By BorrowMessage = By.CssSelector("div.on-demand-modal__response-message");
+        private static readonly By RepayBtn = By.CssSelector(".action-btn");
+        private static readonly By RepayGreenBtn = By.CssSelector("button.on-demand-modal__button.btn-red");
+        
+
 
         //Methods
 
@@ -274,7 +278,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
             IWebElement borrowinput = Browser.CurrentBrowser.FindElement(LendAMountImput);
             borrowinput.SendKeys("0.1");
-            Browser.ShortPause();
+            Browser.MiddlePause();
 
             IWebElement greenbtn = Browser.CurrentBrowser.FindElement(BorrowGreenBtn);
             greenbtn.Click();
@@ -294,6 +298,58 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
             IWebElement msg = Browser.CurrentBrowser.FindElement(BorrowMessage);
             Assert.IsTrue(msg.Text.Contains("successfully"), "[" + Env + "] BLOQBOARD", "Borrow functionlaity is not working as expected");
+
+
+        }
+
+        public static void VerifyRepaytoLiquidityPoolFunctionality()
+        {
+            OpenBloqBoard();
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+
+            Browser.MiddlePause();
+
+            IList<IWebElement> repaybtns = Browser.CurrentBrowser.FindElements(RepayBtn);
+            foreach (var btn in repaybtns)
+            {
+                string btnvalue = btn.Text;
+                if(btnvalue.Contains("REPAY"))
+                {
+                    btn.Click();
+                    break;
+                }
+            }
+            Browser.ShortPause();
+            IWebElement amountinput = Browser.CurrentBrowser.FindElement(LendAMountImput);
+            amountinput.SendKeys("0.1");
+
+            IWebElement greenbtn = Browser.CurrentBrowser.FindElement(RepayGreenBtn);
+            greenbtn.Click();
+            Browser.ShortPause();
+
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+            Browser.LongPause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+
+            Console.WriteLine("Confirming request...");
+            BloqBoard.MainPageBB.SignRequest();
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+
+            IWebElement msg = Browser.CurrentBrowser.FindElement(BorrowMessage);
+            Assert.IsTrue(msg.Text.Contains("successfully"), "[" + Env + "] BLOQBOARD", "Repay functionlaity is not working as expected");
 
 
         }
