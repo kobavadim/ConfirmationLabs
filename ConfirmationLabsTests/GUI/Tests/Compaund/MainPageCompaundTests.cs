@@ -26,44 +26,23 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
 
         [Category("Compound")]
         [Test]
-        public void PageisOpenedTest()
+        public void LendToLiquidityTableAvailabilityTest()
         {
-            MainPageCompaund.VerifyPageisOpened();
+            MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened();
         }
 
         [Category("Compound")]
         [Test]
-        public void AssetsDisplayTest()
+        public void LendToLiquidityPoolFinctionaltityTest()
         {
-            MainPageCompaund.VerifyAssetsDisplayed();
+            MainPageCompaund.VerifyTokenCanbeLounedtoLiquidityPool();
         }
 
         [Category("Compound")]
         [Test]
-        public void PriceDisplayedTest()
+        public void WithdrawFinctionaltityTest()
         {
-            MainPageCompaund.VerifyPriceDisplayed();
-        }
-
-        [Category("Compound")]
-        [Test]
-        public void LendButtonsDisplayedTest()
-        {
-            MainPageCompaund.VerifyLendBtnDisplayed();
-        }
-
-        [Category("Compound")]
-        [Test]
-        public void BorrowButtonsDisplayedTest()
-        {
-            MainPageCompaund.VerifyBorrowdBtnDisplayed();
-        }
-
-        [Category("Compound")]
-        [Test]
-        public void BalanceTableDisplayTest()
-        {
-            MainPageCompaund.VerifyBalanceTableDisplayed();
+            MainPageCompaund.VerifyTokensCanBeWithdrawn();
         }
 
 
