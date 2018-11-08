@@ -17,3 +17,12 @@ C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.exe
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.pdb
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csprojAssemblyReference.cache
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\bin\Debug\ChooseEnvironment.exe.config
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\bin\Debug\ChooseEnvironment.exe
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\bin\Debug\ChooseEnvironment.pdb
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csprojResolveAssemblyReference.cache
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.Form1.resources
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.Properties.Resources.resources
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.csproj.GenerateResource.Cache
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.exe
+C:\Users\tan_v\GitHub\CL\ConfirmationLabs\ChooseEnvironment\obj\Debug\ChooseEnvironment.pdb

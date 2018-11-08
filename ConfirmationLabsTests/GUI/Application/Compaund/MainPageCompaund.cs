@@ -30,7 +30,9 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         private static readonly By WithdrawBtn = By.CssSelector("div.content-table-body > div:nth-of-type(3) > div:nth-of-type(5) > div.top-cell.actions-cell > div:nth-of-type(2) > button.action-btn.btn-green");
         private static readonly By ConfirmationMessage = By.CssSelector("div.on-demand-modal__response-message");
         private static readonly By ConfirmWithdrawBtn = By.CssSelector("button.on-demand-modal__button.btn-green");
-
+        private static readonly By BorrowBtn = By.CssSelector(".btn-green");
+        private static readonly By BorrowGreenBtn = By.CssSelector("button.on-demand-modal__button.btn-green");
+        private static readonly By BorrowMessage = By.CssSelector("div.on-demand-modal__response-message");
 
         //Methods
 
@@ -193,7 +195,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 string[] stringSeparators2 = new string[] { "." };
                 var result2 = loanedamounttext.Split(stringSeparators2, StringSplitOptions.None);
                 double loaned = double.Parse(result2[0]);
-                Assert.IsTrue(loaned - loanedRep == 1, "[" + Env + "] BLOQBOARD", "Lend to liquidity table is not loaded correctly");
+                Assert.IsTrue(loaned - loanedRep == 1, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
             }
 
             catch (Exception exception)
@@ -243,7 +245,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
                 IWebElement msg = Browser.CurrentBrowser.FindElement(ConfirmationMessage);
-                Assert.IsTrue(msg.Text.Contains("successfully"), "[" + Env + "] BLOQBOARD", "Lend to liquidity table is not loaded correctly");
+                Assert.IsTrue(msg.Text.Contains("successfully"), "[" + Env + "] BLOQBOARD", "Withdraw functionality is not working properly");
             }
             catch (Exception exception)
             {
@@ -251,6 +253,51 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
 
         }
+
+        public static void VerifyBorrowFunctionality()
+        {
+            OpenBloqBoard();
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+
+            Browser.MiddlePause();
+            IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowBtn);
+            borrowbtn.Click();
+
+            IWebElement borrowinput = Browser.CurrentBrowser.FindElement(LendAMountImput);
+            borrowinput.SendKeys("0.1");
+            Browser.ShortPause();
+
+            IWebElement greenbtn = Browser.CurrentBrowser.FindElement(BorrowGreenBtn);
+            greenbtn.Click();
+            Browser.ShortPause();
+
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+            Browser.LongPause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+
+            Console.WriteLine("Confirming request...");
+            BloqBoard.MainPageBB.SignRequest();
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+
+            IWebElement msg = Browser.CurrentBrowser.FindElement(BorrowMessage);
+            Assert.IsTrue(msg.Text.Contains("successfully"), "[" + Env + "] BLOQBOARD", "Borrow functionlaity is not working as expected");
+
+
+        }
+
     }
 
 }

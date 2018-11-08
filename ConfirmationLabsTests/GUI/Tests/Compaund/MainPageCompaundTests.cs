@@ -45,7 +45,12 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokensCanBeWithdrawn();
         }
 
-
+        [Category("Compound")]
+        [Test]
+        public void BorrowFinctionaltityTest()
+        {
+            MainPageCompaund.VerifyBorrowFunctionality();
+        }
 
         [TearDown]
         public void TestCleanUp()
