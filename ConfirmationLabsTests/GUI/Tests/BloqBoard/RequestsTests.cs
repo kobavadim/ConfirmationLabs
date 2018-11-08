@@ -54,7 +54,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void SeizeCollateralTest()
         {
-            MainPageBB.VerifyCollatrealCanbeReturned();
+            MainPageBB.VerifyCollateralCanBeSeized();
         }
 
         [TearDown]
