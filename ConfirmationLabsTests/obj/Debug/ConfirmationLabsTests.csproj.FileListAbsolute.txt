@@ -172,3 +172,4 @@ C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ConfirmationLabsTests\obj\De
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csproj.CopyComplete
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.dll
 C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.pdb
+C:\Users\v.koba\Documents\ConfLabs\ConfirmationLabs\ConfirmationLabsTests\obj\Debug\ConfirmationLabsTests.csprojAssemblyReference.cache
