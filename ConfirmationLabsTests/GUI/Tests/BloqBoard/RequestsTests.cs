@@ -22,7 +22,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewRequestCanbeCreated();
         }
 
-        [Ignore("Issue with cancel table")]
+        [Ignore("BLQ-366 Issue with cancel table")]
         [Category("Bloqboard")]
         [Test]
         public void CancelRequestTest()
@@ -51,7 +51,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyCollatrealCanbeReturned();
         }
 
-        [Ignore("Issue with collateral")]
+        [Ignore("BLQ-368 Issue with seize collateral")]
         [Category("Bloqboard")]
         [Test]
         public void SeizeCollateralTest()
