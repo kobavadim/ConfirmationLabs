@@ -36,7 +36,8 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         {
             MainPageBB.VerifyRequestCanBeLended();
         }
-        
+
+        [Ignore("Presetup needed")]
         [Category("Bloqboard")]
         [Test]
         public void RepayFunctionalityTest()
@@ -44,6 +45,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRepayFunctionality();
         }
 
+        [Ignore("Presetup needed")]
         [Category("Bloqboard")]
         [Test]
         public void ReturnCollateralTest()
