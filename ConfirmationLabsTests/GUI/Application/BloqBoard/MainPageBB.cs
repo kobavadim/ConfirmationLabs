@@ -76,7 +76,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
         //Methods
-        public static void OpenBloqBoard()
+        public static void LoginToMetamaskUpdated()
         {
             Console.WriteLine("Logging Metamask");
             Wallets.LoginToMetaMaskWallet();
@@ -356,7 +356,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 IWebElement table = Browser.CurrentBrowser.FindElement(LiquidityTable);
                 Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "BloqBoard page is not loaded correctly");
@@ -371,7 +371,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 IWebElement tokenstable = Browser.CurrentBrowser.FindElement(TokensTable);
                 Assert.IsTrue(tokenstable.Displayed, "[" + Env + "] BLOQBOARD", "Tokens Table is not loaded properly");
@@ -387,7 +387,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 IWebElement table = Browser.CurrentBrowser.FindElement(RecentLoans);
                 Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "Recent Loans table is not loaded properly");
@@ -403,7 +403,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Lend);
                 Browser.MiddlePause();
@@ -421,7 +421,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Lend);
                 Browser.MiddlePause();
@@ -440,7 +440,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance(); Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -459,7 +459,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
                 Browser.MiddlePause();
@@ -478,7 +478,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
                 Browser.MiddlePause();
@@ -497,7 +497,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Requests);
                 Browser.MiddlePause();
@@ -516,7 +516,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Requests);
                 Browser.MiddlePause();
@@ -536,7 +536,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                OpenBloqBoard(); 
+                LoginToMetamaskUpdated(); 
                 Browser.MiddlePause();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
@@ -579,29 +579,28 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyRequestCanbeCancelled()
         {
-
             try
             {
-                Wallets.LoginToMetaMaskWallet();
+                LoginToMetamaskUpdated();
                 Browser.MiddlePause();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-
                 string MetamaskTab = handles[0];
                 string BloqboardTab = handles[1];
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
-                                
-                CreateNewRequest();
+                Browser.ShortPause();
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-                Browser.MiddlePause();
+                //CreateNewRequest();
+
+                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                //Browser.MiddlePause();
 
                 IWebElement creationDate= Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                 string date = creationDate.Text;
@@ -630,9 +629,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string cancelledtime = cancelledcreationtime.Text;
 
                 Assert.IsTrue(cancelledtime.Contains(date), "[" + Env + "] BLOQBOARD", "Cancelled request is not displayed in the 'Cancelled requests' table");
-            
-                
-
             }
             catch (Exception exception)
             {
@@ -644,7 +640,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                OpenBloqBoard();
+                LoginToMetamaskUpdated();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
                 Browser.MiddlePause();
