@@ -8,6 +8,8 @@ using ConfirmationLabsTests.GUI.Engine;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Assert = ConfirmationLabsTests.Helpers.Assert;
+using System.Collections.ObjectModel;
+
 
 namespace ConfirmationLabsTests.GUI.Application.Compaund
 {
@@ -15,154 +17,241 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
     {
 
         //Elements
-
         private static readonly By TermsAndCOnditionsCheckBox = By.CssSelector("div.terms-checkbox > label > input");
-        private static readonly By Continuebtn = By.CssSelector("button.btn-green");
-        private static readonly By Table = By.CssSelector(".content-table-row");
-        private static readonly By AssetsNames = By.CssSelector(".content-table-cell:nth-child(1) .top-cell");
-        private static readonly By Price = By.CssSelector(".w-10 .bottom-cell");
-        private static readonly By Lendbtn = By.CssSelector(".btn-red");
-        private static readonly By Borrowed = By.CssSelector(".btn-green");
-        private static readonly By Balancetable = By.CssSelector(".balances-table__table-wrapper");
-        static string Env = "";
+        private static readonly By Continuebtn = By.CssSelector("div.modal-footer > button.btn-green");
+        private static readonly By LendBtn = By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(2)");
+        private static readonly By LendToLiquidityTable = By.CssSelector(".on-demand-wrapper");
+        static string Env = TestData.DefineEnvironmentDependingOnEnvironment();
+        private static readonly By LendRepBtn = By.CssSelector("div.content-table-body > div:nth-of-type(3) > div:nth-of-type(4) > div.top-cell.actions-cell > div:nth-of-type(2) > button.action-btn.btn-red");
+        private static readonly By LendAMountImput = By.CssSelector("[name='amount']");
+        private static readonly By ConfirmLendRedButton = By.CssSelector("button.on-demand-modal__button.btn-red");
+        private static readonly By LoanedAmount = By.CssSelector("div.content-table-body > div:first-child > div.content-table-cell.amount-cell > div.amount-cell.amount-cell-deposit > div.amount-cell-value > div.top-cell");
+        private static readonly By LoanedRep = By.CssSelector("div.content-table-body > div:nth-of-type(3) > div.content-table-cell.amount-cell > div.amount-cell.amount-cell-deposit > div.amount-cell-value > div.top-cell");
+        private static readonly By WithdrawBtn = By.CssSelector("div.content-table-body > div:nth-of-type(3) > div:nth-of-type(5) > div.top-cell.actions-cell > div:nth-of-type(2) > button.action-btn.btn-green");
+        private static readonly By ConfirmationMessage = By.CssSelector("div.on-demand-modal__response-message");
+        private static readonly By ConfirmWithdrawBtn = By.CssSelector("button.on-demand-modal__button.btn-green");
+
 
         //Methods
 
-        public static void OpenCompaund()
+        public static void OpenBloqBoard()
         {
+            Console.WriteLine("Logging Metamask");
             Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
-
             string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
             if (Env == "PROD")
             {
-                Console.WriteLine("running tests on PROD " + TestData.Urls.CompaundProd);
-                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.CompaundProd);
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+
+                Browser.MiddlePause();
+                Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
+
+                //try
+                //{
+                //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+                //}
+                //catch (Exception ex)
+                //{
+                //    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                //    js.ExecuteScript("return window.stop");
+                //}
             }
             else
             {
-                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.CompaundKovan);
-                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.CompaundKovan);
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+
+                Browser.MiddlePause();
+                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardStaging);
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardStaging);
             }
 
-            Browser.MiddlePause();
+            Engine.Browser.LongPause();
 
         }
-
-
-
+                
         public static void TermsandConditionAceptance()
         {
             IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
             termschecbox.Click();
             Browser.ShortPause();
-
-            IList<IWebElement> continuebtns = Browser.CurrentBrowser.FindElements(By.CssSelector("button.btn-green"));
-
-            foreach(var con in continuebtns)
-            {
-                if(con.Text.Contains("Continue"))
-                {
-                    con.Click();
-                    break;
-                }
-            }
+            IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+            continuebtn.Click();
+            Browser.MiddlePause();
         }
+
 
 
         //Tests
 
-        public static void VerifyPageisOpened()
+        public static void VerifyLendToLiquidityPoolTableisOpened()
         {
-            try { 
-            OpenCompaund();
-            TermsandConditionAceptance();
-            IWebElement table = Browser.CurrentBrowser.FindElement(Table);
-            Assert.IsTrue(table.Displayed, "[" + Env + "] COMPOUND", "Compound page is not loaded properly");
+            try
+            {
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+                Browser.MiddlePause();
+
+                TermsandConditionAceptance();
+                Browser.MiddlePause();
+
+                IWebElement table = Browser.CurrentBrowser.FindElement(LendToLiquidityTable);
+                Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "Lend to liquidity table is not loaded correctly");
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "COMPOUND", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
 
-        public static void VerifyAssetsDisplayed()
+        public static void VerifyTokenCanbeLounedtoLiquidityPool()
         {
-            try { 
-            OpenCompaund();
-            TermsandConditionAceptance();
-            IWebElement assets = Browser.CurrentBrowser.FindElement(AssetsNames);
+            try
+            {
+                OpenBloqBoard();
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-            Assert.IsTrue(assets.Displayed, "[" + Env + "] COMPOUND", "Assets are not displayed properly");
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+
+                Browser.MiddlePause();
+
+                IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
+                string[] stringSeparators = new string[] { "." };
+                var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
+
+                double loanedRep = double.Parse(result[0]);
+
+
+                IWebElement lendbtn = Browser.CurrentBrowser.FindElement(LendRepBtn);
+                lendbtn.Click();
+                Browser.ShortPause();
+                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                amount.SendKeys("1");
+                Browser.MiddlePause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
+                confirm.Click();
+                Browser.MiddlePause();
+
+
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Confirming request...");
+                BloqBoard.MainPageBB.SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                IWebElement loanedAmount = Browser.CurrentBrowser.FindElement(LoanedAmount);
+                string loanedamounttext = loanedAmount.Text;
+                string[] stringSeparators2 = new string[] { "." };
+                var result2 = loanedamounttext.Split(stringSeparators2, StringSplitOptions.None);
+                double loaned = double.Parse(result2[0]);
+                Assert.IsTrue(loaned - loanedRep == 1, "[" + Env + "] BLOQBOARD", "Lend to liquidity table is not loaded correctly");
+            }
+
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyTokensCanBeWithdrawn()
+        {
+            try
+            {
+
+
+                OpenBloqBoard();
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+
+                Browser.MiddlePause();
+
+                IWebElement withdrawBtnt = Browser.CurrentBrowser.FindElement(WithdrawBtn);
+                withdrawBtnt.Click();
+                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                amount.SendKeys("1");
+                Browser.MiddlePause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmWithdrawBtn);
+                confirm.Click();
+                Browser.MiddlePause();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Confirming request...");
+                BloqBoard.MainPageBB.SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                IWebElement msg = Browser.CurrentBrowser.FindElement(ConfirmationMessage);
+                Assert.IsTrue(msg.Text.Contains("successfully"), "[" + Env + "] BLOQBOARD", "Lend to liquidity table is not loaded correctly");
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "COMPOUND", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
-
 
         }
-
-        public static void VerifyPriceDisplayed()
-        {
-            try { 
-            OpenCompaund();
-            TermsandConditionAceptance();
-            IList<IWebElement> prices = Browser.CurrentBrowser.FindElements(Price);
-            foreach (var price in prices)
-            {
-                Assert.IsTrue(price.Text.Contains("USD"), "[" + Env + "] COMPOUND", "Prices are displayed not properly");
-            }
-            }
-            catch (Exception exception)
-            {
-                Assert.FinilizeErrors(Env, "COMPOUND", exception);
-            }
-        }
-
-        public static void VerifyLendBtnDisplayed()
-        {
-            try { 
-            OpenCompaund();
-            TermsandConditionAceptance();
-            IWebElement lend = Browser.CurrentBrowser.FindElement(Lendbtn);
-
-            Assert.IsTrue(lend.Displayed, "[" + Env + "] COMPOUND", "Lend button is not displayed");
-            }
-            catch (Exception exception)
-            {
-                Assert.FinilizeErrors(Env, "COMPOUND", exception);
-            }
-        }
-
-        public static void VerifyBorrowdBtnDisplayed()
-        {
-            try { 
-            OpenCompaund();
-            TermsandConditionAceptance();
-            IWebElement borrow = Browser.CurrentBrowser.FindElement(Borrowed);
-            Assert.IsTrue(borrow.Displayed, "[" + Env + "] COMPOUND", "Borrow button is not displayed");
-            }
-            catch (Exception exception)
-            {
-                Assert.FinilizeErrors(Env, "COMPOUND", exception);
-            }
-        }
-
-        public static void VerifyBalanceTableDisplayed()
-        {
-            try { 
-            OpenCompaund();
-            TermsandConditionAceptance();
-
-            IWebElement balance = Browser.CurrentBrowser.FindElement(Balancetable);
-            Assert.IsTrue(balance.Displayed, "[" + Env + "] COMPOUND", "Balance table is not displayed");
-            }
-            catch (Exception exception)
-            {
-                Assert.FinilizeErrors(Env, "COMPOUND", exception);
-            }
-        }
-
     }
+
 }
+
