@@ -36,7 +36,8 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
-        [Category("BlqRequestCreate")]
+        [Ignore("Presetup needed")]
+        [Category("BlqRequest")]
         [Test]
         public void LendRequestTest()
         {
