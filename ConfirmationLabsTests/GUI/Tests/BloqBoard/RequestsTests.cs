@@ -36,7 +36,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
-        [Category("BlqRequest")]
+        [Category("BlqRequestCreate")]
         [Test]
         public void LendRequestTest()
         {

@@ -623,6 +623,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
                 Browser.LongPause();
+                Browser.LongPause();
 
                 //добавить ообработку длинных транзакций
                 IWebElement cancelledcreationtime = Browser.CurrentBrowser.FindElement(CancelledCreationTime);
