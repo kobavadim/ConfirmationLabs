@@ -72,6 +72,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By SeizeCollateralSimilarBtns = By.CssSelector(".collateral-act-btn");
         private static readonly By NextPage = By.CssSelector("ul.pagination > li:nth-of-type(6) > a.page-link > span");
         private static readonly By ConfirmSeizing = By.CssSelector("button.confirm-btn");
+        private static readonly By TokenName = By.CssSelector(".token-item-name");
+        private static readonly By AmountLastRequest = By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:nth-of-type(2) > div.top-cell");
+        private static readonly By MyRequestsTab = By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)");
 
 
 
@@ -236,9 +239,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             return result;
         }
 
-
-
-
+             
 
 
         public static void CreateNewRequest()
@@ -547,7 +548,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = handles[1];
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
 
 
 
@@ -872,139 +873,230 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyCollatrealCanbeReturned()
         {
-            Wallets.LoginToMetaMaskWallet();
-            Browser.MiddlePause();
-            Wallets.ChangeToKovan();
-            Browser.MiddlePause();
+            try
+            {
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+                Wallets.ChangeToKovan();
+                Browser.MiddlePause();
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-
-            string MetamaskTab = handles[0];
-            string BloqboardTab = handles[1];
-
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-
-            Browser.MiddlePause();
-            TermsandConditionAceptance();
-
-            IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
-            loansbtn.Click();
-            Browser.MiddlePause();
-
-            IWebElement repaybtn = Browser.CurrentBrowser.FindElement(RepayBtn);
-            repaybtn.Click();
-            Browser.MiddlePause();
-
-            IWebElement amounttorepay = Browser.CurrentBrowser.FindElement(WholeAmountToRepay);
-            string amount = amounttorepay.Text;
-
-            string[] stringSeparators = new string[] { "WETH" };
-            var result = amount.Split(stringSeparators, StringSplitOptions.None);
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
 
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
 
-            IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
-            amountrepay.SendKeys(result[0]);
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
-            IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
-            confirmrepaybtn.Click();
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
 
-            Browser.MiddlePause();
-            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-            Browser.CurrentBrowser.Navigate().Refresh();
+                IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
+                loansbtn.Click();
+                Browser.MiddlePause();
 
-            Browser.ShortPause();
-            SignRequest();
+                IWebElement repaybtn = Browser.CurrentBrowser.FindElement(RepayBtn);
+                repaybtn.Click();
+                Browser.MiddlePause();
 
-            Browser.LongPause();
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.LongPause();
+                IWebElement amounttorepay = Browser.CurrentBrowser.FindElement(WholeAmountToRepay);
+                string amount = amounttorepay.Text;
 
-            IWebElement seaizecollateralbtn = Browser.CurrentBrowser.FindElement(SeizeCollarealBtn);
-            Assert.IsTrue(seaizecollateralbtn.Displayed, "[" + Env + "] BLOQBOARD", "Return collateral button is not displayed after the full repayment");
-            Browser.ShortPause();
+                string[] stringSeparators = new string[] { "WETH" };
+                var result = amount.Split(stringSeparators, StringSplitOptions.None);
 
-            //дальше надо еще дописать нажатие на кнопку и вернуть коллатерал
-            seaizecollateralbtn.Click();
-            Browser.ShortPause();
-            IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmReturnCollateralBtn);
-            confirm.Click();
 
-            Browser.MiddlePause();
-            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-            Browser.CurrentBrowser.Navigate().Refresh();
 
-            Browser.ShortPause();
-            SignRequest();
+                IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
+                amountrepay.SendKeys(result[0]);
 
-            Browser.LongPause();
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.LongPause();
+                IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
+                confirmrepaybtn.Click();
 
-            IWebElement returnedcollateraloutout = Browser.CurrentBrowser.FindElement(CollateralReturnedBtn);
-            Assert.IsTrue(returnedcollateraloutout.Text.Contains("Returned"), "[" + Env + "] BLOQBOARD", "Collateral is not returned properly");
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().Refresh();
+
+                Browser.ShortPause();
+                SignRequest();
+
+                Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+
+                IWebElement seaizecollateralbtn = Browser.CurrentBrowser.FindElement(SeizeCollarealBtn);
+                Assert.IsTrue(seaizecollateralbtn.Displayed, "[" + Env + "] BLOQBOARD", "Return collateral button is not displayed after the full repayment");
+                Browser.ShortPause();
+
+                //дальше надо еще дописать нажатие на кнопку и вернуть коллатерал
+                seaizecollateralbtn.Click();
+                Browser.ShortPause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmReturnCollateralBtn);
+                confirm.Click();
+
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().Refresh();
+
+                Browser.ShortPause();
+                SignRequest();
+
+                Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+
+                IWebElement returnedcollateraloutout = Browser.CurrentBrowser.FindElement(CollateralReturnedBtn);
+                Assert.IsTrue(returnedcollateraloutout.Text.Contains("Returned"), "[" + Env + "] BLOQBOARD", "Collateral is not returned properly");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
         }
 
         public static void VerifyCollateralCanBeSeized()
         {
-            Wallets.LoginToMetaMaskWallet();
-            Browser.MiddlePause();
-            Wallets.ChangeToKovan();
-            Browser.MiddlePause();
+            try
+            {
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+                Wallets.ChangeToKovan();
+                Browser.MiddlePause();
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-
-            string MetamaskTab = handles[0];
-            string BloqboardTab = handles[1];
-
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-
-            Browser.MiddlePause();
-            TermsandConditionAceptance();
-            IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
-            loansbtn.Click();
-            Browser.MiddlePause();
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
 
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
 
-            var dateOfClickedCollateral = ClickCollateralButtonAndReturnDate();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
+                loansbtn.Click();
+                Browser.MiddlePause();
 
 
 
-            Browser.ShortPause();
-            IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmSeizing);
-            confirm.Click();
-
-            Browser.MiddlePause();
-            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-            Browser.CurrentBrowser.Navigate().Refresh();
-
-            Browser.ShortPause();
-            SignRequest();
-
-            Browser.LongPause();
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.LongPause();
+                var dateOfClickedCollateral = ClickCollateralButtonAndReturnDate();
 
 
 
-            bool isSiezed = CheckIfCollateralSiezed(dateOfClickedCollateral);
+                Browser.ShortPause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmSeizing);
+                confirm.Click();
 
-            Assert.IsTrue(isSiezed, "[" + Env + "] BLOQBOARD", "Collateral is not seized properly");
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().Refresh();
 
+                Browser.ShortPause();
+                SignRequest();
+
+                Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+
+
+
+                bool isSiezed = CheckIfCollateralSiezed(dateOfClickedCollateral);
+
+                Assert.IsTrue(isSiezed, "[" + Env + "] BLOQBOARD", "Collateral is not seized properly");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+
+        }
+
+        public static void VerifyRequestwithBatCreation()
+        {
+            try
+            {
+                LoginToMetamaskUpdated();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenName);
+                foreach (var token in tokens)
+                {
+                    if (token.Text.Contains("BAT"))
+                    {
+                        token.Click();
+                        break;
+
+                    }
+                }
+
+                Browser.ShortPause();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
+                amount.SendKeys("0.1");
+
+                IWebElement interest = Browser.CurrentBrowser.FindElement(InterestInputByNewRequest);
+                interest.SendKeys("1");
+
+                IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
+                collateral.SendKeys("0.001");
+                Browser.ShortPause();
+                interest.Submit();
+                Browser.MiddlePause();
+
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+
+                IWebElement requeststab = Browser.CurrentBrowser.FindElement(MyRequestsTab);
+                requeststab.Click();
+                Browser.MiddlePause();
+
+                IWebElement amountlast = Browser.CurrentBrowser.FindElement(AmountLastRequest);
+                Assert.IsTrue(amountlast.Text.Contains("0.100 BAT"), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+            }
+            catch (Exception exception)
+
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
         }
 
 
 
+
+            }
+
+
+    }
+
     }
 
 
 
-    }
+    
 
