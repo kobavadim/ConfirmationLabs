@@ -22,7 +22,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Console.WriteLine("TC test");
         }
 
-        [Category("BlqRequest")]
+        [Category("BlqRequestCreate")]
         [Test]
         public void CreateNewRequestTest()
         {
