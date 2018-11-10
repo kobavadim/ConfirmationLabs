@@ -29,8 +29,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewRequestCanbeCreated();
         }
 
-        [Ignore("BLQ-366 Issue with cancel table")]
-        [Category("BlqRequest")]
+        [Category("BlqRequestCreate")]
         [Test]
         public void CancelRequestTest()
         {
