@@ -15,7 +15,14 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
-        [Category("Bloqboard")]
+        [Category("BlqTest")]
+        [Test]
+        public void TestForTeamCity()
+        {
+            Console.WriteLine("TC test");
+        }
+
+        [Category("BlqRequest")]
         [Test]
         public void CreateNewRequestTest()
         {
@@ -23,14 +30,14 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Ignore("BLQ-366 Issue with cancel table")]
-        [Category("Bloqboard")]
+        [Category("BlqRequest")]
         [Test]
         public void CancelRequestTest()
         {
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
-        [Category("Bloqboard")]
+        [Category("BlqRequest")]
         [Test]
         public void LendRequestTest()
         {
@@ -38,7 +45,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Ignore("Presetup needed")]
-        [Category("Bloqboard")]
+        [Category("BlqRequest")]
         [Test]
         public void RepayFunctionalityTest()
         {
@@ -46,7 +53,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Ignore("Presetup needed")]
-        [Category("Bloqboard")]
+        [Category("BlqRequest")]
         [Test]
         public void ReturnCollateralTest()
         {
@@ -54,7 +61,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Ignore("BLQ-368 Issue with seize collateral")]
-        [Category("Bloqboard")]
+        [Category("BlqRequest")]
         [Test]
         public void SeizeCollateralTest()
         {
