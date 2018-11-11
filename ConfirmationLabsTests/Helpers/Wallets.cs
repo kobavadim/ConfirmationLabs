@@ -126,6 +126,93 @@ namespace ConfirmationLabsTests.Helpers
             Browser.MiddlePause();
         }
 
+        public static void LoginToMetaMaskWalletWithNewUser()
+        {
+            try
+            {
+                Browser.CloseAdditionalWindows();
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
+                Browser.MiddlePause();
+                Browser.CloseAdditionalWindows();
+
+                IWebElement proceed = Browser.CurrentBrowser.FindElement(By.CssSelector(".positive"));
+                proceed.Click();
+                Browser.MiddlePause();
+                Browser.CloseAdditionalWindows();
+
+                IWebElement agreed = Browser.CurrentBrowser.FindElement(By.CssSelector(".welcome-screen__button"));
+                agreed.Click();
+                Browser.ShortPause();
+
+                IWebElement restoreLink = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__link"));
+                restoreLink.Click();
+                Browser.ShortPause();
+
+                IWebElement seed = Browser.CurrentBrowser.FindElement(By.CssSelector(".import-account__secret-phrase"));
+                seed.Click();
+                seed.SendKeys(TestData.Input.seedPhraseAccount2);
+                Browser.ShortPause();
+
+                IWebElement password = Browser.CurrentBrowser.FindElement(By.CssSelector("#password"));
+                password.Click();
+                password.SendKeys(TestData.Input.password);
+                Browser.ShortPause();
+
+                IWebElement confirmpassword = Browser.CurrentBrowser.FindElement(By.CssSelector("#confirm-password"));
+                confirmpassword.Click();
+                confirmpassword.SendKeys(TestData.Input.password);
+                Browser.MiddlePause();
+
+                IWebElement proceedPhrase = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+                proceedPhrase.Click();
+                Browser.ShortPause();
+
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Exy");
+            }
+
+
+
+            try
+            {
+
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".markdown p"));
+
+                Actions actions = new Actions(Browser.CurrentBrowser);
+                actions.MoveToElement(values[54]);
+                actions.Perform();
+                Actions actions2 = new Actions(Browser.CurrentBrowser);
+                actions2.SendKeys(OpenQA.Selenium.Keys.End).Build().Perform();
+
+                IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                js.ExecuteScript("arguments[0].scrollIntoView();", values[54]);
+                Browser.ShortPause();
+            }
+            catch (Exception exe)
+            {
+
+
+            }
+
+            IWebElement Button1 = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)Browser.CurrentBrowser;
+            executor.ExecuteScript("arguments[0].click();", Button1);
+            Browser.ShortPause();
+
+            IWebElement agrementFirstScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+            agrementFirstScreen.Click();
+            Browser.ShortPause();
+
+            IWebElement agrementThirdScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+            agrementThirdScreen.Click();
+            Browser.MiddlePause();
+        }
+
         public static void ChangeToKovan()
         {
             Browser.ShortPause();

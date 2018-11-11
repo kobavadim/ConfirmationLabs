@@ -138,6 +138,68 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         }
 
+        public static void LoginToMetamaskUpdatedNewAccount()
+        {
+            Console.WriteLine("Logging Metamask");
+            Wallets.LoginToMetaMaskWalletWithNewUser();
+            Browser.MiddlePause();
+            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Env == "PROD")
+            {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+
+                Browser.MiddlePause();
+                Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
+
+                //try
+                //{
+                //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+                //}
+                //catch (Exception ex)
+                //{
+                //    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                //    js.ExecuteScript("return window.stop");
+                //}
+            }
+            else
+            {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+
+                Browser.MiddlePause();
+                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
+            }
+
+            Engine.Browser.LongPause();
+
+        }
+
         public static void OpenNewTab()
         {
             var popup = Browser.CurrentBrowser.WindowHandles[0]; // handler for the new tab
@@ -680,71 +742,42 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
-                Wallets.ChangeToKovan();
+                LoginToMetamaskUpdatedNewAccount();
                 Browser.MiddlePause();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-
                 string MetamaskTab = handles[0];
                 string BloqboardTab = handles[1];
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
-
-                CreateNewRequest();
-
-
-                IWebElement creationDate = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                string date = creationDate.Text;
-
-                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-
-
-
-                LogoutWallet();
-
-                LoginWalletwithNewUser();
-
-
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-                IWebElement lendbtn = Browser.CurrentBrowser.FindElement(LendMenuBtn);
-                lendbtn.Click();
                 Browser.MiddlePause();
 
-                //поиск в таблтце
-                IWebElement el = Browser.CurrentBrowser.FindElement(By.CssSelector(".dropdown__header"));
-                el.Click();
+                IWebElement filterDropdown = Browser.CurrentBrowser.FindElement(By.CssSelector("i.material-icons.filter-button__filter-icon"));
+                filterDropdown.Click();
 
-                IWebElement filter =
-                    Browser.CurrentBrowser.FindElement(
-                        By.CssSelector("div.dropdown__list > div:nth-of-type(2) > div.sort-dropdown__item"));
-                filter.Click();
+                IWebElement filterTick = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:first-child > div.token-list-filter__cell.token-list-filter__cell--token-principal > label"));
+                filterTick.Click();
 
+                IWebElement filterChoose = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
+                filterChoose.Click();
 
-                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(LendPeerToPeerRows);
-                if (requests[0].Text.Contains(date))
-                {
-                    IWebElement lendBtn = Browser.CurrentBrowser.FindElement(LendBtn);
-                    lendBtn.Click();
+                Browser.ShortPause();
 
-                }
-                else
-                {
-                    IWebElement lendBtn2 = Browser.CurrentBrowser.FindElement(LendBtn2);
-                    lendBtn2.Click();
-                }
-                Browser.MiddlePause();
+                IWebElement filterAmountDropdown = Browser.CurrentBrowser.FindElement(By.CssSelector("div.dropdown__header"));
+                filterAmountDropdown.Click();
+
+                IWebElement filterAmountTick = Browser.CurrentBrowser.FindElement(By.CssSelector("div.dropdown__list > div:nth-of-type(5) > div.sort-dropdown__item"));
+                filterAmountTick.Click();
+
+                IList<IWebElement> loans = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-red"));
+                loans[0].Click();
+                Browser.ShortPause();
 
                 IWebElement fundBtn = Browser.CurrentBrowser.FindElement(FundLoanRequest);
                 fundBtn.Click();
