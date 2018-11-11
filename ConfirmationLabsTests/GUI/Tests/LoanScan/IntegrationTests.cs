@@ -33,8 +33,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             Integration.VerifyDataonDharmaCardcorrespondsDataFromTable();
         }
 
-        [Category("Loanscan")]
-        [Category("Integration")]
+        [Ignore("FIX")]
         //bug LN-90
         [Test]
         public void LoanAmountDisplayDharmaTest()
@@ -68,16 +67,14 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             Integration.VerifyCollateralistheSameThroughTableandCardMakerDao();
         }
 
-        [Category("Loanscan")]
-        [Category("Integration")]
+        [Ignore("FIX")]
         [Test]
         public void DharmaDataAvailabilityonCardTest()
         {
             Integration.VerifyAllDataloadedDharma();
         }
 
-        [Category("Loanscan")]
-        [Category("Integration")]
+        [Ignore("FIX")]
         [Test]
         public void MakerDaoDataAvailabilityonCardTest()
         {
