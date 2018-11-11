@@ -305,9 +305,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void CreateNewRequest()
         {
-
-            IWebElement createrequestbtn = Browser.CurrentBrowser.FindElement(NewRequest);
-            createrequestbtn.Click();
+            IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-item-name"));
+            foreach (var btn in buttons)
+            {
+                if (btn.Text == "WETH")
+                {
+                    btn.Click();
+                    break;
+                }
+            }
             Browser.ShortPause();
 
             IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);

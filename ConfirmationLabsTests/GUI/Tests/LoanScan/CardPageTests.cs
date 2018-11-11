@@ -30,6 +30,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             CardPage.VerifyPaidOfDharmaSingleCard();
         }
 
+        [Category("NOTSTAGING")]
         [Category("Loanscan")]
         [Test]
         public void CardsElementsMakerDaoPrortocolTest()
