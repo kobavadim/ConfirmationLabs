@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ChooseEnvironment
@@ -21,13 +14,19 @@ namespace ChooseEnvironment
         {
             if(checkBox1.Checked)
             {
-
+                Environment.SetEnvironmentVariable("ENVIRONMENT_ENV", "PROD", EnvironmentVariableTarget.User);
+                MessageBox.Show("Done!");
             }
-            else if(checkBox1.Checked)
+            else if(checkBox2.Checked)
             {
-
+                Environment.SetEnvironmentVariable("ENVIRONMENT_ENV", "STAGING", EnvironmentVariableTarget.User);
+                MessageBox.Show("Done!");
             }
-
+            else if (checkBox3.Checked)
+            {
+                Environment.SetEnvironmentVariable("ENVIRONMENT_ENV", textBox1.Text, EnvironmentVariableTarget.User);
+                MessageBox.Show("Done!");
+            }
         }
     }
 }
