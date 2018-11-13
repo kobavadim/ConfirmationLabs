@@ -43,7 +43,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanBeLended();
         }
 
-        [Ignore("Presetup needed")]
         [Category("BlqRequest")]
         [Test]
         public void RepayFunctionalityTest()

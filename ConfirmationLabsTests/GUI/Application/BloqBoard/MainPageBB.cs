@@ -580,6 +580,25 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
+        public static void CheckRepay()
+        {
+            Browser.ShortPause();
+
+            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
+            foreach (var el in elementListRows)
+            {
+                var children = el.FindElements(By.XPath(".//*"));
+
+                var time = children[0].Text;
+                if (time.Contains("16-10-2018"))
+                {
+                    var repay = children[children.Count - 1];
+                    repay.Click();
+                    break;
+                }
+            }
+        }
+
         public static void VerifyMyCancelledRequestsTableDisplayed()
         {
             try
@@ -823,7 +842,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-
                 string MetamaskTab = handles[0];
                 string BloqboardTab = handles[1];
 
@@ -835,62 +853,94 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
                 loansbtn.Click();
-                Browser.MiddlePause();
-
-
-                IWebElement firsttransaction = Browser.CurrentBrowser.FindElement(FirstTransactionLoaned);
-                firsttransaction.Click();
-
                 Browser.LongPause();
 
-                ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
-
-                string Loanscan = handlesnew[2];
-                string BloqboardTabNew = handlesnew[1];
-                string MetamaskTabNew = handlesnew[0];
-
-                Browser.CurrentBrowser.SwitchTo().Window(Loanscan);
-                Browser.MiddlePause();
-
-                IWebElement loanscanamount = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
-                string amountrepayed = loanscanamount.Text;
-
-                string[] stringSeparators = new string[] { "(" };
-                var result = amountrepayed.Split(stringSeparators, StringSplitOptions.None);
-
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
+                string amountrepayed = "";
+                string BloqboardTabNew = "";
+                string MetamaskTabNew = "";
+                string[] result = new string[] { };
 
 
-                IWebElement repaybtn = Browser.CurrentBrowser.FindElement(RepayBtn);
-                repaybtn.Click();
+                bool isRepaid = false;
+
+                for (int i = 0; i < 25; i++)
+                {
+                    if(!isRepaid)
+                    {
+                        Browser.ShortPause();
+                        IWebElement page = Browser.CurrentBrowser.FindElement(By.CssSelector(".page-item:nth-child(7) .page-link"));
+                        page.Click();
+                        var clickedTime = "no collateral found";
+
+
+                        IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
+                        foreach (var el in elementListRows)
+                        {
+                            var children = el.FindElements(By.XPath(".//*"));
+
+                            var time = children[0].Text;
+                            if (time.Contains("16-10-2018"))
+                            {
+                                var button = children[children.Count - 1];
+                                if (button.Text == "Delinquent")
+                                {
+                                    button.Click();
+
+                                    Browser.LongPause();
+
+                                    ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
+
+                                    string Loanscan = handlesnew[2];
+                                    BloqboardTabNew = handlesnew[1];
+                                    MetamaskTabNew = handlesnew[0];
+
+                                    Browser.CurrentBrowser.SwitchTo().Window(Loanscan);
+                                    Browser.MiddlePause();
+
+                                    IWebElement loanscanamount = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
+                                    amountrepayed = loanscanamount.Text;
+
+                                    string[] stringSeparators = new string[] { "(" };
+                                    result = amountrepayed.Split(stringSeparators, StringSplitOptions.None);
+
+                                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
+
+                                    var repay = children[children.Count - 2];
+                                    repay.Click();
+                                    isRepaid = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
                 Browser.MiddlePause();
                 IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
                 amountrepay.SendKeys("0.00001");
 
                 IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
                 confirmrepaybtn.Click();
-
                 Browser.MiddlePause();
                 Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
                 Browser.CurrentBrowser.Navigate().Refresh();
-
                 Browser.ShortPause();
                 SignRequest();
-
                 Browser.LongPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
 
-                IWebElement firsttransaction2 = Browser.CurrentBrowser.FindElement(FirstTransactionLoaned);
-                firsttransaction2.Click();
+                Browser.ShortPause();
+                CheckRepay();
 
                 Browser.LongPause();
 
                 ReadOnlyCollection<string> handlesnew2 = Browser.CurrentBrowser.WindowHandles;
 
                 string Loanscannew = handlesnew2[4];
-
-
-
 
                 Browser.CurrentBrowser.SwitchTo().Window(Loanscannew);
                 Browser.MiddlePause();
@@ -902,7 +952,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 var resultnew = amountrepayednew.Split(stringSeparatorsnew, StringSplitOptions.None);
 
                 Assert.IsTrue(!result[0].Contains(resultnew[0]), "[" + Env + "] BLOQBOARD", "Repay transaction is not performed as expected");
-
             }
             catch (Exception exception)
             {

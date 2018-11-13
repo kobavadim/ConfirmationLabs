@@ -119,11 +119,35 @@ namespace ConfirmationLabsTests.Helpers
 
             IWebElement agrementFirstScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
             agrementFirstScreen.Click();
-            Browser.ShortPause();
-
-            IWebElement agrementThirdScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
-            agrementThirdScreen.Click();
             Browser.MiddlePause();
+
+
+            try
+            {
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button")).SendKeys(OpenQA.Selenium.Keys.Return);
+                Browser.ShortPause();
+
+                //IWebElement agrementThirdScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+                //agrementThirdScreen.Click();
+                //Browser.ShortPause();
+                //for (int i = 0; i < 5; i++)
+                //{
+                //    IWebElement agrementThirdScreen2 = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
+                //    IJavaScriptExecutor js2 = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                //    js2.ExecuteScript("arguments[0].click();", agrementThirdScreen2);
+                //    Browser.ShortPause();
+                //}
+            }
+            catch(Exception)
+            {
+                Browser.CurrentBrowser.Navigate().Refresh();
+            }
+
+
+
+
+            //Browser.MiddlePause();
         }
 
         public static void LoginToMetaMaskWalletWithNewUser()
@@ -216,6 +240,7 @@ namespace ConfirmationLabsTests.Helpers
         public static void ChangeToKovan()
         {
             Browser.ShortPause();
+            Browser.CurrentBrowser.Navigate().Refresh();
             IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
             Button.Click();
             IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
