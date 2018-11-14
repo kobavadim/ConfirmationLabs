@@ -43,7 +43,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanBeLended();
         }
 
-        [Category("BlqRequest")]
+        [Category("BlqRequestCreate")]
         [Test]
         public void RepayFunctionalityTest()
         {

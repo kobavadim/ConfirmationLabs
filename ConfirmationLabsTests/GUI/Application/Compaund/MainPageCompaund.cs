@@ -150,27 +150,60 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                OpenBloqBoard();
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+                Wallets.ChangeToKovan();
+                Browser.MiddlePause();
+
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
                 string MetamaskTab = handles[0];
                 string BloqboardTab = handles[1];
+
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
 
-                Browser.MiddlePause();
+                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                //loansbtn.Click();
+                Browser.LongPause();
 
                 IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
                 string[] stringSeparators = new string[] { "." };
                 var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
 
                 double loanedRep = double.Parse(result[0]);
+                string loanedcount = "";
 
+                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                foreach (var el in elementListRows)
+                {
+                    var children = el.FindElements(By.XPath(".//*"));
+                    var tokenName = children[0].Text;
 
+                    if (tokenName.Contains("REP"))
+                    {
+
+                        foreach(var ele in children)
+                        {
+                            if (ele.Text.Contains("Loaned") && loanedcount == "")
+                            {
+                                loanedcount = ele.Text;
+                            
+                            }
+
+                            if (ele.Text.Contains("LEND") && ele.TagName == "div")
+                            {
+                                ele.Click();
+                                break;
+                            }
+                        }
+                    }
+                }
+                
                 IWebElement lendbtn = Browser.CurrentBrowser.FindElement(LendRepBtn);
                 lendbtn.Click();
                 Browser.ShortPause();

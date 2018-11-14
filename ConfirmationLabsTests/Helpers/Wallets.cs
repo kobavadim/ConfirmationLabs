@@ -143,11 +143,6 @@ namespace ConfirmationLabsTests.Helpers
             {
                 Browser.CurrentBrowser.Navigate().Refresh();
             }
-
-
-
-
-            //Browser.MiddlePause();
         }
 
         public static void LoginToMetaMaskWalletWithNewUser()

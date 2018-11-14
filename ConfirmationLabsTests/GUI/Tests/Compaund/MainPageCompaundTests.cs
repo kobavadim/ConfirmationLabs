@@ -20,13 +20,12 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [SetUp]
         public void TestInitialize()
         {
-            Browser.StartFirefox();
-            Browser.StartWithExstension(); 
+            Browser.StartWithExstension();
         }
 
         [Category("Compound")]
         [Test]
-        public void LendToLiquidityTableAvailabilityTest()
+        public void CheckLiquidityTableAvailabilityTest()
         {
             MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened();
         }
