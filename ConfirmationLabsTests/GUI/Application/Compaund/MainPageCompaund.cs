@@ -146,6 +146,32 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
         }
 
+        public static string CheckLoanedAmount()
+        {
+            string loanedcount = "";
+            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+            foreach (var el in elementListRows)
+            {
+                var children = el.FindElements(By.XPath(".//*"));
+                var tokenName = children[0].Text;
+                int i = 1;
+                if (tokenName.Contains("REP"))
+                {
+
+                    foreach (var ele in children)
+                    {
+                        if (ele.Text.Contains("Loaned") && loanedcount == "")
+                        {
+                            loanedcount = ele.Text;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return loanedcount;
+        }
+
         public static void VerifyTokenCanbeLounedtoLiquidityPool()
         {
             try
@@ -183,7 +209,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 {
                     var children = el.FindElements(By.XPath(".//*"));
                     var tokenName = children[0].Text;
-
+                    int i = 1;
                     if (tokenName.Contains("REP"))
                     {
 
@@ -195,20 +221,24 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                             
                             }
 
+                            
                             if (ele.Text.Contains("LEND") && ele.TagName == "div")
                             {
-                                ele.Click();
-                                break;
+                                i++;
+
+                                if (i >= 3)
+                                {
+                                    ele.Click();
+                                    break;
+                                }
                             }
                         }
                     }
                 }
-                
-                IWebElement lendbtn = Browser.CurrentBrowser.FindElement(LendRepBtn);
-                lendbtn.Click();
+               
                 Browser.ShortPause();
                 IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
-                amount.SendKeys("1");
+                amount.SendKeys("0.05");
                 Browser.MiddlePause();
                 IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
                 confirm.Click();
@@ -224,15 +254,18 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                 Console.WriteLine("Confirming request...");
                 BloqBoard.MainPageBB.SignRequest();
-
+                Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
-                IWebElement loanedAmount = Browser.CurrentBrowser.FindElement(LoanedAmount);
-                string loanedamounttext = loanedAmount.Text;
-                string[] stringSeparators2 = new string[] { "." };
-                var result2 = loanedamounttext.Split(stringSeparators2, StringSplitOptions.None);
-                double loaned = double.Parse(result2[0]);
-                Assert.IsTrue(loaned - loanedRep == 1, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+                string loanedAmountAfter = loanedcount;
+                
+
+
+                var loanedAfter = CheckLoanedAmount();
+
+
+
+                Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
             }
 
             catch (Exception exception)
