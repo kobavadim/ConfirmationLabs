@@ -15,13 +15,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
-        [Category("BlqTest")]
-        [Test]
-        public void TestForTeamCity()
-        {
-            Console.WriteLine("TC test");
-        }
-
         [Category("BlqRequestCreate")]
         [Test]
         public void CreateNewRequestTest()
@@ -50,16 +43,14 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRepayFunctionality();
         }
 
-        [Ignore("Presetup needed")]
-        [Category("BlqRequest")]
+        [Category("BlqRequestCreate")]
         [Test]
         public void ReturnCollateralTest()
         {
             MainPageBB.VerifyCollatrealCanbeReturned();
         }
 
-        [Ignore("BLQ-368 Issue with seize collateral")]
-        [Category("BlqRequest")]
+        [Category("BlqRequestCreate")]
         [Test]
         public void SeizeCollateralTest()
         {

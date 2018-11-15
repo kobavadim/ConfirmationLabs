@@ -95,6 +95,7 @@
     <Compile Include="GUI\Tests\BloqBoard\IntegrationTests.cs" />
     <Compile Include="GUI\Tests\BloqBoard\RequestsTests.cs" />
     <Compile Include="GUI\Tests\BloqBoard\MainPageTests.cs" />
+    <Compile Include="GUI\Tests\Compaund\RequestsTests.cs" />
     <Compile Include="GUI\Tests\Compaund\MainPageCompaundTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\LoanScanMobileTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\CardPageTests.cs" />

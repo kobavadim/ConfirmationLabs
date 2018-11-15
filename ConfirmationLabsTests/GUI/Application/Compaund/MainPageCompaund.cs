@@ -172,6 +172,32 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             return loanedcount;
         }
 
+        public static string CheckBorrowedAmount()
+        {
+            string loanedcount = "";
+            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+            foreach (var el in elementListRows)
+            {
+                var children = el.FindElements(By.XPath(".//*"));
+                var tokenName = children[0].Text;
+                int i = 1;
+                if (tokenName.Contains("ZRX"))
+                {
+
+                    foreach (var ele in children)
+                    {
+                        if (ele.Text.Contains("Borrowed") && loanedcount == "")
+                        {
+                            loanedcount = ele.Text;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return loanedcount;
+        }
+
         public static void VerifyTokenCanbeLounedtoLiquidityPool()
         {
             try
@@ -262,6 +288,312 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
 
                 var loanedAfter = CheckLoanedAmount();
+
+
+
+                Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+            }
+
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyTokenCanbeWithdrawnedFromLiquidityPool()
+        {
+            try
+            {
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+                Wallets.ChangeToKovan();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+
+                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                //loansbtn.Click();
+                Browser.LongPause();
+
+                IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
+                string[] stringSeparators = new string[] { "." };
+                var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
+
+                double loanedRep = double.Parse(result[0]);
+                string loanedcount = "";
+
+                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                foreach (var el in elementListRows)
+                {
+                    var children = el.FindElements(By.XPath(".//*"));
+                    var tokenName = children[0].Text;
+                    int i = 1;
+                    if (tokenName.Contains("REP"))
+                    {
+
+                        foreach (var ele in children)
+                        {
+                            if (ele.Text.Contains("Loaned") && loanedcount == "")
+                            {
+                                loanedcount = ele.Text;
+
+                            }
+
+
+                            if (ele.Text.Contains("WITHDRAW") && ele.TagName == "div")
+                            {
+                                i++;
+
+                                if (i >= 3)
+                                {
+                                    ele.Click();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Browser.ShortPause();
+                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                amount.SendKeys("0.005");
+                Browser.MiddlePause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
+                confirm.Click();
+                Browser.MiddlePause();
+
+
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Confirming request...");
+                BloqBoard.MainPageBB.SignRequest();
+                Browser.ShortPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                string loanedAmountAfter = loanedcount;
+
+
+
+                var loanedAfter = CheckLoanedAmount();
+
+
+
+                Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+            }
+
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyTokenCanbeBorrowedFromLiquidityPool()
+        {
+            try
+            {
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+                Wallets.ChangeToKovan();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+
+                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                //loansbtn.Click();
+                Browser.LongPause();
+
+                IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
+                string[] stringSeparators = new string[] { "." };
+                var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
+
+                double loanedRep = double.Parse(result[0]);
+                string loanedcount = "";
+
+                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                foreach (var el in elementListRows)
+                {
+                    var children = el.FindElements(By.XPath(".//*"));
+                    var tokenName = children[0].Text;
+                    int i = 1;
+                    if (tokenName.Contains("ZRX"))
+                    {
+
+                        foreach (var ele in children)
+                        {
+                            if (ele.Text.Contains("Borrowed") && loanedcount == "")
+                            {
+                                loanedcount = ele.Text;
+
+                            }
+
+
+                            if (ele.Text.Contains("BORROW") && ele.TagName == "div")
+                            {
+                                i++;
+
+                                if (i >= 3)
+                                {
+                                    ele.Click();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Browser.ShortPause();
+                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                amount.SendKeys("0.005");
+                Browser.MiddlePause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
+                confirm.Click();
+                Browser.MiddlePause();
+
+
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Confirming request...");
+                BloqBoard.MainPageBB.SignRequest();
+                Browser.ShortPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                string loanedAmountAfter = loanedcount;
+
+
+
+                var loanedAfter = CheckBorrowedAmount();
+
+
+
+                Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+            }
+
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyTokenCanbeRepaidFromLiquidityPool()
+        {
+            try
+            {
+                Wallets.LoginToMetaMaskWallet();
+                Browser.MiddlePause();
+                Wallets.ChangeToKovan();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+
+                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                //loansbtn.Click();
+                Browser.LongPause();
+
+                IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
+                string[] stringSeparators = new string[] { "." };
+                var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
+
+                double loanedRep = double.Parse(result[0]);
+                string loanedcount = "";
+
+                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                foreach (var el in elementListRows)
+                {
+                    var children = el.FindElements(By.XPath(".//*"));
+                    var tokenName = children[0].Text;
+                    int i = 1;
+                    if (tokenName.Contains("ZRX"))
+                    {
+
+                        foreach (var ele in children)
+                        {
+                            if (ele.Text.Contains("Borrowed") && loanedcount == "")
+                            {
+                                loanedcount = ele.Text;
+
+                            }
+
+
+                            if (ele.Text.Contains("REPAY") && ele.TagName == "div")
+                            {
+                                i++;
+
+                                if (i >= 3)
+                                {
+                                    ele.Click();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Browser.ShortPause();
+                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                amount.SendKeys("0.002");
+                Browser.MiddlePause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-red"));
+                confirm.Click();
+                Browser.MiddlePause();
+
+
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Confirming request...");
+                BloqBoard.MainPageBB.SignRequest();
+                Browser.ShortPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                string loanedAmountAfter = loanedcount;
+
+
+
+                var loanedAfter = CheckBorrowedAmount();
 
 
 
