@@ -15,6 +15,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         }
 
         [Category("Compound")]
+        [Category("BlqRequests")]
         [Test]
         public void LendToLiquidityPoolTest()
         {
@@ -22,6 +23,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         }
 
         [Category("Compound")]
+        [Category("BlqRequests")]
         [Test]
         public void WithdrawFromLiquidityPoolTest()
         {
@@ -29,6 +31,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         }
 
         [Category("Compound")]
+        [Category("BlqRequests")]
         [Test]
         public void BorrowFromLiquidityPoolTest()
         {
@@ -36,6 +39,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         }
 
         [Category("Compound")]
+        [Category("BlqRequests")]
         [Test]
         public void RepayFromLiquidityPoolTest()
         {

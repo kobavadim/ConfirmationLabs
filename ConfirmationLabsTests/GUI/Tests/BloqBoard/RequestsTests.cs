@@ -15,42 +15,42 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
-        [Category("BlqRequestCreate")]
+        [Category("BlqRequests")]
         [Test]
         public void CreateNewRequestTest()
         {
             MainPageBB.VerifyNewRequestCanbeCreated();
         }
 
-        [Category("BlqRequestCreate")]
+        [Category("BlqRequests")]
         [Test]
         public void CancelRequestTest()
         {
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
-        [Category("BlqRequestCreate")]
+        [Category("BlqRequests")]
         [Test]
         public void LendRequestTest()
         {
             MainPageBB.VerifyRequestCanBeLended();
         }
 
-        [Category("BlqRequestCreate")]
+        [Category("BlqRequests")]
         [Test]
         public void RepayFunctionalityTest()
         {
             MainPageBB.VerifyRepayFunctionality();
         }
 
-        [Category("BlqRequestCreate")]
+        [Category("BlqRequests")]
         [Test]
         public void ReturnCollateralTest()
         {
             MainPageBB.VerifyCollatrealCanbeReturned();
         }
 
-        [Category("BlqRequestCreate")]
+        [Category("BlqRequests")]
         [Test]
         public void SeizeCollateralTest()
         {
