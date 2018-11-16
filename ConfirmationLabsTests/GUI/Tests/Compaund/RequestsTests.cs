@@ -5,11 +5,9 @@ using ConfirmationLabsTests.GUI.Application.Compaund;
 
 namespace ConfirmationLabsTests.GUI.Tests.Compaund
 {
-
     [TestFixture]
     class RequestsTests
     {
-
         [SetUp]
         public void TestInitialize()
         {
@@ -18,7 +16,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
 
         [Category("Compound")]
         [Test]
-        public void LendToLiquidityPoolFinctionaltityTest()
+        public void LendToLiquidityPoolTest()
         {
             MainPageCompaund.VerifyTokenCanbeLounedtoLiquidityPool();
         }
@@ -37,7 +35,6 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool();
         }
 
-
         [Category("Compound")]
         [Test]
         public void RepayFromLiquidityPoolTest()
@@ -45,12 +42,10 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool();
         }
 
-
         [TearDown]
         public void TestCleanUp()
         {
             Browser.Close();
         }
-
     }
 }

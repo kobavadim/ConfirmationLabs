@@ -78,7 +78,7 @@ namespace ConfirmationLabsTests.Helpers
 
                 IWebElement proceedPhrase = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
                 proceedPhrase.Click();
-                Browser.MiddlePause();
+                Browser.ShortPause();
 
 
             }
@@ -96,18 +96,26 @@ namespace ConfirmationLabsTests.Helpers
 
                 IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".markdown p"));
 
-                Actions actions = new Actions(Browser.CurrentBrowser);
-                actions.MoveToElement(values[54]);
-                actions.Perform();
-                Actions actions2 = new Actions(Browser.CurrentBrowser);
-                actions2.SendKeys(OpenQA.Selenium.Keys.End).Build().Perform();
 
 
+                try
+                {
+                    Actions actions = new Actions(Browser.CurrentBrowser);
+                    actions.MoveToElement(values[54]);
+                    actions.Perform();
+                    Actions actions2 = new Actions(Browser.CurrentBrowser);
+                    actions2.SendKeys(OpenQA.Selenium.Keys.End).Build().Perform();
+                    Browser.ShortPause();
+                    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                    js.ExecuteScript("arguments[0].scrollIntoView();", values[54]);
+                    Browser.ShortPause();
+                }
+                catch(Exception)
+                {
+
+                }
 
 
-                IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
-                js.ExecuteScript("arguments[0].scrollIntoView();", values[54]);
-                Browser.ShortPause();
             }
             catch (Exception exe)
             {

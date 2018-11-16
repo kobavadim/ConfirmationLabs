@@ -57,8 +57,7 @@ namespace ConfirmationLabsTests.Helpers
 
                 Browser.CurrentBrowser.Quit();
             }
-            catch(Exception)
-            { }
+            catch(Exception){ }
 
             if (errormessage == "")
             {

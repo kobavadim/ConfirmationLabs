@@ -599,6 +599,56 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
+        public static void CheckReturn(string date)
+        {
+            Browser.ShortPause();
+
+            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
+            foreach (var el in elementListRows)
+            {
+                var children = el.FindElements(By.XPath(".//*"));
+
+                var time = children[0].Text;
+                if (time.Contains(date))
+                {
+                    var repay = children[children.Count - 1];
+                    if(repay.Text.Contains("RETURN COLLATERAL"))
+                    {
+                        repay.Click();
+                        break;
+                    }
+
+                }
+            }
+        }
+
+        public static bool CheckCollateral(string date)
+        {
+            bool result = false;
+
+            Browser.ShortPause();
+
+            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
+            foreach (var el in elementListRows)
+            {
+                var children = el.FindElements(By.XPath(".//*"));
+
+                var time = children[0].Text;
+                if (time.Contains(date))
+                {
+                    var repay = children[children.Count - 2];
+                    if (repay.Text.Contains("Returned"))
+                    {
+                        result = true;
+                        break;
+                    }
+
+                }
+            }
+            return result;
+        }
+
+
         public static void VerifyMyCancelledRequestsTableDisplayed()
         {
             try
@@ -984,6 +1034,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 loansbtn.Click();
                 Browser.LongPause();
 
+
+                ReadOnlyCollection<string> handlesnew1 = Browser.CurrentBrowser.WindowHandles;
+
+
                 string amountrepayed = "";
                 string BloqboardTabNew = "";
                 string MetamaskTabNew = "";
@@ -1026,15 +1080,13 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                         {
                             
                         }
-         
-                
-
                     }
                     else
                     {
                         break;
                     }
                 }
+   
 
                 Browser.MiddlePause();
                 IWebElement amounttorepay = Browser.CurrentBrowser.FindElement(WholeAmountToRepay);
@@ -1051,6 +1103,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
                 confirmrepaybtn.Click();
                 Browser.MiddlePause();
+
+
+                ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
+
+                BloqboardTabNew = handlesnew[1];
+                MetamaskTabNew = handlesnew[0];
+
+
                 Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
                 Browser.CurrentBrowser.Navigate().Refresh();
                 Browser.ShortPause();
@@ -1059,24 +1119,24 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
 
                 Browser.ShortPause();
-                CheckRepay();
+                CheckReturn(date);
 
-                Browser.LongPause();
-
-                ReadOnlyCollection<string> handlesnew2 = Browser.CurrentBrowser.WindowHandles;
-
-                string Loanscannew = handlesnew2[4];
-
-                Browser.CurrentBrowser.SwitchTo().Window(Loanscannew);
+                Browser.ShortPause();
+                IWebElement confirmreturnCollateral = Browser.CurrentBrowser.FindElement(By.CssSelector(".confirm-btn"));
+                confirmreturnCollateral.Click();
                 Browser.MiddlePause();
 
-                IWebElement loanscanamountnew = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
-                string amountrepayednew = loanscanamountnew.Text;
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+                SignRequest();
+                Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
 
-                string[] stringSeparatorsnew = new string[] { "(" };
-                var resultnew = amountrepayednew.Split(stringSeparatorsnew, StringSplitOptions.None);
+                Browser.ShortPause();
+                bool isreturned = CheckCollateral(date);
 
-                Assert.IsTrue(!result[0].Contains(resultnew[0]), "[" + Env + "] BLOQBOARD", "Repay transaction is not performed as expected");
+                Assert.IsTrue(isreturned, "[" + Env + "] BLOQBOARD", "Return collateral is not performed as expected");
             }
             catch (Exception exception)
             {
