@@ -76,6 +76,69 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
         //Methods
+
+        public static void LoginToMetamaskIntegration()
+        {
+            Console.WriteLine("Logging Metamask");
+            Wallets.LoginToMetaMaskWallet();
+            Browser.MiddlePause();
+            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Env == "PROD")
+            {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+
+                //Browser.MiddlePause();
+                Console.WriteLine("running tests on PROD " + TestData.Urls.BloqBoardProd);
+
+                //try
+                //{
+                //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
+                //}
+                //catch (Exception ex)
+                //{
+                //    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                //    js.ExecuteScript("return window.stop");
+                //}
+            }
+            else
+            {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+
+                //Browser.MiddlePause();
+                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardStaging);
+                //Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
+            }
+
+            Browser.LongPause();
+
+        }
+
         public static void LoginToMetamaskUpdated()
         {
             Console.WriteLine("Logging Metamask");
@@ -149,7 +212,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.ShortPause();
                 IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
                 Button.Click();
-                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
 
                 Browser.ShortPause();
                 foreach (var val in values)
@@ -162,7 +225,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
 
                 Browser.MiddlePause();
-                Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
+                Console.WriteLine("running tests on PROD " + TestData.Urls.BloqBoardProd);
 
                 //try
                 //{
@@ -192,8 +255,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
 
                 Browser.MiddlePause();
-                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
-                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
+                Console.WriteLine("running tests on STAGING " + Helpers.TestData.Urls.BloqBoardStaging);
+                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardStaging);
             }
 
             Engine.Browser.LongPause();

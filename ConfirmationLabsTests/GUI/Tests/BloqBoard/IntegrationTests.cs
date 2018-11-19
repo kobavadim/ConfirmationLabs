@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.GUI.Application.BloqBoard;
 
 namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 {
-
-
     [TestFixture]
     class IntegrationTests
     {
@@ -20,12 +13,34 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
-        [Category("Integration")]
+        [Category("MPIntegration")]
         [Test]
-        public void RecentLoansDataTest()
+        public void RecentLoansDateTest()
         {
-            Integration.VerifyDatafromRecentLoans();
+            Integration.VerifyDatefromRecentLoans();
         }
+
+        [Category("MPIntegration")]
+        [Test]
+        public void RecentLoansAmountTest()
+        {
+            Integration.VerifyAmountfromRecentLoans();
+        }
+
+        [Category("MPIntegration")]
+        [Test]
+        public void RecentLoansAPRTest()
+        {
+            Integration.VerifyAPRfromRecentLoans();
+        }
+
+        [Category("MPIntegration")]
+        [Test]
+        public void RecentLoansTermTest()
+        {
+            Integration.VerifyTermfromRecentLoans();
+        }
+
         [TearDown]
         public void TestCleanUp()
         {

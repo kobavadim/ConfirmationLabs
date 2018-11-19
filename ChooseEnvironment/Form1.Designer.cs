@@ -52,9 +52,9 @@
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBox2.Location = new System.Drawing.Point(37, 28);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(68, 17);
+            this.checkBox2.Size = new System.Drawing.Size(81, 17);
             this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "KOVAN";
+            this.checkBox2.Text = "STAGING";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // button1
