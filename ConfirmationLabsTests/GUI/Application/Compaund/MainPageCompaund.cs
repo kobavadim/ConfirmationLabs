@@ -282,10 +282,10 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 BloqBoard.MainPageBB.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.ShortPause();
                 Browser.LongPause();
                 string loanedAmountAfter = loanedcount;
-                
-
+               
 
                 var loanedAfter = CheckLoanedAmount();
 
@@ -366,7 +366,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                 Browser.ShortPause();
                 IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
-                amount.SendKeys("0.005");
+                amount.SendKeys("0.001");
                 Browser.MiddlePause();
                 IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
                 confirm.Click();
