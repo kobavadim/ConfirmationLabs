@@ -53,12 +53,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement term = Browser.CurrentBrowser.FindElement(Term);
             term.Click();
 
-            Browser.MiddlePause();
+            Browser.LongPause();
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
             string LoanScan = handles[2];
             Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
-
+     
             IWebElement dateloanscan = Browser.CurrentBrowser.FindElement(DateLoanScan);
             var datevaluesloanscan  = dateloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
             var dayvalue = datevaluesloanscan[0].Split(stringSeparatorDate, StringSplitOptions.None);
@@ -93,7 +93,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement term = Browser.CurrentBrowser.FindElement(Term);
             term.Click();
 
-            Browser.MiddlePause();
+            Browser.LongPause();
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
             string LoanScan = handles[2];
             Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
@@ -132,7 +132,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement term = Browser.CurrentBrowser.FindElement(Term);
             term.Click();
 
-            Browser.MiddlePause();
+            Browser.LongPause();
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
             string LoanScan = handles[2];
@@ -163,7 +163,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string termvalue = term.Text;
             term.Click();
 
-            Browser.MiddlePause();
+            Browser.LongPause();
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
             string LoanScan = handles[2];
