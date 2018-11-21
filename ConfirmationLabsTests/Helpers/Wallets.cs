@@ -35,7 +35,7 @@ namespace ConfirmationLabsTests.Helpers
         {
             ITakesScreenshot screenshotDriver = Browser.CurrentBrowser as ITakesScreenshot;
             Screenshot screenshot = screenshotDriver.GetScreenshot();
-            String fp = "C:\\Users\\Administrator\\Documents\\" + "snapshot" + "_" + DateTime.Now.ToString("dd_MMMM_hh_mm_ss_tt") + ".png";
+            string fp = "C:\\Users\\Administrator\\Documents\\" + "snapshot" + "_" + DateTime.Now.ToString("dd_MMMM_hh_mm_ss_tt") + ".png";
             screenshot.SaveAsFile(fp, OpenQA.Selenium.ScreenshotImageFormat.Png);
         }
 

@@ -74,46 +74,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By ConfirmSeizing = By.CssSelector("button.confirm-btn");
 
 
-
-        //Methods
-
-        public static void LoginToMetamaskIntegration()
+        //METHODS
+        public static void LoginToMetamask()
         {
-            Console.WriteLine("Logging Metamask");
+            Console.WriteLine("Log in to Metamask...");
             Wallets.LoginToMetaMaskWallet();
             Browser.MiddlePause();
-            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Env == "PROD")
-            {
-                Browser.ShortPause();
-                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
-                Button.Click();
-                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
 
-                Browser.ShortPause();
-                foreach (var val in values)
-                {
-                    if (val.Text.Contains("Kovan"))
-                    {
-                        val.Click();
-                        break;
-                    }
-                }
-
-                //Browser.MiddlePause();
-                Console.WriteLine("running tests on PROD " + TestData.Urls.BloqBoardProd);
-
-                //try
-                //{
-                //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
-                //}
-                //catch (Exception ex)
-                //{
-                //    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
-                //    js.ExecuteScript("return window.stop");
-                //}
-            }
-            else
+            string Env = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Env.Contains("Kovan"))
             {
                 Browser.ShortPause();
                 IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
@@ -129,85 +98,37 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                         break;
                     }
                 }
-
-                //Browser.MiddlePause();
-                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardStaging);
-                //Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
+                Console.WriteLine("running tests on " + Env + " with Kovan network.");
             }
+            else if (Env.Contains("Mainnet"))
+            {
+                Browser.ShortPause();
+                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
+                Button.Click();
+                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
 
+                Browser.ShortPause();
+                foreach (var val in values)
+                {
+                    if (val.Text.Contains("Kovan"))
+                    {
+                        val.Click();
+                        break;
+                    }
+                }
+                Console.WriteLine("running tests on " + Env + " with Mainnet network.");
+            }
             Browser.LongPause();
-
-        }
-
-        public static void LoginToMetamaskUpdated()
-        {
-            Console.WriteLine("Logging Metamask");
-            Wallets.LoginToMetaMaskWallet();
-            Browser.MiddlePause();
-            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Env == "PROD")
-            {
-                Browser.ShortPause();
-                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
-                Button.Click();
-                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
-
-                Browser.ShortPause();
-                foreach (var val in values)
-                {
-                    if (val.Text.Contains("Kovan"))
-                    {
-                        val.Click();
-                        break;
-                    }
-                }
-
-                Browser.MiddlePause();
-                Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.BloqBoardProd);
-
-                //try
-                //{
-                //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
-                //}
-                //catch (Exception ex)
-                //{
-                //    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
-                //    js.ExecuteScript("return window.stop");
-                //}
-            }
-            else
-            {
-                Browser.ShortPause();
-                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
-                Button.Click();
-                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
-
-                Browser.ShortPause();
-                foreach (var val in values)
-                {
-                    if (val.Text.Contains("Kovan"))
-                    {
-                        val.Click();
-                        break;
-                    }
-                }
-
-                Browser.MiddlePause();
-                Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.BloqBoardKovan);
-                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardKovan);
-            }
-
-            Engine.Browser.LongPause();
-
         }
 
         public static void LoginToMetamaskUpdatedNewAccount()
         {
-            Console.WriteLine("Logging Metamask");
+            Console.WriteLine("Log in to Metamask...");
             Wallets.LoginToMetaMaskWalletWithNewUser();
             Browser.MiddlePause();
-            string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Env == "PROD")
+
+            string Env = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Env.Contains("Kovan"))
             {
                 Browser.ShortPause();
                 IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
@@ -223,26 +144,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                         break;
                     }
                 }
-
-                Browser.MiddlePause();
-                Console.WriteLine("running tests on PROD " + TestData.Urls.BloqBoardProd);
-
-                //try
-                //{
-                //    Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardProd);
-                //}
-                //catch (Exception ex)
-                //{
-                //    IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
-                //    js.ExecuteScript("return window.stop");
-                //}
+                Console.WriteLine("running tests on " + Env + " with Kovan network.");
             }
-            else
+            else if (Env.Contains("Mainnet"))
             {
                 Browser.ShortPause();
                 IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
                 Button.Click();
-                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
+                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
 
                 Browser.ShortPause();
                 foreach (var val in values)
@@ -253,14 +162,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                         break;
                     }
                 }
-
-                Browser.MiddlePause();
-                Console.WriteLine("running tests on STAGING " + Helpers.TestData.Urls.BloqBoardStaging);
-                Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.BloqBoardStaging);
+                Console.WriteLine("running tests on " + Env + " with Mainnet network.");
             }
-
-            Engine.Browser.LongPause();
-
+            Browser.LongPause();
         }
 
         public static void OpenNewTab()
@@ -487,7 +391,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 IWebElement table = Browser.CurrentBrowser.FindElement(LiquidityTable);
                 Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "BloqBoard page is not loaded correctly");
@@ -502,7 +406,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 IWebElement tokenstable = Browser.CurrentBrowser.FindElement(TokensTable);
                 Assert.IsTrue(tokenstable.Displayed, "[" + Env + "] BLOQBOARD", "Tokens Table is not loaded properly");
@@ -518,7 +422,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 IWebElement table = Browser.CurrentBrowser.FindElement(RecentLoans);
                 Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "Recent Loans table is not loaded properly");
@@ -534,7 +438,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Lend);
                 Browser.MiddlePause();
@@ -552,7 +456,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Lend);
                 Browser.MiddlePause();
@@ -571,7 +475,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance(); Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -590,7 +494,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
                 Browser.MiddlePause();
@@ -609,7 +513,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
                 Browser.MiddlePause();
@@ -628,7 +532,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Requests);
                 Browser.MiddlePause();
@@ -716,7 +620,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Requests);
                 Browser.MiddlePause();
@@ -736,7 +640,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                LoginToMetamaskUpdated(); 
+                LoginToMetamask(); 
                 Browser.MiddlePause();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
@@ -781,7 +685,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 Browser.MiddlePause();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
@@ -841,7 +745,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamaskUpdated();
+                LoginToMetamask();
                 TermsandConditionAceptance();
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
                 Browser.MiddlePause();
@@ -947,10 +851,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
-                Wallets.ChangeToKovan();
-                Browser.MiddlePause();
+                MainPageBB.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -1076,10 +977,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
-                Wallets.ChangeToKovan();
-                Browser.MiddlePause();
+                MainPageBB.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -1210,8 +1108,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyCollateralCanBeSeized()
         {
-            LoginToMetamaskUpdatedNewAccount();
-            Browser.MiddlePause();
+            MainPageBB.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;

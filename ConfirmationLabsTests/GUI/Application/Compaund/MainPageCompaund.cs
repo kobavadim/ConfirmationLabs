@@ -9,6 +9,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using Assert = ConfirmationLabsTests.Helpers.Assert;
 using System.Collections.ObjectModel;
+using ConfirmationLabsTests.GUI.Application.BloqBoard;
 
 
 namespace ConfirmationLabsTests.GUI.Application.Compaund
@@ -39,8 +40,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
 
         //Methods
-
-        public static void OpenBloqBoard()
+        public static void OpenBloqBoardOld()
         {
             Console.WriteLine("Logging Metamask");
             Wallets.LoginToMetaMaskWallet();
@@ -112,10 +112,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             Browser.MiddlePause();
         }
 
-
-
         //Tests
-
         public static void VerifyLendToLiquidityPoolTableisOpened()
         {
             try
@@ -202,10 +199,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
-                Wallets.ChangeToKovan();
-                Browser.MiddlePause();
+                MainPageBB.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -304,10 +298,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
-                Wallets.ChangeToKovan();
-                Browser.MiddlePause();
+                MainPageBB.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -406,10 +397,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
-                Wallets.ChangeToKovan();
-                Browser.MiddlePause();
+                MainPageBB.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -508,10 +496,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
-                Wallets.ChangeToKovan();
-                Browser.MiddlePause();
+                MainPageBB.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -610,9 +595,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
+                MainPageBB.LoginToMetamask();
 
-
-                OpenBloqBoard();
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
@@ -658,7 +642,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyBorrowFunctionality()
         {
-            OpenBloqBoard();
+            MainPageBB.LoginToMetamask();
+
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
@@ -702,7 +687,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyRepaytoLiquidityPoolFunctionality()
         {
-            OpenBloqBoard();
+            MainPageBB.LoginToMetamask();
+
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 

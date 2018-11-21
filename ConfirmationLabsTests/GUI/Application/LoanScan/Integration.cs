@@ -50,9 +50,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         //Methods
         public static void Open()
         {
-
             Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Env == "PROD")
+            if (Env.Contains("PROD"))
             {
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.LoanScanMainPageProd);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageProd);
@@ -62,9 +61,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.LoanScanMainPageKovan);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageKovan);
             }
-
             Engine.Browser.MiddlePause();
-
         }
 
         //Tests

@@ -29,9 +29,9 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("MPIntegration")]
         [Test]
-        public void RecentLoansAPRTest()
+        public void RecentLoansAprTest()
         {
-            Integration.VerifyAPRfromRecentLoans();
+            Integration.VerifyApRfromRecentLoans();
         }
 
         [Category("MPIntegration")]

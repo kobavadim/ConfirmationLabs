@@ -28,7 +28,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         //Tests
         public static void VerifyDatefromRecentLoans()
         {
-            MainPageBB.LoginToMetamaskIntegration();
+            MainPageBB.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
@@ -70,14 +70,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyAmountfromRecentLoans()
         {
-            MainPageBB.LoginToMetamaskIntegration();
+            MainPageBB.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
 
-            string BloqboardTabMain = handlesMain[1];
+            string bloqboardTabMain = handlesMain[1];
 
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabMain);
+            Browser.CurrentBrowser.SwitchTo().Window(bloqboardTabMain);
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
             Browser.MiddlePause();
@@ -110,9 +110,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Assert.IsTrue(tokenvalue.Equals(tokenvaluesloanscan[1]), "BloqBoard", "Incorrect token is displayed on the recent loans table");
         }
 
-        public static void VerifyAPRfromRecentLoans()
+        public static void VerifyApRfromRecentLoans()
         {
-            MainPageBB.LoginToMetamaskIntegration();
+            MainPageBB.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
@@ -144,7 +144,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyTermfromRecentLoans()
         {
-            MainPageBB.LoginToMetamaskIntegration();
+            MainPageBB.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;

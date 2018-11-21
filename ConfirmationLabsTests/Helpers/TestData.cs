@@ -54,7 +54,7 @@ namespace ConfirmationLabsTests.Helpers
         {
             string rootadress = Urls.BloqBoardProd;
             string Env = Environment.GetEnvironmentVariable("ENVIRONMENT_ENV", EnvironmentVariableTarget.User);
-            if (Env == "PROD")
+            if (Env.Contains("PROD"))
             {
                 rootadress = Urls.BloqBoardProd;
             }
