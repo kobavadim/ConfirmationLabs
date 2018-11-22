@@ -103,19 +103,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             else if (Env.Contains("Mainnet"))
             {
                 Browser.ShortPause();
-                IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".network-name"));
-                Button.Click();
-                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".network-name-item"));
-
-                Browser.ShortPause();
-                foreach (var val in values)
-                {
-                    if (val.Text.Contains("Kovan"))
-                    {
-                        val.Click();
-                        break;
-                    }
-                }
                 Console.WriteLine("running tests on " + Env + " with Mainnet network.");
             }
             Browser.LongPause();

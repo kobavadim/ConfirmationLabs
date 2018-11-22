@@ -15,6 +15,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
+        [Category("Create")]
         [Category("BlqRequests")]
         [Test]
         public void CreateNewRequestTest()
@@ -22,6 +23,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewRequestCanbeCreated();
         }
 
+        [Category("Cancel")]
         [Category("BlqRequests")]
         [Test]
         public void CancelRequestTest()
@@ -29,6 +31,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanbeCancelled();
         }
 
+        [Category("Lend")]
         [Category("BlqRequests")]
         [Test]
         public void LendRequestTest()
@@ -36,6 +39,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRequestCanBeLended();
         }
 
+        [Category("Repay")]
         [Category("BlqRequests")]
         [Test]
         public void RepayFunctionalityTest()
@@ -43,6 +47,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyRepayFunctionality();
         }
 
+        [Category("Return")]
         [Category("BlqRequests")]
         [Test]
         public void ReturnCollateralTest()
@@ -50,6 +55,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyCollatrealCanbeReturned();
         }
 
+        [Category("Seize")]
         [Category("BlqRequests")]
         [Test]
         public void SeizeCollateralTest()

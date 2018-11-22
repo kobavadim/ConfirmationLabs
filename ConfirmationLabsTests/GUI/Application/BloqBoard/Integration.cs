@@ -100,7 +100,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement tokenloanscan = Browser.CurrentBrowser.FindElement(TokenLoanScan);
 
             var tokenvaluesloanscan = tokenloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
-            if (!tokenvaluesloanscan[0].Contains(amountvalue))
+            if (!amountvalue.Contains(tokenvaluesloanscan[0]))
             {
                 if (!amountvalue.Contains(tokenvaluesloanscan[0]))
                 {
