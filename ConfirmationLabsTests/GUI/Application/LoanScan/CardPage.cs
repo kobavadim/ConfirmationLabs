@@ -221,63 +221,66 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 if (!elements[0].Text.Contains("Repayment progress"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Repayment progress field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Repayment progress field is not present at the card page. Please check manually.");
                 }
 
                 if (!elements[1].Text.Contains("Loan balance"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan balance field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan balance field is not present at the card page. Please check manually.");
+                }
+                if (!elements[2].Text.Contains("Loan term"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan term field is not present at the card page. Please check manually.");
+                }
+                if (!elements[3].Text.Contains("Loan interest rate (annual)"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan interest rate (annual) field is not present at the card page. Please check manually.");
                 }
 
-                if (!elements[2].Text.Contains("Loan interest rate (annual)"))
+                if (!elements[4].Text.Contains("Loan-to-value (LTV) current"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan interest rate (annual) field is element. Please check manually.");
-                }
-
-                if (!elements[3].Text.Contains("Loan-to-value (LTV) current"))
-                {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan-to-value (LTV) current field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan-to-value (LTV) current field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[4].Text.Contains("Debtor address"))
+                if (!elements[5].Text.Contains("Debtor address"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Debtor addresst field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Debtor addresst field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[5].Text.Contains("Creditor address"))
+                if (!elements[6].Text.Contains("Creditor address"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Creditor address field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Creditor address field is not present at the card page. Please check manually.");
                 }
                
-                if (!elements[6].Text.Contains("Loan draws"))
+                if (!elements[7].Text.Contains("Loan draws"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan draws field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan draws field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[7].Text.Contains("Collateral"))
+                if (!elements[8].Text.Contains("Collateral"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Collateral field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Collateral field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[9].Text.Contains("Repayments"))
+                if (!elements[10].Text.Contains("Repayments"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Repayments field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Repayments field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[10].Text.Contains("Cumulative liquidation fee"))
+                if (!elements[11].Text.Contains("Cumulative liquidation fee"))
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Cumulative liquidation fee field is element. Please check manually.");
                 }
 
                 
-                if (!elements[11].Text.Contains("CDP creation link"))
+                if (!elements[12].Text.Contains("CDP creation link"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: CDP creation link field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: CDP creation link field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[12].Text.Contains("Lending protocol/system"))
+                if (!elements[13].Text.Contains("Lending protocol/system"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Lending protocol/system field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Lending protocol/system field is not present at the card page. Please check manually.");
                 }
             }
             catch (Exception exception)
