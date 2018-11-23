@@ -63,7 +63,7 @@ namespace ConfirmationLabsTests.Helpers
 
                 IWebElement seed = Browser.CurrentBrowser.FindElement(By.CssSelector(".import-account__secret-phrase"));
                 seed.Click();
-                seed.SendKeys(TestData.Input.seedPhrase);
+                seed.SendKeys(TestData.Input.seedPhraseBrave);
                 Browser.ShortPause();
 
                 IWebElement password = Browser.CurrentBrowser.FindElement(By.CssSelector("#password"));

@@ -19,6 +19,7 @@ namespace ConfirmationLabsTests.Helpers
         public static class Input
         {
             public static string seedPhrase = "inspire spy put mixed recipe snow afraid lava segment avocado flame luggage";
+            public static string seedPhraseBrave = "maze split humor pigeon arrow alcohol begin pact parade adjust okay bracket";
             public static string password = "2523888qQ";
             public static string seedPhraseAccount2 = "service private panda blur tent country title want mobile inch grab luxury";
         }
