@@ -33,7 +33,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By SignButtonMetaMaskPopUp = By.CssSelector(".button");
         private static readonly By CollateralDropDown = By.CssSelector("[name='collateralType']");
 
-        private static readonly By LastRequestCreationDate = By.CssSelector(".first .content-table-row:nth-child(1) .first+ .bottom-cell");
+        private static readonly By LastRequestCreationDate = By.CssSelector(".content-table-row:nth-child(1) .first+ .bottom-cell");
         private static readonly By TokensTable = By.CssSelector(".token-item");
         private static readonly By RecentLoans = By.CssSelector(".issued-loans-wrapper");
         private static readonly By LoanTable = By.CssSelector(".loan-table");
