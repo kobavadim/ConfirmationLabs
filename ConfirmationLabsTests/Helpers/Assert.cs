@@ -36,11 +36,11 @@ namespace ConfirmationLabsTests.Helpers
                 {
                     if (exception.Message.Contains("Unable to locate element"))
                     {
-                        SlackClient.PostMessage("[" + ENV + "] " + component + ": site wasn't loaded correctly. Probably we have an issue. Please recheck manually.");
+                        //SlackClient.PostMessage("[" + ENV + "] " + component + ": site wasn't loaded correctly. Probably we have an issue. Please recheck manually.");
                     }
                     else
                     {
-                        SlackClient.PostMessage(exception.Message);
+                        //SlackClient.PostMessage(exception.Message);
                     }
 
                 }
@@ -57,8 +57,7 @@ namespace ConfirmationLabsTests.Helpers
 
                 Browser.CurrentBrowser.Quit();
             }
-            catch(Exception)
-            { }
+            catch(Exception){ }
 
             if (errormessage == "")
             {

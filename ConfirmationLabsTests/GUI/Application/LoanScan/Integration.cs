@@ -33,8 +33,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         private static readonly By RelayerNameCard = By.CssSelector(".col-sm-9:nth-child(32)");
         private static readonly By MakerDaoColumn = By.CssSelector("div.btn-group.btn-group-toggle.mr-auto > label:nth-of-type(2)");
         private static readonly By LendingProtocolTable = By.CssSelector(".loan-row:nth-child(1) td:nth-child(12) .nowrap");
-        private static readonly By AnnualInterestRateCardMakerDao = By.CssSelector(".col-sm-9:nth-child(6) span");
-        private static readonly By LendingProtocolCard = By.CssSelector(".col-sm-9:nth-child(28) span");
+        private static readonly By AnnualInterestRateCardMakerDao = By.CssSelector(".col-sm-9:nth-child(8) span");
+        private static readonly By LendingProtocolCard = By.CssSelector(".col-sm-9:nth-child(30) span");
         private static readonly By CollateralTableMakerDao = By.CssSelector(".loan-list .loan-summary");
         private static readonly By AllDataDharma = By.CssSelector("span , .col-sm-9:nth-child(44) , .col-sm-9:nth-child(40) , .col-sm-9:nth-child(38)");
         private static readonly By AllDataMakerDao = By.CssSelector(".col-sm-9");
@@ -50,9 +50,8 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         //Methods
         public static void Open()
         {
-
             Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Env == "PROD")
+            if (Env.Contains("PROD"))
             {
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.LoanScanMainPageProd);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageProd);
@@ -62,9 +61,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Console.WriteLine("running tests on KOVAN " + Helpers.TestData.Urls.LoanScanMainPageKovan);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageKovan);
             }
-
             Engine.Browser.MiddlePause();
-
         }
 
         //Tests

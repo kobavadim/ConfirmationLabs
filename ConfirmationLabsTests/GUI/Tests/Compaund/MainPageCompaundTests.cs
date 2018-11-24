@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using NUnit.Framework;
 using ConfirmationLabsTests.GUI.Engine;
-using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Application.Compaund;
 
 
@@ -20,46 +13,15 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [SetUp]
         public void TestInitialize()
         {
-            Browser.StartFirefox();
-            Browser.StartWithExstension(); 
+            Browser.StartWithExstension();
         }
 
         [Category("Compound")]
         [Test]
-        public void LendToLiquidityTableAvailabilityTest()
+        public void CheckLiquidityTableAvailabilityTest()
         {
             MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened();
         }
-
-        [Category("Compound")]
-        [Test]
-        public void LendToLiquidityPoolFinctionaltityTest()
-        {
-            MainPageCompaund.VerifyTokenCanbeLounedtoLiquidityPool();
-        }
-
-        [Category("Compound")]
-        [Test]
-        public void WithdrawFinctionaltityTest()
-        {
-            MainPageCompaund.VerifyTokensCanBeWithdrawn();
-        }
-
-        [Category("Compound")]
-        [Test]
-        public void BorrowFinctionaltityTest()
-        {
-            MainPageCompaund.VerifyBorrowFunctionality();
-        }
-
-
-        [Category("Compound")]
-        [Test]
-        public void RepayFinctionaltityTest()
-        {
-            MainPageCompaund.VerifyRepaytoLiquidityPoolFunctionality();
-        }
-
 
         [TearDown]
         public void TestCleanUp()

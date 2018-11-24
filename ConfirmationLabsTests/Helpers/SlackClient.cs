@@ -48,13 +48,13 @@ namespace ConfirmationLabsTests.Helpers
 
         public static void PostMessage(string message)
         {
-            string urlWithAccessToken = "https://hooks.slack.com/services/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";
+            //string urlWithAccessToken = "https://hooks.slack.com/services/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";
 
-            SlackClient client = new SlackClient(urlWithAccessToken);
+            //SlackClient client = new SlackClient(urlWithAccessToken);
 
-            client.PostMessage(username: "AUTOTESTS",
-                       text: message,
-                       channel: "#autotests");
+            //client.PostMessage(username: "AUTOTESTS",
+            //           text: message,
+            //           channel: "#autotests");
         }
     }
 
