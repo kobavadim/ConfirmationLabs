@@ -100,9 +100,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement tokenloanscan = Browser.CurrentBrowser.FindElement(TokenLoanScan);
 
             var tokenvaluesloanscan = tokenloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
-            if (!amountvalue.Contains(tokenvaluesloanscan[0]))
+            string str = amountvalue.Substring(0, 5);
+            if (!amountvalue.Substring(0, 4).Contains(tokenvaluesloanscan[0].Substring(0, 4)))
             {
-                if (!amountvalue.Contains(tokenvaluesloanscan[0]))
+                if (!amountvalue.Substring(0, 4).Contains(tokenvaluesloanscan[0].Substring(0, 4)))
                 {
                     throw new Exception("[" + Env + "] BloqBoard: Incorrect amountis displayed in the recent loans table. Please check manually.");
                 }
