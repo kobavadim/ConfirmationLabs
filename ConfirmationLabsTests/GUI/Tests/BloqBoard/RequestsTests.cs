@@ -63,16 +63,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyCollateralCanBeSeized();
         }
 
-
-        [Category("Bloqboard")]
-        [Test]
-        public void RequestWithBATCreationTest()
-        {
-            MainPageBB.VerifyRequestwithBatCreation();
-        }
-
-
-
         [TearDown]
         public void TestCleanUp()
         {
