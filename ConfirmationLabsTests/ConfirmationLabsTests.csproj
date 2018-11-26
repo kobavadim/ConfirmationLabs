@@ -93,6 +93,7 @@
     <Compile Include="GUI\Application\LoanScan\MainPage.cs" />
     <Compile Include="GUI\Engine\Browser.cs" />
     <Compile Include="GUI\Tests\BloqBoard\IntegrationTests.cs" />
+    <Compile Include="GUI\Tests\BloqBoard\OffersToLandTests.cs" />
     <Compile Include="GUI\Tests\BloqBoard\RequestsTests.cs" />
     <Compile Include="GUI\Tests\BloqBoard\MainPageTests.cs" />
     <Compile Include="GUI\Tests\Compaund\RequestsTests.cs" />

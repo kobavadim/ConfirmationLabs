@@ -1140,7 +1140,51 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         }
 
+        public static void VerifyNewOfferToLendCanbeCreated()
+        {
 
+            try
+            {
+                LoginToMetamask();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+       
+
+                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
+                string recentrequest = lastrequest.Text;
+
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewRequest();
+
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                Browser.LongPause();
+
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
 
     }
 
