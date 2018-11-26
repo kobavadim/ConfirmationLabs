@@ -217,11 +217,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 //loansbtn.Click();
                 Browser.LongPause();
 
-                IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
-                string[] stringSeparators = new string[] { "." };
-                var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
+                //IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
+                //string[] stringSeparators = new string[] { "." };
+                //var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
 
-                double loanedRep = double.Parse(result[0]);
+                //double loanedRep = double.Parse(result[0]);
                 string loanedcount = "";
 
                 IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));

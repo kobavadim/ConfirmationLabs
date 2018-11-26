@@ -15,6 +15,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         }
 
         [Category("Compound")]
+        [Category("CmpndLnd")]
         [Category("CmpndRequests")]
         [Test]
         public void LendToLiquidityPoolTest()
