@@ -5,6 +5,7 @@ using ConfirmationLabsTests.GUI.Engine;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
+using OpenQA.Selenium.Support.UI;
 
 namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 {
@@ -252,10 +253,52 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             return result;
         }
 
+        public static void CreateNewOffersToLandRequest()
+        {
+            IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-item-name"));
+            foreach (var btn in buttons)
+            {
+                if (btn.Text == "WETH")
+                {
+                    btn.Click();
+                    break;
+                }
+            }
+            Browser.ShortPause();
+
+            IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
+            amount.SendKeys("0.00005");
+
+            IWebElement interest = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"collateralToken\"]"));
+            interest.Click();
+            Browser.ShortPause();
+            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("WETH");
 
 
 
+            IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
+            collateral.SendKeys("0.0005");
+            Browser.ShortPause();
+            interest.Submit();
+            Browser.MiddlePause();
 
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+            Browser.LongPause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+
+            Console.WriteLine("Signing request...");
+            SignRequest();
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+        }
 
         public static void CreateNewRequest()
         {
@@ -1170,7 +1213,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
-                CreateNewRequest();
+                CreateNewOffersToLandRequest();
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.LongPause();
@@ -1185,10 +1228,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
-
     }
-
-
-
 }
 

@@ -264,7 +264,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement annualInterestRateCard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCardMakerDao);
                 string annaulVlaueCard = annualInterestRateCard.Text;
-                Console.WriteLine("card " + annaulVlaueCard + " table " + annaulintRateTableValue);
+                Console.WriteLine("Annual Interest Rate: card " + annaulVlaueCard + " table " + annaulintRateTableValue);
                 if (!annaulVlaueCard.Contains(annaulintRateTableValue))
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Annual Interest Rate value doesn't match through the table and the card of Maker DAO lending protocol. Please check manually.");
@@ -272,12 +272,14 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
 
                 IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
+                Console.WriteLine("%Repayed value: card " + repayedCard + " table " + repayedTableValue);
                 if (!repayedCard.Text.Contains(repayedTableValue))
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
                 }
 
                 IWebElement lendingProtocolCard = Engine.Browser.CurrentBrowser.FindElement(LendingProtocolCard);
+                Console.WriteLine("Lending Protocol: card " + lendingProtocolCard + " table " + lendingProtocolValue);
                 if (!lendingProtocolCard.Text.Contains(lendingProtocolValue))
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Lending Protocol type doesn't match through the table and the card. Please check manually.");
@@ -319,7 +321,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 firstrow.Click();
                 Engine.Browser.LongPause();
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralTableMakerDao);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + dollar + " was: " + collateralCard.Text + "URL " + Engine.Browser.CurrentBrowser.Url);
+                Assert.IsTrue(collateralCard.Text.Contains(dollar.Trim()), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + dollar + " was: " + collateralCard.Text + "URL " + Engine.Browser.CurrentBrowser.Url);
             }
 
             catch (Exception exception)

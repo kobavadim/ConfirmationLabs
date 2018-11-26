@@ -23,7 +23,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewOfferToLendCanbeCreated();
         }
 
-
         [TearDown]
         public void TestCleanUp()
         {
