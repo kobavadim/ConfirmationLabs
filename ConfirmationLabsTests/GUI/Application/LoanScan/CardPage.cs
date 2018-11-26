@@ -215,7 +215,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
                 firstrow.Click();
-                Engine.Browser.MiddlePause();
+                Engine.Browser.LongPause();
 
                 IList<IWebElement> elements = Engine.Browser.CurrentBrowser.FindElements(ElementsonCardPageDharma);
 

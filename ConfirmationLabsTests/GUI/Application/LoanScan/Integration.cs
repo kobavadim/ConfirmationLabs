@@ -221,7 +221,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
                 firstrow.Click();
-                Engine.Browser.MiddlePause();
+                Engine.Browser.LongPause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
                 Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
@@ -259,7 +259,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
 
                 row.Click();
-                Engine.Browser.MiddlePause();
+                Engine.Browser.LongPause();
 
 
                 IWebElement annualInterestRateCard = Engine.Browser.CurrentBrowser.FindElement(AnnualInterestRateCardMakerDao);
@@ -318,7 +318,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
                 IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
                 firstrow.Click();
-                Engine.Browser.MiddlePause();
+                Engine.Browser.LongPause();
 
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralTableMakerDao);
                 Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
