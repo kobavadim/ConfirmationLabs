@@ -314,14 +314,17 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 string[] stringSeparators = new string[] { "(" };
                 var result = collateralTableValue.Split(stringSeparators, StringSplitOptions.None);
 
-                string token = result[0];
+                string token = result[0].Substring(0, 4);
                 string dollar = result[1];
 
                 IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
                 firstrow.Click();
                 Engine.Browser.LongPause();
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralTableMakerDao);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar.Trim()), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + dollar + " was: " + collateralCard.Text + "URL " + Engine.Browser.CurrentBrowser.Url);
+
+         
+
+                Assert.IsTrue(collateralCard.Text.Contains(token), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + collateralCard.Text + " was: " + token + "URL " + Engine.Browser.CurrentBrowser.Url);
             }
 
             catch (Exception exception)

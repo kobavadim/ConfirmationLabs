@@ -34,7 +34,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By SignButtonMetaMaskPopUp = By.CssSelector(".button");
         private static readonly By CollateralDropDown = By.CssSelector("[name='collateralType']");
 
-        private static readonly By LastRequestCreationDate = By.CssSelector(".content-table-row:nth-child(1) .first+ .bottom-cell");
+        private static readonly By LastRequestCreationDate = By.CssSelector(".content-table~ .content-table .first+ .bottom-cell");
         private static readonly By TokensTable = By.CssSelector(".token-item");
         private static readonly By RecentLoans = By.CssSelector(".issued-loans-wrapper");
         private static readonly By LoanTable = By.CssSelector(".loan-table");
@@ -269,17 +269,23 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
             amount.SendKeys("0.00005");
 
-            IWebElement interest = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"collateralToken\"]"));
-            interest.Click();
-            Browser.ShortPause();
-            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("WETH");
+            IWebElement interest = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]"));
+            interest.SendKeys("1");
 
+            IWebElement token = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"collateralToken\"]"));
+            token.Click();
+            try
+            {
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("WETH");
+            }
+            catch (Exception e)
+            {
+       
+            }
 
+            IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-form__btn.lend"));
+            submit.Click();
 
-            IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
-            collateral.SendKeys("0.0005");
-            Browser.ShortPause();
-            interest.Submit();
             Browser.MiddlePause();
 
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -1215,13 +1221,13 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewOffersToLandRequest();
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.LongPause();
 
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
                 string newcreatedrequest = newrequest.Text;
 
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
             }
             catch (Exception exception)
             {
