@@ -23,17 +23,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBB.VerifyNewOfferToLendCanbeCreated();
         }
 
-        [Category("OtlRequests")]
-        [Test]
-        public void BorrowNewlyCreatedRequesttoLendTest()
-        {
-            MainPageBB.VerifyNewlyCreatedRequestToLendCanBeBorrowed();
-        }
-
-
-
-
-
         [TearDown]
         public void TestCleanUp()
         {
