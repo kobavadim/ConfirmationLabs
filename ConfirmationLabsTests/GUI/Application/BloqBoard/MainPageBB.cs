@@ -73,6 +73,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By SeizeCollateralSimilarBtns = By.CssSelector(".collateral-act-btn");
         private static readonly By NextPage = By.CssSelector("ul.pagination > li:nth-of-type(6) > a.page-link > span");
         private static readonly By ConfirmSeizing = By.CssSelector("button.confirm-btn");
+        private static readonly By BorrowPtwoPBtn = By.CssSelector(".btn-green");
+        private static readonly By BorrowTokensGreenBtn = By.CssSelector("div.borrow-details > button.borrow-btn");
+        private static readonly By TransactionMessage = By.CssSelector("div.fund-loan-success-header");
+
+
+
 
 
         //METHODS
@@ -1234,6 +1240,52 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
         }
+
+        public static void VerifyNewlyCreatedRequestToLendCanBeBorrowed()
+        {
+
+            LoginToMetamaskUpdatedNewAccount();
+            Browser.MiddlePause();
+
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.BloqBoardStaging);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            Browser.ShortPause();
+
+            Browser.MiddlePause();
+            IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
+            borrowbtn.Click();
+            Browser.MiddlePause();
+
+            IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
+            borrowtokens.Click();
+            Browser.ShortPause();
+
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+
+            Browser.ShortPause();
+            SignRequest();
+
+            Browser.LongPause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+            IWebElement msg = Browser.CurrentBrowser.FindElement(TransactionMessage);
+            Assert.IsTrue(msg.Displayed, "", "");
+
+
+        }
+
+
     }
 }
 
