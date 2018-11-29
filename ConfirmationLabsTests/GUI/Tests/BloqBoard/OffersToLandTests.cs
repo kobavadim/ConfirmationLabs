@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.GUI.Application.BloqBoard;
 
@@ -20,7 +18,21 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CreateNewOfferToLendTest()
         {
-            MainPageBB.VerifyNewOfferToLendCanbeCreated();
+            MainPageBb.VerifyNewOfferToLendCanbeCreated();
+        }
+
+        [Category("OtlRequests")]
+        [Test]
+        public void BorrowNewlyCreatedOffersToLandReques()
+        {
+            MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed();
+        }
+
+        [Category("OtlRequests")]
+        [Test]
+        public void CheckOffersToLandValuesPresenceAfterRequests()
+        {
+            MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
         }
 
         [TearDown]

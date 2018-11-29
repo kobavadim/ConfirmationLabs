@@ -28,7 +28,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         //Tests
         public static void VerifyDatefromRecentLoans()
         {
-            MainPageBB.LoginToMetamask();
+            MainPageBb.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
@@ -39,7 +39,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
             Browser.MiddlePause();
-            MainPageBB.TermsandConditionAceptance();
+            MainPageBb.TermsandConditionAceptance();
             Browser.MiddlePause();
 
             string[] stringSeparator = { " " };
@@ -70,7 +70,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyAmountfromRecentLoans()
         {
-            MainPageBB.LoginToMetamask();
+            MainPageBb.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
@@ -81,7 +81,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
             Browser.MiddlePause();
-            MainPageBB.TermsandConditionAceptance();
+            MainPageBb.TermsandConditionAceptance();
             Browser.MiddlePause();
 
             IWebElement amount = Browser.CurrentBrowser.FindElement(Token);
@@ -113,7 +113,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyApRfromRecentLoans()
         {
-            MainPageBB.LoginToMetamask();
+            MainPageBb.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
@@ -124,7 +124,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
             Browser.MiddlePause();
-            MainPageBB.TermsandConditionAceptance();
+            MainPageBb.TermsandConditionAceptance();
             Browser.MiddlePause();
 
             IWebElement percent = Browser.CurrentBrowser.FindElement(By.CssSelector(".clickable-row:nth-child(1) .rate-item"));
@@ -145,7 +145,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyTermfromRecentLoans()
         {
-            MainPageBB.LoginToMetamask();
+            MainPageBb.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
@@ -157,7 +157,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
             Browser.MiddlePause();
-            MainPageBB.TermsandConditionAceptance();
+            MainPageBb.TermsandConditionAceptance();
             Browser.MiddlePause();
 
             IWebElement term = Browser.CurrentBrowser.FindElement(Term);

@@ -17,77 +17,77 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BloqBoardPageisOpenedTest()
         {
-            MainPageBB.VerifyPageisOpened();
+            MainPageBb.VerifyPageisOpened();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void TokensTableDisplayedTest()
         {
-            MainPageBB.VerifyTokensTableDisplayed();
+            MainPageBb.VerifyTokensTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void RecentLoansTableDisplayedTest()
         {
-            MainPageBB.VerifyRecentLoansTableDisplayed();  
+            MainPageBb.VerifyRecentLoansTableDisplayed();  
         }
 
         [Category("Bloqboard")]
         [Test]
         public void LoanTableDisplayedTest()
         {
-            MainPageBB.VerifyLoanTableDisplayed();
+            MainPageBb.VerifyLoanTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void LendToPoolTableDisplayedTest()
         {
-            MainPageBB.VerifyLendToPoolTableDisplayed();
+            MainPageBb.VerifyLendToPoolTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void AssetsTableDisplayTest()
         {
-            MainPageBB.VerifyAssetstableDisplayed();
+            MainPageBb.VerifyAssetsTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void MyBorrowedTokenstableDisplayTest()
         {
-            MainPageBB.VerifyMyBorrowedTokensTableDisplayed();
+            MainPageBb.VerifyMyBorrowedTokensTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void MyLendedTokenstableDisplayTest()
         {
-            MainPageBB.VerifyMyLendedTokensTableDisplayed();
+            MainPageBb.VerifyMyLendedTokensTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void MyOpenRequestsTableDisplayTest()
         {
-            MainPageBB.VerifyMyOpenRequestsTableDisplayed();
+            MainPageBb.VerifyMyOpenRequestsTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void MyCancelledRequestsTableDisplayTest()
         {
-            MainPageBB.VerifyMyCancelledRequestsTableDisplayed();
+            MainPageBb.VerifyMyCancelledRequestsTableDisplayed();
         }
 
         [Category("Bloqboard")]
         [Test]
         public void OpeningCardfromBloqBoardTest()
         {
-            MainPageBB.VerifyLoanScanCardisOpenedfromBloqBoard();
+            MainPageBb.VerifyLoanScanCardisOpenedfromBloqBoard();
         }
 
         [TearDown]

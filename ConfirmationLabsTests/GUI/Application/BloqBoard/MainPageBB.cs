@@ -9,10 +9,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 {
-    class MainPageBB
+    class MainPageBb
     {
         //Elements
-
         private static readonly By TermsAndCOnditionsCheckBox = By.CssSelector("div.terms-checkbox > label > input");
         private static readonly By Continuebtn = By.CssSelector("div.modal-footer > button.btn-green");
         private static readonly By LiquidityTable = By.CssSelector(".content-table-row");
@@ -24,7 +23,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By AmountInput = By.CssSelector(".wallet-info__value-input");
         private static readonly By Wrap = By.CssSelector(".wallet-info__exchange-button+ .wallet-info__exchange-button");
         static string Env = TestData.DefineEnvironmentDependingOnEnvironment();
-
         private static readonly By NewRequest = By.CssSelector(".token-item:nth-child(4) .token-item-name");
         private static readonly By AmountInputbyNewRequest = By.CssSelector("[name='amount']");
         private static readonly By InterestInputByNewRequest = By.CssSelector("[name='interestRate']");
@@ -33,8 +31,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By Signbtn = By.CssSelector("");
         private static readonly By SignButtonMetaMaskPopUp = By.CssSelector(".button");
         private static readonly By CollateralDropDown = By.CssSelector("[name='collateralType']");
-
-        private static readonly By LastRequestCreationDate = By.CssSelector(".content-table~ .content-table .first+ .bottom-cell");
+        private static readonly By LastRequestCreationDate = By.CssSelector("div.my-requests-wrapper > div:nth-of-type(4) > div.content-table-body > div:first-child > div:first-child > div.bottom-cell");
         private static readonly By TokensTable = By.CssSelector(".token-item");
         private static readonly By RecentLoans = By.CssSelector(".issued-loans-wrapper");
         private static readonly By LoanTable = By.CssSelector(".loan-table");
@@ -49,7 +46,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By ConfirmCancellationRequest = By.CssSelector("button.confirm-btn");
         private static readonly By LoanIssuedDateBloqBoard = By.CssSelector(".first .content-table-row:nth-child(1) .first+ .bottom-cell");
         private static readonly By LoanIssuedDateLoanscan = By.CssSelector("dl.row > dd:nth-of-type(5) > span");
-
         private static readonly By WalletIcon = By.CssSelector("[width='32'][fill='#18a9f2']");
         private static readonly By Logout = By.CssSelector(".account-menu__logout-button");
         private static readonly By LoginWithSeedBtn = By.CssSelector(".unlock-page__link--import");
@@ -63,7 +59,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By RepayBtn = By.CssSelector("#repayPopover-0");
         private static readonly By InputRepayAmount = By.CssSelector("input.repay-input");
         private static readonly By ConfirmRepay = By.CssSelector("button.confirm-repay-btn");
-
         private static readonly By FirstTransactionLoaned = By.CssSelector(".first .content-table-row:nth-child(1) .first");
         private static readonly By RepaymanrAmountLoanscan = By.CssSelector("li > span.loan-amount.repayment");
         private static readonly By WholeAmountToRepay = By.CssSelector("div > div:nth-of-type(2) > div.content-value.text-right > div:first-child");
@@ -73,7 +68,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By SeizeCollateralSimilarBtns = By.CssSelector(".collateral-act-btn");
         private static readonly By NextPage = By.CssSelector("ul.pagination > li:nth-of-type(6) > a.page-link > span");
         private static readonly By ConfirmSeizing = By.CssSelector("button.confirm-btn");
-
+        private static readonly By BorrowPtwoPBtn = By.CssSelector(".btn-green");
+        private static readonly By BorrowTokensGreenBtn = By.CssSelector("div.borrow-details > button.borrow-btn");
+        private static readonly By TransactionMessage = By.CssSelector("div.fund-loan-success-header");
 
         //METHODS
         public static void LoginToMetamask()
@@ -175,7 +172,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.MiddlePause();
         }
 
-        public static void foreachRows()
+        public static void WentThroughRequestTable()
         {
             IList<IWebElement> elementList = Browser.CurrentBrowser.FindElements(SeizeCollateralSimilarBtns);
 
@@ -507,7 +504,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
-        public static void VerifyAssetstableDisplayed()
+        public static void VerifyAssetsTableDisplayed()
         {
             try
             {
@@ -650,7 +647,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             return result;
         }
-
 
         public static void VerifyMyCancelledRequestsTableDisplayed()
         {
@@ -887,7 +883,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                MainPageBB.LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -1013,7 +1009,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                MainPageBB.LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -1144,7 +1140,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyCollateralCanBeSeized()
         {
-            MainPageBB.LoginToMetamask();
+            MainPageBb.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -1191,7 +1187,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyNewOfferToLendCanbeCreated()
         {
-
             try
             {
                 LoginToMetamask();
@@ -1199,7 +1194,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
 
                 string MetamaskTab = handles[0];
                 string BloqboardTab = handles[1];
@@ -1211,7 +1205,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 TermsandConditionAceptance();
                 Browser.ShortPause();
        
-
                 IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
                 string recentrequest = lastrequest.Text;
 
@@ -1220,8 +1213,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
                 CreateNewOffersToLandRequest();
-
-                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.LongPause();
 
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
@@ -1233,6 +1224,76 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             {
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
             }
+        }
+
+        public static void VerifyNewlyCreatedRequestToLendCanBeBorrowed()
+        {
+            LoginToMetamaskUpdatedNewAccount();
+            Browser.MiddlePause();
+
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            Browser.ShortPause();
+
+            IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
+            borrowbtn.Click();
+            Browser.MiddlePause();
+            IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
+            borrowtokens.Click();
+            Browser.ShortPause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+            SignRequest();
+            Browser.LongPause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+            IWebElement msg = Browser.CurrentBrowser.FindElement(TransactionMessage);
+            Assert.IsTrue(msg.Displayed, "", "");
+        }
+
+        public static void VerifyOffersToLandValuesPresenceAfterRequests()
+        {
+            LoginToMetamask();
+            Browser.MiddlePause();
+
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            Browser.ShortPause();
+
+            IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
+            borrowbtn.Click();
+            Browser.MiddlePause();
+            IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
+            borrowtokens.Click();
+            Browser.ShortPause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+            SignRequest();
+            Browser.LongPause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.LongPause();
+            IWebElement msg = Browser.CurrentBrowser.FindElement(TransactionMessage);
+            Assert.IsTrue(msg.Displayed, "", "");
         }
     }
 }

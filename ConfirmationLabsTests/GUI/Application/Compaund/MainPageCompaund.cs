@@ -199,7 +199,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBB.LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -273,7 +273,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.ShortPause();
 
                 Console.WriteLine("Confirming request...");
-                BloqBoard.MainPageBB.SignRequest();
+                BloqBoard.MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.ShortPause();
@@ -298,7 +298,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBB.LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -372,7 +372,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.ShortPause();
 
                 Console.WriteLine("Confirming request...");
-                BloqBoard.MainPageBB.SignRequest();
+                BloqBoard.MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
@@ -397,7 +397,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBB.LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -471,7 +471,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.ShortPause();
 
                 Console.WriteLine("Confirming request...");
-                BloqBoard.MainPageBB.SignRequest();
+                BloqBoard.MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
@@ -496,7 +496,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBB.LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -570,7 +570,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.ShortPause();
 
                 Console.WriteLine("Confirming request...");
-                BloqBoard.MainPageBB.SignRequest();
+                BloqBoard.MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
@@ -595,7 +595,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBB.LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -626,7 +626,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.ShortPause();
 
                 Console.WriteLine("Confirming request...");
-                BloqBoard.MainPageBB.SignRequest();
+                BloqBoard.MainPageBb.SignRequest();
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
@@ -642,7 +642,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyBorrowFunctionality()
         {
-            MainPageBB.LoginToMetamask();
+            MainPageBb.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -674,7 +674,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             Browser.ShortPause();
 
             Console.WriteLine("Confirming request...");
-            BloqBoard.MainPageBB.SignRequest();
+            BloqBoard.MainPageBb.SignRequest();
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
             Browser.LongPause();
@@ -687,7 +687,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyRepaytoLiquidityPoolFunctionality()
         {
-            MainPageBB.LoginToMetamask();
+            MainPageBb.LoginToMetamask();
 
             ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
             ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -727,7 +727,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             Browser.ShortPause();
 
             Console.WriteLine("Confirming request...");
-            BloqBoard.MainPageBB.SignRequest();
+            BloqBoard.MainPageBb.SignRequest();
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
             Browser.LongPause();

@@ -20,7 +20,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CreateNewRequestTest()
         {
-            MainPageBB.VerifyNewRequestCanbeCreated();
+            MainPageBb.VerifyNewRequestCanbeCreated();
         }
 
         [Category("Cancel")]
@@ -28,7 +28,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CancelRequestTest()
         {
-            MainPageBB.VerifyRequestCanbeCancelled();
+            MainPageBb.VerifyRequestCanbeCancelled();
         }
 
         [Category("Lend")]
@@ -36,7 +36,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void LendRequestTest()
         {
-            MainPageBB.VerifyRequestCanBeLended();
+            MainPageBb.VerifyRequestCanBeLended();
         }
 
         [Category("Repay")]
@@ -44,7 +44,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void RepayFunctionalityTest()
         {
-            MainPageBB.VerifyRepayFunctionality();
+            MainPageBb.VerifyRepayFunctionality();
         }
 
         [Category("Return")]
@@ -52,7 +52,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void ReturnCollateralTest()
         {
-            MainPageBB.VerifyCollatrealCanbeReturned();
+            MainPageBb.VerifyCollatrealCanbeReturned();
         }
 
         [Category("Seize")]
@@ -60,7 +60,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void SeizeCollateralTest()
         {
-            MainPageBB.VerifyCollateralCanBeSeized();
+            MainPageBb.VerifyCollateralCanBeSeized();
         }
 
         [TearDown]
