@@ -1282,6 +1282,69 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
         }
 
+        public static void VerifyNewlyCreatedRequestToBorrowCanBeLend()
+        {
+            LoginToMetamaskUpdatedNewAccount();
+            Browser.MiddlePause();
+
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+            string MetamaskTab = handles[0];
+            string BloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            Browser.ShortPause();
+
+            IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.side-splitter > div:nth-of-type(2) > div.content-table > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+            string recentrequest = lastBorrowed.Text;
+
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+
+            Browser.MiddlePause();
+            //Choose low values
+            IWebElement openfilter = Browser.CurrentBrowser.FindElement(By.CssSelector("div.filter-button__filter-wrapper"));
+            openfilter.Click();
+
+            IWebElement showallvalues = Browser.CurrentBrowser.FindElement(By.CssSelector("div.token-list-filter__collapse-label > span"));
+            showallvalues.Click();
+
+            IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div.token-list-filter__cell.token-list-filter__cell--token-principal > label"));
+            chooseLowValues.Click();
+
+            IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
+            apply.Click();
+            
+            IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".lend-btn"));
+            borrowbtns[0].Click();
+            Browser.MiddlePause();
+            IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-details-btn.fill"));
+            borrowtokens.Click();
+            Browser.ShortPause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+            SignRequest();
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+            IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
+            buttons[1].Click();
+            Browser.LongPause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+            Browser.LongPause();
+
+            IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.side-splitter > div:nth-of-type(2) > div.content-table > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+            string recentrequestChanged = lastBorrowedChanged.Text;
+            Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
+        }
+
         public static void VerifyOffersToLandValuesPresenceAfterRequests()
         {
             LoginToMetamask();

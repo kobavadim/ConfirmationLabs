@@ -195,7 +195,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             return loanedcount;
         }
 
-        public static void VerifyTokenCanbeLounedtoLiquidityPool()
+        public static void VerifyTokenCanbeLendedtoLiquidityPool()
         {
             try
             {
@@ -280,11 +280,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.LongPause();
                 string loanedAmountAfter = loanedcount;
                
-
                 var loanedAfter = CheckLoanedAmount();
-
-
-
                 Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
             }
 

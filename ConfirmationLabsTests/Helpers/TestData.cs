@@ -40,10 +40,6 @@ namespace ConfirmationLabsTests.Helpers
             public static string Lend = DefineRootAdressDependingOnEnvironment() + "lend";
             public static string Assets = DefineRootAdressDependingOnEnvironment() + "assets";
             public static string Loans = DefineRootAdressDependingOnEnvironment() + "loans";
-
-
-
-
         }
 
         public static string DefineEnvironmentDependingOnEnvironment()
