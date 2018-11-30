@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.Helpers;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -208,7 +209,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 Open();
                 IWebElement dharmacolumn = Engine.Browser.CurrentBrowser.FindElement(DharmaColumn);
                 dharmacolumn.Click();
-                Engine.Browser.MiddlePause();
+                Engine.Browser.LongPause();
 
                 IWebElement collateralTable = Engine.Browser.CurrentBrowser.FindElement(CollateralTable);
                 string collateralTableValue = collateralTable.Text;
@@ -222,9 +223,9 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
                 firstrow.Click();
                 Engine.Browser.LongPause();
-
+                String currentURL = Browser.CurrentBrowser.Url;
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
-                Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table");
+                Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table. expected: " + collateralCard.Text + " was: " + dollar + " url: " + currentURL);
 
 
             }
@@ -325,13 +326,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 var valueFromCard =  Convert.ToDouble(collateralCard.Text.Substring(0, 4));
                 var valueFromTable = Convert.ToDouble(token.Substring(0, 4));
                 var difference = valueFromTable - valueFromCard;
-                Assert.IsTrue(difference < 1, "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + collateralCard.Text + " was: " + token + " URL " + Engine.Browser.CurrentBrowser.Url);
+                Assert.IsTrue(difference < 1, "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + collateralCard.Text + " was: " + token + " URL " + Browser.CurrentBrowser.Url);
             }
 
             catch (Exception exception)
             {
                 Assert.FinilizeErrors(Env, "LOANSCAN", exception);
-
             }
 
         }

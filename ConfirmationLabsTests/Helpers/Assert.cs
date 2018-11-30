@@ -32,42 +32,32 @@ namespace ConfirmationLabsTests.Helpers
                 {
                     errormessage = "Page wasn't loaded during wait time... Please rerun tests or check manually";
                 }
+
+                if (exception.Message.Contains("Unable to locate element"))
+                {
+                    errormessage = "Page wasn't loaded during wait time... Please rerun tests or check manually";
+                    SlackClient.PostMessage("[" + ENV + "] " + component + ": site wasn't loaded correctly. Probably we have speed issue. Please recheck manually.");
+                }
                 else
                 {
-                    if (exception.Message.Contains("Unable to locate element"))
-                    {
-                        SlackClient.PostMessage("[" + ENV + "] " + component + ": site wasn't loaded correctly. Probably we have an issue. Please recheck manually.");
-                    }
-                    else
-                    {
-                        SlackClient.PostMessage(exception.Message);
-                    }
-
+                    errormessage = "Please check internet connection speed. The page wasn't loaded correctly"; 
+                    SlackClient.PostMessage(exception.Message);
                 }
-
             }
-            catch (Exception)
-            {
-
-            }
+            catch (Exception){}
 
             try
             {
                 Browser.CurrentBrowser.Close();
-
                 Browser.CurrentBrowser.Quit();
-            }
-            catch(Exception){ }
+            }catch(Exception){ }
 
             if (errormessage == "")
             {
                 throw new Exception(exception.Message);
             }
-            else
-            {
-                throw new Exception(errormessage);
-            }
-            
+
+            throw new Exception(errormessage);
         }
     }
 }
