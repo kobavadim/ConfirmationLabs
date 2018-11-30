@@ -699,8 +699,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewRequest();
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-                Browser.LongPause();
+                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                //Browser.LongPause();
 
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                 string newcreatedrequest = newrequest.Text;
@@ -1238,14 +1238,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string BloqboardTab = handles[1];
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
 
             Browser.MiddlePause();
             TermsandConditionAceptance();
             Browser.ShortPause();
 
-            IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
-            borrowbtn.Click();
+            IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+            string recentrequest = lastBorrowed.Text;
+
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+
+            Browser.MiddlePause();
+            IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-green.borrow-btn"));
+            borrowbtns[0].Click();
             Browser.MiddlePause();
             IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
             borrowtokens.Click();
@@ -1254,11 +1260,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.ShortPause();
             SignRequest();
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.ShortPause();
+            IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
+            buttons[1].Click();
             Browser.LongPause();
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
             Browser.LongPause();
-            IWebElement msg = Browser.CurrentBrowser.FindElement(TransactionMessage);
-            Assert.IsTrue(msg.Displayed, "", "");
+           
+            IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+            string recentrequestChanged = lastBorrowedChanged.Text;
+            Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
         }
 
         public static void VerifyOffersToLandValuesPresenceAfterRequests()

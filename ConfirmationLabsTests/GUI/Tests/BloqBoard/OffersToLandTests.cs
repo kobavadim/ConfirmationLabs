@@ -21,6 +21,8 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBb.VerifyNewOfferToLendCanbeCreated();
         }
 
+        //Already lended
+        [Category("Borrow")]
         [Category("OtlRequests")]
         [Test]
         public void BorrowNewlyCreatedOffersToLandReques()

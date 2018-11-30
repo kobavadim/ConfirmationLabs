@@ -406,7 +406,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 string BloqboardTab = handles[1];
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
@@ -471,7 +471,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.ShortPause();
 
                 Console.WriteLine("Confirming request...");
-                BloqBoard.MainPageBb.SignRequest();
+                MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();

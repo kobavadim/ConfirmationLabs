@@ -31,6 +31,8 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool();
         }
 
+        //Borrow from liquidity pool
+        [Category("Borrow")]
         [Category("Compound")]
         [Category("CmpndRequests")]
         [Test]

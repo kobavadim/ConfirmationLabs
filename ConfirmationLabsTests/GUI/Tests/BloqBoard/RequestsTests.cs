@@ -15,6 +15,8 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
+        //Add your request to borrow (WETH maze)
+        [Category("Borrow")]
         [Category("Create")]
         [Category("BlqRequests")]
         [Test]
