@@ -281,7 +281,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
 
             IWebElement LTV = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"ltv\"]"));
-            LTV.Clear();
+            LTV.SendKeys(OpenQA.Selenium.Keys.Control + "a");
+            LTV.SendKeys(OpenQA.Selenium.Keys.Backspace);
             LTV.SendKeys("50");
 
 
