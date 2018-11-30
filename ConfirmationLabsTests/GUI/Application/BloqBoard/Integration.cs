@@ -62,7 +62,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement dateloanscan = Browser.CurrentBrowser.FindElement(DateLoanScan);
             var datevaluesloanscan  = dateloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
             var dayvalue = datevaluesloanscan[0].Split(stringSeparatorDate, StringSplitOptions.None);
-            Assert.IsTrue(dayvalue[1].Equals(datevalues[2]), "BloqBoard", "Incorrect date is displayed on the recent loans table");
+            Assert.IsTrue(dayvalue[1].Equals(datevalues[2]), "BloqBoard",
+                "Incorrect date is displayed on the recent loans table expected: " + dayvalue[1] + "was" + datevalues[2]);
 
             var timeloanscan = datevaluesloanscan[1].Split(stringSeparatorColumn, StringSplitOptions.None);
             Assert.IsTrue(timeloanscan[1].Equals(timevalue[1]), "BloqBoard", "Incorrect time is displayed on the recent loans table");

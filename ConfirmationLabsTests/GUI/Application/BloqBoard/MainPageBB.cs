@@ -273,12 +273,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             token.Click();
             try
             {
-                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("WETH");
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("BAT");
             }
             catch (Exception e)
             {
        
             }
+
+            IWebElement LTV = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"ltv\"]"));
+            LTV.Clear();
+            LTV.SendKeys("50");
+
 
             IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-form__btn.lend"));
             submit.Click();
