@@ -15,16 +15,44 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Calculations")]
         [Test]
-        public void VerufyLTVCalculatedCorrectlyTest()
+        public void VerifyLtvOnHistoryOrderTest()
         {
-            MainPageBb.VerifyLTVCalculation();
+            MainPageBb.VerifyLtvOnHistoryOrder();
         }
 
         [Category("Calculations")]
         [Test]
-        public void VerufyAPRCalculatedCorrectlyTest()
+        public void VerifyLtvOnJustCreatedOrderTest()
         {
-            MainPageBb.VerifyAPRCalculation();
+            MainPageBb.VerifyLtvOnJustCreatedOrder();
+        }
+
+        [Category("Calculations")]
+        [Test]
+        public void VerifyAprOnHistoryOrderTest()
+        {
+            MainPageBb.VerifyAprOnHistoryOrder();
+        }
+
+        [Category("Calculations")]
+        [Test]
+        public void VerifyAprOnJustCreatedOrderTest()
+        {
+            MainPageBb.VerifyAPRCalculationOnJustCreatedOrder();
+        }
+
+        [Category("Calculations")]
+        [Test]
+        public void VerifyCollateralizationRatioTest()
+        {
+            MainPageBb.VerifyCollateralizationRatio();
+        }
+
+        [Category("Calculations")]
+        [Test]
+        public void VerifyRepayCalculationTest()
+        {
+            MainPageBb.VerifyRepayCalculation();
         }
 
         [TearDown]
