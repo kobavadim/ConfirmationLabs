@@ -40,6 +40,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend();
         }
 
+        [Ignore("Fix after redesign")]
         [Category("OtlRequests")]
         [Test]
         public void CheckOffersToLandValuesPresenceAfterRequests()

@@ -24,6 +24,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool();
         }
 
+        [Ignore("Fix after redesign")]
         [Category("Compound")]
         [Category("CmpndRequests")]
         [Test]
@@ -42,6 +43,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool();
         }
 
+        [Ignore("Fix after redesign")]
         [Category("Compound")]
         [Category("CmpndRequests")]
         [Test]

@@ -1363,21 +1363,357 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             TermsandConditionAceptance();
             Browser.ShortPause();
 
-            IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
-            borrowbtn.Click();
-            Browser.MiddlePause();
-            IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
-            borrowtokens.Click();
-            Browser.ShortPause();
-            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-            Browser.CurrentBrowser.Navigate().Refresh();
-            Browser.ShortPause();
-            SignRequest();
-            Browser.LongPause();
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.LongPause();
-            IWebElement msg = Browser.CurrentBrowser.FindElement(TransactionMessage);
-            Assert.IsTrue(msg.Displayed, "", "");
+            //IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
+            //borrowbtn.Click();
+            //Browser.MiddlePause();
+            //IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
+            //borrowtokens.Click();
+            //Browser.ShortPause();
+            //Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            //Browser.CurrentBrowser.Navigate().Refresh();
+            //Browser.ShortPause();
+            //SignRequest();
+            //Browser.LongPause();
+            //Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            //Browser.LongPause();
+            //IWebElement msg = Browser.CurrentBrowser.FindElement(TransactionMessage);
+            //Assert.IsTrue(msg.Displayed, "", "");
+        }
+
+        public static void VerifyETHCanBeWrapped()
+        {
+            try
+            {
+                LoginToMetamask();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+
+               IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string recentrequest = lastrequest.Text;
+
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                wrap.Click();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.0001");
+
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyETHCanBeUnwrapped()
+        {
+            try
+            {
+                LoginToMetamask();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+
+                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string recentrequest = lastrequest.Text;
+
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                wrap.Click();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.00005");
+
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyPermissionCanBeEnabled()
+        {
+            try
+            {
+                LoginToMetamask();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+
+                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string recentrequest = lastrequest.Text;
+
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                wrap.Click();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.00005");
+
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyPermissionCanBeDisabled()
+        {
+            try
+            {
+                LoginToMetamask();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+
+                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string recentrequest = lastrequest.Text;
+
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                wrap.Click();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.00005");
+
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyLTVCalculation()
+        {
+            try
+            {
+                LoginToMetamask();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+
+                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string recentrequest = lastrequest.Text;
+
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                wrap.Click();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.00005");
+
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
+        }
+
+        public static void VerifyAPRCalculation()
+        {
+            try
+            {
+                LoginToMetamask();
+                Browser.MiddlePause();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                string MetamaskTab = handles[0];
+                string BloqboardTab = handles[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                Browser.MiddlePause();
+                TermsandConditionAceptance();
+                Browser.ShortPause();
+
+                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string recentrequest = lastrequest.Text;
+
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                wrap.Click();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.00005");
+
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+            }
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
         }
     }
 }

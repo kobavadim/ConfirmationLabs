@@ -112,6 +112,8 @@
     <Compile Include="GUI\Application\BloqBoard\MainPageBB.cs" />
     <Compile Include="GUI\Application\Compaund\MainPageCompaund.cs" />
     <Compile Include="GUI\Application\LoanScan\CardPage.cs" />
+    <Compile Include="GUI\Tests\BloqBoard\CalculationTests.cs" />
+    <Compile Include="GUI\Tests\BloqBoard\WalletTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\Importer\Agreement.cs" />
     <Compile Include="GUI\Tests\LoanScan\Importer\ImportedDataValidation.cs" />
     <Compile Include="GUI\Application\LoanScan\Integration.cs" />
