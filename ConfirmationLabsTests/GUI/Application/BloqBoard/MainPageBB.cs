@@ -1441,6 +1441,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
                 Browser.LongPause();
 
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
@@ -1497,6 +1498,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
                 Browser.LongPause();
 
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
@@ -1665,6 +1667,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
                 Browser.LongPause();
 
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
@@ -1693,7 +1696,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
-
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
                 Browser.ShortPause();
@@ -1721,9 +1723,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
-                Browser.LongPause();
                 Browser.CurrentBrowser.Navigate().Refresh();
-
+                Browser.LongPause();
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
                 string newcreatedrequest = newrequest.Text;
 
