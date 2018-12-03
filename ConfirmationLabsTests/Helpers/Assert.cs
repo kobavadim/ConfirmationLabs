@@ -40,7 +40,7 @@ namespace ConfirmationLabsTests.Helpers
                 }
                 else
                 {
-                    errormessage = "Please check internet connection speed. The page wasn't loaded correctly"; 
+                    errormessage = "The page wasn't loaded correctly. " + exception.Message; 
                     SlackClient.PostMessage(exception.Message);
                 }
             }

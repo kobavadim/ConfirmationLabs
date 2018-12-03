@@ -1705,7 +1705,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 wrap.Click();
 
                 IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                amount.SendKeys("0.00005");
+                amount.SendKeys("0.0001");
                 Browser.ShortPause();
                 IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
                 btnwrap.Click();
@@ -1721,8 +1721,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
                 Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
 
                 IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
                 string newcreatedrequest = newrequest.Text;
