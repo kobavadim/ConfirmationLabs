@@ -331,6 +331,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
             collateral.SendKeys("0.0005");
             Browser.ShortPause();
+
+            IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
+            click.Click();
+            
+            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("REP");
+
             interest.Submit();
             Browser.MiddlePause();
 
@@ -690,8 +696,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-
-
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
@@ -1256,6 +1260,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
             Browser.MiddlePause();
+
+            //Choose low values
+            IWebElement openfilter = Browser.CurrentBrowser.FindElement(By.CssSelector("div.filter-button__filter-wrapper"));
+            openfilter.Click();
+
+            IWebElement showallvalues = Browser.CurrentBrowser.FindElement(By.CssSelector("div.token-list-filter__collapse-label > span"));
+            showallvalues.Click();
+
+            IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div:nth-of-type(3) > label"));
+            chooseLowValues.Click();
+
+            IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
+            apply.Click();
+
             IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-green.borrow-btn"));
             borrowbtns[0].Click();
             Browser.MiddlePause();
