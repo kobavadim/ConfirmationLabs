@@ -1398,7 +1398,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             //Assert.IsTrue(msg.Displayed, "", "");
         }
 
-        public static void VerifyETHCanBeWrapped()
+        public static void VerifyEthCanBeWrapped()
         {
             try
             {
@@ -1425,7 +1425,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 wrap.Click();
 
                 IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                amount.SendKeys("0.001");
+                amount.SendKeys("0.01");
 
                 IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
                 btnwrap.Click();
@@ -1482,7 +1482,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 wrap.Click();
 
                 IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                amount.SendKeys("0.001");
+                amount.SendKeys("0.01");
 
                 IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
                 btnwrap.Click();
@@ -1534,18 +1534,47 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 TermsandConditionAceptance();
                 Browser.ShortPause();
 
-                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
-                string recentrequest = lastrequest.Text;
+                IWebElement walletPermissions = Browser.CurrentBrowser.FindElement(By.CssSelector("button.permission-button"));
+                walletPermissions.Click();
+                Browser.ShortPause();
 
-                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
-                wrap.Click();
+                IList<IWebElement> DAI = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table-row:nth-child(4) .switch , .content-table-row:nth-child(4) .slider_off"));
+                //Assert.IsTrue(DAI.Selected);
+                //if (DAI.Selected)
+                //{
+                //    DAI.Click();
+                //    Browser.ShortPause();
+                //    Browser.ShortPause();
+                //    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                //    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                //    Browser.LongPause();
+                //    Browser.CurrentBrowser.Navigate().Refresh();
+                //    Browser.ShortPause();
 
-                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                amount.SendKeys("0.00005");
+                //    Console.WriteLine("Signing request...");
+                //    SignRequest();
 
-                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
-                btnwrap.Click();
+                //    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                //    Browser.LongPause();
+                //    DAI.Click();
+                //    Browser.ShortPause();
+                //    Browser.ShortPause();
+                //    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                //    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                //    Browser.LongPause();
+                //    Browser.CurrentBrowser.Navigate().Refresh();
+                //    Browser.ShortPause();
 
+                //    Console.WriteLine("Signing request...");
+                //    SignRequest();
+
+                //    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                //    Browser.LongPause();
+                //}
+                //Browser.ShortPause();
+                //DAI.Click();
+
+                Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
                 Browser.LongPause();
@@ -1557,12 +1586,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
-                Browser.LongPause();
 
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
-                string newcreatedrequest = newrequest.Text;
+                Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
+                Browser.ShortPause();
 
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+                Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
+ 
+                IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                Assert.IsTrue(!isDisabled.Selected, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
             }
             catch (Exception exception)
             {

@@ -17,7 +17,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void WrapTest()
         {
-            MainPageBb.VerifyETHCanBeWrapped();
+            MainPageBb.VerifyEthCanBeWrapped();
         }
 
         [Category("Wallet")]
