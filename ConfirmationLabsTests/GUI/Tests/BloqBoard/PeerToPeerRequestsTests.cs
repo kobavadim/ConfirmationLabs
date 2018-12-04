@@ -35,7 +35,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Ignore("Fix after redesign")]
-        [Category("BlqRequests")]
+        //[Category("BlqRequests")]
         [Test]
         public void LendRequestTest()
         {
@@ -62,7 +62,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Ignore("Fix after redesign")]
         [Category("Seize")]
-        [Category("BlqRequests")]
+        //[Category("BlqRequests")]
         [Test]
         public void SeizeCollateralTest()
         {
