@@ -700,14 +700,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
                 Browser.ShortPause();
-                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                string recentrequest = lastrequest.Text;
-
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-
-                Browser.MiddlePause();
-                Console.WriteLine("Creating new request...");
                 //PP vs P
+                //IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                //string recentrequest = lastrequest.Text;
+
+                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+
+                //Browser.MiddlePause();
+                //Console.WriteLine("Creating new request...");
+          
                 //CreateNewRequest();
 
                 //IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
@@ -902,16 +903,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
 
-                IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
-                loansbtn.Click();
-                Browser.LongPause();
-
-                string amountrepayed = "";
-                string BloqboardTabNew = "";
-                string MetamaskTabNew = "";
-                string[] result = new string[] { };
-
                 //PP vs P
+                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
+                //loansbtn.Click();
+                //Browser.LongPause();
+
+                //string amountrepayed = "";
+                //string BloqboardTabNew = "";
+                //string MetamaskTabNew = "";
+                //string[] result = new string[] { };
+
                 //bool isRepaid = false;
 
                 //for (int i = 0; i < 25; i++)
