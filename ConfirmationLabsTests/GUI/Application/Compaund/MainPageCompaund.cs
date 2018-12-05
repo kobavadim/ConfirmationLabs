@@ -312,49 +312,49 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 //loansbtn.Click();
                 Browser.LongPause();
 
-                IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
-                string[] stringSeparators = new string[] { "." };
-                var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
+                //IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
+                //string[] stringSeparators = new string[] { "." };
+                //var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
 
-                double loanedRep = double.Parse(result[0]);
-                string loanedcount = "";
+                //double loanedRep = double.Parse(result[0]);
+                //string loanedcount = "";
 
-                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
-                foreach (var el in elementListRows)
-                {
-                    var children = el.FindElements(By.XPath(".//*"));
-                    var tokenName = children[0].Text;
-                    int i = 1;
-                    if (tokenName.Contains("WETH"))
-                    {
+                //IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                //foreach (var el in elementListRows)
+                //{
+                //    var children = el.FindElements(By.XPath(".//*"));
+                //    var tokenName = children[0].Text;
+                //    int i = 1;
+                //    if (tokenName.Contains("WETH"))
+                //    {
 
-                        foreach (var ele in children)
-                        {
-                            if (ele.Text.Contains("Loaned") && loanedcount == "")
-                            {
-                                loanedcount = ele.Text;
+                //        foreach (var ele in children)
+                //        {
+                //            if (ele.Text.Contains("Loaned") && loanedcount == "")
+                //            {
+                //                loanedcount = ele.Text;
 
-                            }
+                //            }
 
 
-                            if (ele.Text.Contains("WITHDRAW") && ele.TagName == "div")
-                            {
-                                i++;
+                //            if (ele.Text.Contains("WITHDRAW") && ele.TagName == "div")
+                //            {
+                //                i++;
 
-                                if (i >= 3)
-                                {
-                                    ele.Click();
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                //                if (i >= 3)
+                //                {
+                //                    ele.Click();
+                //                    break;
+                //                }
+                //            }
+                //        }
+                //    }
+                //}
 
-                Browser.ShortPause();
-                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
-                amount.SendKeys("0.001");
-                Browser.MiddlePause();
+                //Browser.ShortPause();
+                //IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                //amount.SendKeys("0.001");
+                //Browser.MiddlePause();
                 //IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
                 //confirm.Click();
                 //Browser.MiddlePause();
