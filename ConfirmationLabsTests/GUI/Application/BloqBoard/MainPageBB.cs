@@ -271,13 +271,22 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             IWebElement token = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"collateralToken\"]"));
             token.Click();
-            try
+
+            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Environment.Contains("PROD"))
             {
-                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("BAT");
+                try
+                {
+                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
+                }catch (Exception e){}
             }
-            catch (Exception e)
+            else
             {
-       
+                try
+                {
+                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("REP");
+                }
+                catch (Exception e) { }
             }
 
             IWebElement LTV = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"ltv\"]"));
@@ -336,7 +345,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             click.Click();
             
             new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("REP");
-
+            Browser.ShortPause();
             interest.Submit();
             Browser.MiddlePause();
 
@@ -1195,45 +1204,70 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         }
 
-        public static void VerifyNewOfferToLendCanbeCreated()
+        public static void VerifyNewOfferToLendCanBeCreated()
         {
-            try
+            string environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (environment.Contains("STAGING"))
             {
+                try
+                {
+                    LoginToMetamask();
+                    Browser.MiddlePause();
+
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
+
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
+                    Browser.ShortPause();
+
+                    IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
+                    string recentrequest = lastrequest.Text;
+
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+
+                    Browser.MiddlePause();
+                    Console.WriteLine("Creating new request...");
+                    CreateNewOffersToLandRequest();
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                    Browser.MiddlePause();
+
+                    IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
+                    string newcreatedrequest = newrequest.Text;
+
+                    Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
+                }
+                catch (Exception exception)
+                {
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                }
+            }
+            else
+            {
+                //throw new Exception("not implemented on PROD...");
                 LoginToMetamask();
                 Browser.MiddlePause();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
+                string bloqboardTab = handles[1];
 
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
                 Browser.ShortPause();
-       
-                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
-                string recentrequest = lastrequest.Text;
-
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-                Browser.MiddlePause();
-                Console.WriteLine("Creating new request...");
-                CreateNewOffersToLandRequest();
-                Browser.LongPause();
-
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
-                string newcreatedrequest = newrequest.Text;
-
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
             }
-            catch (Exception exception)
-            {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
-            }
+
         }
 
         public static void VerifyNewlyCreatedRequestToLendCanBeBorrowed()

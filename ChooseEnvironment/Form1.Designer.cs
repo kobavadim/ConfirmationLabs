@@ -70,7 +70,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(37, 82);
+            this.checkBox3.Location = new System.Drawing.Point(37, 72);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(72, 17);
             this.checkBox3.TabIndex = 5;

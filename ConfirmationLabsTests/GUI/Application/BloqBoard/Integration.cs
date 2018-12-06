@@ -72,45 +72,52 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyAmountfromRecentLoans()
         {
-            MainPageBb.LoginToMetamask();
-
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
-
-            string bloqboardTabMain = handlesMain[1];
-
-            Browser.CurrentBrowser.SwitchTo().Window(bloqboardTabMain);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-            Browser.MiddlePause();
-            MainPageBb.TermsandConditionAceptance();
-            Browser.MiddlePause();
-
-            IWebElement amount = Browser.CurrentBrowser.FindElement(Token);
-            string[] stringSeparator = { " " };
-            var result = amount.Text.Split(stringSeparator, StringSplitOptions.None);
-            string amountvalue = result[0];
-            string tokenvalue = result[1];
-
-            IWebElement term = Browser.CurrentBrowser.FindElement(Term);
-            term.Click();
-
-            Browser.LongPause();
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-            string LoanScan = handles[2];
-            Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
-            IWebElement tokenloanscan = Browser.CurrentBrowser.FindElement(TokenLoanScan);
-
-            var tokenvaluesloanscan = tokenloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
-            string str = amountvalue.Substring(0, 5);
-            if (!amountvalue.Substring(0, 4).Contains(tokenvaluesloanscan[0].Substring(0, 4)))
+            try
             {
+                MainPageBb.LoginToMetamask();
+
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
+
+                string bloqboardTabMain = handlesMain[1];
+
+                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTabMain);
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+
+                Browser.MiddlePause();
+                MainPageBb.TermsandConditionAceptance();
+                Browser.MiddlePause();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(Token);
+                string[] stringSeparator = { " " };
+                var result = amount.Text.Split(stringSeparator, StringSplitOptions.None);
+                string amountvalue = result[0];
+                string tokenvalue = result[1];
+
+                IWebElement term = Browser.CurrentBrowser.FindElement(Term);
+                term.Click();
+
+                Browser.LongPause();
+                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+                string LoanScan = handles[2];
+                Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
+                IWebElement tokenloanscan = Browser.CurrentBrowser.FindElement(TokenLoanScan);
+
+                var tokenvaluesloanscan = tokenloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
+                string str = amountvalue.Substring(0, 5);
                 if (!amountvalue.Substring(0, 4).Contains(tokenvaluesloanscan[0].Substring(0, 4)))
                 {
-                    throw new Exception("[" + Env + "] BloqBoard: Incorrect amountis displayed in the recent loans table. Please check manually.");
+                    if (!amountvalue.Substring(0, 4).Contains(tokenvaluesloanscan[0].Substring(0, 4)))
+                    {
+                        throw new Exception("[" + Env + "] BloqBoard: Incorrect amountis displayed in the recent loans table. Please check manually.");
+                    }
                 }
+                Assert.IsTrue(tokenvalue.Equals(tokenvaluesloanscan[1]), "BloqBoard", "Incorrect token is displayed on the recent loans table");
             }
-            Assert.IsTrue(tokenvalue.Equals(tokenvaluesloanscan[1]), "BloqBoard", "Incorrect token is displayed on the recent loans table");
+            catch (Exception exception)
+            {
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+            }
         }
 
         public static void VerifyApRfromRecentLoans()
@@ -142,7 +149,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
 
             IWebElement percentageLoan = Browser.CurrentBrowser.FindElement(By.CssSelector("dl.row > dd:nth-of-type(4) > span"));
-            Assert.IsTrue(percentageLoan.Text.Contains(percentvalue), "BloqBoard", "Incorrect loan interest rate is displayed on the recent loans table");
+            Assert.IsTrue(percentageLoan.Text.Contains(percentvalue), "BloqBoard", "Incorrect loan interest rate is displayed on the recent loans table. expected/was: " + percentageLoan.Text + " " +percentvalue);
         }
 
         public static void VerifyTermfromRecentLoans()

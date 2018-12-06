@@ -13,13 +13,14 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
+        //https://staging.bloqboard.com/add-offer-to-lend
         [Category("Lend")]
         [Category("OtlCreate")]
         [Category("OtlRequests")]
         [Test]
         public void CreateNewOfferToLendTest()
         {
-            MainPageBb.VerifyNewOfferToLendCanbeCreated();
+            MainPageBb.VerifyNewOfferToLendCanBeCreated();
         }
 
         //Already created lend request

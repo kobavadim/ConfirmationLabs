@@ -9,6 +9,8 @@ namespace ConfirmationLabsTests.Helpers
 
     public static class TestData
     {
+        //PROD_Mainnet
+        //STAGING_Kovan
         public static string GenerateConstant(string purpose)
         {
             DateTime now = DateTime.Now;

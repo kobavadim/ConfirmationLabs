@@ -14,12 +14,12 @@ namespace ChooseEnvironment
         {
             if(checkBox1.Checked)
             {
-                Environment.SetEnvironmentVariable("ENVIRONMENT_ENV", "PROD", EnvironmentVariableTarget.User);
+                Environment.SetEnvironmentVariable("ENVIRONMENT_ENV", "PROD_Mainnet", EnvironmentVariableTarget.User);
                 MessageBox.Show("Done!");
             }
             else if(checkBox2.Checked)
             {
-                Environment.SetEnvironmentVariable("ENVIRONMENT_ENV", "STAGING", EnvironmentVariableTarget.User);
+                Environment.SetEnvironmentVariable("ENVIRONMENT_ENV", "STAGING_Kovan", EnvironmentVariableTarget.User);
                 MessageBox.Show("Done!");
             }
             else if (checkBox3.Checked)

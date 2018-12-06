@@ -36,12 +36,12 @@ namespace ConfirmationLabsTests.Helpers
                 if (exception.Message.Contains("Unable to locate element"))
                 {
                     errormessage = "Page wasn't loaded during wait time... Please rerun tests or check manually";
-                    SlackClient.PostMessage("[" + ENV + "] " + component + ": site wasn't loaded correctly. Probably we have speed issue. Please recheck manually.");
+                    SlackClient.PostMessage("[" + ENV + "] " + component + ": site wasn't loaded correctly. Probably we have speed issue. Please recheck manually.", false);
                 }
                 else
                 {
                     errormessage = "The page wasn't loaded correctly. " + exception.Message; 
-                    SlackClient.PostMessage(exception.Message);
+                    SlackClient.PostMessage(exception.Message, false);
                 }
             }
             catch (Exception){}
