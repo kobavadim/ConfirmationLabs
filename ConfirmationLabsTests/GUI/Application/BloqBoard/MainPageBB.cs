@@ -700,21 +700,22 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
                 Browser.ShortPause();
-                //PP vs P
-                //IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                //string recentrequest = lastrequest.Text;
+                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                string recentrequest = lastrequest.Text;
 
-                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
-                //Browser.MiddlePause();
-                //Console.WriteLine("Creating new request...");
-          
-                //CreateNewRequest();
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewRequest();
 
-                //IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                //string newcreatedrequest = newrequest.Text;
+                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                //Browser.LongPause();
 
-                //Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+                IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                string newcreatedrequest = newrequest.Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
             }
             catch (Exception exception)
             {
@@ -742,36 +743,39 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 TermsandConditionAceptance();
                 Browser.ShortPause();
 
-                //PP vs P
+                //CreateNewRequest();
 
-                //IWebElement creationDate = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                //string date = creationDate.Text;
-                //IWebElement cancelbtn = Browser.CurrentBrowser.FindElement(CancelRequestBtn);
-                //cancelbtn.Click();
-                //Browser.ShortPause();
-                //IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmCancellationRequest);
-                //confirm.Click();
+                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 //Browser.MiddlePause();
-                //Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                //Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                //Browser.LongPause();
 
-                //Browser.CurrentBrowser.Navigate().Refresh();
+                IWebElement creationDate = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                string date = creationDate.Text;
+                IWebElement cancelbtn = Browser.CurrentBrowser.FindElement(CancelRequestBtn);
+                cancelbtn.Click();
+                Browser.ShortPause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmCancellationRequest);
+                confirm.Click();
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
 
-                //Browser.ShortPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
 
-                //SignRequest();
+                Browser.ShortPause();
 
-                //Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                //Browser.LongPause();
-                //Browser.LongPause();
-                //Browser.LongPause();
+                SignRequest();
 
-                ////добавить ообработку длинных транзакций
-                //IWebElement cancelledcreationtime = Browser.CurrentBrowser.FindElement(CancelledCreationTime);
-                //string cancelledtime = cancelledcreationtime.Text;
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.LongPause();
+                Browser.LongPause();
 
-                //Assert.IsTrue(cancelledtime.Contains(date), "[" + Env + "] BLOQBOARD", "Cancelled request is not displayed in the 'Cancelled requests' table");
+                //добавить ообработку длинных транзакций
+                IWebElement cancelledcreationtime = Browser.CurrentBrowser.FindElement(CancelledCreationTime);
+                string cancelledtime = cancelledcreationtime.Text;
+
+                Assert.IsTrue(cancelledtime.Contains(date), "[" + Env + "] BLOQBOARD", "Cancelled request is not displayed in the 'Cancelled requests' table");
             }
             catch (Exception exception)
             {
@@ -903,107 +907,107 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
 
-                //PP vs P
-                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
-                //loansbtn.Click();
-                //Browser.LongPause();
+                IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
+                loansbtn.Click();
+                Browser.LongPause();
 
-                //string amountrepayed = "";
-                //string BloqboardTabNew = "";
-                //string MetamaskTabNew = "";
-                //string[] result = new string[] { };
-
-                //bool isRepaid = false;
-
-                //for (int i = 0; i < 25; i++)
-                //{
-                //    if (!isRepaid)
-                //    {
-                //        Browser.ShortPause();
-                //        IWebElement page = Browser.CurrentBrowser.FindElement(By.CssSelector(".page-item:nth-child(7) .page-link"));
-                //        page.Click();
-                //        var clickedTime = "no collateral found";
+                string amountrepayed = "";
+                string BloqboardTabNew = "";
+                string MetamaskTabNew = "";
+                string[] result = new string[] { };
 
 
-                //        IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
-                //        foreach (var el in elementListRows)
-                //        {
-                //            var children = el.FindElements(By.XPath(".//*"));
+                bool isRepaid = false;
 
-                //            var time = children[0].Text;
-                //            if (time.Contains("16-10-2018"))
-                //            {
-                //                var button = children[children.Count - 1];
-                //                if (button.Text == "Delinquent")
-                //                {
-                //                    button.Click();
+                for (int i = 0; i < 25; i++)
+                {
+                    if (!isRepaid)
+                    {
+                        Browser.ShortPause();
+                        IWebElement page = Browser.CurrentBrowser.FindElement(By.CssSelector(".page-item:nth-child(7) .page-link"));
+                        page.Click();
+                        var clickedTime = "no collateral found";
 
-                //                    Browser.LongPause();
 
-                //                    ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
+                        IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
+                        foreach (var el in elementListRows)
+                        {
+                            var children = el.FindElements(By.XPath(".//*"));
 
-                //                    string Loanscan = handlesnew[2];
-                //                    BloqboardTabNew = handlesnew[1];
-                //                    MetamaskTabNew = handlesnew[0];
+                            var time = children[0].Text;
+                            if (time.Contains("16-10-2018"))
+                            {
+                                var button = children[children.Count - 1];
+                                if (button.Text == "Delinquent")
+                                {
+                                    button.Click();
 
-                //                    Browser.CurrentBrowser.SwitchTo().Window(Loanscan);
-                //                    Browser.MiddlePause();
+                                    Browser.LongPause();
 
-                //                    IWebElement loanscanamount = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
-                //                    amountrepayed = loanscanamount.Text;
+                                    ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
 
-                //                    string[] stringSeparators = new string[] { "(" };
-                //                    result = amountrepayed.Split(stringSeparators, StringSplitOptions.None);
+                                    string Loanscan = handlesnew[2];
+                                    BloqboardTabNew = handlesnew[1];
+                                    MetamaskTabNew = handlesnew[0];
 
-                //                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
+                                    Browser.CurrentBrowser.SwitchTo().Window(Loanscan);
+                                    Browser.MiddlePause();
 
-                //                    var repay = children[children.Count - 2];
-                //                    repay.Click();
-                //                    isRepaid = true;
-                //                    break;
-                //                }
-                //            }
-                //        }
-                //    }
-                //    else
-                //    {
-                //        break;
-                //    }
-                //}
+                                    IWebElement loanscanamount = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
+                                    amountrepayed = loanscanamount.Text;
 
-                //Browser.MiddlePause();
-                //IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
-                //amountrepay.SendKeys("0.00001");
+                                    string[] stringSeparators = new string[] { "(" };
+                                    result = amountrepayed.Split(stringSeparators, StringSplitOptions.None);
 
-                //IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
-                //confirmrepaybtn.Click();
-                //Browser.MiddlePause();
-                //Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
-                //Browser.CurrentBrowser.Navigate().Refresh();
-                //Browser.ShortPause();
-                //SignRequest();
-                //Browser.LongPause();
-                //Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
+                                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
 
-                //Browser.ShortPause();
-                //CheckRepay();
+                                    var repay = children[children.Count - 2];
+                                    repay.Click();
+                                    isRepaid = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
 
-                //Browser.LongPause();
+                Browser.MiddlePause();
+                IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
+                amountrepay.SendKeys("0.00001");
 
-                //ReadOnlyCollection<string> handlesnew2 = Browser.CurrentBrowser.WindowHandles;
+                IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
+                confirmrepaybtn.Click();
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+                SignRequest();
+                Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
 
-                //string Loanscannew = handlesnew2[4];
+                Browser.ShortPause();
+                CheckRepay();
 
-                //Browser.CurrentBrowser.SwitchTo().Window(Loanscannew);
-                //Browser.MiddlePause();
+                Browser.LongPause();
 
-                //IWebElement loanscanamountnew = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
-                //string amountrepayednew = loanscanamountnew.Text;
+                ReadOnlyCollection<string> handlesnew2 = Browser.CurrentBrowser.WindowHandles;
 
-                //string[] stringSeparatorsnew = new string[] { "(" };
-                //var resultnew = amountrepayednew.Split(stringSeparatorsnew, StringSplitOptions.None);
+                string Loanscannew = handlesnew2[4];
 
-                //Assert.IsTrue(!result[0].Contains(resultnew[0]), "[" + Env + "] BLOQBOARD", "Repay transaction is not performed as expected");
+                Browser.CurrentBrowser.SwitchTo().Window(Loanscannew);
+                Browser.MiddlePause();
+
+                IWebElement loanscanamountnew = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
+                string amountrepayednew = loanscanamountnew.Text;
+
+                string[] stringSeparatorsnew = new string[] { "(" };
+                var resultnew = amountrepayednew.Split(stringSeparatorsnew, StringSplitOptions.None);
+
+                Assert.IsTrue(!result[0].Contains(resultnew[0]), "[" + Env + "] BLOQBOARD", "Repay transaction is not performed as expected");
             }
             catch (Exception exception)
             {
@@ -1015,7 +1019,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                LoginToMetamask();
+                MainPageBb.LoginToMetamask();
 
                 ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
                 ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
@@ -1029,115 +1033,113 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
 
-                //PP vs P
-
-                //    IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
-                //    loansbtn.Click();
-                //    Browser.LongPause();
+                IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
+                loansbtn.Click();
+                Browser.LongPause();
 
 
-                //    ReadOnlyCollection<string> handlesnew1 = Browser.CurrentBrowser.WindowHandles;
+                ReadOnlyCollection<string> handlesnew1 = Browser.CurrentBrowser.WindowHandles;
 
 
-                //    string amountrepayed = "";
-                //    string BloqboardTabNew = "";
-                //    string MetamaskTabNew = "";
-                //    string date = "";
+                string amountrepayed = "";
+                string BloqboardTabNew = "";
+                string MetamaskTabNew = "";
+                string date = "";
 
-                //    bool isRepaid = false;
+                bool isRepaid = false;
 
-                //    for (int i = 0; i < 25; i++)
-                //    {
-                //        if (!isRepaid)
-                //        {
-                //            var clickedTime = "no collateral found";
+                for (int i = 0; i < 25; i++)
+                {
+                    if (!isRepaid)
+                    {
+                        var clickedTime = "no collateral found";
 
-                //            IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
-                //            foreach (var el in elementListRows)
-                //            {
-                //                var children = el.FindElements(By.XPath(".//*"));
-
-
-                //                var button = children[children.Count - 2];
-                //                if (button.Text == "REPAY")
-                //                {
-                //                    date = children[0].Text;
-
-                //                    var repay = children[children.Count - 2];
-                //                    repay.Click();
-                //                    isRepaid = true;
-                //                    break;
-                //                }
-
-                //            }
-
-                //            if (!isRepaid)
-                //            {
-                //                Browser.ShortPause();
-                //                IWebElement page = Browser.CurrentBrowser.FindElement(By.CssSelector(".page-item:nth-child(7) .page-link"));
-                //                page.Click();
-                //            }
-                //            else
-                //            {
-
-                //            }
-                //        }
-                //        else
-                //        {
-                //            break;
-                //        }
-                //    }
+                        IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".first div.content-table-row"));
+                        foreach (var el in elementListRows)
+                        {
+                            var children = el.FindElements(By.XPath(".//*"));
 
 
-                //    Browser.MiddlePause();
-                //    IWebElement amounttorepay = Browser.CurrentBrowser.FindElement(WholeAmountToRepay);
-                //    string amount = amounttorepay.Text;
+                            var button = children[children.Count - 2];
+                            if (button.Text == "REPAY")
+                            {
+                                date = children[0].Text;
 
-                //    string[] stringSeparators = new string[] { "WETH" };
-                //    var result = amount.Split(stringSeparators, StringSplitOptions.None);
+                                var repay = children[children.Count - 2];
+                                repay.Click();
+                                isRepaid = true;
+                                break;
+                            }
+
+                        }
+
+                        if (!isRepaid)
+                        {
+                            Browser.ShortPause();
+                            IWebElement page = Browser.CurrentBrowser.FindElement(By.CssSelector(".page-item:nth-child(7) .page-link"));
+                            page.Click();
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+
+                Browser.MiddlePause();
+                IWebElement amounttorepay = Browser.CurrentBrowser.FindElement(WholeAmountToRepay);
+                string amount = amounttorepay.Text;
+
+                string[] stringSeparators = new string[] { "WETH" };
+                var result = amount.Split(stringSeparators, StringSplitOptions.None);
 
 
 
-                //    IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
-                //    amountrepay.SendKeys(result[0]);
+                IWebElement amountrepay = Browser.CurrentBrowser.FindElement(InputRepayAmount);
+                amountrepay.SendKeys(result[0]);
 
-                //    IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
-                //    confirmrepaybtn.Click();
-                //    Browser.MiddlePause();
-
-
-                //    ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
-
-                //    BloqboardTabNew = handlesnew[1];
-                //    MetamaskTabNew = handlesnew[0];
+                IWebElement confirmrepaybtn = Browser.CurrentBrowser.FindElement(ConfirmRepay);
+                confirmrepaybtn.Click();
+                Browser.MiddlePause();
 
 
-                //    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
-                //    Browser.CurrentBrowser.Navigate().Refresh();
-                //    Browser.ShortPause();
-                //    SignRequest();
-                //    Browser.LongPause();
-                //    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
+                ReadOnlyCollection<string> handlesnew = Browser.CurrentBrowser.WindowHandles;
 
-                //    Browser.ShortPause();
-                //    CheckReturn(date);
+                BloqboardTabNew = handlesnew[1];
+                MetamaskTabNew = handlesnew[0];
 
-                //    Browser.ShortPause();
-                //    IWebElement confirmreturnCollateral = Browser.CurrentBrowser.FindElement(By.CssSelector(".confirm-btn"));
-                //    confirmreturnCollateral.Click();
-                //    Browser.MiddlePause();
 
-                //    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
-                //    Browser.CurrentBrowser.Navigate().Refresh();
-                //    Browser.ShortPause();
-                //    SignRequest();
-                //    Browser.LongPause();
-                //    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+                SignRequest();
+                Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
 
-                //    Browser.ShortPause();
-                //    bool isreturned = CheckCollateral(date);
+                Browser.ShortPause();
+                CheckReturn(date);
 
-                //    Assert.IsTrue(isreturned, "[" + Env + "] BLOQBOARD", "Return collateral is not performed as expected");
+                Browser.ShortPause();
+                IWebElement confirmreturnCollateral = Browser.CurrentBrowser.FindElement(By.CssSelector(".confirm-btn"));
+                confirmreturnCollateral.Click();
+                Browser.MiddlePause();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTabNew);
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+                SignRequest();
+                Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabNew);
+
+                Browser.ShortPause();
+                bool isreturned = CheckCollateral(date);
+
+                Assert.IsTrue(isreturned, "[" + Env + "] BLOQBOARD", "Return collateral is not performed as expected");
             }
             catch (Exception exception)
             {
@@ -1532,67 +1534,63 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 TermsandConditionAceptance();
                 Browser.ShortPause();
 
-                IWebElement walletPermissions = Browser.CurrentBrowser.FindElement(By.CssSelector("button.permission-button"));
-                walletPermissions.Click();
-                Browser.ShortPause();
-
-                IList<IWebElement> DAI = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table-row:nth-child(4) .switch , .content-table-row:nth-child(4) .slider_off"));
-                //Assert.IsTrue(DAI.Selected);
-                //if (DAI.Selected)
-                //{
-                //    DAI.Click();
-                //    Browser.ShortPause();
-                //    Browser.ShortPause();
-                //    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                //    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                //    Browser.LongPause();
-                //    Browser.CurrentBrowser.Navigate().Refresh();
-                //    Browser.ShortPause();
-
-                //    Console.WriteLine("Signing request...");
-                //    SignRequest();
-
-                //    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                //    Browser.LongPause();
-                //    DAI.Click();
-                //    Browser.ShortPause();
-                //    Browser.ShortPause();
-                //    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                //    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                //    Browser.LongPause();
-                //    Browser.CurrentBrowser.Navigate().Refresh();
-                //    Browser.ShortPause();
-
-                //    Console.WriteLine("Signing request...");
-                //    SignRequest();
-
-                //    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                //    Browser.LongPause();
-                //}
-                //Browser.ShortPause();
-                //DAI.Click();
-
-                Browser.ShortPause();
-                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
-
-                Console.WriteLine("Signing request...");
-                SignRequest();
-
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.LongPause();
-
                 Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
                 Browser.ShortPause();
+                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("1");
+                Browser.ShortPause();
+                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
+                Browser.ShortPause();
 
+ 
                 Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
                 new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
- 
-                IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
-                Assert.IsTrue(!isDisabled.Selected, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                Browser.MiddlePause();
+
+                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                if (submit.Enabled)
+                {
+                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                    isDisabled.Click();
+                    Browser.MiddlePause();
+
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
+
+                    Console.WriteLine("Confirming request...");
+                    SignRequest();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.LongPause();
+                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                    Assert.IsTrue(!submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                }
+                else
+                {
+                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                    isDisabled.Click();
+                    Browser.MiddlePause();
+
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
+
+                    Console.WriteLine("Confirming request...");
+                    SignRequest();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.LongPause();
+                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                    Assert.IsTrue(submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                }
+
+         
+                
+       
             }
             catch (Exception exception)
             {
@@ -1620,35 +1618,62 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 TermsandConditionAceptance();
                 Browser.ShortPause();
 
-                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
-                string recentrequest = lastrequest.Text;
-
-                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
-                wrap.Click();
-
-                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                amount.SendKeys("0.00005");
-
-                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
-                btnwrap.Click();
-
-                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
+                Browser.ShortPause();
+                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("1");
+                Browser.ShortPause();
+                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
                 Browser.ShortPause();
 
-                Console.WriteLine("Signing request...");
-                SignRequest();
+                Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
+                Browser.MiddlePause();
 
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.LongPause();
-                Browser.LongPause();
+                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                if (submit.Enabled)
+                {
+                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                    isDisabled.Click();
+                    Browser.MiddlePause();
 
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.bottom-cell"));
-                string newcreatedrequest = newrequest.Text;
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
 
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually");
+                    Console.WriteLine("Confirming request...");
+                    SignRequest();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.LongPause();
+                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                    Assert.IsTrue(!submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                }
+                else
+                {
+                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                    isDisabled.Click();
+                    Browser.MiddlePause();
+
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
+
+                    Console.WriteLine("Confirming request...");
+                    SignRequest();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.LongPause();
+                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                    Assert.IsTrue(submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                }
+
+
+
+
             }
             catch (Exception exception)
             {

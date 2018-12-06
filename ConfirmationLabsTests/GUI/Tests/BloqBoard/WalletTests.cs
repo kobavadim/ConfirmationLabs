@@ -41,6 +41,20 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBb.VerifyPermissionCanBeDisabled();
         }
 
+        [Category("Wallet")]
+        [Test]
+        public void EnablePermissionFromWalletTest()
+        {
+            MainPageBb.VerifyPermissionCanBeEnabled();
+        }
+
+        [Category("Wallet")]
+        [Test]
+        public void DisablePermissionFromWalletTest()
+        {
+            MainPageBb.VerifyPermissionCanBeDisabled();
+        }
+
         [TearDown]
         public void TestCleanUp()
         {
