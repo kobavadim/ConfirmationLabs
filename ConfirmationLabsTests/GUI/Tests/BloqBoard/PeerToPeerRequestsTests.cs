@@ -17,13 +17,14 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         //https://staging.bloqboard.com/add-request-to-borrow
         //Add your request to borrow (WETH maze)
+        //You don't have enough REP for collateral. Please transfer additional REP to your wallet or use different type of collateral.
         [Category("Borrow")]
         [Category("Create")]
         [Category("BlqRequests")]
         [Test]
         public void AddBorrowRequestTest()
         {
-            MainPageBb.VerifyNewRequestCanbeCreated();
+            MainPageBb.VerifyNewBorrowRequestCanbeCreated();
         }
 
         [Ignore("Fix after redesign")]

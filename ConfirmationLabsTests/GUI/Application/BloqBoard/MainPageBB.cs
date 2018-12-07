@@ -318,7 +318,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.LongPause();
         }
 
-        public static void CreateNewRequest()
+        public static void CreateNewBorrowRequest()
         {
             IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-item-name"));
             foreach (var btn in buttons)
@@ -707,7 +707,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
-        public static void VerifyNewRequestCanbeCreated()
+        public static void VerifyNewBorrowRequestCanbeCreated()
         {
 
             try
@@ -735,7 +735,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
-                CreateNewRequest();
+                CreateNewBorrowRequest();
 
                 //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 //Browser.LongPause();
