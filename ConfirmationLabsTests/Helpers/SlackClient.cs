@@ -46,7 +46,7 @@ namespace ConfirmationLabsTests.Helpers
             }
         }
 
-        public static void PostMessage(string message, bool issend)
+        public static void PostMessageToSlack(string message, bool issend)
         {
             string urlWithAccessToken = "https://hooks.slack.com/services/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";
 
