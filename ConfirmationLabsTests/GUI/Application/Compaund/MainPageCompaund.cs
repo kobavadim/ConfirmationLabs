@@ -472,7 +472,19 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.LongPause();
+                string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+                if (Environment.Contains("STAGING"))
+                {
+                    Browser.LongPause();
+                    Browser.LongPause();
+                }
+                else
+                {
+                    Browser.LongPause();
+                    Browser.LongPause();
+                    Browser.LongPause();
+                }
+
                 string loanedAmountAfter = loanedcount;
 
 

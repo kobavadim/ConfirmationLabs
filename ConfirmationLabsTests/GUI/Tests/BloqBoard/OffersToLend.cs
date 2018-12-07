@@ -37,7 +37,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         //Already created borrow request
         [Category("Lend")]
         [Category("OtlRequests")]
-        [Category("notprod")]
         [Test]
         public void LendNewlyCreatedBorrowOfferRequest()
         {
