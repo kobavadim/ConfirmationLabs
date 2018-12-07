@@ -217,11 +217,6 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 //loansbtn.Click();
                 Browser.LongPause();
 
-                //IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
-                //string[] stringSeparators = new string[] { "." };
-                //var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
-
-                //double loanedRep = double.Parse(result[0]);
                 string loanedcount = "";
 
                 IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
@@ -274,9 +269,20 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.ShortPause();
-                Browser.LongPause();
-                string loanedAmountAfter = loanedcount;
+
+                string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+                if (Environment.Contains("STAGING"))
+                {
+                    Browser.LongPause();
+                    Browser.LongPause();
+                }
+                else
+                {
+                    Browser.LongPause();
+                    Browser.LongPause();
+                    Browser.LongPause();
+                }
+                
                
                 var loanedAfter = CheckLoanedAmount();
                 Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
