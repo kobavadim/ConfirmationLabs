@@ -1672,84 +1672,90 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyPermissionCanBeDisabled()
         {
-            try
+            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Environment.Contains("STAGING"))
             {
-                LoginToMetamask();
-                Browser.MiddlePause();
-
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
-
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
-
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-                Browser.ShortPause();
-
-                Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
-                Browser.ShortPause();
-                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("1");
-                Browser.ShortPause();
-                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
-                Browser.ShortPause();
-
-                Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
-                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
-                Browser.MiddlePause();
-
-                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
-                if (submit.Enabled)
+                try
                 {
-                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
-                    isDisabled.Click();
+                    LoginToMetamask();
                     Browser.MiddlePause();
 
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
+
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
                     Browser.ShortPause();
 
-                    Console.WriteLine("Confirming request...");
-                    SignRequest();
+                    Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
                     Browser.ShortPause();
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.LongPause();
-                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
-                    Assert.IsTrue(!submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
-                }
-                else
-                {
-                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
-                    isDisabled.Click();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("1");
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
+                    Browser.ShortPause();
+
+                    Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
+                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
                     Browser.MiddlePause();
 
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.ShortPause();
+                    IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                    if (submit.Enabled)
+                    {
+                        IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                        isDisabled.Click();
+                        Browser.MiddlePause();
 
-                    Console.WriteLine("Confirming request...");
-                    SignRequest();
-                    Browser.ShortPause();
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.LongPause();
-                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
-                    Assert.IsTrue(submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                        Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                        Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                        Browser.LongPause();
+                        Browser.CurrentBrowser.Navigate().Refresh();
+                        Browser.ShortPause();
+
+                        Console.WriteLine("Confirming request...");
+                        SignRequest();
+                        Browser.ShortPause();
+                        Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                        Browser.LongPause();
+                        IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                        Assert.IsTrue(!submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                    }
+                    else
+                    {
+                        IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                        isDisabled.Click();
+                        Browser.MiddlePause();
+
+                        Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                        Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                        Browser.LongPause();
+                        Browser.CurrentBrowser.Navigate().Refresh();
+                        Browser.ShortPause();
+
+                        Console.WriteLine("Confirming request...");
+                        SignRequest();
+                        Browser.ShortPause();
+                        Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                        Browser.LongPause();
+                        IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                        Assert.IsTrue(submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                    }
+
                 }
-
-
-
-
+                catch (Exception exception)
+                {
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
             }
-            catch (Exception exception)
+            else
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                Console.WriteLine("Investigation...");
+                IgnoreAfterLogin("PROD sherlock");
             }
         }
 
