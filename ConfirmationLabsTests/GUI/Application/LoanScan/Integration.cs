@@ -89,7 +89,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
             }
         }
 
@@ -160,7 +160,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
             }
 
 
@@ -196,7 +196,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
             }
 
 
@@ -232,7 +232,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
             }
 
         }
@@ -272,12 +272,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 }
 
 
-                IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
-                Console.WriteLine("%Repayed value: card " + repayedCard + " table " + repayedTableValue);
-                if (!repayedCard.Text.Contains(repayedTableValue))
-                {
-                    throw new Exception("[" + Env + "] LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
-                }
+                //IWebElement repayedCard = Engine.Browser.CurrentBrowser.FindElement(RepayedCard);
+                //Console.WriteLine("%Repayed value: card " + repayedCard + " table " + repayedTableValue);
+                //if (!repayedCard.Text.Contains(repayedTableValue))
+                //{
+                //    throw new Exception("[" + Env + "] LOANSCAN: %Repayed value doesn't match through the table and the card. Please check manually.");
+                //}
 
                 IWebElement lendingProtocolCard = Engine.Browser.CurrentBrowser.FindElement(LendingProtocolCard);
                 Console.WriteLine("Lending Protocol: card " + lendingProtocolCard + " table " + lendingProtocolValue);
@@ -293,7 +293,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
             }
 
 
@@ -331,7 +331,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
             }
 
         }
@@ -359,7 +359,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
 
             }
 
@@ -388,7 +388,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCAN", exception);
+                Assert.FinilizeErrors(Env, "LOANSCAN", exception, false);
 
             }
         }

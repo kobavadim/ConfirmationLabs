@@ -159,7 +159,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             //Assert.IsTrue(Browser.CurrentBrowser.SwitchTo().Window(popup).Url == ""); // url is OK  
             Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[0]); // close the tab
             Browser.CurrentBrowser.SwitchTo().Window(Browser.CurrentBrowser.WindowHandles[1]); // get back to the main window
-
         }
 
         public static void TermsandConditionAceptance()
@@ -452,7 +451,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -468,7 +467,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -484,7 +483,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -502,7 +501,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -521,7 +520,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -540,7 +539,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -559,7 +558,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -578,7 +577,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -597,7 +596,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -618,6 +617,25 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     break;
                 }
             }
+        }
+
+        public static void IgnoreAfterLogin(string reason)
+        {
+            //throw new Exception("not implemented...");
+            LoginToMetamask();
+            Browser.MiddlePause();
+
+            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+            string bloqboardTab = handles[1];
+
+            Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            Browser.ShortPause();
         }
 
         public static void CheckReturn(string date)
@@ -684,7 +702,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -728,7 +746,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -788,7 +806,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -827,7 +845,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -893,7 +911,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
 
         }
@@ -1020,7 +1038,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -1152,7 +1170,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
 
         }
@@ -1246,7 +1264,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 catch (Exception exception)
                 {
-                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }
             else
@@ -1381,7 +1399,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.ShortPause();
             SignRequest();
-            Browser.MiddlePause();
+            Browser.LongPause();
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.ShortPause();
             IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
@@ -1434,201 +1452,221 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyEthCanBeWrapped()
         {
-            try
+            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Environment.Contains("STAGING"))
             {
-                LoginToMetamask();
-                Browser.MiddlePause();
+                try
+                {
+                    LoginToMetamask();
+                    Browser.MiddlePause();
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
 
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
 
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-                Browser.ShortPause();
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
+                    Browser.ShortPause();
 
-               IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                string recentrequest = lastrequest.Text;
+                    IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.top-cell"));
+                    string recentrequest = lastrequest.Text;
 
-                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
-                wrap.Click();
+                    IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                    wrap.Click();
 
-                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                amount.SendKeys("0.01");
+                    IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                    amount.SendKeys("0.01");
 
-                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
-                btnwrap.Click();
+                    IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                    btnwrap.Click();
 
-                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
 
-                Console.WriteLine("Signing request...");
-                SignRequest();
+                    Console.WriteLine("Signing request...");
+                    SignRequest();
 
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.LongPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.LongPause();
 
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                string newcreatedrequest = newrequest.Text;
+                    IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.top-cell"));
+                    string newcreatedrequest = newrequest.Text;
 
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
+                    Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
+                }
+                catch (Exception exception)
+                {
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
             }
-            catch (Exception exception)
+            else
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                IgnoreAfterLogin("PROD sherlock");
             }
         }
 
         public static void VerifyETHCanBeUnwrapped()
         {
-            try
+            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Environment.Contains("STAGING"))
             {
-                LoginToMetamask();
-                Browser.MiddlePause();
+                try
+                {
+                    LoginToMetamask();
+                    Browser.MiddlePause();
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
 
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
 
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-                Browser.ShortPause();
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
+                    Browser.ShortPause();
 
-                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:first-child > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                string recentrequest = lastrequest.Text;
+                    IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:first-child > div.content-table-cell.amount-cell.text-right > div.top-cell"));
+                    string recentrequest = lastrequest.Text;
 
-                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#unWrapPopover"));
-                wrap.Click();
+                    IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#unWrapPopover"));
+                    wrap.Click();
 
-                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                amount.SendKeys("0.01");
+                    IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                    amount.SendKeys("0.01");
 
-                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
-                btnwrap.Click();
+                    IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                    btnwrap.Click();
 
-                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
 
-                Console.WriteLine("Signing request...");
-                SignRequest();
+                    Console.WriteLine("Signing request...");
+                    SignRequest();
 
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.LongPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.LongPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.LongPause();
 
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:first-child > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                string newcreatedrequest = newrequest.Text;
+                    IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:first-child > div.content-table-cell.amount-cell.text-right > div.top-cell"));
+                    string newcreatedrequest = newrequest.Text;
 
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
+                    Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
+                }
+                catch (Exception exception)
+                {
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
             }
-            catch (Exception exception)
+            else
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                IgnoreAfterLogin("PROD sherlock");
             }
         }
 
         public static void VerifyPermissionCanBeEnabled()
         {
-            try
+            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Environment.Contains("STAGING"))
             {
-                LoginToMetamask();
-                Browser.MiddlePause();
-
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
-
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
-
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-                Browser.ShortPause();
-
-                Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
-                Browser.ShortPause();
-                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("1");
-                Browser.ShortPause();
-                Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
-                Browser.ShortPause();
-
- 
-                Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
-                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
-                Browser.MiddlePause();
-
-                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
-                if (submit.Enabled)
+                try
                 {
-                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
-                    isDisabled.Click();
+                    LoginToMetamask();
                     Browser.MiddlePause();
 
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
+
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
                     Browser.ShortPause();
 
-                    Console.WriteLine("Confirming request...");
-                    SignRequest();
+                    Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
                     Browser.ShortPause();
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.LongPause();
-                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
-                    Assert.IsTrue(!submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
-                }
-                else
-                {
-                    IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
-                    isDisabled.Click();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("1");
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
+                    Browser.ShortPause();
+
+
+                    Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
+                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
                     Browser.MiddlePause();
 
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.ShortPause();
+                    IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                    if (submit.Enabled)
+                    {
+                        IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                        isDisabled.Click();
+                        Browser.MiddlePause();
 
-                    Console.WriteLine("Confirming request...");
-                    SignRequest();
-                    Browser.ShortPause();
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.LongPause();
-                    IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
-                    Assert.IsTrue(submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                        Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                        Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                        Browser.LongPause();
+                        Browser.CurrentBrowser.Navigate().Refresh();
+                        Browser.ShortPause();
+
+                        Console.WriteLine("Confirming request...");
+                        SignRequest();
+                        Browser.ShortPause();
+                        Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                        Browser.LongPause();
+                        IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                        Assert.IsTrue(!submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                    }
+                    else
+                    {
+                        IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                        isDisabled.Click();
+                        Browser.MiddlePause();
+
+                        Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                        Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                        Browser.LongPause();
+                        Browser.CurrentBrowser.Navigate().Refresh();
+                        Browser.ShortPause();
+
+                        Console.WriteLine("Confirming request...");
+                        SignRequest();
+                        Browser.ShortPause();
+                        Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                        Browser.LongPause();
+                        IWebElement submitAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
+                        Assert.IsTrue(submitAfter.Enabled, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                    }
                 }
-
-         
-                
-       
+                catch (Exception exception)
+                {
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
             }
-            catch (Exception exception)
+            else
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                IgnoreAfterLogin("PROD sherlock");
             }
         }
 
@@ -1711,7 +1749,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -1766,7 +1804,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -1821,7 +1859,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -1876,7 +1914,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -1931,7 +1969,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -1986,7 +2024,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -2041,7 +2079,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
     }

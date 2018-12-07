@@ -98,7 +98,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception);
+                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception, false);
             }
         }
 
@@ -119,7 +119,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception);
+                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception, false);
             }
         }
 
@@ -153,7 +153,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception);
+                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception, false);
             }
 
 
@@ -182,7 +182,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception);
+                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception, false);
             }
         }
 
@@ -212,7 +212,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception);
+                Assert.FinilizeErrors(Env, "LoanScan Mobile", exception, false);
             }
         }
 
@@ -239,7 +239,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "LOANSCANMOBILE", exception);
+                Assert.FinilizeErrors(Env, "LOANSCANMOBILE", exception, false);
             }
         }
     }

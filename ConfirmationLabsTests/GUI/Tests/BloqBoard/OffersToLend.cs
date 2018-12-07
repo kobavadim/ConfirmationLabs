@@ -32,6 +32,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed();
         }
 
+        //https://staging.bloqboard.com/loans
         //Already created borrow request
         [Category("Lend")]
         [Category("OtlRequests")]

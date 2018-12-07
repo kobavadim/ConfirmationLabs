@@ -139,7 +139,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -264,16 +264,14 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 confirm.Click();
                 Browser.MiddlePause();
 
-
-
                 Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
                 Browser.LongPause();
                 Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
+                Browser.MiddlePause();
 
                 Console.WriteLine("Confirming request...");
-                BloqBoard.MainPageBb.SignRequest();
+                MainPageBb.SignRequest();
                 Browser.ShortPause();
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.ShortPause();
@@ -286,7 +284,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -383,7 +381,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -482,7 +480,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -581,7 +579,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -629,7 +627,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
 
         }

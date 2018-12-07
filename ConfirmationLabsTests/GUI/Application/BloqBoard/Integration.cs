@@ -116,40 +116,55 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             catch (Exception exception)
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception);
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
         public static void VerifyApRfromRecentLoans()
         {
-            MainPageBb.LoginToMetamask();
+            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Environment.Contains("STAGING"))
+            {
+                try
+                {
+                    MainPageBb.LoginToMetamask();
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
 
-            string BloqboardTabMain = handlesMain[1];
+                    string BloqboardTabMain = handlesMain[1];
 
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabMain);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabMain);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
 
-            Browser.MiddlePause();
-            MainPageBb.TermsandConditionAceptance();
-            Browser.MiddlePause();
+                    Browser.MiddlePause();
+                    MainPageBb.TermsandConditionAceptance();
+                    Browser.MiddlePause();
 
-            IWebElement percent = Browser.CurrentBrowser.FindElement(By.CssSelector(".clickable-row:nth-child(1) .rate-item"));
-            string percentvalue = Regex.Replace(percent.Text, @"\s+", "");
+                    IWebElement percent = Browser.CurrentBrowser.FindElement(By.CssSelector(".clickable-row:nth-child(1) .rate-item"));
+                    string percentvalue = Regex.Replace(percent.Text, @"\s+", "");
 
-            IWebElement term = Browser.CurrentBrowser.FindElement(Term);
-            term.Click();
+                    IWebElement term = Browser.CurrentBrowser.FindElement(Term);
+                    term.Click();
 
-            Browser.LongPause();
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+                    Browser.LongPause();
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-            string LoanScan = handles[2];
-            Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
+                    string LoanScan = handles[2];
+                    Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
 
-            IWebElement percentageLoan = Browser.CurrentBrowser.FindElement(By.CssSelector("dl.row > dd:nth-of-type(4) > span"));
-            Assert.IsTrue(percentageLoan.Text.Contains(percentvalue), "BloqBoard", "Incorrect loan interest rate is displayed on the recent loans table. expected/was: " + percentageLoan.Text + " " +percentvalue);
+                    IWebElement percentageLoan = Browser.CurrentBrowser.FindElement(By.CssSelector("dl.row > dd:nth-of-type(4) > span"));
+                    Assert.IsTrue(percentageLoan.Text.Contains(percentvalue), "BloqBoard", "Incorrect loan interest rate is displayed on the recent loans table. expected/was: " + percentageLoan.Text + " " + percentvalue);
+                }
+                catch (Exception exception)
+                {
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
+            }
+            else
+            {
+                MainPageBb.IgnoreAfterLogin("PROD sherlock");
+            }
         }
 
         public static void VerifyTermfromRecentLoans()
