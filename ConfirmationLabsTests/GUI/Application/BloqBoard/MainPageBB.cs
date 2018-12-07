@@ -707,48 +707,57 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
-        public static void VerifyNewBorrowRequestCanbeCreated()
+        public static void VerifyNewBorrowRequestCanBeCreated()
         {
-
-            try
+            string environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (environment.Contains("STAGING"))
             {
-                LoginToMetamask();
-                Browser.MiddlePause();
+                throw new Exception("waiting for collateral tokens implementation...");
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+                try
+                {
+                    LoginToMetamask();
+                    Browser.MiddlePause();
+
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
 
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
 
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
 
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-                Browser.ShortPause();
-                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                string recentrequest = lastrequest.Text;
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
+                    Browser.ShortPause();
+                    IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                    string recentrequest = lastrequest.Text;
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
-                Browser.MiddlePause();
-                Console.WriteLine("Creating new request...");
-                CreateNewBorrowRequest();
+                    Browser.MiddlePause();
+                    Console.WriteLine("Creating new request...");
+                    CreateNewBorrowRequest();
 
-                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-                //Browser.LongPause();
+                    //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                    //Browser.LongPause();
 
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                string newcreatedrequest = newrequest.Text;
+                    IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                    string newcreatedrequest = newrequest.Text;
 
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+                    Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+                }
+                catch (Exception exception)
+                {
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
             }
-            catch (Exception exception)
+            else
             {
-                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
+
         }
 
         public static void VerifyRequestCanbeCancelled()
@@ -1270,21 +1279,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             else
             {
-                //throw new Exception("not implemented on PROD...");
-                LoginToMetamask();
-                Browser.MiddlePause();
-
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                string bloqboardTab = handles[1];
-
-                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-                Browser.ShortPause();
+                throw new Exception("not implemented on PROD...");
             }
 
         }

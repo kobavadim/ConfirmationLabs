@@ -24,7 +24,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void AddBorrowRequestTest()
         {
-            MainPageBb.VerifyNewBorrowRequestCanbeCreated();
+            MainPageBb.VerifyNewBorrowRequestCanBeCreated();
         }
 
         [Ignore("Fix after redesign")]

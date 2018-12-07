@@ -24,6 +24,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         //Already created lend request
+        //Kovan is good
         [Category("Borrow")]
         [Category("OtlRequests")]
         [Test]
