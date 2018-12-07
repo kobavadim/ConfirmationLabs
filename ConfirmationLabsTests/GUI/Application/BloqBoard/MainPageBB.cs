@@ -4,6 +4,7 @@ using ConfirmationLabsTests.Helpers;
 using ConfirmationLabsTests.GUI.Engine;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Forms;
 using OpenQA.Selenium.Support.UI;
 
@@ -1755,6 +1756,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             else
             {
                 Console.WriteLine("Investigation...");
+                Debug.WriteLine("Investigation...");
                 IgnoreAfterLogin("PROD sherlock");
             }
         }
