@@ -1340,6 +1340,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
             if (Environment.Contains("STAGING"))
             {
+                //working version
                 try
                 {
                     LoginToMetamaskUpdatedNewAccount();
@@ -1374,8 +1375,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div.token-list-filter__cell.token-list-filter__cell--token-principal > label"));
                     chooseLowValues.Click();
 
+
+                    IWebElement chooseLowValuesWeth = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div:nth-of-type(3) > label"));
+                    chooseLowValuesWeth.Click();
+                    
+
                     IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
                     apply.Click();
+
+                    IWebElement lovValued = Browser.CurrentBrowser.FindElement(By.CssSelector("div.dropdown__header"));
+                    lovValued.Click();
+
+                    IWebElement lowamount = Browser.CurrentBrowser.FindElement(By.CssSelector("div.dropdown__list > div:nth-of-type(5) > div.sort-dropdown__item"));
+                    lowamount.Click();
+                    Browser.ShortPause();
 
                     IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".lend-btn"));
                     borrowbtns[0].Click();
@@ -1388,6 +1401,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     Browser.ShortPause();
                     SignRequest();
                     Browser.LongPause();
+                    Browser.MiddlePause();
                     Browser.CurrentBrowser.Navigate().Refresh();
                     Browser.ShortPause();
                     IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
