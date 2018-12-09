@@ -319,19 +319,31 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
 
             IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
-            amount.SendKeys("0.00005");
+            amount.SendKeys("0.00001");
 
             IWebElement interest = Browser.CurrentBrowser.FindElement(InterestInputByNewRequest);
-            interest.SendKeys("5");
+            interest.SendKeys("1");
 
             IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
-            collateral.SendKeys("0.0005");
+            collateral.SendKeys("0.00002");
             Browser.ShortPause();
 
-            IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
-            click.Click();
-            
-            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("REP");
+
+            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (Environment.Contains("STAGING"))
+            {
+                IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
+                click.Click();
+
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("REP");
+
+
+            }
+
+
+
+
+
             Browser.ShortPause();
             interest.Submit();
             Browser.MiddlePause();
@@ -349,9 +361,37 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             Console.WriteLine("Signing request...");
             SignRequest();
+      
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.MiddlePause();
+            try
+            {
+                IList<IWebElement> signAgain = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
+                signAgain[1].Click();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+
+           
+
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.LongPause();
+            string EnvironmentAfterSign = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (EnvironmentAfterSign.Contains("STAGING"))
+            {
+                Browser.LongPause();
+                Browser.LongPause();
+            }
+            else
+            {
+                Browser.LongPause();
+                Browser.LongPause();
+                Browser.LongPause();
+            }
         }
 
         public static void SignRequest()
@@ -744,6 +784,80 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             else
             {
+                try
+                {
+                    LoginToMetamask();
+                    Browser.MiddlePause();
+
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
+
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
+                    Browser.ShortPause();
+
+                    string recentrequest = "";
+
+                    string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+                    if (Environment.Contains("STAGING"))
+                    {
+                        IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                        recentrequest = lastrequest.Text;
+                    }
+                    else
+                    {
+                        IWebElement lastrequestPROD = Browser.CurrentBrowser.FindElement(
+                            By.CssSelector(
+                                "div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                        recentrequest = lastrequestPROD.Text;
+
+                    }
+
+
+
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+
+                    Browser.MiddlePause();
+                    Console.WriteLine("Creating new request...");
+                    CreateNewBorrowRequest();
+
+                    //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                    //Browser.LongPause();
+
+                   
+                    string newcreatedrequest = "";
+             
+
+                 
+                    if (Environment.Contains("STAGING"))
+                    {
+                        IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
+                        newcreatedrequest = newrequest.Text;
+                    }
+                    else
+                    {
+                        IWebElement lastrequestPROD = Browser.CurrentBrowser.FindElement(
+                            By.CssSelector(
+                                "div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                        newcreatedrequest = lastrequestPROD.Text;
+
+                    }
+
+
+                    Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception("Request wait time is more than two minutes...");
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
             }
 
         }
@@ -1274,66 +1388,148 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyNewlyCreatedRequestToLendCanBeBorrowed()
         {
-            LoginToMetamaskUpdatedNewAccount();
-            Browser.MiddlePause();
+            string EnvironmentGlobal = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (EnvironmentGlobal.Contains("STAGING"))
+            {
+                try
+                {
+                    LoginToMetamaskUpdatedNewAccount();
+                    Browser.MiddlePause();
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
 
-            string MetamaskTab = handles[0];
-            string BloqboardTab = handles[1];
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
 
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
 
-            Browser.MiddlePause();
-            TermsandConditionAceptance();
-            Browser.ShortPause();
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
+                    Browser.ShortPause();
 
-            IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
-            string recentrequest = lastBorrowed.Text;
+                    IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                    string recentrequest = lastBorrowed.Text;
 
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
 
-            Browser.MiddlePause();
+                    Browser.MiddlePause();
 
-            //Choose low values
-            IWebElement openfilter = Browser.CurrentBrowser.FindElement(By.CssSelector("div.filter-button__filter-wrapper"));
-            openfilter.Click();
+                    //Choose low values
+                    IWebElement openfilter = Browser.CurrentBrowser.FindElement(By.CssSelector("div.filter-button__filter-wrapper"));
+                    openfilter.Click();
 
-            IWebElement showallvalues = Browser.CurrentBrowser.FindElement(By.CssSelector("div.token-list-filter__collapse-label > span"));
-            showallvalues.Click();
+                    IWebElement showallvalues = Browser.CurrentBrowser.FindElement(By.CssSelector("div.token-list-filter__collapse-label > span"));
+                    showallvalues.Click();
 
-            IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div:nth-of-type(3) > label"));
-            chooseLowValues.Click();
+                    IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div:nth-of-type(3) > label"));
+                    chooseLowValues.Click();
 
-            IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
-            apply.Click();
+                    IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
+                    apply.Click();
 
-            IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-green.borrow-btn"));
-            borrowbtns[0].Click();
-            Browser.MiddlePause();
-            IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
-            borrowtokens.Click();
-            Browser.ShortPause();
-            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-            Browser.CurrentBrowser.Navigate().Refresh();
-            Browser.ShortPause();
-            SignRequest();
-            Browser.MiddlePause();
-            Browser.CurrentBrowser.Navigate().Refresh();
-            Browser.ShortPause();
-            IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
-            buttons[1].Click();
-            Browser.LongPause();
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-            Browser.MiddlePause();
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
-            Browser.LongPause();
-           
-            IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
-            string recentrequestChanged = lastBorrowedChanged.Text;
-            Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
+                    IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-green.borrow-btn"));
+                    borrowbtns[0].Click();
+                    Browser.MiddlePause();
+                    IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
+                    borrowtokens.Click();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
+                    SignRequest();
+                    Browser.MiddlePause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
+                    IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
+                    buttons[1].Click();
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.MiddlePause();
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                    Browser.LongPause();
+
+                    IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                    string recentrequestChanged = lastBorrowedChanged.Text;
+                    Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception("no borrow requests to borrow because of lack of collateral...");
+                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+                }
+            }
+            else
+            {
+                try
+                {
+                    LoginToMetamaskUpdatedNewAccount();
+                    Browser.MiddlePause();
+
+                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
+                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
+
+                    string MetamaskTab = handles[0];
+                    string BloqboardTab = handles[1];
+
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+
+                    Browser.MiddlePause();
+                    TermsandConditionAceptance();
+                    Browser.ShortPause();
+
+                    IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                    string recentrequest = lastBorrowed.Text;
+
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+
+                    Browser.MiddlePause();
+
+                    //Choose low values
+                    IWebElement openfilter = Browser.CurrentBrowser.FindElement(By.CssSelector("div.filter-button__filter-wrapper"));
+                    openfilter.Click();
+
+                    IWebElement showallvalues = Browser.CurrentBrowser.FindElement(By.CssSelector("div.token-list-filter__collapse-label > span"));
+                    showallvalues.Click();
+
+                    IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div:nth-of-type(3) > label"));
+                    chooseLowValues.Click();
+
+                    IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
+                    apply.Click();
+
+                    IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-green.borrow-btn"));
+                    borrowbtns[0].Click();
+                    Browser.MiddlePause();
+                    IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
+                    borrowtokens.Click();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
+                    SignRequest();
+                    Browser.MiddlePause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.ShortPause();
+                    IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
+                    buttons[1].Click();
+                    Browser.LongPause();
+                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    Browser.MiddlePause();
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                    Browser.LongPause();
+
+                    IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                    string recentrequestChanged = lastBorrowedChanged.Text;
+                    Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception("no peer-to-peer borrow offers table on prod...");
+                }
+            }
         }
 
         public static void VerifyNewlyCreatedRequestToBorrowCanBeLend()
