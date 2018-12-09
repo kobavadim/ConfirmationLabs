@@ -740,6 +740,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string environment = TestData.DefineEnvironmentDependingOnEnvironment();
             if (environment.Contains("STAGING"))
             {
+                Browser.Close();
                 throw new Exception("waiting for collateral tokens implementation...");
 
                 try
@@ -855,6 +856,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 catch (Exception exception)
                 {
+                    Browser.Close();
                     throw new Exception("Request wait time is more than two minutes...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
@@ -1381,6 +1383,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
             else
             {
+                Browser.Close();
                 throw new Exception("Offers to lend is not implemented on PROD...");
             }
 
@@ -1456,6 +1459,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 catch (Exception exception)
                 {
+                    Browser.Close();
                     throw new Exception("no borrow requests to borrow because of lack of collateral...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
@@ -1527,6 +1531,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 catch (Exception exception)
                 {
+                    Browser.Close();
                     throw new Exception("no peer-to-peer borrow offers table on prod...");
                 }
             }
@@ -1724,6 +1729,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 catch (Exception exception)
                 {
+                    Browser.Close();
                     throw new Exception("We need a lot of small loans on PROD...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
