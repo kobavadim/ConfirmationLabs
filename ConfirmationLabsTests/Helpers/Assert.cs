@@ -33,6 +33,11 @@ namespace ConfirmationLabsTests.Helpers
                     errormessage = "Page wasn't loaded during wait time... Please rerun tests or check manually";
                 }
 
+                if (exception.Message.Contains("Input string was not in a correct format"))
+                {
+                    errormessage = "Page loading was too long... Please rerun tests or check manually";
+                }
+
                 if (exception.Message.Contains("Unable to locate element"))
                 {
                     errormessage = "Page wasn't loaded during wait time... Please rerun tests or check manually";
