@@ -48,10 +48,18 @@ namespace ConfirmationLabsTests.Helpers
                 Browser.MiddlePause();
                 Browser.CloseAdditionalWindows();
 
-                IWebElement proceed = Browser.CurrentBrowser.FindElement(By.CssSelector(".positive"));
-                proceed.Click();
-                Browser.MiddlePause();
-                Browser.CloseAdditionalWindows();
+                try
+                {
+                    IWebElement proceed = Browser.CurrentBrowser.FindElement(By.CssSelector(".positive"));
+                    proceed.Click();
+                    Browser.MiddlePause();
+                    Browser.CloseAdditionalWindows();
+                }
+                catch (Exception e)
+                {
+                    
+                }
+
 
                 IWebElement agreed = Browser.CurrentBrowser.FindElement(By.CssSelector(".welcome-screen__button"));
                 agreed.Click();
