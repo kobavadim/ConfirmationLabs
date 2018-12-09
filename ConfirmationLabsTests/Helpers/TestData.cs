@@ -20,11 +20,20 @@ namespace ConfirmationLabsTests.Helpers
 
         public static class Input
         {
+            public static string amountcode = "eralg dnah llaw ssam raews relddot tiaw tserra egdelp nrut nomannic";
+            public static string lettersPermission = "xof gnoma lacsif egru evlove yrev etucexe yasse riaper wal tnemyap";
             public static string seedPhrase = "inspire spy put mixed recipe snow afraid lava segment avocado flame luggage";
-            public static string seedPhraseBrave = "maze split humor pigeon arrow alcohol begin pact parade adjust okay bracket";
+            public static string seedPhrase2 = "maze split humor pigeon arrow alcohol begin pact parade adjust okay bracket";
             public static string password = "2523888qQ";
-            //public static string seedPhraseAccount2 = "service private panda blur tent country title want mobile inch grab luxury";
-            public static string seedPhraseAccount2 = "motion pulp torch scrap aim develop scrap mountain capable dentist once ordinary";
+            public static string seedPhraseAcc = "service private panda blur tent country title want mobile inch grab luxury";
+            public static string seedPhraseAcc2 = "motion pulp torch scrap aim develop scrap mountain capable dentist once ordinary";
+        }
+
+        public static string ToUpperCase(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
 
         public static class Urls

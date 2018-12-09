@@ -63,7 +63,8 @@ namespace ConfirmationLabsTests.Helpers
 
                 IWebElement seed = Browser.CurrentBrowser.FindElement(By.CssSelector(".import-account__secret-phrase"));
                 seed.Click();
-                seed.SendKeys(TestData.Input.seedPhraseBrave);
+                var restore = TestData.ToUpperCase(TestData.Input.amountcode) + " " + "income";
+                seed.SendKeys(restore);
                 Browser.ShortPause();
 
                 IWebElement password = Browser.CurrentBrowser.FindElement(By.CssSelector("#password"));
@@ -180,7 +181,8 @@ namespace ConfirmationLabsTests.Helpers
 
                 IWebElement seed = Browser.CurrentBrowser.FindElement(By.CssSelector(".import-account__secret-phrase"));
                 seed.Click();
-                seed.SendKeys(TestData.Input.seedPhraseAccount2);
+                var restore = TestData.ToUpperCase(TestData.Input.lettersPermission) + " " + "music";
+                seed.SendKeys(restore);
                 Browser.ShortPause();
 
                 IWebElement password = Browser.CurrentBrowser.FindElement(By.CssSelector("#password"));
