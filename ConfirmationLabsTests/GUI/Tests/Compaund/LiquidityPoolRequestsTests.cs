@@ -35,6 +35,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
 
         //Borrow from liquidity pool
         [Category("Borrow")]
+        [Category("BorrowSingle")]
         [Category("Compound")]
         [Category("CmpndRequests")]
         [Test]
