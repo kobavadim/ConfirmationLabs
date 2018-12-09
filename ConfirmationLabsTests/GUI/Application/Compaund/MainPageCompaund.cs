@@ -626,7 +626,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                 catch (Exception exception)
                 {
-                    throw new Exception("Check borrowed tokens count...");
+                    throw new Exception("Borrow action is disabled...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }
