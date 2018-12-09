@@ -260,7 +260,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             token.Click();
 
             string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Environment.Contains("PROD"))
+            if (Environment.Contains("Mainnet"))
             {
                 try
                 {
@@ -296,10 +296,34 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
             Browser.LongPause();
             Browser.CurrentBrowser.Navigate().Refresh();
-            Browser.ShortPause();
+            Browser.MiddlePause();
 
             Console.WriteLine("Signing request...");
             SignRequest();
+            Browser.LongPause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.MiddlePause();
+            try
+            {
+                IList<IWebElement> signAgain = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
+                signAgain[1].Click();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string EnvironmentAfterSign = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (EnvironmentAfterSign.Contains("Kovan"))
+            {
+                Browser.LongPause();
+                Browser.LongPause();
+            }
+            else
+            {
+                Browser.LongPause();
+                Browser.LongPause();
+                Browser.LongPause();
+            }
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
             Browser.LongPause();
@@ -361,7 +385,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             Console.WriteLine("Signing request...");
             SignRequest();
-      
+            Browser.ShortPause();
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.MiddlePause();
             try
@@ -381,7 +405,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
             string EnvironmentAfterSign = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (EnvironmentAfterSign.Contains("STAGING"))
+            if (EnvironmentAfterSign.Contains("Kovan"))
             {
                 Browser.LongPause();
                 Browser.LongPause();
@@ -907,10 +931,21 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 SignRequest();
 
+                string EnvironmentAfterSign = TestData.DefineEnvironmentDependingOnEnvironment();
+                if (EnvironmentAfterSign.Contains("Kovan"))
+                {
+                    Browser.LongPause();
+                    Browser.LongPause();
+                }
+                else
+                {
+                    Browser.LongPause();
+                    Browser.LongPause();
+                    Browser.LongPause();
+                }
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
-                Browser.LongPause();
-                Browser.LongPause();
+
 
                 //добавить ообработку длинных транзакций
                 IWebElement cancelledcreationtime = Browser.CurrentBrowser.FindElement(CancelledCreationTime);
@@ -1378,6 +1413,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 catch (Exception exception)
                 {
+                    Browser.Close();
+                    throw new Exception("Offers to lend is lack of collateral despite of weth on KOVAN...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }
@@ -1621,6 +1658,19 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 catch (Exception exception)
                 {
+                    Browser.Close();
+
+                    
+                    
+                    if (Environment.Contains("Kovan"))
+                    {
+                        throw new Exception("No small amount borrow requests left on Kovan because of collateral issue...");
+                    }
+                    else
+                    {
+                        throw new Exception("Transaction wait time is too long...");
+                    }
+
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }
@@ -1707,7 +1757,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                     }
                     string Environ = TestData.DefineEnvironmentDependingOnEnvironment();
-                    if (Environ.Contains("STAGING"))
+                    if (Environ.Contains("Kovan"))
                     {
                         Browser.LongPause();
                         Browser.LongPause();
@@ -1730,7 +1780,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 catch (Exception exception)
                 {
                     Browser.Close();
-                    throw new Exception("We need a lot of small loans on PROD...");
+                    throw new Exception("No small amount borrow requests to loan on PROD...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }

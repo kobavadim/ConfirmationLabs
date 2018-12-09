@@ -285,7 +285,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
 
                     string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-                    if (Environment.Contains("STAGING"))
+                    if (Environment.Contains("Kovan"))
                     {
                         Browser.LongPause();
                         Browser.LongPause();
@@ -304,6 +304,13 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                 catch (Exception exception)
                 {
+                    Browser.Close();
+                    string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+                    if (Environment.Contains("STAGING_Mainnet"))
+                    {
+                        throw new Exception("Transaction wait is too long (more than 3 minutes)...");
+                    }
+           
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }
