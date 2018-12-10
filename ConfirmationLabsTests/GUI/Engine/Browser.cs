@@ -81,6 +81,16 @@ namespace ConfirmationLabsTests.GUI.Engine
             Thread.Sleep(20000);
         }
 
+        public static void KovanNetworkOperations()
+        {
+            Thread.Sleep(20000);
+        }
+
+        public static void MainNetworkOperations()
+        {
+            Thread.Sleep(80000);
+        }
+
         public static void SearchElementAndClickByIt(By by, TimeSpan? timeout = null)
         {
             PerformActionWithTimeOut(
@@ -312,6 +322,12 @@ namespace ConfirmationLabsTests.GUI.Engine
             try
             {
                 Browser.CurrentBrowser.Close();
+            }
+            catch (Exception)
+            { }
+
+            try
+            {
                 Browser.CurrentBrowser.Quit();
             }
             catch (Exception)

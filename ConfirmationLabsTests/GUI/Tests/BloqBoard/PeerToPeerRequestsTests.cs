@@ -19,10 +19,11 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         //Add your request to borrow (WETH maze)
         //You don't have enough REP for collateral. Please transfer additional REP to your wallet or use different type of collateral.
         [Category("Borrow")]
+        [Category("Borrow_S_M")]
         [Category("Create")]
         [Category("BlqRequests")]
         [Test]
-        public void AddBorrowRequestTest()
+        public void CreateNewOfferToBorrowTest()
         {
             MainPageBb.VerifyNewBorrowRequestCanBeCreated();
         }

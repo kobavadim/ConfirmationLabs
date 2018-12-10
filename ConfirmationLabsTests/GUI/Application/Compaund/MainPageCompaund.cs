@@ -40,10 +40,10 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
 
         //Methods
-        public static void OpenBloqBoardOld()
+        public static void OpenBloqBoardOld(string role)
         {
             Console.WriteLine("Logging Metamask");
-            Wallets.LoginToMetaMaskWallet();
+            Wallets.LoginToMetaMaskWallet(role);
             Browser.MiddlePause();
             string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
             if (Env == "PROD")
@@ -117,21 +117,14 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                Wallets.LoginToMetaMaskWallet();
-                Browser.MiddlePause();
+                //Login to the app
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
-
+                //Test started        
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
-                Browser.MiddlePause();
-
-                TermsandConditionAceptance();
                 Browser.MiddlePause();
 
                 IWebElement table = Browser.CurrentBrowser.FindElement(LendToLiquidityTable);
@@ -197,233 +190,73 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyTokenCanbeLendedtoLiquidityPool()
         {
-            string EnvironmentRoot = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (EnvironmentRoot.Contains("STAGING"))
+            try
             {
-                try
+                //Login to the app
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+                Browser.LongPause();
+                string loanedcount = "";
+
+                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                foreach (var el in elementListRows)
                 {
-                    MainPageBb.LoginToMetamask();
-
-                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                    string MetamaskTab = handles[0];
-                    string BloqboardTab = handles[1];
-
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-                    Browser.MiddlePause();
-                    TermsandConditionAceptance();
-
-                    //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                    //loansbtn.Click();
-                    Browser.LongPause();
-
-                    string loanedcount = "";
-
-                    IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
-                    foreach (var el in elementListRows)
+                    var children = el.FindElements(By.XPath(".//*"));
+                    var tokenName = children[0].Text;
+                    int i = 1;
+                    if (tokenName.Contains("WETH"))
                     {
-                        var children = el.FindElements(By.XPath(".//*"));
-                        var tokenName = children[0].Text;
-                        int i = 1;
-                        if (tokenName.Contains("WETH"))
+
+                        foreach (var ele in children)
                         {
-
-                            foreach (var ele in children)
+                            if (ele.Text.Contains("Loaned") && loanedcount == "")
                             {
-                                if (ele.Text.Contains("Loaned") && loanedcount == "")
+                                loanedcount = ele.Text;
+
+                            }
+
+                            if (ele.Text.Contains("LEND") && ele.TagName == "div")
+                            {
+                                i++;
+
+                                if (i >= 3)
                                 {
-                                    loanedcount = ele.Text;
-
-                                }
-
-
-                                if (ele.Text.Contains("LEND") && ele.TagName == "div")
-                                {
-                                    i++;
-
-                                    if (i >= 3)
-                                    {
-                                        ele.Click();
-                                        break;
-                                    }
+                                    ele.Click();
+                                    break;
                                 }
                             }
                         }
                     }
-
-                    Browser.ShortPause();
-                    IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
-                    amount.SendKeys("0.0001");
-                    Browser.MiddlePause();
-                    IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
-                    confirm.Click();
-                    Browser.MiddlePause();
-
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.MiddlePause();
-
-                    Console.WriteLine("Confirming request...");
-                    MainPageBb.SignRequest();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.MiddlePause();
-                    try
-                    {
-                        IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
-                        buttons[1].Click();
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                    Browser.MiddlePause();
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-
-                    string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-                    if (Environment.Contains("Kovan"))
-                    {
-                        Browser.LongPause();
-                        Browser.LongPause();
-                    }
-                    else
-                    {
-                        Browser.LongPause();
-                        Browser.LongPause();
-                        Browser.LongPause();
-                    }
-
-
-                    var loanedAfter = CheckLoanedAmount();
-                    Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
                 }
 
-                catch (Exception exception)
-                {
-                    Browser.Close();
-                    string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-                    if (Environment.Contains("STAGING_Mainnet"))
-                    {
-                        throw new Exception("Transaction wait is too long (more than 3 minutes)...");
-                    }
-           
-                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
-                }
+                Browser.ShortPause();
+                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                amount.SendKeys("0.0001");
+                Browser.MiddlePause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
+                confirm.Click();
+
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+                var loanedAfter = CheckLoanedAmount();
+                Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
             }
-            else
+
+            catch (Exception exception)
             {
-                try
+                Browser.Close();
+                string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
+                if (Environment.Contains("STAGING_Mainnet"))
                 {
-                    MainPageBb.LoginToMetamask();
-
-                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                    string MetamaskTab = handles[0];
-                    string BloqboardTab = handles[1];
-
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-                    Browser.MiddlePause();
-                    TermsandConditionAceptance();
-
-                    //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                    //loansbtn.Click();
-                    Browser.LongPause();
-
-                    string loanedcount = "";
-
-                    IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
-                    foreach (var el in elementListRows)
-                    {
-                        var children = el.FindElements(By.XPath(".//*"));
-                        var tokenName = children[0].Text;
-                        int i = 1;
-                        if (tokenName.Contains("WETH"))
-                        {
-
-                            foreach (var ele in children)
-                            {
-                                if (ele.Text.Contains("Loaned") && loanedcount == "")
-                                {
-                                    loanedcount = ele.Text;
-
-                                }
-
-
-                                if (ele.Text.Contains("LEND") && ele.TagName == "div")
-                                {
-                                    i++;
-
-                                    if (i >= 3)
-                                    {
-                                        ele.Click();
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    Browser.ShortPause();
-                    IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
-                    amount.SendKeys("0.0001");
-                    Browser.MiddlePause();
-                    IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
-                    confirm.Click();
-                    Browser.MiddlePause();
-
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.MiddlePause();
-
-                    Console.WriteLine("Confirming request...");
-                    MainPageBb.SignRequest();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.MiddlePause();
-                    try
-                    {
-                        IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
-                        buttons[1].Click();
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                    Browser.MiddlePause();
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-
-                    string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-                    if (Environment.Contains("STAGING"))
-                    {
-                        Browser.LongPause();
-                        Browser.LongPause();
-                    }
-                    else
-                    {
-                        Browser.LongPause();
-                        Browser.LongPause();
-                        Browser.LongPause();
-                    }
-
-
-                    var loanedAfter = CheckLoanedAmount();
-                    Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+                    throw new Exception("Transaction wait is too long (more than 3 minutes)...");
                 }
 
-                catch (Exception exception)
-                {
-                    Browser.Close();
-                    throw new Exception("Not lended after two minutes...");
-                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
-                }
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
@@ -431,22 +264,13 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBb.LoginToMetamask();
+                //Login to the app
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
-
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                //Test started
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-                Browser.MiddlePause();
-                TermsandConditionAceptance();
-
-                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                //loansbtn.Click();
                 Browser.LongPause();
 
                 IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
@@ -531,19 +355,14 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             {
                 try
                 {
-                    MainPageBb.LoginToMetamask();
+                    //Login to the app
+                    ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                    string MetamaskTab = windows[0];
+                    string BloqboardTab = windows[1];
 
-                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                    string MetamaskTab = handles[0];
-                    string BloqboardTab = handles[1];
-
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    //Test started
                     Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-
                     Browser.MiddlePause();
-                    TermsandConditionAceptance();
 
                     //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                     //loansbtn.Click();
@@ -594,41 +413,13 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     Browser.MiddlePause();
                     IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
                     confirm.Click();
-                    Browser.MiddlePause();
 
+                    //approve on MetaMask
+                    Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.ShortPause();
-
-                    Console.WriteLine("Confirming request...");
-                    MainPageBb.SignRequest();
-                    Browser.ShortPause();
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-                    if (Environment.Contains("STAGING"))
-                    {
-                        Browser.LongPause();
-                        Browser.LongPause();
-                    }
-                    else
-                    {
-                        Browser.LongPause();
-                        Browser.LongPause();
-                        Browser.LongPause();
-                    }
-
+                    //check
                     string loanedAmountAfter = loanedcount;
-
-
-
                     var loanedAfter = CheckBorrowedAmount();
-
-
-
                     Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
                 }
 
@@ -643,19 +434,14 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             {
                 try
                 {
-                    MainPageBb.LoginToMetamask();
+                    //Login to the app
+                    ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                    string MetamaskTab = windows[0];
+                    string BloqboardTab = windows[1];
 
-                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                    ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                    string MetamaskTab = handles[0];
-                    string BloqboardTab = handles[1];
-
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                    //Test started
                     Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-
                     Browser.MiddlePause();
-                    TermsandConditionAceptance();
 
                     //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                     //loansbtn.Click();
@@ -758,19 +544,14 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBb.LoginToMetamask();
+                //Login to the app
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
-
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                //Test started
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
                 Browser.MiddlePause();
-                TermsandConditionAceptance();
 
                 //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 //loansbtn.Click();
@@ -857,14 +638,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                MainPageBb.LoginToMetamask();
+                //Login to the app
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-                string MetamaskTab = handles[0];
-                string BloqboardTab = handles[1];
-                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                //Test started
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
 
                 Browser.MiddlePause();
@@ -904,20 +683,15 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyBorrowFunctionality()
         {
-            MainPageBb.LoginToMetamask();
+            //Login to the app
+            ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+            string MetamaskTab = windows[0];
+            string BloqboardTab = windows[1];
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-            string MetamaskTab = handles[0];
-            string BloqboardTab = handles[1];
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            //Test started
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
-
             Browser.MiddlePause();
-            TermsandConditionAceptance();
 
-            Browser.MiddlePause();
             IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowBtn);
             borrowbtn.Click();
 
@@ -949,19 +723,13 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyRepaytoLiquidityPoolFunctionality()
         {
-            MainPageBb.LoginToMetamask();
+            //Login to the app
+            ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+            string MetamaskTab = windows[0];
+            string BloqboardTab = windows[1];
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-            string MetamaskTab = handles[0];
-            string BloqboardTab = handles[1];
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+            //Test started
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
-
-            Browser.MiddlePause();
-            TermsandConditionAceptance();
-
             Browser.MiddlePause();
 
             IList<IWebElement> repaybtns = Browser.CurrentBrowser.FindElements(RepayBtn);

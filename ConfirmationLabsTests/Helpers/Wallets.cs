@@ -11,8 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
+using ConfirmationLabsTests.GUI.Application.BloqBoard;
 
 
 namespace ConfirmationLabsTests.Helpers
@@ -39,27 +38,14 @@ namespace ConfirmationLabsTests.Helpers
             screenshot.SaveAsFile(fp, OpenQA.Selenium.ScreenshotImageFormat.Png);
         }
 
-        public static void LoginToMetaMaskWallet()
+        public static void LoginToMetaMaskWallet(string role)
         {
             try
             {
                 Browser.CloseAdditionalWindows();
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
                 Browser.MiddlePause();
-                Browser.CloseAdditionalWindows();
-
-                try
-                {
-                    IWebElement proceed = Browser.CurrentBrowser.FindElement(By.CssSelector(".positive"));
-                    proceed.Click();
-                    Browser.MiddlePause();
-                    Browser.CloseAdditionalWindows();
-                }
-                catch (Exception e)
-                {
-                    
-                }
-
+               
 
                 IWebElement agreed = Browser.CurrentBrowser.FindElement(By.CssSelector(".welcome-screen__button"));
                 agreed.Click();
@@ -71,11 +57,22 @@ namespace ConfirmationLabsTests.Helpers
 
                 IWebElement seed = Browser.CurrentBrowser.FindElement(By.CssSelector(".import-account__secret-phrase"));
                 seed.Click();
-                var restore = TestData.ToUpperCase(TestData.Input.amountcode) + " " + "income";
+
+                var restore = "NA";
+
+                if (role.Contains("lender"))
+                {
+                    restore = TestData.ToUpperCase(TestData.Input.borrower) + " " + "income";
+                }
+                else
+                {
+                    restore = TestData.ToUpperCase(TestData.Input.lender) + " " + "music";
+                }
+
                 seed.SendKeys(restore);
                 Browser.ShortPause();
 
-                IWebElement password = Browser.CurrentBrowser.FindElement(By.CssSelector("#password"));
+                IWebElement password = Browser.CurrentBrowser.FindElement(By.CssSelector("[type=\'password\']"));
                 password.Click();
                 password.SendKeys(TestData.Input.password);
                 Browser.ShortPause();
@@ -189,7 +186,7 @@ namespace ConfirmationLabsTests.Helpers
 
                 IWebElement seed = Browser.CurrentBrowser.FindElement(By.CssSelector(".import-account__secret-phrase"));
                 seed.Click();
-                var restore = TestData.ToUpperCase(TestData.Input.lettersPermission) + " " + "music";
+                var restore = TestData.ToUpperCase(TestData.Input.lender) + " " + "music";
                 seed.SendKeys(restore);
                 Browser.ShortPause();
 
@@ -305,6 +302,7 @@ namespace ConfirmationLabsTests.Helpers
                 keybd_event((byte)vKey, 0, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
             }
         }
+
         public static void AcceptInstallation()
         {
             Browser.ShortPause();
@@ -326,6 +324,43 @@ namespace ConfirmationLabsTests.Helpers
             SendKeys.SendWait("{ENTER}");
             Browser.MiddlePause();
             Thread.Sleep(15000);
+        }
+
+        public static void ApproveTransaction(string MetamaskTab, string BloqboardTab)
+        {
+            Console.WriteLine("Confirming request...");
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+            Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+            Browser.LongPause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.MiddlePause();
+            MainPageBb.SignRequest();
+            Browser.ShortPause();
+            Browser.CurrentBrowser.Navigate().Refresh();
+            Browser.MiddlePause();
+            try
+            {
+                IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
+                buttons[1].Click();
+            }
+            catch (Exception)
+            {
+                //single approve required
+            }
+
+            Browser.MiddlePause();
+            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+
+            string environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (environment.Contains("Kovan"))
+            {
+                Browser.KovanNetworkOperations();
+            }
+            else
+            {
+                Browser.MainNetworkOperations();
+            }
         }
     }
 }

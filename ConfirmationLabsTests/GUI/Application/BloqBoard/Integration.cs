@@ -28,18 +28,13 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         //Tests
         public static void VerifyDatefromRecentLoans()
         {
-            MainPageBb.LoginToMetamask();
+            //Login to the app
+            ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+            string MetamaskTab = windows[0];
+            string BloqboardTab = windows[1];
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
-
-            string BloqboardTabMain = handlesMain[1];
-
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabMain);
+            //Test started
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-            Browser.MiddlePause();
-            MainPageBb.TermsandConditionAceptance();
             Browser.MiddlePause();
 
             string[] stringSeparator = { " " };
@@ -74,18 +69,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                MainPageBb.LoginToMetamask();
+                //Login to the app
+                MainPageBb.LoginToMainPage("lender");
 
-                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
-
-                string bloqboardTabMain = handlesMain[1];
-
-                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTabMain);
+                //Test started
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-                Browser.MiddlePause();
-                MainPageBb.TermsandConditionAceptance();
                 Browser.MiddlePause();
 
                 IWebElement amount = Browser.CurrentBrowser.FindElement(Token);
@@ -127,18 +115,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             {
                 try
                 {
-                    MainPageBb.LoginToMetamask();
+                    //Login to the app
+                    MainPageBb.LoginToMainPage("lender");
 
-                    ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-                    ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
-
-                    string BloqboardTabMain = handlesMain[1];
-
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabMain);
+                    //Test started
                     Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-                    Browser.MiddlePause();
-                    MainPageBb.TermsandConditionAceptance();
                     Browser.MiddlePause();
 
                     IWebElement percent = Browser.CurrentBrowser.FindElement(By.CssSelector(".clickable-row:nth-child(1) .rate-item"));
@@ -169,19 +150,13 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyTermfromRecentLoans()
         {
-            MainPageBb.LoginToMetamask();
+            //Login to the app
+            ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+            string MetamaskTab = windows[0];
+            string BloqboardTab = windows[1];
 
-            ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("window.open();");
-            ReadOnlyCollection<string> handlesMain = Browser.CurrentBrowser.WindowHandles;
-
-            string MetamaskTabMain = handlesMain[0];
-            string BloqboardTabMain = handlesMain[1];
-
-            Browser.CurrentBrowser.SwitchTo().Window(BloqboardTabMain);
+            //Test started
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-
-            Browser.MiddlePause();
-            MainPageBb.TermsandConditionAceptance();
             Browser.MiddlePause();
 
             IWebElement term = Browser.CurrentBrowser.FindElement(Term);

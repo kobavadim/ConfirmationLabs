@@ -20,8 +20,8 @@ namespace ConfirmationLabsTests.Helpers
 
         public static class Input
         {
-            public static string amountcode = "eralg dnah llaw ssam raews relddot tiaw tserra egdelp nrut nomannic";
-            public static string lettersPermission = "xof gnoma lacsif egru evlove yrev etucexe yasse riaper wal tnemyap";
+            public static string borrower = "eralg dnah llaw ssam raews relddot tiaw tserra egdelp nrut nomannic";
+            public static string lender = "xof gnoma lacsif egru evlove yrev etucexe yasse riaper wal tnemyap";
             public static string seedPhrase = "inspire spy put mixed recipe snow afraid lava segment avocado flame luggage";
             public static string seedPhrase2 = "maze split humor pigeon arrow alcohol begin pact parade adjust okay bracket";
             public static string password = "2523888qQ";

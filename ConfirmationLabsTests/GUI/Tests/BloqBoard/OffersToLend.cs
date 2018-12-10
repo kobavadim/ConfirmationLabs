@@ -14,9 +14,11 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         //https://staging.bloqboard.com/add-offer-to-lend
+        [Category("Lend_S_M")]
         [Category("Lend")]
         [Category("OtlCreate")]
         [Category("OtlRequests")]
+        [Category("OtlRequests_S_M")]
         [Test]
         public void CreateNewOfferToLendTest()
         {
