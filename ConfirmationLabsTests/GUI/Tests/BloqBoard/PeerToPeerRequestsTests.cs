@@ -18,6 +18,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #region STAGING_Kovan
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
+        [Category("OFRSlndRequests_sk")]
         [Test]
         public void OfferMyOwnBorrowTest_sk()
         {
@@ -72,6 +73,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #region STAGING_Mainnet
         [Category("Borrow_sm")]
         [Category("BlqRequests_sm")]
+        [Category("OFRSlndRequests_sm")]
         [Test]
         public void OfferMyOwnBorrowTest_sm()
         {
@@ -126,6 +128,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #region PROD_Mainnet
         [Category("Borrow_pm")]
         [Category("BlqRequests_pm")]
+        [Category("OFRSlndRequests_pm")]
         [Test]
         public void OfferMyOwnBorrowTest_pm()
         {

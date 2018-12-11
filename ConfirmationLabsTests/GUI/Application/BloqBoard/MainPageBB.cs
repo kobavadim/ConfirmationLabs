@@ -1338,7 +1338,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             try
             {
                 //Login to the app
-                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
@@ -1360,14 +1360,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 showallvalues.Click();
                 
                 string Environmen = TestData.DefineEnvironmentDependingOnEnvironment();
-                if (Environmen.Contains("STAGING"))
+                if (Environmen.Contains("Mainnet"))
                 {
                     IWebElement ZRXcollateral = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(5) > div:nth-of-type(3) > label"));
                     ZRXcollateral.Click();
                     IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div.token-list-filter__cell.token-list-filter__cell--token-principal > label"));
                     chooseLowValues.Click();
-                    IWebElement chooseLowValuesWeth = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div:nth-of-type(3) > label"));
-                    chooseLowValuesWeth.Click();
                 }
                 else
                 {
@@ -1378,8 +1376,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
 
 
-                //IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
-                //apply.Click();
+                IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
+                apply.Click();
+                Browser.ShortPause();
 
                 IWebElement lovValued = Browser.CurrentBrowser.FindElement(By.CssSelector("div.dropdown__header"));
                 lovValued.Click();
@@ -1394,8 +1393,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-details-btn.fill"));
                 borrowtokens.Click();
                 Browser.ShortPause();
-
-
 
                 //approve on MetaMask
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);

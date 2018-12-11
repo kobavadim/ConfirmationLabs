@@ -59,7 +59,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool();
         }
 
-        [Ignore("Fix after redesign")]
+        [Ignore("Budget needed")]
         [Category("Withdraw_sm")]
         [Category("CmpndRequests_sm")]
         [Test]
@@ -77,7 +77,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool();
         }
 
-        [Ignore("Fix after redesign")]
+        [Ignore("Budget needed")]
         [Category("Repay_sm")]
         [Category("CmpndRequests_sm")]
         [Test]
