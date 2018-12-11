@@ -392,7 +392,6 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                                 }
 
-
                                 if (ele.Text.Contains("BORROW") && ele.TagName == "div")
                                 {
                                     i++;
