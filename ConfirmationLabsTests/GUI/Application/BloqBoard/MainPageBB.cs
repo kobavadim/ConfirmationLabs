@@ -332,7 +332,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
 
             string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Environment.Contains("STAGING"))
+            if (Environment.Contains("Mainnet"))
             {
                 IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
                 click.Click();
@@ -729,7 +729,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 string recentrequest = "";
                 string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-                if (Environment.Contains("STAGING"))
+                if (Environment.Contains("Mainnet"))
                 {
                     IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                     recentrequest = lastrequest.Text;
@@ -753,7 +753,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.LongPause();
 
                 string newcreatedrequest = "";
-                if (Environment.Contains("STAGING"))
+                if (Environment.Contains("Mainnet"))
                 {
                     IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                     newcreatedrequest = newrequest.Text;
