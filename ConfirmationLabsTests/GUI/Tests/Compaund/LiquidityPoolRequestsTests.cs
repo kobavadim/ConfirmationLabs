@@ -18,8 +18,8 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Category("Compound")]
         [Category("CmpndLnd")]
         [Category("CmpndRequests")]
-        [Category("CmpndRequests_S_M")]
         [Category("Lend_S_M")]
+        [Category("CmpndRequests_S_M")]
         [Test]
         public void LendToLiquidityPoolTest()
         {
