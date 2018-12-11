@@ -144,22 +144,22 @@ namespace ConfirmationLabsTests.Helpers
                 Browser.CurrentBrowser.Navigate().Refresh();
                 Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button")).SendKeys(OpenQA.Selenium.Keys.Return);
                 Browser.ShortPause();
-
-                //IWebElement agrementThirdScreen = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
-                //agrementThirdScreen.Click();
-                //Browser.ShortPause();
-                //for (int i = 0; i < 5; i++)
-                //{
-                //    IWebElement agrementThirdScreen2 = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
-                //    IJavaScriptExecutor js2 = (IJavaScriptExecutor)Browser.CurrentBrowser;
-                //    js2.ExecuteScript("arguments[0].click();", agrementThirdScreen2);
-                //    Browser.ShortPause();
-                //}
             }
             catch(Exception)
             {
                 Browser.CurrentBrowser.Navigate().Refresh();
             }
+
+            //cleaning
+            //try
+            //{
+            //    Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button")).SendKeys(OpenQA.Selenium.Keys.Return);
+            //    Browser.ShortPause();
+            //}
+            //catch (Exception)
+            //{
+            //    //Browser.CurrentBrowser.Navigate().Refresh();
+            //}
         }
 
         public static void LoginToMetaMaskWalletWithNewUser()
