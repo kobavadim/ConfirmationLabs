@@ -356,7 +356,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 try
                 {
                     //Login to the app
-                    ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                    ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
                     string MetamaskTab = windows[0];
                     string BloqboardTab = windows[1];
 

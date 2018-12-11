@@ -15,62 +15,167 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             Browser.StartWithExstension();
         }
 
-        //https://staging.bloqboard.com/add-request-to-borrow
-        //Add your request to borrow (WETH maze)
-        //You don't have enough REP for collateral. Please transfer additional REP to your wallet or use different type of collateral.
-        [Category("Borrow")]
-        [Category("Borrow_S_M")]
-        [Category("Create")]
-        [Category("BlqRequests")]
+        #region STAGING_Kovan
+        [Category("Borrow_sk")]
+        [Category("BlqRequests_sk")]
         [Test]
-        public void CreateNewOfferToBorrowTest()
+        public void OfferMyOwnBorrowTest_sk()
         {
             MainPageBb.VerifyNewBorrowRequestCanBeCreated();
         }
 
         [Ignore("Fix after redesign")]
-        [Category("Cancel")]
-        [Category("BlqRequests")]
+        [Category("Cancel_sk")]
+        [Category("BlqRequests_sk")]
         [Test]
-        public void CancelRequestTest()
+        public void CancelRequestTest_sk()
         {
             MainPageBb.VerifyRequestCanbeCancelled();
         }
 
         [Ignore("Fix after redesign")]
-        [Category("BlqRequests")]
+        [Category("BlqRequests_sk")]
         [Test]
-        public void LendRequestTest()
+        public void LendRequestTest_sk()
         {
             MainPageBb.VerifyRequestCanBeLended();
         }
 
         [Ignore("Fix after redesign")]
-        [Category("Repay")]
-        [Category("BlqRequests")]
+        [Category("Repay_sk")]
+        [Category("BlqRequests_sk")]
         [Test]
-        public void RepayFunctionalityTest()
+        public void RepayFunctionalityTest_sk()
         {
             MainPageBb.VerifyRepayFunctionality();
         }
 
         [Ignore("Fix after redesign")]
-        [Category("Return")]
-        [Category("BlqRequests")]
+        [Category("Return_sk")]
+        [Category("BlqRequests_sk")]
         [Test]
-        public void ReturnCollateralTest()
+        public void ReturnCollateralTest_sk()
         {
             MainPageBb.VerifyCollatrealCanbeReturned();
         }
 
         [Ignore("Fix after redesign")]
-        [Category("Seize")]
-        [Category("BlqRequests")]
+        [Category("Seize_sk")]
+        [Category("BlqRequests_sk")]
         [Test]
-        public void SeizeCollateralTest()
+        public void SeizeCollateralTest_sk()
         {
             MainPageBb.VerifyCollateralCanBeSeized();
         }
+        #endregion
+
+        #region STAGING_Mainnet
+        [Category("Borrow_sm")]
+        [Category("BlqRequests_sm")]
+        [Test]
+        public void OfferMyOwnBorrowTest_sm()
+        {
+            MainPageBb.VerifyNewBorrowRequestCanBeCreated();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Cancel_sm")]
+        [Category("BlqRequests_sm")]
+        [Test]
+        public void CancelRequestTest_sm()
+        {
+            MainPageBb.VerifyRequestCanbeCancelled();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("BlqRequests_sm")]
+        [Test]
+        public void LendRequestTest_sm()
+        {
+            MainPageBb.VerifyRequestCanBeLended();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Repay_sm")]
+        [Category("BlqRequests_sm")]
+        [Test]
+        public void RepayFunctionalityTest_sm()
+        {
+            MainPageBb.VerifyRepayFunctionality();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Return_sm")]
+        [Category("BlqRequests_sm")]
+        [Test]
+        public void ReturnCollateralTest_sm()
+        {
+            MainPageBb.VerifyCollatrealCanbeReturned();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Seize_sm")]
+        [Category("BlqRequests_sm")]
+        [Test]
+        public void SeizeCollateralTest_sm()
+        {
+            MainPageBb.VerifyCollateralCanBeSeized();
+        }
+        #endregion
+
+        #region PROD_Mainnet
+        [Category("Borrow_pm")]
+        [Category("BlqRequests_pm")]
+        [Test]
+        public void OfferMyOwnBorrowTest_pm()
+        {
+            MainPageBb.VerifyNewBorrowRequestCanBeCreated();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Cancel_pm")]
+        [Category("BlqRequests_pm")]
+        [Test]
+        public void CancelRequestTest_pm()
+        {
+            MainPageBb.VerifyRequestCanbeCancelled();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("BlqRequests_pm")]
+        [Test]
+        public void LendRequestTest_pm()
+        {
+            MainPageBb.VerifyRequestCanBeLended();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Repay_pm")]
+        [Category("BlqRequests_pm")]
+        [Test]
+        public void RepayFunctionalityTest_pm()
+        {
+            MainPageBb.VerifyRepayFunctionality();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Return_pm")]
+        [Category("BlqRequests_pm")]
+        [Test]
+        public void ReturnCollateralTest_pm()
+        {
+            MainPageBb.VerifyCollatrealCanbeReturned();
+        }
+
+        [Ignore("Fix after redesign")]
+        [Category("Seize_pm")]
+        [Category("BlqRequests_pm")]
+        [Test]
+        public void SeizeCollateralTest_pm()
+        {
+            MainPageBb.VerifyCollateralCanBeSeized();
+        }
+        #endregion
 
         [TearDown]
         public void TestCleanUp()
