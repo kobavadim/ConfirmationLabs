@@ -121,24 +121,81 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.MiddlePause();
 
-            try
+            //kill
+            if (environment.Contains("STAGING"))
+            {
+
+            }
+            else 
             {
                 IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
                 submit.Click();
-            }
-            catch(Exception)
-            {
-
             }
 
 
             Browser.MiddlePause();
 
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
+
+
+
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
             Browser.MiddlePause();
             TermsandConditionAceptance();
             Browser.ShortPause();
+
+
+
+
+
+            //kill
+            if (environment.Contains("STAGING"))
+            {
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                Browser.MiddlePause();
+                IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+                connectWallet.Click();
+                Browser.MiddlePause();
+
+
+
+                Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
+                Browser.ShortPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.MiddlePause();
+
+
+                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
+                submit.Click();
+
+
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+                IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+                connectWalletAgain.Click();
+                Browser.ShortPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
+                termschecbox.Click();
+                Browser.ShortPause();
+                IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+                continuebtn.Click();
+                Browser.MiddlePause();
+
+            }
+            else
+            {
+
+            }
+
+          
+
+
+
             return handles;
         }
 
@@ -186,12 +243,21 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void TermsandConditionAceptance()
         {
-            IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
-            termschecbox.Click();
-            Browser.ShortPause();
-            IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
-            continuebtn.Click();
-            Browser.MiddlePause();
+            //kill
+            string environment = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (environment.Contains("STAGING"))
+            {
+
+            }
+            else
+            {
+                IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
+                termschecbox.Click();
+                Browser.ShortPause();
+                IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+                continuebtn.Click();
+                Browser.MiddlePause();
+            }
         }
 
         public static void WentThroughRequestTable()
@@ -732,10 +798,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
+
+
                 //Test started
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.MiddlePause();
-
 
                 string recentrequest = "";
                 string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
