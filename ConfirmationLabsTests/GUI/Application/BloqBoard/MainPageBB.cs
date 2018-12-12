@@ -120,8 +120,18 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.MiddlePause();
-            IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
-            submit.Click();
+
+            try
+            {
+                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
+                submit.Click();
+            }
+            catch(Exception)
+            {
+
+            }
+
+
             Browser.MiddlePause();
 
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
