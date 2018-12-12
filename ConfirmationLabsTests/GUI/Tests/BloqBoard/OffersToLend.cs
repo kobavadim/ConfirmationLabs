@@ -1,5 +1,6 @@
 ﻿using ConfirmationLabsTests.GUI.Application.BloqBoard;
 using ConfirmationLabsTests.GUI.Engine;
+using ConfirmationLabsTests.Helpers;
 using NUnit.Framework;
 
 namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
@@ -19,7 +20,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnLendTest_sk()
         {
-            MainPageBb.VerifyNewOfferToLendCanBeCreated();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_sk")]
@@ -27,7 +28,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_sk()
         {
-            MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
@@ -35,7 +36,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void LendToAlreadyExsistantBorrowTestTest_sk()
         {
-            MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
         }
 
         [Category("Borrow_sk")]
@@ -43,7 +44,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckMyPendingBorrowingOfferConsistanceTest_sk()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Borrow_sk")]
@@ -51,7 +52,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckAlreadyBorrowedConsistanceTest()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Borrow_sk")]
@@ -59,7 +60,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckBorrowOfferFromLenderSideEtoE_sk()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
@@ -67,7 +68,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckMyPendingLendingOfferConsistanceTest_sk()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
@@ -75,7 +76,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckAlreadyLoanedConsistanceTest_sk()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
@@ -83,7 +84,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckLendingOfferFromBorrowerSideEtoE_sk()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
         #endregion
 
@@ -93,7 +94,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnLendTest_sm()
         {
-            MainPageBb.VerifyNewOfferToLendCanBeCreated();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -101,7 +102,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_sm()
         {
-            MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_sm")]
@@ -109,7 +110,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void LendToAlreadyExsistantBorrowTestTest_sm()
         {
-            MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -117,7 +118,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckMyPendingBorrowingOfferConsistanceTest_sm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -125,7 +126,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckAlreadyBorrowedConsistanceTest_sm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -133,7 +134,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckBorrowOfferFromLenderSideEtoE_sm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_sm")]
@@ -141,7 +142,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckMyPendingLendingOfferConsistanceTest_sm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_sm")]
@@ -149,7 +150,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckAlreadyLoanedConsistanceTest_sm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_sm")]
@@ -157,7 +158,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckLendingOfferFromBorrowerSideEtoE_sm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
         #endregion
 
@@ -167,7 +168,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnLendTest_pm()
         {
-            MainPageBb.VerifyNewOfferToLendCanBeCreated();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
@@ -175,7 +176,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_pm()
         {
-            MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_pm")]
@@ -183,7 +184,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void LendToAlreadyExsistantBorrowTestTest_pm()
         {
-            MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend();
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
@@ -191,7 +192,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckMyPendingBorrowingOfferConsistanceTest_pm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
@@ -199,7 +200,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckAlreadyBorrowedConsistanceTest_pm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
@@ -207,7 +208,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckBorrowOfferFromLenderSideEtoE_pm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_pm")]
@@ -215,7 +216,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckMyPendingLendingOfferConsistanceTest_pm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_pm")]
@@ -223,7 +224,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckAlreadyLoanedConsistanceTest_pm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_pm")]
@@ -231,7 +232,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckLendingOfferFromBorrowerSideEtoE_pm()
         {
-            //MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
         #endregion
 
@@ -239,6 +240,12 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void TestCleanUp()
         {
             Browser.Close();
+        }
+
+        private void TestReInitialize()
+        {
+            TestCleanUp();
+            TestInitialize();
         }
     }
 }

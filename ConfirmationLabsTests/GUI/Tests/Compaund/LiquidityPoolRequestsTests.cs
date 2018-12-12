@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.GUI.Application.Compaund;
+using ConfirmationLabsTests.Helpers;
 
 
 namespace ConfirmationLabsTests.GUI.Tests.Compaund
@@ -20,7 +21,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void LendToLiquidityPoolTest_sk()
         {
-            MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -29,7 +30,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void WithdrawFromLiquidityPoolTest_sk()
         {
-            MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Borrowing from the liquidity pool is temporarily disabled")]
@@ -38,7 +39,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void BorrowFromLiquidityPoolTest_sk()
         {
-            MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -47,7 +48,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void RepayFromLiquidityPoolTest_sk()
         {
-            MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool, 3, TestReInitialize);
         }
         #endregion
 
@@ -57,7 +58,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void LendToLiquidityPoolTest_sm()
         {
-            MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Budget needed")]
@@ -66,7 +67,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void WithdrawFromLiquidityPoolTest_sm()
         {
-            MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Borrowing from the liquidity pool is temporarily disabled")]     
@@ -75,7 +76,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void BorrowFromLiquidityPoolTest_sm()
         {
-            MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Budget needed")]
@@ -84,7 +85,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void RepayFromLiquidityPoolTest_sm()
         {
-            MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool, 3, TestReInitialize);
         }
         #endregion
 
@@ -94,7 +95,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void LendToLiquidityPoolTest_pm()
         {
-            MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -103,7 +104,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void WithdrawFromLiquidityPoolTest_pm()
         {
-            MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Borrowing from the liquidity pool is temporarily disabled")]
@@ -112,7 +113,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void BorrowFromLiquidityPoolTest_pm()
         {
-            MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -121,7 +122,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void RepayFromLiquidityPoolTest_pm()
         {
-            MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool();
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool, 3, TestReInitialize);
         }
         #endregion
 
@@ -129,6 +130,12 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         public void TestCleanUp()
         {
             Browser.Close();
+        }
+
+        private void TestReInitialize()
+        {
+            TestCleanUp();
+            TestInitialize();
         }
     }
 }

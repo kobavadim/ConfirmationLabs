@@ -137,6 +137,7 @@
     <Compile Include="Helpers\ScreenShot.cs" />
     <Compile Include="Helpers\SlackClient.cs" />
     <Compile Include="Helpers\TestData.cs" />
+    <Compile Include="Helpers\TestRetrier.cs" />
     <Compile Include="Helpers\Wallets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
