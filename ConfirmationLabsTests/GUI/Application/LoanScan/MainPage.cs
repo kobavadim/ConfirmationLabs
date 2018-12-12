@@ -61,7 +61,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
         {
 
             string Env = Helpers.TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Env == "PROD")
+            if (Env.Contains("PROD"))
             {
                 Console.WriteLine("running tests on PROD " + Helpers.TestData.Urls.LoanScanMainPageProd);
                 Engine.Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.LoanScanMainPageProd);
@@ -73,7 +73,6 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
 
             Engine.Browser.MiddlePause();
-
         }
 
         public static void PerformSearch()
@@ -219,9 +218,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             Assert.IsTrue(underwrirename.Text.Contains("Underwriter name"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Underwriter name' value");
 
             IWebElement relayerName = Engine.Browser.CurrentBrowser.FindElement(RelayerName);
-            Assert.IsTrue(relayerName.Text.Contains("Relayer name"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Relayer name' value");
-
-
+            Assert.IsTrue(relayerName.Text.Contains("Lending platform"), "[" + Env + "] LOANSCAN", "The table doesn't contain the 'Relayer name' value");
         }
 
         public static void SwitchCurrency()

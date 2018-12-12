@@ -56,122 +56,124 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 
                 if(!elements[0].Text.Contains("Repayment progress"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Repayment progress element is abcent. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Repayment progress element is incorrect. Please check manually.");
                 }
                 
                 if (!elements[1].Text.Contains("Loan amount"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan amount field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan amount field is incorrect. Please check manually.");
                 }
                 
                 if (!elements[2].Text.Contains("Loan term"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan term field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan term field is incorrect. Please check manually.");
                 }
 
                 if (!elements[3].Text.Contains("Loan interest rate"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan interest rate field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan interest rate field is incorrect. Please check manually.");
                 }
                 
                 if (!elements[4].Text.Contains("Loan issuance date"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan issuance date field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan issuance date field is incorrect. Please check manually.");
                 }
-               
+                //Loan issuance date
                 if (!elements[5].Text.Contains("Loan maturity date"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan maturity date field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan maturity date field is incorrect. Please check manually.");
                 }
                 
                 if (!elements[6].Text.Contains("Loan-to-value (LTV) at origination"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan-to-value (LTV) at origination field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan-to-value (LTV) at origination field is incorrect. Please check manually.");
                 }
 
                 if (!elements[7].Text.Contains("Loan-to-value (LTV) current"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Loan-to-value (LTV) current field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan-to-value (LTV) current field is incorrect. Please check manually.");
                 }
-                
-                if (!elements[8].Text.Contains("Debtor address"))
+                //Debtor address
+                if (!elements[8].Text.Contains("Borrower address"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Debtor address field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Debtor address field is incorrect. Please check manually.");
                 }
-                
-                if (!elements[9].Text.Contains("Creditor address"))
+
+                //Creditor address
+                if (!elements[9].Text.Contains("Lender address"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Creditor address field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Creditor address field is incorrect. Please check manually.");
                 }
 
                 if (!elements[10].Text.Contains("Collateral"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Collateral field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Collateral field is incorrect. Please check manually.");
                 }
                 
                 if (!elements[11].Text.Contains("Repayments"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Repayments field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Repayments field is incorrect. Please check manually.");
                 }
 
                 if (!elements[12].Text.Contains("Repayment frequency"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Repayment frequency field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Repayment frequency field is incorrect. Please check manually.");
                 }
                 
                 if (!elements[13].Text.Contains("Agreement Id"))
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: Agreement Id field is element. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: Agreement Id field is incorrect. Please check manually.");
+                }
+                //Relayer name
+                if (!elements[14].Text.Contains("Lending platform"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Relayer name field is incorrect. Please check manually.");
+                }
+                //Relayer address
+                if (!elements[15].Text.Contains("Lending platform address"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Relayer address field is incorrect. Please check manually.");
+                }
+                //Relayer fees
+                if (!elements[16].Text.Contains("Lending platform fees"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Relayer fees field is incorrect. Please check manually.");
                 }
 
-                //if (!elements[14].Text.Contains("Relayer name"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Relayer name field is element. Please check manually.");
-                //}
-                //if (!elements[15].Text.Contains("Relayer address"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Relayer address field is element. Please check manually.");
-                //}
-                
-                //if (!elements[16].Text.Contains("Relayer fees"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Relayer fees field is element. Please check manually.");
-                //}
-                
-                //if (!elements[17].Text.Contains("Underwriter name"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Underwriter name field is element. Please check manually.");
-                //}
-                                
-                //if (!elements[18].Text.Contains("Underwriter address"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Underwriter address field is element. Please check manually.");
-                //}
-                
-                //if (!elements[19].Text.Contains("Underwriter fees"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN:Underwriter fees field is element. Please check manually.");
-                //}
-                
-                //if (!elements[20].Text.Contains("Underwriter risk rating"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Underwriter risk rating field is element. Please check manually.");
-                //}
-                
-                //if (!elements[21].Text.Contains("Loan issuance link"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Loan issuance link field is element. Please check manually.");
-                //}
-               
-                //if (!elements[22].Text.Contains("Loan contract"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Loan contract field is element. Please check manually.");
-                //}
-                
-                //if (!elements[23].Text.Contains("Lending protocol/system"))
-                //{
-                //    throw new Exception("[" + Env + "] LOANSCAN: Lending protocol/system field is element. Please check manually.");
-                //}
+                if (!elements[17].Text.Contains("Underwriter name"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Underwriter name field is incorrect. Please check manually.");
+                }
+
+                if (!elements[18].Text.Contains("Underwriter address"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Underwriter address field is incorrect. Please check manually.");
+                }
+
+                if (!elements[19].Text.Contains("Underwriter fees"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN:Underwriter fees field is incorrect. Please check manually.");
+                }
+
+                if (!elements[20].Text.Contains("Underwriter risk rating"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Underwriter risk rating field is incorrect. Please check manually.");
+                }
+
+                if (!elements[21].Text.Contains("Loan issuance link"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan issuance link field is incorrect. Please check manually.");
+                }
+
+                if (!elements[22].Text.Contains("Loan contract"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Loan contract field is incorrect. Please check manually.");
+                }
+                //Lending protocol/system
+                if (!elements[23].Text.Contains("Lending protocol"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Lending protocol/system field is incorrect. Please check manually.");
+                }
             }
             catch (Exception exception)
             {
