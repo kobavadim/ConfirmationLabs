@@ -32,6 +32,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool();
         }
 
+        [Ignore("Borrowing from the liquidity pool is temporarily disabled")]
         [Category("Borrow_sk")]
         [Category("CmpndRequests_sk")]
         [Test]
@@ -105,6 +106,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool();
         }
 
+        [Ignore("Borrowing from the liquidity pool is temporarily disabled")]
         [Category("Borrow_pm")]
         [Category("CmpndRequests_pm")]
         [Test]
