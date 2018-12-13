@@ -23,6 +23,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
+        [Ignore("No collateral to support request")]
         [Category("Borrow_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
@@ -39,6 +40,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
         }
 
+        [Ignore("No collateral to support request")]
         [Category("Borrow_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
@@ -47,6 +49,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
+        [Ignore("No collateral to support request")]
         [Category("Borrow_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
@@ -55,6 +58,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
+        [Ignore("No collateral to support request")]
         [Category("Borrow_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]

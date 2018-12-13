@@ -17,6 +17,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         #region STAGING_Kovan
+        [Ignore("No collateral to support request")]
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
