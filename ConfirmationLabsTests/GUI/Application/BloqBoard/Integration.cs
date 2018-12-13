@@ -35,7 +35,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             //Test started
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-            Browser.MiddlePause();
+            Browser.LongPause();
 
             string[] stringSeparator = { " " };
             IWebElement date = Browser.CurrentBrowser.FindElement(Date);
@@ -58,11 +58,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             var datevaluesloanscan  = dateloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
             var dayvalue = datevaluesloanscan[0].Split(stringSeparatorDate, StringSplitOptions.None);
 
-            Console.WriteLine(dayvalue[1] + datevalues[2]);
+            //Console.WriteLine(dayvalue[1] + datevalues[2]);
             var timeloanscan = datevaluesloanscan[1].Split(stringSeparatorColumn, StringSplitOptions.None);
-            Assert.IsTrue(timeloanscan[1].Equals(timevalue[1]), "BloqBoard", "Incorrect time is displayed on the recent loans table | url: " + currentURL);
+            //Assert.IsTrue(timeloanscan[1].Equals(timevalue[1]), "BloqBoard", "Incorrect time is displayed on the recent loans table | url: " + currentURL);
 
-            //Assert.IsTrue(dayvalue[1].Equals(datevalues[2]), "BloqBoard", "Incorrect date is displayed on the recent loans table expected: " + dayvalue[1] + "was " + datevalues[2] + "| url: " + currentURL);
+            Assert.IsTrue(dayvalue[1].Equals(datevalues[0]), "BloqBoard", "Incorrect date is displayed on the recent loans table expected.");
         }
 
         public static void VerifyAmountfromRecentLoans()
