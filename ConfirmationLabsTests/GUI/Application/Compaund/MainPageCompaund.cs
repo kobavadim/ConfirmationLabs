@@ -240,6 +240,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                 //approve on MetaMask
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+                Browser.LongPause();
 
                 //check
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
