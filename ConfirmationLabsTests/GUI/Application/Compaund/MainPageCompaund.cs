@@ -198,10 +198,14 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 string BloqboardTab = windows[1];
 
                 //Test started
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                Browser.LongPause();
+
+                string loanedcount = CheckLoanedAmount();
+                Browser.MiddlePause();
+
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.LongPause();
-                string loanedcount = "";
-
                 IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
                 foreach (var el in elementListRows)
                 {
@@ -213,12 +217,6 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                         foreach (var ele in children)
                         {
-                            if (ele.Text.Contains("Loaned") && loanedcount == "")
-                            {
-                                loanedcount = ele.Text;
-
-                            }
-
                             if (ele.Text.Contains("LEND") && ele.TagName == "div")
                             {
                                 i++;
@@ -242,6 +240,10 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                 //approve on MetaMask
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+                //check
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                Browser.LongPause();
 
                 var loanedAfter = CheckLoanedAmount();
                 Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
