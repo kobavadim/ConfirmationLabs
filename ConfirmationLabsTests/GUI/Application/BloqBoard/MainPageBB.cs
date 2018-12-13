@@ -1385,7 +1385,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 lowamount.Click();
                 Browser.ShortPause();
 
-                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-green.borrow-btn"));
+                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".borrow-table .btn-green"));
                 borrowbtns[0].Click();
                 Browser.MiddlePause();
                 IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
@@ -1464,7 +1464,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 lowamount.Click();
                 Browser.ShortPause();
 
-                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".lend-btn"));
+                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".loan-table .btn-red"));
                 borrowbtns[0].Click();
                 Browser.MiddlePause();
                 IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-details-btn.fill"));
