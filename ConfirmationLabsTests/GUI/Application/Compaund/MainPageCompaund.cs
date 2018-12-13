@@ -425,7 +425,6 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 catch (Exception exception)
                 {
                     Browser.Close();
-                    throw new Exception("Borrow action is disabled...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }
@@ -532,7 +531,6 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 catch (Exception exception)
                 {
                     Browser.Close();
-                    throw new Exception("Borrow action is disabled...");
                     Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
                 }
             }

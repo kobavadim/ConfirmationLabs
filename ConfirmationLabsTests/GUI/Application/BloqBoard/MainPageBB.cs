@@ -1405,7 +1405,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             catch (Exception exception)
             {
                 Browser.Close();
-                throw new Exception("no borrow requests to borrow because of lack of collateral...");
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
