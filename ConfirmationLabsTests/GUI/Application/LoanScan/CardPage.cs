@@ -243,13 +243,13 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Loan-to-value (LTV) current field is not present at the card page. Please check manually.");
                 }
-                
-                if (!elements[5].Text.Contains("Debtor address"))
+                //
+                if (!elements[5].Text.Contains("Borrower address"))
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Debtor addresst field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[6].Text.Contains("Creditor address"))
+                if (!elements[6].Text.Contains("Lender address"))
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Creditor address field is not present at the card page. Please check manually.");
                 }
@@ -280,7 +280,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                     throw new Exception("[" + Env + "] LOANSCAN: CDP creation link field is not present at the card page. Please check manually.");
                 }
                 
-                if (!elements[13].Text.Contains("Lending protocol/system"))
+                if (!elements[13].Text.Contains("Lending platform"))
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Lending protocol/system field is not present at the card page. Please check manually.");
                 }
