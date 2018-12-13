@@ -1490,7 +1490,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     ScreenShot.TakeScreenshot();
                 }
                 catch (Exception) { }
-                throw new Exception("No small amount borrow requests to loan on PROD...");
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
