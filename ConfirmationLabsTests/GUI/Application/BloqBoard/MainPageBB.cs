@@ -1629,6 +1629,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     Browser.LongPause();
                     Browser.CurrentBrowser.Navigate().Refresh();
                     Browser.LongPause();
+                    Browser.LongPause();
 
                     IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:first-child > div.content-table-cell.amount-cell.text-right > div.top-cell"));
                     string newcreatedrequest = newrequest.Text;
@@ -1743,7 +1744,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                     Browser.MiddlePause();
 
-                    Browser.CurrentBrowser.Navigate().GoToUrl("https://staging.bloqboard.com/add-offer-to-lend");
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "add-offer-to-lend");
                     Browser.ShortPause();
                     Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("1");
                     Browser.ShortPause();
@@ -1758,6 +1759,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     if (submit.Enabled)
                     {
                         IWebElement isDisabled = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
+                        var lol = isDisabled.GetAttribute("class");
+
+
                         isDisabled.Click();
                         Browser.MiddlePause();
 
