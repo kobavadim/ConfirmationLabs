@@ -24,13 +24,13 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
         }
 
         [Ignore("Fix")]
+        [Category("Loanscan")]
         [Test]
         public void PaidOfCardsElementsValueDharmaPrortocolTest()
         {
             CardPage.VerifyPaidOfDharmaSingleCard();
         }
 
-        [Category("NOTSTAGING")]
         [Category("Loanscan")]
         [Test]
         public void CardsElementsMakerDaoPrortocolTest()

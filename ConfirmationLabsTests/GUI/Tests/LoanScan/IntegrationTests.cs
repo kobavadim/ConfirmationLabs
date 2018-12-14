@@ -24,7 +24,6 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
            Integration.VerifySingleCardOpening();
         }
 
-        [Category("NOTSTAGING")]
         [Category("Loanscan")]
         [Category("Integration")]
         [Test]
@@ -51,7 +50,6 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             Integration.VerifyCollateralistheSameThroughTableandCard();
         }
 
-        [Category("NOTSTAGING")]
         [Category("Loanscan")]
         [Category("Integration")]
         [Test]
