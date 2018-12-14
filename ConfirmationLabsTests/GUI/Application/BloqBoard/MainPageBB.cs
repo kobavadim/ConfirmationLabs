@@ -1699,6 +1699,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     Browser.ShortPause();
                     Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                     Browser.LongPause();
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.LongPause();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
+                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("0.001");
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
+                    Browser.ShortPause();
 
 
                     IWebElement lend = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-form__btn.lend"));
@@ -1732,7 +1742,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     Browser.ShortPause();
                     Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                     Browser.LongPause();
-
+                    Browser.CurrentBrowser.Navigate().Refresh();
+                    Browser.LongPause();
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.Name("principalToken")).Click();
+                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("principalToken"))).SelectByText("DAI");
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]")).SendKeys("0.001");
+                    Browser.ShortPause();
+                    Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
+                    Browser.ShortPause();
                     IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("[type='submit']"));
                     submit.Click();
                     Browser.ShortPause();
