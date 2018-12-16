@@ -149,12 +149,12 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 {
                     throw new Exception("[" + Env + "] LOANSCAN: Underwriter Name value doesn't match through the table and the card. Please check manually.");
                 }
-                IWebElement relayername = Engine.Browser.CurrentBrowser.FindElement(By.CssSelector("dl.row > dd:nth-of-type(16) > a > span.d-none.d-md-inline-block"));
-          
-                if (!relayername.Text.Substring(0, 5).Contains(relayerNameTableValue.Substring(0, 5)))
-                {
-                    throw new Exception("[" + Env + "] LOANSCAN: Relayer Name value doesn't match through the table and the card. Please check manually.");
-                }
+                //IWebElement relayername = Engine.Browser.CurrentBrowser.FindElement(By.CssSelector("dl.row > dd:nth-of-type(16) > a > span.d-none.d-md-inline-block"));
+                //OR
+                //if (!relayername.Text.Substring(0, 5).Contains(relayerNameTableValue.Substring(0, 5)))
+                //{
+                //    throw new Exception("[" + Env + "] LOANSCAN: Relayer Name value doesn't match through the table and the card. Please check manually.");
+                //}
 
 
             }
