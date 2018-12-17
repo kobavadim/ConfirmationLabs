@@ -104,7 +104,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void WithdrawFromLiquidityPoolTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
 
         //[Ignore("Borrowing from the liquidity pool is temporarily disabled")]
