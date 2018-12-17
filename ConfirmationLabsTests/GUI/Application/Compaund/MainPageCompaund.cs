@@ -201,53 +201,53 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
                 Browser.LongPause();
 
-                //string loanedcount = CheckLoanedAmount();
-                //Browser.MiddlePause();
+                string loanedcount = CheckLoanedAmount();
+                Browser.MiddlePause();
 
-                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-                //Browser.LongPause();
-                //IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
-                //foreach (var el in elementListRows)
-                //{
-                //    var children = el.FindElements(By.XPath(".//*"));
-                //    var tokenName = children[0].Text;
-                //    int i = 1;
-                //    if (tokenName.Contains("WETH"))
-                //    {
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+                Browser.LongPause();
+                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                foreach (var el in elementListRows)
+                {
+                    var children = el.FindElements(By.XPath(".//*"));
+                    var tokenName = children[0].Text;
+                    int i = 1;
+                    if (tokenName.Contains("WETH"))
+                    {
 
-                //        foreach (var ele in children)
-                //        {
-                //            if (ele.Text.Contains("LEND") && ele.TagName == "div")
-                //            {
-                //                i++;
+                        foreach (var ele in children)
+                        {
+                            if (ele.Text.Contains("LEND") && ele.TagName == "div")
+                            {
+                                i++;
 
-                //                if (i >= 3)
-                //                {
-                //                    ele.Click();
-                //                    break;
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
+                                if (i >= 3)
+                                {
+                                    ele.Click();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
 
-                //Browser.ShortPause();
-                //IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
-                //amount.SendKeys("0.0001");
-                //Browser.MiddlePause();
-                //IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
-                //confirm.Click();
+                Browser.ShortPause();
+                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                amount.SendKeys("0.0001");
+                Browser.MiddlePause();
+                IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
+                confirm.Click();
 
-                ////approve on MetaMask
-                //Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
-                //Browser.LongPause();
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+                Browser.LongPause();
 
-                ////check
-                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
-                //Browser.LongPause();
+                //check
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                Browser.LongPause();
 
-                //var loanedAfter = CheckLoanedAmount();
-               // Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+                var loanedAfter = CheckLoanedAmount();
+                //Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
             }
 
             catch (Exception exception)
@@ -368,11 +368,6 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 //loansbtn.Click();
                 Browser.LongPause();
 
-                //IWebElement loanedRepamount = Browser.CurrentBrowser.FindElement(LoanedRep);
-                //string[] stringSeparators = new string[] { "." };
-                //var result = loanedRepamount.Text.Split(stringSeparators, StringSplitOptions.None);
-
-                //double loanedRep = double.Parse(result[0]);
                 string loanedcount = "";
 
                 IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
