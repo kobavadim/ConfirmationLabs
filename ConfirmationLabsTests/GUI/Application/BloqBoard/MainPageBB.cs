@@ -1525,125 +1525,123 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyEthCanBeWrapped()
         {
-            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Environment.Contains("STAGING"))
+            try
             {
-                try
-                {
-                    //Login to the app
-                    ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
-                    string MetamaskTab = windows[0];
-                    string BloqboardTab = windows[1];
+                //Login to the app
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
 
-                    //Test started
-                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
-                    Browser.MiddlePause();
+                //Test started
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+                Browser.MiddlePause();
 
-                    IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                    string recentrequest = lastrequest.Text;
+                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".amount-cell .bottom-cell"));
+                string recentrequest = values[0].Text;
 
-                    IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
-                    wrap.Click();
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#wrapPopover"));
+                wrap.Click();
 
-                    IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                    amount.SendKeys("0.01");
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.01");
 
-                    IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
-                    btnwrap.Click();
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
 
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.ShortPause();
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
 
-                    Console.WriteLine("Signing request...");
-                    SignRequest();
+                Console.WriteLine("Signing request...");
+                SignRequest();
 
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.LongPause();
-                    Browser.LongPause();
-                    Browser.LongPause();
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.LongPause();
+                Browser.LongPause();
+                Browser.LongPause();
 
-                    IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:nth-of-type(2) > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                    string newcreatedrequest = newrequest.Text;
+                IList<IWebElement> valuesAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".amount-cell .bottom-cell"));
+                string newcreatedrequest = valuesAfter[0].Text;
 
-                    Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
-                }
-                catch (Exception exception)
-                {
-                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
-                }
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
             }
-            else
+            catch (Exception exception)
             {
-                IgnoreAfterLogin("PROD sherlock");
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
         public static void VerifyETHCanBeUnwrapped()
         {
-            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Environment.Contains("STAGING"))
+            try
             {
-                try
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
+
+                Browser.MiddlePause();
+
+                string environment = TestData.DefineEnvironmentDependingOnEnvironment();
+                if (environment.Contains("STAGING") || environment.Contains("PROD_Mainnet"))
                 {
-                    //Login to the app
-                    ReadOnlyCollection<string> windows = LoginToMainPage("lender");
-                    string MetamaskTab = windows[0];
-                    string BloqboardTab = windows[1];
 
-                    //Test started
-                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
-
+                }
+                else
+                {
+                    IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
+                    termschecbox.Click();
+                    Browser.ShortPause();
+                    IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+                    continuebtn.Click();
                     Browser.MiddlePause();
-                    TermsandConditionAceptance();
-                    Browser.ShortPause();
-
-                    IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:first-child > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                    string recentrequest = lastrequest.Text;
-
-                    IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#unWrapPopover"));
-                    wrap.Click();
-
-                    IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
-                    amount.SendKeys("0.01");
-
-                    IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
-                    btnwrap.Click();
-
-                    Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
-                    Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.ShortPause();
-
-                    Console.WriteLine("Signing request...");
-                    SignRequest();
-
-                    Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.LongPause();
-                    Browser.CurrentBrowser.Navigate().Refresh();
-                    Browser.LongPause();
-                    Browser.LongPause();
-
-                    IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.assets-table-body > div:first-child > div.content-table-cell.amount-cell.text-right > div.top-cell"));
-                    string newcreatedrequest = newrequest.Text;
-
-                    Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
                 }
-                catch (Exception exception)
-                {
-                    Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
-                }
+                Browser.ShortPause();
+
+                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".amount-cell .bottom-cell"));
+                string recentrequest = values[0].Text;
+
+                IWebElement wrap = Browser.CurrentBrowser.FindElement(By.CssSelector("#unWrapPopover"));
+                wrap.Click();
+
+                IWebElement amount = Browser.CurrentBrowser.FindElement(By.CssSelector("input.wrap-input"));
+                amount.SendKeys("0.01");
+
+                IWebElement btnwrap = Browser.CurrentBrowser.FindElement(By.CssSelector("button.wrap-btn"));
+                btnwrap.Click();
+
+                Browser.CurrentBrowser.SwitchTo().Window(MetamaskTab);
+                Browser.CurrentBrowser.Navigate().GoToUrl("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#");
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+
+                Console.WriteLine("Signing request...");
+                SignRequest();
+
+                Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.LongPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.LongPause();
+                Browser.LongPause();
+
+                IList<IWebElement> valuesAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".amount-cell .bottom-cell"));
+                string newcreatedrequest = valuesAfter[0].Text;
+
+                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Wrap Ooperation is working incorrectly. Please check manually. was: " + recentrequest + " become: " + newcreatedrequest);
             }
-            else
+            catch (Exception exception)
             {
-                IgnoreAfterLogin("PROD sherlock");
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
         }
 
