@@ -32,7 +32,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void CheckLiquidityTableAvailabilityTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
         }
         #endregion
 
