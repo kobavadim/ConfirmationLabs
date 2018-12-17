@@ -109,8 +109,15 @@ namespace ConfirmationLabsTests.Helpers
                     Actions actions = new Actions(Browser.CurrentBrowser);
                     actions.MoveToElement(values[54]);
                     actions.Perform();
+                    Browser.ShortPause();
                     Actions actions2 = new Actions(Browser.CurrentBrowser);
                     actions2.SendKeys(OpenQA.Selenium.Keys.End).Build().Perform();
+                    Browser.ShortPause();
+                    IJavaScriptExecutor js1 = (IJavaScriptExecutor)Browser.CurrentBrowser;
+                    js1.ExecuteScript("arguments[0].scrollIntoView();", values[54]);
+                    Browser.ShortPause();
+                    Actions actions3 = new Actions(Browser.CurrentBrowser);
+                    actions3.SendKeys(OpenQA.Selenium.Keys.End).Build().Perform();
                     Browser.ShortPause();
                     IJavaScriptExecutor js = (IJavaScriptExecutor)Browser.CurrentBrowser;
                     js.ExecuteScript("arguments[0].scrollIntoView();", values[54]);

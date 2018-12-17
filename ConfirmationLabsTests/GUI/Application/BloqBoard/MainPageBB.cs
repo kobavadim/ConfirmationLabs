@@ -121,10 +121,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.MiddlePause();
 
-            //kill
+            //give permission
             if (environment.Contains("STAGING"))
             {
-
+                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
+                submit.Click();
             }
             else 
             {
@@ -149,48 +150,48 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
             //kill
-            if (environment.Contains("STAGING"))
-            {
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-                Browser.MiddlePause();
-                IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
-                connectWallet.Click();
-                Browser.MiddlePause();
+            //if (environment.Contains("STAGING"))
+            //{
+            //    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+            //    Browser.MiddlePause();
+            //    IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+            //    connectWallet.Click();
+            //    Browser.MiddlePause();
 
 
 
-                Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
-                Browser.ShortPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.MiddlePause();
+            //    Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
+            //    Browser.ShortPause();
+            //    Browser.CurrentBrowser.Navigate().Refresh();
+            //    Browser.MiddlePause();
 
 
-                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
-                submit.Click();
+            //    IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
+            //    submit.Click();
 
 
-                Browser.MiddlePause();
-                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
-                IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
-                connectWalletAgain.Click();
-                Browser.ShortPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
+            //    Browser.MiddlePause();
+            //    Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
+            //    Browser.CurrentBrowser.Navigate().Refresh();
+            //    Browser.ShortPause();
+            //    IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+            //    connectWalletAgain.Click();
+            //    Browser.ShortPause();
+            //    Browser.CurrentBrowser.Navigate().Refresh();
+            //    Browser.ShortPause();
 
-                IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
-                termschecbox.Click();
-                Browser.ShortPause();
-                IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
-                continuebtn.Click();
-                Browser.MiddlePause();
+            //    IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
+            //    termschecbox.Click();
+            //    Browser.ShortPause();
+            //    IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+            //    continuebtn.Click();
+            //    Browser.MiddlePause();
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
 
           
 
@@ -243,21 +244,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void TermsandConditionAceptance()
         {
-            //kill
-            string environment = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (environment.Contains("STAGING"))
-            {
-
-            }
-            else
-            {
                 IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
                 termschecbox.Click();
                 Browser.ShortPause();
                 IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
                 continuebtn.Click();
-                Browser.MiddlePause();
-            }
+                Browser.MiddlePause();       
         }
 
         public static void WentThroughRequestTable()
