@@ -33,7 +33,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
 
-        //[Ignore("Borrowing from the liquidity pool is temporarily disabled")]
+        [Ignore("No ZRX token to borrow")]
         [Category("Borrow_sk")]
         [Category("CmpndRequests_sk")]
         [Test]
@@ -58,7 +58,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void LendToLiquidityPoolTest_sm()
         {
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
         [Category("Withdraw_sm")]

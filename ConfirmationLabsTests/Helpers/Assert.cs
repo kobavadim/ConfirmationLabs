@@ -18,7 +18,7 @@ namespace ConfirmationLabsTests.Helpers
         }
 
         public static void FinilizeErrors(string ENV, string component, Exception exception, bool send)
-        {
+       {
             string errormessage = "";
             try
             {

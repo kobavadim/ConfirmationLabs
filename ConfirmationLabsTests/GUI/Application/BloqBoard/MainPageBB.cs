@@ -5,6 +5,7 @@ using ConfirmationLabsTests.GUI.Engine;
 using OpenQA.Selenium;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 using OpenQA.Selenium.Support.UI;
 
@@ -122,10 +123,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.MiddlePause();
 
             //give permission
-            if (environment.Contains("STAGING"))
+            if (environment.Contains("Kovan"))
             {
-                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
-                submit.Click();
+             
             }
             else 
             {
@@ -149,51 +149,48 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
 
-            //kill
-            //if (environment.Contains("STAGING"))
-            //{
-            //    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-            //    Browser.MiddlePause();
-            //    IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
-            //    connectWallet.Click();
-            //    Browser.MiddlePause();
+            //kostil
+            string environmentkostil = TestData.DefineEnvironmentDependingOnEnvironment();
+            if (environmentkostil.Contains("Kovan"))
+            {
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                Browser.MiddlePause();
+                IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+                connectWallet.Click();
+                Browser.MiddlePause();
 
 
 
-            //    Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
-            //    Browser.ShortPause();
-            //    Browser.CurrentBrowser.Navigate().Refresh();
-            //    Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
+                Browser.ShortPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.MiddlePause();
 
 
-            //    IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
-            //    submit.Click();
+                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
+                submit.Click();
 
 
-            //    Browser.MiddlePause();
-            //    Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
-            //    Browser.CurrentBrowser.Navigate().Refresh();
-            //    Browser.ShortPause();
-            //    IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
-            //    connectWalletAgain.Click();
-            //    Browser.ShortPause();
-            //    Browser.CurrentBrowser.Navigate().Refresh();
-            //    Browser.ShortPause();
+                Browser.MiddlePause();
+                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
+                IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+                connectWalletAgain.Click();
+                Browser.ShortPause();
+                Browser.CurrentBrowser.Navigate().Refresh();
+                Browser.ShortPause();
 
-            //    IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
-            //    termschecbox.Click();
-            //    Browser.ShortPause();
-            //    IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
-            //    continuebtn.Click();
-            //    Browser.MiddlePause();
+                IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
+                termschecbox.Click();
+                Browser.ShortPause();
+                IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+                continuebtn.Click();
+                Browser.MiddlePause();
 
-            //}
-            //else
-            //{
 
-            //}
+            }
 
-          
 
 
 
@@ -399,14 +396,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             interest.SendKeys("1");
             Browser.ShortPause();
 
-            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Environment.Contains("Mainnet"))
-            {
+       
                 IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
                 click.Click();
                 new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("ZRX");
                 Browser.ShortPause();
-            }
+            
 
             IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
             collateral.SendKeys("0.0058");
@@ -786,31 +781,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             try
             {
                 //Login to the app
-                ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
-                string MetamaskTab = windows[0];
-                string BloqboardTab = windows[1];
-
-
-
+                LoginToMainPage("borrower");
+ 
                 //Test started
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.MiddlePause();
 
-                string recentrequest = "";
-                string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-                if (Environment.Contains("Mainnet"))
+                //Check values before
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                foreach (var request in requests)
                 {
-                    IWebElement lastrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                    recentrequest = lastrequest.Text;
+                    myRequestsBefore.Add(request.Text);
                 }
-                else
-                {
-                    IWebElement lastrequestPROD = Browser.CurrentBrowser.FindElement(
-                        By.CssSelector(
-                            "div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
-                    recentrequest = lastrequestPROD.Text;
 
-                }
 
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
@@ -821,21 +805,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.LongPause();
 
-                string newcreatedrequest = "";
-                if (Environment.Contains("Mainnet"))
+                //Check values
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                foreach (var request in requestsAfter)
                 {
-                    IWebElement newrequest = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
-                    newcreatedrequest = newrequest.Text;
+                    myRequestsAfter.Add(request.Text);
                 }
-                else
-                {
-                    IWebElement lastrequestPROD = Browser.CurrentBrowser.FindElement(
-                        By.CssSelector(
-                            "div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
-                    newcreatedrequest = lastrequestPROD.Text;
 
-                }
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+
+                Assert.IsTrue(!myRequestsBefore.SequenceEqual(myRequestsAfter), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
             }
             catch (Exception exception)
             {
