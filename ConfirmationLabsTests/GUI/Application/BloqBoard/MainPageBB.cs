@@ -123,7 +123,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.MiddlePause();
 
             //give permission
-            if (environment.Contains("Kovan"))
+            if (environment.Contains("STAGING"))
             {
              
             }
@@ -148,7 +148,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             //Wallet approval
             string environmentkostil = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (environmentkostil.Contains("Kovan"))
+            if (environmentkostil.Contains("STAGING"))
             {
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.MiddlePause();
