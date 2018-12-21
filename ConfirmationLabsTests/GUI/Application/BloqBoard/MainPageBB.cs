@@ -762,13 +762,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.MiddlePause();
 
-                //Check values before
+                //Check values before (Loan offers)
                 List<string> myRequestsBefore = new List<string>();
-                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
                 foreach (var request in requests)
                 {
                     myRequestsBefore.Add(request.Text);
                 }
+                var lastLoanbefore = myRequestsBefore.First();
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
                 Browser.MiddlePause();
@@ -780,13 +781,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 //Check values
                 List<string> myRequestsAfter = new List<string>();
-                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
                 foreach (var request in requestsAfter)
                 {
                     myRequestsAfter.Add(request.Text);
                 }
+                var lastLoanAfter = myRequestsAfter.First();
 
-                Assert.IsTrue(!myRequestsBefore.SequenceEqual(myRequestsAfter), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
             }
             catch (Exception exception)
             {
@@ -1260,13 +1262,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.MiddlePause();
 
-                //Check values before
+                //Check values before (Loan offers)
                 List<string> myRequestsBefore = new List<string>();
-                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requests)
                 {
                     myRequestsBefore.Add(request.Text);
                 }
+                var lastLoanbefore = myRequestsBefore.First(); 
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.MiddlePause();
@@ -1282,13 +1285,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 //Check values
                 List<string> myRequestsAfter = new List<string>();
-                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requestsAfter)
                 {
                     myRequestsAfter.Add(request.Text);
                 }
+                var lastLoanAfter = myRequestsAfter.First();
 
-                Assert.IsTrue(!myRequestsBefore.SequenceEqual(myRequestsAfter), "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
             }
             catch (Exception exception)
             {
