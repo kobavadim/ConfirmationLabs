@@ -26,7 +26,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
+        [Ignore("Waiting for tokens on kovan")]
         [Category("Cancel_sk")]
         [Category("BlqRequests_sk")]
         [Test]
@@ -35,7 +35,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanbeCancelled, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
+        [Ignore("Waiting for tokens on kovan")]
         [Category("BlqRequests_sk")]
         [Test]
         public void LendRequestTest_sk()
@@ -43,7 +43,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanBeLended, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
+        [Ignore("Waiting for tokens on kovan")]
         [Category("Repay_sk")]
         [Category("BlqRequests_sk")]
         [Test]
@@ -52,7 +52,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyRepayFunctionality, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
+        [Ignore("Waiting for tokens on kovan")]
         [Category("Return_sk")]
         [Category("BlqRequests_sk")]
         [Test]
@@ -61,7 +61,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyCollatrealCanbeReturned, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
+        [Ignore("Waiting for tokens on kovan")]
         [Category("Seize_sk")]
         [Category("BlqRequests_sk")]
         [Test]

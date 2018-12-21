@@ -16,6 +16,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         #region STAGING_Kovan
         [Category("Lend_sk")]
+        [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
         public void OfferMyOwnLendTest_sk()
