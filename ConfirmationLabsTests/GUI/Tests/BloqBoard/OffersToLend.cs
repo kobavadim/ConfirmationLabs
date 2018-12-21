@@ -15,7 +15,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         #region STAGING_Kovan
-        [Ignore("No collateral to support request")]
         [Category("Lend_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
@@ -33,7 +32,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
-        [Ignore("No collateral to support request")]
         [Category("Lend_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
@@ -66,7 +64,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
-        [Ignore("No collateral to support request")]
         [Category("Lend_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
@@ -75,7 +72,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
-        [Ignore("No collateral to support request")]
+        [Ignore("Predefined request expected")]
         [Category("Lend_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
@@ -84,7 +81,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
-        [Ignore("No collateral to support request")]
         [Category("Lend_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]

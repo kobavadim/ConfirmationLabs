@@ -146,10 +146,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
 
 
-
-
-
-            //kostil
+            //Wallet approval
             string environmentkostil = TestData.DefineEnvironmentDependingOnEnvironment();
             if (environmentkostil.Contains("Kovan"))
             {
@@ -159,18 +156,13 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 connectWallet.Click();
                 Browser.MiddlePause();
 
-
-
                 Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
                 Browser.ShortPause();
                 Browser.CurrentBrowser.Navigate().Refresh();
                 Browser.MiddlePause();
 
-
                 IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
                 submit.Click();
-
-
                 Browser.MiddlePause();
                 Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
                 Browser.CurrentBrowser.Navigate().Refresh();
@@ -187,11 +179,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
                 continuebtn.Click();
                 Browser.MiddlePause();
-
-
             }
-
-
 
 
             return handles;
@@ -348,23 +336,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             IWebElement token = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"collateralToken\"]"));
             token.Click();
+            Browser.ShortPause();
 
-            string Environment = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (Environment.Contains("Mainnet"))
-            {
-                try
-                {
-                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
-                }catch (Exception e){}
-            }
-            else
-            {
-                try
-                {
-                    new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("REP");
-                }
-                catch (Exception e) { }
-            }
+            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
+   
 
             IWebElement LTV = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"ltv\"]"));
             LTV.SendKeys(OpenQA.Selenium.Keys.Control + "a");
@@ -795,8 +770,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     myRequestsBefore.Add(request.Text);
                 }
 
-
-
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
@@ -812,7 +785,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 {
                     myRequestsAfter.Add(request.Text);
                 }
-
 
                 Assert.IsTrue(!myRequestsBefore.SequenceEqual(myRequestsAfter), "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
             }
@@ -1280,7 +1252,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             try
             {
                 //Login to the app
-                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
@@ -1288,8 +1260,13 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.MiddlePause();
 
-                IWebElement lastrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
-                string recentrequest = lastrequest.Text;
+                //Check values before
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                foreach (var request in requests)
+                {
+                    myRequestsBefore.Add(request.Text);
+                }
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.MiddlePause();
@@ -1302,9 +1279,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 //check
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
                 Browser.MiddlePause();
-                IWebElement newrequest = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table-row > div:first-child > div.bottom-cell"));
-                string newcreatedrequest = newrequest.Text;
-                Assert.IsTrue(!newcreatedrequest.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
+
+                //Check values
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".bottom-cell"));
+                foreach (var request in requestsAfter)
+                {
+                    myRequestsAfter.Add(request.Text);
+                }
+
+                Assert.IsTrue(!myRequestsBefore.SequenceEqual(myRequestsAfter), "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
             }
             catch (Exception exception)
             {
