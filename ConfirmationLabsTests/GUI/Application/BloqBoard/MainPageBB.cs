@@ -114,7 +114,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string bloqboardTab = handles[1];
 
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineEnvironmentDependingOnEnvironment());
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
             Browser.MiddlePause();
 
             Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
@@ -139,9 +139,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
 
 
-
-            IWebElement MainPage = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
-            MainPage.Click();
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
             Browser.MiddlePause();
             TermsandConditionAceptance();
             Browser.ShortPause();
