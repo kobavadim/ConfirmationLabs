@@ -114,7 +114,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             string bloqboardTab = handles[1];
 
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+            IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+            Borrow.Click();
             Browser.MiddlePause();
 
             Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
@@ -140,7 +141,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
 
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+            IWebElement MainPage = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+            MainPage.Click();
             Browser.MiddlePause();
             TermsandConditionAceptance();
             Browser.ShortPause();
@@ -591,7 +593,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoans.Click();
                 Browser.MiddlePause();
 
                 IWebElement myborrowedtokenstable = Browser.CurrentBrowser.FindElement(MyBorrowedTokensTable);
@@ -612,7 +615,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 LoginToMainPage("lender");
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoans.Click();
                 Browser.MiddlePause();
 
                 IWebElement mytokenstable = Browser.CurrentBrowser.FindElement(MyLandedTokensTable);
@@ -757,9 +761,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             {
                 //Login to the app
                 LoginToMainPage("borrower");
- 
+
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
                 Browser.MiddlePause();
 
                 //Check values before (Loan offers)
@@ -771,12 +776,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 var lastLoanbefore = myRequestsBefore.First();
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
                 CreateNewBorrowRequest();
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
                 Browser.LongPause();
 
                 //Check values
@@ -807,7 +814,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
 
                 Browser.MiddlePause();
                 TermsandConditionAceptance();
@@ -815,8 +823,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 //CreateNewRequest();
 
-                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-                //Browser.MiddlePause();
+            
 
                 IWebElement creationDate = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                 string date = creationDate.Text;
@@ -975,7 +982,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
                 Browser.MiddlePause();
 
                 IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
@@ -1094,7 +1102,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 LoginToMainPage("lender");
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
                 Browser.MiddlePause();
 
                 IWebElement loansbtn = Browser.CurrentBrowser.FindElement(LoansMenuBtn);
@@ -1259,7 +1268,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
                 Browser.MiddlePause();
 
                 //Check values before (Loan offers)
@@ -1280,7 +1290,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
                 //check
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
                 Browser.MiddlePause();
 
                 //Check values
@@ -1311,13 +1322,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoans.Click();
                 Browser.MiddlePause();
-                
+
                 IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
                 string recentrequest = lastBorrowed.Text;
 
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
                 Browser.MiddlePause();
 
                 //Choose low values
@@ -1354,7 +1367,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
                 //check
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoansAfter.Click();
                 Browser.MiddlePause();
 
                 IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
@@ -1378,7 +1392,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoans.Click();
                 Browser.MiddlePause();
 
                 IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.side-splitter > div:nth-of-type(2) > div.content-table > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
@@ -1433,7 +1448,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
                 //check
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoansAfter.Click();
                 Browser.LongPause();
 
                 IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.side-splitter > div:nth-of-type(2) > div.content-table > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));

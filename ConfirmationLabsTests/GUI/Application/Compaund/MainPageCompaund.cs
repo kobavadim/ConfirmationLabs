@@ -198,7 +198,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 string BloqboardTab = windows[1];
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoans.Click();
                 Browser.LongPause();
 
                 string loanedcount = CheckLoanedAmount();
@@ -243,7 +244,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.LongPause();
 
                 //check
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoansAfter.Click();
                 Browser.LongPause();
 
                 var loanedAfter = CheckLoanedAmount();
@@ -361,13 +363,15 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 string BloqboardTab = windows[1];
 
                 //Test started
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
                 Browser.LongPause();
 
                 string environment = TestData.DefineEnvironmentDependingOnEnvironment();
                 if (environment.Contains("STAGING"))
                 {
-                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                    IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                    MyLoans.Click();
                     Browser.LongPause();
                     string loanedcountSTAGING = "";
 
@@ -433,7 +437,8 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     Browser.LongPause();
 
                     //check
-                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                    IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                    MyLoansAfter.Click();
                     Browser.LongPause();
                     string loanedAmountAfterBorrow = loanedcountSTAGING;
                     var loanedAfterStaging = CheckBorrowedAmount();
