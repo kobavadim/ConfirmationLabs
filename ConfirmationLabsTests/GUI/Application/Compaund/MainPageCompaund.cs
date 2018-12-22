@@ -362,61 +362,135 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
                 //Test started
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-                Browser.MiddlePause();
-
-                //IWebElement loansbtn = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                //loansbtn.Click();
                 Browser.LongPause();
 
-                string loanedcount = "";
-
-                IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
-                foreach (var el in elementListRows)
+                string environment = TestData.DefineEnvironmentDependingOnEnvironment();
+                if (environment.Contains("STAGING"))
                 {
-                    var children = el.FindElements(By.XPath(".//*"));
-                    var tokenName = children[0].Text;
-                    int i = 1;
-                    if (tokenName.Contains("ZRX"))
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                    Browser.LongPause();
+                    string loanedcountSTAGING = "";
+
+                    IList<IWebElement> elementListRowsSTAGING = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                    foreach (var el in elementListRowsSTAGING)
                     {
-
-                        foreach (var ele in children)
+                        var children = el.FindElements(By.XPath(".//*"));
+                        var tokenName = children[0].Text;
+                        int i = 1;
+                        if (tokenName.Contains("ZRX"))
                         {
-                            if (ele.Text.Contains("Borrowed") && loanedcount == "")
+
+                            foreach (var ele in children)
                             {
-                                loanedcount = ele.Text;
-
-                            }
-
-                            if (ele.Text.Contains("BORROW") && ele.TagName == "div")
-                            {
-                                i++;
-
-                                if (i >= 3)
+                                if (ele.Text.Contains("Borrowed") && loanedcountSTAGING == "")
                                 {
-                                    ele.Click();
-                                    break;
+                                    loanedcountSTAGING = ele.Text;
+
+                                }
+                                
+                            }
+                        }
+                    }
+
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
+                    Browser.LongPause();
+
+                    IList<IWebElement> elementListRowsBorrow = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                    foreach (var el in elementListRowsBorrow)
+                    {
+                        var children = el.FindElements(By.XPath(".//*"));
+                        var tokenName = children[0].Text;
+                        int i = 1;
+                        if (tokenName.Contains("ZRX"))
+                        {
+
+                            foreach (var ele in children)
+                            {
+                                if (ele.Text.Contains("BORROW") && ele.TagName == "div")
+                                {
+                                    i++;
+
+                                    if (i >= 3)
+                                    {
+                                        ele.Click();
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
+
+                    Browser.ShortPause();
+                    IWebElement amountBorrow = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                    amountBorrow.SendKeys("0.0001");
+                    Browser.MiddlePause();
+                    IWebElement confirmBorrow = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
+                    confirmBorrow.Click();
+                    Browser.LongPause();
+
+                    //approve on MetaMask
+                    Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+                    Browser.LongPause();
+
+                    //check
+                    Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Loans);
+                    Browser.LongPause();
+                    string loanedAmountAfterBorrow = loanedcountSTAGING;
+                    var loanedAfterStaging = CheckBorrowedAmount();
+                    Assert.IsTrue(loanedcountSTAGING != loanedAfterStaging, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+
                 }
+                else
+                {
+                    string loanedcount = "";
 
-                Browser.ShortPause();
-                IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
-                amount.SendKeys("0.0001");
-                Browser.MiddlePause();
-                IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
-                confirm.Click();
+                    IList<IWebElement> elementListRows = Browser.CurrentBrowser.FindElements(By.CssSelector(".on-demand-wrapper .content-table-row"));
+                    foreach (var el in elementListRows)
+                    {
+                        var children = el.FindElements(By.XPath(".//*"));
+                        var tokenName = children[0].Text;
+                        int i = 1;
+                        if (tokenName.Contains("ZRX"))
+                        {
 
-                //approve on MetaMask
-                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+                            foreach (var ele in children)
+                            {
+                                if (ele.Text.Contains("Borrowed") && loanedcount == "")
+                                {
+                                    loanedcount = ele.Text;
 
-                //check
-                string loanedAmountAfter = loanedcount;
-                var loanedAfter = CheckBorrowedAmount();
-                Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+                                }
+
+                                if (ele.Text.Contains("BORROW") && ele.TagName == "div")
+                                {
+                                    i++;
+
+                                    if (i >= 3)
+                                    {
+                                        ele.Click();
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Browser.ShortPause();
+                    IWebElement amount = Browser.CurrentBrowser.FindElement(LendAMountImput);
+                    amount.SendKeys("0.0001");
+                    Browser.MiddlePause();
+                    IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
+                    confirm.Click();
+
+                    //approve on MetaMask
+                    Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+                    //check
+                    string loanedAmountAfter = loanedcount;
+                    var loanedAfter = CheckBorrowedAmount();
+                    Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+                }
             }
-
             catch (Exception exception)
             {
                 Browser.Close();
