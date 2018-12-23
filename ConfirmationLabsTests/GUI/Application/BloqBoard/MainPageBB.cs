@@ -378,19 +378,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             
 
             IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
-            collateral.SendKeys("0.0058");
+            collateral.SendKeys("0,009");
 
             Browser.ShortPause();
             interest.Submit();
             Browser.MiddlePause();
-
-            ReadOnlyCollection<string> handles = Browser.CurrentBrowser.WindowHandles;
-
-            string MetamaskTab = handles[0];
-            string BloqboardTab = handles[1];
-
-            //approve on MetaMask
-            Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
         }
 
         public static void SignRequest()
@@ -757,7 +749,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             try
             {
                 //Login to the app
-                LoginToMainPage("borrower");
+                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
 
                 //Test started
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
@@ -779,11 +773,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewBorrowRequest();
 
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+
+                //Check values
+                IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                Close.Click();
+                Browser.ShortPause();
+
                 IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequestsAfter.Click();
                 Browser.LongPause();
 
-                //Check values
+
                 List<string> myRequestsAfter = new List<string>();
                 IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
                 foreach (var request in requestsAfter)
