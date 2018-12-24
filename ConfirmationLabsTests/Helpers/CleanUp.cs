@@ -17,7 +17,7 @@ namespace ConfirmationLabsTests.Helpers
         [SetUp]
         public void TestInitialize()
         {
-            Browser.Start();
+            Browser.StartWithExstension();
         }
 
         [Category("Cleanup")]
