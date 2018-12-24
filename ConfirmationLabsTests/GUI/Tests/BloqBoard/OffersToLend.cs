@@ -33,7 +33,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
-        [Ignore("No predefined data")]
         [Category("Lend_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]

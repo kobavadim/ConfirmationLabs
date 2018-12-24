@@ -1296,6 +1296,18 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 //approve on MetaMask
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
+                //Check values
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch (Exception)
+                {
+
+                }
+                Browser.ShortPause();
+
                 //check
                 IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequestsAfter.Click();
@@ -1419,21 +1431,23 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IWebElement showallvalues = Browser.CurrentBrowser.FindElement(By.CssSelector("div.token-list-filter__collapse-label > span"));
                 showallvalues.Click();
-                
-                string Environmen = TestData.DefineEnvironmentDependingOnEnvironment();
-                if (Environmen.Contains("Mainnet"))
+                Browser.ShortPause();
+
+
+                IList<IWebElement> tokennames = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-list-filter__cell--token-name"));
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(By.CssSelector("div.token-list-filter__cell--token-principal.token-list-filter__cell"));
+                IList<IWebElement> collateral = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-list-filter__cell--token-principal+ .token-list-filter__cell label"));
+                for (int i = 0; i < tokennames.Count; i++)
                 {
-                    IWebElement ZRXcollateral = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(5) > div:nth-of-type(3) > label"));
-                    ZRXcollateral.Click();
-                    IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div.token-list-filter__cell.token-list-filter__cell--token-principal > label"));
-                    chooseLowValues.Click();
-                }
-                else
-                {
-                    IWebElement chooseLowValues = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:first-child > div.token-list-filter__cell.token-list-filter__cell--token-principal > label"));
-                    chooseLowValues.Click();
-                    IWebElement chooseLowValuesWeth = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:first-child > div:nth-of-type(3) > label"));
-                    chooseLowValuesWeth.Click();
+                    if (tokennames[i].Text.Contains("WETH"))
+                    {
+                        tokens[i].Click();
+                    }
+
+                    if (tokennames[i].Text.Contains("ZRX"))
+                    {
+                        collateral[i].Click();
+                    }
                 }
 
 
@@ -1459,6 +1473,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
                 //check
+                IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                Close.Click();
+                Browser.ShortPause();
+
                 IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 MyLoansAfter.Click();
                 Browser.LongPause();
