@@ -778,8 +778,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
                 //Check values
-                IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
-                Close.Click();
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch(Exception)
+                {
+
+                }
+   
                 Browser.ShortPause();
 
                 IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));

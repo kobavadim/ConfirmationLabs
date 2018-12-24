@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.GUI.Application.BloqBoard;
 using ConfirmationLabsTests.Helpers;
