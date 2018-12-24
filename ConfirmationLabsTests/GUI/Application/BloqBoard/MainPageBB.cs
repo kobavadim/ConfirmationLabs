@@ -376,9 +376,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("ZRX");
                 Browser.ShortPause();
             
-
             IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
-            collateral.SendKeys("0,009");
+            collateral.SendKeys("0.009");
 
             Browser.ShortPause();
             interest.Submit();
