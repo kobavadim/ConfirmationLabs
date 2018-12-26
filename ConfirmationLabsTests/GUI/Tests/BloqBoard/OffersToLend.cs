@@ -97,7 +97,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnLendTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
