@@ -753,9 +753,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
-                MyRequests.Click();
-                Browser.MiddlePause();
+                //IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                //MyRequests.Click();
+                //Browser.MiddlePause();
 
                 //Check values before (Loan offers)
                 //List<string> myRequestsBefore = new List<string>();
@@ -1273,11 +1273,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
-                //Test started
-                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
-                MyRequests.Click();
-                Browser.MiddlePause();
 
+                //Test started
+                //IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                //MyRequests.Click();
+                //Browser.MiddlePause();
                 //Check values before (Loan offers)
                 //List<string> myRequestsBefore = new List<string>();
                 //IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
