@@ -57,7 +57,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void LendToLiquidityPoolTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
         [Category("Withdraw_sm")]
@@ -74,7 +74,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void BorrowFromLiquidityPoolTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Budget needed")]
