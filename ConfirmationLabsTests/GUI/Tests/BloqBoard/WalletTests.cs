@@ -64,42 +64,42 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void WrapTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyEthCanBeWrapped, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyEthCanBeWrapped, 3, TestReInitialize);
         }
 
         [Category("Wallet_sm")]
         [Test]
         public void UnwrapTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyETHCanBeUnwrapped, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyETHCanBeUnwrapped, 3, TestReInitialize);
         }
 
         [Category("Wallet_sm")]
         [Test]
         public void EnablePermissionTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
         }
 
         [Category("Wallet_sm")]
         [Test]
         public void DisablePermissionTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
         }
 
         [Category("Wallet_sm")]
         [Test]
         public void EnablePermissionFromWalletTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
         }
 
         [Category("Wallet_sm")]
         [Test]
         public void DisablePermissionFromWalletTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
         }
         #endregion
 
