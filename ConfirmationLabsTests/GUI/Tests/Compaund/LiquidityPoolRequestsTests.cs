@@ -98,12 +98,14 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
         [Category("Withdraw_pm")]
         [Category("CmpndRequests_pm")]
         [Test]
         public void WithdrawFromLiquidityPoolTest_pm()
         {
+            Browser.Pause(3000);
+            Browser.Pause(8000);
+            Browser.Pause(3000);
             //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
 

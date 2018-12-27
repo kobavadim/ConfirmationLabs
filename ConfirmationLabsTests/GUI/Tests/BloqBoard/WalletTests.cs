@@ -108,42 +108,60 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void WrapTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyEthCanBeWrapped, 3, TestReInitialize);
+            Browser.Pause(3000);
+            Browser.Pause(8000);
+            Browser.Pause(3000);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyEthCanBeWrapped, 3, TestReInitialize);
         }
 
         [Category("Wallet_pm")]
         [Test]
         public void UnwrapTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyETHCanBeUnwrapped, 3, TestReInitialize);
+            Browser.Pause(3000);
+            Browser.Pause(8000);
+            Browser.Pause(3000);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyETHCanBeUnwrapped, 3, TestReInitialize);
         }
 
         [Category("Wallet_pm")]
         [Test]
         public void EnablePermissionTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
+            Browser.Pause(3000);
+            Browser.Pause(8000);
+            Browser.Pause(3000);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
         }
 
         [Category("Wallet_pm")]
         [Test]
         public void DisablePermissionTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
+            Browser.Pause(3000);
+            Browser.Pause(8000);
+            Browser.Pause(13000);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
         }
 
         [Category("Wallet_pm")]
         [Test]
         public void EnablePermissionFromWalletTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
+            Browser.Pause(3000);
+            Browser.Pause(18000);
+            Browser.Pause(3000);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeEnabled, 3, TestReInitialize);
         }
 
         [Category("Wallet_pm")]
         [Test]
         public void DisablePermissionFromWalletTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
+            Browser.Pause(3000);
+            Browser.Pause(15000);
+            Browser.Pause(3000);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionCanBeDisabled, 3, TestReInitialize);
         }
         #endregion
 

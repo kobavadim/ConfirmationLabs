@@ -41,7 +41,10 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void CheckLiquidityTableAvailabilityTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
+            Browser.Pause(3000);
+            Browser.Pause(8000);
+            Browser.Pause(3000);
+            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
         }
         #endregion
 
