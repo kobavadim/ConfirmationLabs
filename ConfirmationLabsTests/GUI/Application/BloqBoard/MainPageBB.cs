@@ -115,6 +115,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+            Browser.LongPause();
+            TermsandConditionAceptance();
+            Browser.ShortPause();
+
+            //Wallet approval
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+            Browser.MiddlePause();
+            IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+            connectWallet.Click();
             Browser.MiddlePause();
 
             Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
@@ -122,64 +131,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.MiddlePause();
 
-            //give permission
-            if (environment.Contains("STAGING"))
-            {
-             
-            }
-            else 
-            {
-                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
-                submit.Click();
-            }
-
-
+            IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
+            submit.Click();
             Browser.MiddlePause();
-
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
-
-
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
-            Browser.MiddlePause();
-            TermsandConditionAceptance();
+            Browser.CurrentBrowser.Navigate().Refresh();
             Browser.ShortPause();
-
-
-            //Wallet approval
-            string environmentkostil = TestData.DefineEnvironmentDependingOnEnvironment();
-            if (environmentkostil.Contains("STAGING"))
-            {
-                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-                Browser.MiddlePause();
-                IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
-                connectWallet.Click();
-                Browser.MiddlePause();
-
-                Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
-                Browser.ShortPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.MiddlePause();
-
-                IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
-                submit.Click();
-                Browser.MiddlePause();
-                Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
-                IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
-                connectWalletAgain.Click();
-                Browser.MiddlePause();
-                //Browser.CurrentBrowser.Navigate().Refresh();
-                //Browser.ShortPause();
-
-                //IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
-                //termschecbox.Click();
-                //Browser.ShortPause();
-                //IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
-                //continuebtn.Click();
-                //Browser.MiddlePause();
-            }
-
+            IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+            connectWalletAgain.Click();
+            Browser.MiddlePause();
 
             return handles;
         }
@@ -228,12 +188,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void TermsandConditionAceptance()
         {
-                IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
-                termschecbox.Click();
-                Browser.ShortPause();
-                IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
-                continuebtn.Click();
-                Browser.MiddlePause();       
+            IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
+            termschecbox.Click();
+            Browser.ShortPause();
+            IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+            continuebtn.Click();
+            Browser.MiddlePause();
         }
 
         public static void WentThroughRequestTable()
@@ -338,7 +298,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
 
             new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
-   
+
 
             IWebElement LTV = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"ltv\"]"));
             LTV.SendKeys(OpenQA.Selenium.Keys.Control + "a");
@@ -370,12 +330,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             interest.SendKeys("1");
             Browser.ShortPause();
 
-       
-                IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
-                click.Click();
-                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("ZRX");
-                Browser.ShortPause();
-            
+
+            IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
+            click.Click();
+            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("ZRX");
+            Browser.ShortPause();
+
             IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
             collateral.SendKeys("0.009");
 
@@ -753,56 +713,56 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                //IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
-                //MyRequests.Click();
-                //Browser.MiddlePause();
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
 
-                //Check values before (Loan offers)
-                //List<string> myRequestsBefore = new List<string>();
-                //IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
-                //foreach (var request in requests)
-                //{
-                //    myRequestsBefore.Add(request.Text);
-                //}
-                //var lastLoanbefore = myRequestsBefore.First();
+                //Check values before(Loan offers)
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
+                foreach (var request in requests)
+                {
+                    myRequestsBefore.Add(request.Text);
+                }
+                var lastLoanbefore = myRequestsBefore.First();
 
-                //IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
-                //Borrow.Click();
-                //Browser.MiddlePause();
-                //Console.WriteLine("Creating new request...");
-                //CreateNewBorrowRequest();
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewBorrowRequest();
 
-                ////approve on MetaMask
-                //Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
-
-
-                ////Check values
-                //try
-                //{
-                //    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
-                //    Close.Click();
-                //}
-                //catch(Exception)
-                //{
-
-                //}
-   
-                //Browser.ShortPause();
-
-                //IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
-                //MyRequestsAfter.Click();
-                //Browser.LongPause();
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
 
-                //List<string> myRequestsAfter = new List<string>();
-                //IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
-                //foreach (var request in requestsAfter)
-                //{
-                //    myRequestsAfter.Add(request.Text);
-                //}
-                //var lastLoanAfter = myRequestsAfter.First();
+                //Check values
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch (Exception)
+                {
 
-                //Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+                }
+
+                Browser.ShortPause();
+
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
+                Browser.LongPause();
+
+
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
+                foreach (var request in requestsAfter)
+                {
+                    myRequestsAfter.Add(request.Text);
+                }
+                var lastLoanAfter = myRequestsAfter.First();
+
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
             }
             catch (Exception exception)
             {
@@ -830,7 +790,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 //CreateNewRequest();
 
-            
+
 
                 IWebElement creationDate = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                 string date = creationDate.Text;
@@ -1790,7 +1750,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"interestRate\"]")).SendKeys("1");
                 Browser.ShortPause();
 
-       
+
                 Browser.MiddlePause();
 
                 IWebElement isDisabled1 = Browser.CurrentBrowser.FindElement(By.CssSelector(".slider"));
@@ -1842,7 +1802,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     Browser.ShortPause();
                     IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector("button"));
 
-                    Assert.IsTrue(buttons.Count>1, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
+                    Assert.IsTrue(buttons.Count > 1, "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
                 }
                 else
                 {
@@ -1879,7 +1839,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     Assert.IsTrue(error.Text.Contains("Please grant permission to use DAI in peer-to-peer loans"), "[" + Env + "] BLOQBOARD", "Enable permissions is not working correctly");
                 }
 
- 
+
             }
             catch (Exception exception)
             {
