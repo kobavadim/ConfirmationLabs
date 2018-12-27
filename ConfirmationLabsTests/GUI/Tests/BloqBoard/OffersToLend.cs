@@ -171,7 +171,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnLendTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
@@ -189,7 +195,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void LendToAlreadyExsistantBorrowTestTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
