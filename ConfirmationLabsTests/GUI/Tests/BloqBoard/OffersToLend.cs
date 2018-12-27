@@ -30,7 +30,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
