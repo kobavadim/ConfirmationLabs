@@ -168,16 +168,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.ShortPause();
                 IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
                 connectWalletAgain.Click();
-                Browser.ShortPause();
-                Browser.CurrentBrowser.Navigate().Refresh();
-                Browser.ShortPause();
-
-                IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
-                termschecbox.Click();
-                Browser.ShortPause();
-                IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
-                continuebtn.Click();
                 Browser.MiddlePause();
+                //Browser.CurrentBrowser.Navigate().Refresh();
+                //Browser.ShortPause();
+
+                //IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
+                //termschecbox.Click();
+                //Browser.ShortPause();
+                //IWebElement continuebtn = Browser.CurrentBrowser.FindElement(Continuebtn);
+                //continuebtn.Click();
+                //Browser.MiddlePause();
             }
 
 

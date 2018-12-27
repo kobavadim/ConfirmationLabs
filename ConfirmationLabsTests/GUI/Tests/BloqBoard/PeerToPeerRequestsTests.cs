@@ -131,7 +131,12 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnBorrowTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBorrowRequestCanBeCreated, 3, TestReInitialize);
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+            Browser.LongPause();
+
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]

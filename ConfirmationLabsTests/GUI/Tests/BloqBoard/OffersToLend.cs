@@ -179,7 +179,9 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
+            Browser.LongPause();
+            Browser.LongPause();
+            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_pm")]
@@ -203,6 +205,8 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckAlreadyBorrowedConsistanceTest_pm()
         {
+            Browser.LongPause();
+            Browser.LongPause();
             //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
