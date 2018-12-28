@@ -97,6 +97,24 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
+        [Category("Borrow_sm")]
+        [Category("BlqRequests_sm")]
+        [Category("OFRSlndRequests_sm")]
+        [Test]
+        public void OfferMyOwnDAIBorrowTest_sm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Borrow_sm")]
+        [Category("BlqRequests_sm")]
+        [Category("OFRSlndRequests_sm")]
+        [Test]
+        public void OfferMyOwnREPBorrowTest_sm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
         [Ignore("Fix after redesign")]
         [Category("Cancel_sm")]
         [Category("BlqRequests_sm")]
@@ -150,6 +168,24 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void OfferMyOwnZRXBorrowTest_pm()
         {
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Borrow_pm")]
+        [Category("BlqRequests_pm")]
+        [Category("OFRSlndRequests_pm")]
+        [Test]
+        public void OfferMyOwnDAIBorrowTest_pm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Borrow_pm")]
+        [Category("BlqRequests_pm")]
+        [Category("OFRSlndRequests_pm")]
+        [Test]
+        public void OfferMyOwnREPBorrowTest_pm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
