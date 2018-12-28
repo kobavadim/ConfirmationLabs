@@ -64,6 +64,10 @@ namespace ConfirmationLabsTests.Helpers
                 {
                     restore = TestData.ToUpperCase(TestData.Input.borrower) + " " + "income";
                 }
+                else if (role.Contains("maze"))
+                {
+                    restore = TestData.Input.maze;
+                }
                 else
                 {
                     restore = TestData.ToUpperCase(TestData.Input.lender) + " " + "music";

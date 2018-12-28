@@ -720,6 +720,31 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
+        public static void FieldsConsistentTest()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> headers = Browser.CurrentBrowser.FindElements(By.CssSelector(".header-item"));
+                Assert.IsTrue(headers.Count == 17, "[" + Env + "] BLOQBOARD", "Borrow page headers are incorrect.");
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".header-item"));
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
         public static void VerifyNewZrxBorrowRequestCanBeCreated()
         {
             try

@@ -15,6 +15,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         #region STAGING_Kovan
+        [Category("Consistent_sk")]
+        [Test]
+        public void FieldsConsistency_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.FieldsConsistentTest, 3, TestReInitialize);
+        }
+
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
