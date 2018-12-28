@@ -19,9 +19,27 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
-        public void OfferMyOwnBorrowTest_sk()
+        public void OfferMyOwnZRXBorrowTest_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBorrowRequestCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Borrow_sk")]
+        [Category("BlqRequests_sk")]
+        [Category("OFRSlndRequests_sk")]
+        [Test]
+        public void OfferMyOwnDAIBorrowTest_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Borrow_sk")]
+        [Category("BlqRequests_sk")]
+        [Category("OFRSlndRequests_sk")]
+        [Test]
+        public void OfferMyOwnREPBorrowTest_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
         [Ignore("Waiting for tokens on kovan")]
@@ -74,9 +92,9 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("BlqRequests_sm")]
         [Category("OFRSlndRequests_sm")]
         [Test]
-        public void OfferMyOwnBorrowTest_sm()
+        public void OfferMyOwnZRXBorrowTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBorrowRequestCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -129,9 +147,9 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("BlqRequests_pm")]
         [Category("OFRSlndRequests_pm")]
         [Test]
-        public void OfferMyOwnBorrowTest_pm()
+        public void OfferMyOwnZRXBorrowTest_pm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBorrowRequestCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]

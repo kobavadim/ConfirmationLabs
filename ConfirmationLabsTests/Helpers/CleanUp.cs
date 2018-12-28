@@ -76,7 +76,7 @@ namespace ConfirmationLabsTests.Helpers
                     Borrow.Click();
                     Browser.MiddlePause();
                     Console.WriteLine("Creating new request...");
-                    MainPageBb.CreateNewBorrowRequest();
+                    MainPageBb.CreateNewBorrowRequest("ZRX");
 
                     //approve on MetaMask
                     Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);

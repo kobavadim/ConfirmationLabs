@@ -171,13 +171,8 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnLendTest_pm()
         {
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
+           
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]

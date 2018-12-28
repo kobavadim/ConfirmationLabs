@@ -310,7 +310,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             submit.Click();
         }
 
-        public static void CreateNewBorrowRequest()
+        public static void CreateNewBorrowRequest(string token)
         {
             IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-item-name"));
             foreach (var btn in buttons)
@@ -333,11 +333,28 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             IWebElement click = Browser.CurrentBrowser.FindElement(By.CssSelector("[name='collateralType']"));
             click.Click();
-            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("ZRX");
-            Browser.ShortPause();
 
-            IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
-            collateral.SendKeys("0.009");
+            if (token.Contains("ZRX"))
+            {
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("ZRX");
+                Browser.ShortPause();
+                IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
+                collateral.SendKeys("0.009");
+            }
+            if (token.Contains("DAI"))
+            {
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("DAI");
+                Browser.ShortPause();
+                IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
+                collateral.SendKeys("0.03");
+            }
+            if (token.Contains("REP"))
+            {
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralType"))).SelectByText("REP");
+                Browser.ShortPause();
+                IWebElement collateral = Browser.CurrentBrowser.FindElement(CollateralAmountNewRequest);
+                collateral.SendKeys("0.004");
+            }
 
             Browser.ShortPause();
             interest.Submit();
@@ -703,12 +720,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
-        public static void VerifyNewBorrowRequestCanBeCreated()
+        public static void VerifyNewZrxBorrowRequestCanBeCreated()
         {
             try
             {
                 //Login to the app
-                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
+                ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
@@ -730,7 +747,143 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Borrow.Click();
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
-                CreateNewBorrowRequest();
+                CreateNewBorrowRequest("ZRX");
+
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+
+                //Check values
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch (Exception)
+                {
+
+                }
+
+                Browser.ShortPause();
+
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
+                Browser.LongPause();
+
+
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
+                foreach (var request in requestsAfter)
+                {
+                    myRequestsAfter.Add(request.Text);
+                }
+                var lastLoanAfter = myRequestsAfter.First();
+
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyNewDaiBorrowRequestCanBeCreated()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+                //Check values before(Loan offers)
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
+                foreach (var request in requests)
+                {
+                    myRequestsBefore.Add(request.Text);
+                }
+                var lastLoanbefore = myRequestsBefore.First();
+
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewBorrowRequest("DAI");
+
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+
+                //Check values
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch (Exception)
+                {
+
+                }
+
+                Browser.ShortPause();
+
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
+                Browser.LongPause();
+
+
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
+                foreach (var request in requestsAfter)
+                {
+                    myRequestsAfter.Add(request.Text);
+                }
+                var lastLoanAfter = myRequestsAfter.First();
+
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "New request is not displayed under 'My requests' table");
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyNewRepBorrowRequestCanBeCreated()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+                //Check values before(Loan offers)
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
+                foreach (var request in requests)
+                {
+                    myRequestsBefore.Add(request.Text);
+                }
+                var lastLoanbefore = myRequestsBefore.First();
+
+                IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                Borrow.Click();
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewBorrowRequest("REP");
 
                 //approve on MetaMask
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
