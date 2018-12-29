@@ -38,7 +38,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void BorrowFromLiquidityPoolTest_sk()
         {
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Waiting for tokens on kovan")]
@@ -67,8 +67,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         {
             //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
-
-        //[Ignore("Borrowing from the liquidity pool is temporarily disabled")]     
+  
         [Category("Borrow_sm")]
         [Category("CmpndRequests_sm")]
         [Test]
@@ -93,9 +92,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void LendToLiquidityPoolTest_pm()
         {
-            Browser.LongPause();
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
         [Category("Withdraw_pm")]
@@ -103,8 +100,6 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void WithdrawFromLiquidityPoolTest_pm()
         {
-            Browser.Pause(3000);
-            Browser.Pause(8000);
             Browser.Pause(3000);
             //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
@@ -115,11 +110,8 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void BorrowFromLiquidityPoolTest_pm()
         {
-            Browser.LongPause();
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
-
     
         [Category("Repay_pm")]
         [Category("CmpndRequests_pm")]

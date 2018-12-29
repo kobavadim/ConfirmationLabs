@@ -48,7 +48,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_sk()
         {
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
@@ -112,9 +112,25 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Lend_sm")]
         [Category("OFRSlndRequests_sm")]
         [Test]
-        public void OfferMyOwnLendTest_sm()
+        public void OfferMyOwnZRXLendTest_sm()
         {
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxOfferToLendCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Lend_sm")]
+        [Category("OFRSlndRequests_sm")]
+        [Test]
+        public void OfferMyOwnDAILendTest_sm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiOfferToLendCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Lend_sm")]
+        [Category("OFRSlndRequests_sm")]
+        [Test]
+        public void OfferMyOwnREPLendTest_sm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -122,7 +138,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_sm()
         {
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_sm")]
@@ -130,7 +146,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void LendToAlreadyExsistantBorrowTestTest_sm()
         {
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -186,10 +202,28 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Lend_pm")]
         [Category("OFRSlndRequests_pm")]
         [Test]
-        public void OfferMyOwnLendTest_pm()
+        public void OfferMyOwnZRXLendTest_pm()
         {
            
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxOfferToLendCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Lend_pm")]
+        [Category("OFRSlndRequests_pm")]
+        [Test]
+        public void OfferMyOwnDAILendTest_pm()
+        {
+
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiOfferToLendCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Lend_pm")]
+        [Category("OFRSlndRequests_pm")]
+        [Test]
+        public void OfferMyOwnREPLendTest_pm()
+        {
+
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
@@ -197,9 +231,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void BorrowAlreadyExsistantLoanTest_pm()
         {
-            Browser.LongPause();
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
         }
 
         [Category("Lend_pm")]
@@ -207,13 +239,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void LendToAlreadyExsistantBorrowTestTest_pm()
         {
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToBorrowCanBeLend, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]
