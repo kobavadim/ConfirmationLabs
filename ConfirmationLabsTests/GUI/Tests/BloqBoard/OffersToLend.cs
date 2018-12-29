@@ -21,7 +21,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnZRXLendTest_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZRXOfferToLendCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
@@ -30,7 +30,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnDAILendTest_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewDAIOfferToLendCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]
@@ -39,7 +39,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnREPLendTest_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewREPOfferToLendCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         //[Ignore("No predefined data")]
@@ -114,7 +114,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnLendTest_sm()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZRXOfferToLendCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -189,7 +189,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void OfferMyOwnLendTest_pm()
         {
            
-            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZRXOfferToLendCanBeCreated, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]

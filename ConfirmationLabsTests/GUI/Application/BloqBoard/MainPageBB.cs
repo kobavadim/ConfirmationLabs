@@ -1415,7 +1415,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         }
 
-        public static void VerifyNewZRXOfferToLendCanBeCreated()
+        public static void VerifyNewZrxOfferToLendCanBeCreated()
         {
             try
             {
@@ -1480,7 +1480,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
-        public static void VerifyNewDAIOfferToLendCanBeCreated()
+        public static void VerifyNewDaiOfferToLendCanBeCreated()
         {
             try
             {
@@ -1505,7 +1505,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
-                CreateNewOffersToLendRequest("ZRX");
+                CreateNewOffersToLendRequest("DAI");
 
                 //approve on MetaMask
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
@@ -1545,7 +1545,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
         }
 
-        public static void VerifyNewREPOfferToLendCanBeCreated()
+        public static void VerifyNewRepOfferToLendCanBeCreated()
         {
             try
             {
@@ -1570,7 +1570,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.MiddlePause();
                 Console.WriteLine("Creating new request...");
-                CreateNewOffersToLendRequest("ZRX");
+                CreateNewOffersToLendRequest("REP");
 
                 //approve on MetaMask
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
@@ -1689,7 +1689,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             try
             {
                 //Login to the app
-                ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
+                ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
