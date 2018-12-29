@@ -124,7 +124,7 @@ namespace ConfirmationLabsTests.Helpers
                     Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                     Browser.MiddlePause();
                     Console.WriteLine("Creating new request...");
-                    MainPageBb.CreateNewOffersToLandRequest();
+                    MainPageBb.CreateNewOffersToLendRequest("ZRX");
 
                     //approve on MetaMask
                     Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);

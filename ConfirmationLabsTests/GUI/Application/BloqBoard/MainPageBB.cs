@@ -274,7 +274,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             return result;
         }
 
-        public static void CreateNewOffersToLandRequest()
+        public static void CreateNewOffersToLendRequest(string LendToken)
         {
             IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-item-name"));
             foreach (var btn in buttons)
@@ -297,8 +297,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             token.Click();
             Browser.ShortPause();
 
-            new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
+            if (LendToken.Contains("ZRX"))
+            {
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
+            }
 
+            if (LendToken.Contains("DAI"))
+            {
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
+            }
+
+            if (LendToken.Contains("REP"))
+            {
+                new SelectElement(Browser.CurrentBrowser.FindElement(By.Name("collateralToken"))).SelectByText("ZRX");
+            }
 
             IWebElement LTV = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"ltv\"]"));
             LTV.SendKeys(OpenQA.Selenium.Keys.Control + "a");
@@ -1403,7 +1415,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         }
 
-        public static void VerifyNewOfferToLendCanBeCreated()
+        public static void VerifyNewZRXOfferToLendCanBeCreated()
         {
             try
             {
@@ -1413,53 +1425,183 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
-                //IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
-                //MyRequests.Click();
-                //Browser.MiddlePause();
-                //Check values before (Loan offers)
-                //List<string> myRequestsBefore = new List<string>();
-                //IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
-                //foreach (var request in requests)
-                //{
-                //    myRequestsBefore.Add(request.Text);
-                //}
-                //var lastLoanbefore = myRequestsBefore.First(); 
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+                //Check values before(Loan offers)
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
+                foreach (var request in requests)
+                {
+                    myRequestsBefore.Add(request.Text);
+                }
+                var lastLoanbefore = myRequestsBefore.First();
 
-                //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
-                //Browser.MiddlePause();
-                //Console.WriteLine("Creating new request...");
-                //CreateNewOffersToLandRequest();
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewOffersToLendRequest("ZRX");
 
-                ////approve on MetaMask
-                //Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-                ////Check values
-                //try
-                //{
-                //    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
-                //    Close.Click();
-                //}
-                //catch (Exception)
-                //{
+                //Check values
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch (Exception)
+                {
 
-                //}
-                //Browser.ShortPause();
+                }
+                Browser.ShortPause();
 
-                ////check
-                //IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
-                //MyRequestsAfter.Click();
-                //Browser.MiddlePause();
+                //check
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
+                Browser.MiddlePause();
 
-                ////Check values
-                //List<string> myRequestsAfter = new List<string>();
-                //IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
-                //foreach (var request in requestsAfter)
-                //{
-                //    myRequestsAfter.Add(request.Text);
-                //}
-                //var lastLoanAfter = myRequestsAfter.First();
+                //Check values
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
+                foreach (var request in requestsAfter)
+                {
+                    myRequestsAfter.Add(request.Text);
+                }
+                var lastLoanAfter = myRequestsAfter.First();
 
-                //Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyNewDAIOfferToLendCanBeCreated()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+                //Check values before(Loan offers)
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
+                foreach (var request in requests)
+                {
+                    myRequestsBefore.Add(request.Text);
+                }
+                var lastLoanbefore = myRequestsBefore.First();
+
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewOffersToLendRequest("ZRX");
+
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+                //Check values
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch (Exception)
+                {
+
+                }
+                Browser.ShortPause();
+
+                //check
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
+                Browser.MiddlePause();
+
+                //Check values
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
+                foreach (var request in requestsAfter)
+                {
+                    myRequestsAfter.Add(request.Text);
+                }
+                var lastLoanAfter = myRequestsAfter.First();
+
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyNewREPOfferToLendCanBeCreated()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("lender");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+                //Check values before(Loan offers)
+                List<string> myRequestsBefore = new List<string>();
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
+                foreach (var request in requests)
+                {
+                    myRequestsBefore.Add(request.Text);
+                }
+                var lastLoanbefore = myRequestsBefore.First();
+
+                Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
+                Browser.MiddlePause();
+                Console.WriteLine("Creating new request...");
+                CreateNewOffersToLendRequest("ZRX");
+
+                //approve on MetaMask
+                Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
+
+                //Check values
+                try
+                {
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    Close.Click();
+                }
+                catch (Exception)
+                {
+
+                }
+                Browser.ShortPause();
+
+                //check
+                IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
+                MyRequestsAfter.Click();
+                Browser.MiddlePause();
+
+                //Check values
+                List<string> myRequestsAfter = new List<string>();
+                IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
+                foreach (var request in requestsAfter)
+                {
+                    myRequestsAfter.Add(request.Text);
+                }
+                var lastLoanAfter = myRequestsAfter.First();
+
+                Assert.IsTrue(lastLoanbefore != lastLoanAfter, "[" + Env + "] BLOQBOARD", "Offer to lend is not displayed under 'My Offers to lend' table");
             }
             catch (Exception exception)
             {
