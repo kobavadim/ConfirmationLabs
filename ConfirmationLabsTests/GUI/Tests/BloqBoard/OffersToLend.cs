@@ -91,7 +91,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
-        [Ignore("Predefined request expected")]
         [Category("Lend_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
