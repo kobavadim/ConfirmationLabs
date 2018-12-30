@@ -15,6 +15,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         #region STAGING_Kovan
+        [Ignore("Recent loans removed from staging")]
         [Category("MPIntegration_sk")]
         [Test]
         public void RecentLoansDateTest_sk()
@@ -22,6 +23,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(Integration.VerifyDatefromRecentLoans, 3, TestReInitialize);
         }
 
+        [Ignore("Recent loans removed from staging")]
         [Category("MPIntegration_sk")]
         [Test]
         public void RecentLoansAmountTest_sk()
@@ -30,6 +32,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("MPIntegration_sk")]
+        [Ignore("Recent loans removed from staging")]
         [Test]
         public void RecentLoansAprTest_sk()
         {
@@ -37,6 +40,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("MPIntegration_sk")]
+        [Ignore("Recent loans removed from staging")]
         [Test]
         public void RecentLoansTermTest_sk()
         {
@@ -46,6 +50,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         #region STAGING_Mainnet
         [Category("MPIntegration_sm")]
+        [Ignore("Recent loans removed from staging")]
         [Test]
         public void RecentLoansDateTest_sm()
         {
@@ -53,6 +58,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("MPIntegration_sm")]
+        [Ignore("Recent loans removed from staging")]
         [Test]
         public void RecentLoansAmountTest_sm()
         {
@@ -60,6 +66,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("MPIntegration_sm")]
+        [Ignore("Recent loans removed from staging")]
         [Test]
         public void RecentLoansAprTest_sm()
         {
@@ -67,6 +74,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("MPIntegration_sm")]
+        [Ignore("Recent loans removed from staging")]
         [Test]
         public void RecentLoansTermTest_sm()
         {
