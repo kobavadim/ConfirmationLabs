@@ -30,7 +30,8 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void WithdrawFromLiquidityPoolTest_sk()
         {
-            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
+            Browser.LongPause();
+            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Category("Borrow_sk")]
@@ -41,13 +42,13 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
 
-        [Ignore("Waiting for tokens on kovan")]
         [Category("Repay_sk")]
         [Category("CmpndRequests_sk")]
         [Test]
         public void RepayFromLiquidityPoolTest_sk()
         {
-            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool, 3, TestReInitialize);
+            Browser.LongPause();
+            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool, 3, TestReInitialize);
         }
         #endregion
 
@@ -65,6 +66,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void WithdrawFromLiquidityPoolTest_sm()
         {
+            Browser.LongPause();
             //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeWithdrawnedFromLiquidityPool, 3, TestReInitialize);
         }
   
@@ -73,7 +75,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void BorrowFromLiquidityPoolTest_sm()
         {
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeBorrowedFromLiquidityPool, 3, TestReInitialize);
         }
 
         [Ignore("Budget needed")]
@@ -82,6 +84,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void RepayFromLiquidityPoolTest_sm()
         {
+            Browser.LongPause();
             //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool, 3, TestReInitialize);
         }
         #endregion
@@ -118,6 +121,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void RepayFromLiquidityPoolTest_pm()
         {
+            Browser.LongPause();
             //TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeRepaidFromLiquidityPool, 3, TestReInitialize);
         }
         #endregion
