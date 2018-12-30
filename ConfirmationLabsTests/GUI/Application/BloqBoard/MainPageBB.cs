@@ -1667,14 +1667,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 //check
                 IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
                 Close.Click();
-                Browser.ShortPause();
+                //Browser.ShortPause();
 
-                IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                MyLoansAfter.Click();
-                Browser.MiddlePause();
+                //IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                //MyLoansAfter.Click();
+                //Browser.MiddlePause();
 
-                IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
-                string recentrequestChanged = lastBorrowedChanged.Text;
+                //IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                //string recentrequestChanged = lastBorrowedChanged.Text;
                 //Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
             }
             catch (Exception exception)

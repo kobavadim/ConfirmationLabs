@@ -443,14 +443,14 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     //check
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
                     Close.Click();
-                    Browser.ShortPause();
+                    //Browser.ShortPause();
 
-                    IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                    MyLoansAfter.Click();
-                    Browser.LongPause();
-                    string loanedAmountAfterBorrow = loanedcountSTAGING;
-                    var loanedAfterStaging = CheckBorrowedAmount();
-                    Assert.IsTrue(loanedcountSTAGING != loanedAfterStaging, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
+                    //IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                    //MyLoansAfter.Click();
+                    //Browser.LongPause();
+                    //string loanedAmountAfterBorrow = loanedcountSTAGING;
+                    //var loanedAfterStaging = CheckBorrowedAmount();
+                    //Assert.IsTrue(loanedcountSTAGING != loanedAfterStaging, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
 
                 }
                 else
