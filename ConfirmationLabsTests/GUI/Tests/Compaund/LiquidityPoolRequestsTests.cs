@@ -24,7 +24,6 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
             TestRetrier.RunWithRetry(MainPageCompaund.VerifyTokenCanbeLendedtoLiquidityPool, 3, TestReInitialize);
         }
 
-        [Ignore("Waiting for tokens on kovan")]
         [Category("Withdraw_sk")]
         [Category("CmpndRequests_sk")]
         [Test]
