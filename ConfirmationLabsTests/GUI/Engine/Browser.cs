@@ -88,7 +88,7 @@ namespace ConfirmationLabsTests.GUI.Engine
 
         public static void MainNetworkOperations()
         {
-            Thread.Sleep(70000);
+            Thread.Sleep(50000);
         }
 
         public static void SearchElementAndClickByIt(By by, TimeSpan? timeout = null)

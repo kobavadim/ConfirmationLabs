@@ -18,6 +18,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Lend_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
         [Test]
         public void OfferMyOwnZRXLendTest_sk()
         {
@@ -27,6 +28,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Lend_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
         [Test]
         public void OfferMyOwnDAILendTest_sk()
         {
@@ -36,6 +38,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Lend_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
         [Test]
         public void OfferMyOwnREPLendTest_sk()
         {
@@ -111,6 +114,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #region STAGING_Mainnet
         [Category("Lend_sm")]
         [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
         [Test]
         public void OfferMyOwnZRXLendTest_sm()
         {
@@ -119,6 +123,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Lend_sm")]
         [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
         [Test]
         public void OfferMyOwnDAILendTest_sm()
         {
@@ -127,6 +132,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Lend_sm")]
         [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
         [Test]
         public void OfferMyOwnREPLendTest_sm()
         {
@@ -201,6 +207,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #region PROD_Mainnet
         [Category("Lend_pm")]
         [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
         [Test]
         public void OfferMyOwnZRXLendTest_pm()
         {
@@ -210,6 +217,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Lend_pm")]
         [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
         [Test]
         public void OfferMyOwnDAILendTest_pm()
         {
@@ -219,6 +227,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Lend_pm")]
         [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
         [Test]
         public void OfferMyOwnREPLendTest_pm()
         {

@@ -136,6 +136,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
         [Test]
         public void OfferMyOwnZRXBorrowTest_sk()
         {
@@ -145,6 +146,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
         [Test]
         public void OfferMyOwnDAIBorrowTest_sk()
         {
@@ -154,6 +156,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
         [Test]
         public void OfferMyOwnREPBorrowTest_sk()
         {
@@ -213,6 +216,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_sm")]
         [Category("BlqRequests_sm")]
         [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
         [Test]
         public void OfferMyOwnZRXBorrowTest_sm()
         {
@@ -222,6 +226,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_sm")]
         [Category("BlqRequests_sm")]
         [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
         [Test]
         public void OfferMyOwnDAIBorrowTest_sm()
         {
@@ -231,6 +236,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_sm")]
         [Category("BlqRequests_sm")]
         [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
         [Test]
         public void OfferMyOwnREPBorrowTest_sm()
         {
@@ -290,6 +296,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_pm")]
         [Category("BlqRequests_pm")]
         [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
         [Test]
         public void OfferMyOwnZRXBorrowTest_pm()
         {
@@ -299,6 +306,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_pm")]
         [Category("BlqRequests_pm")]
         [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
         [Test]
         public void OfferMyOwnDAIBorrowTest_pm()
         {
@@ -308,6 +316,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("Borrow_pm")]
         [Category("BlqRequests_pm")]
         [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
         [Test]
         public void OfferMyOwnREPBorrowTest_pm()
         {
