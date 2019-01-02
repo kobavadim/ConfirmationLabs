@@ -327,7 +327,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 var valueFromCard =  Convert.ToDouble(collateralCard.Text.Substring(0, 4));
                 var valueFromTable = Convert.ToDouble(token.Substring(0, 4));
                 var difference = valueFromTable - valueFromCard;
-                Assert.IsTrue(difference < 1, "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + collateralCard.Text + " was: " + token + " URL " + Browser.CurrentBrowser.Url);
+                Assert.IsTrue(difference < 1 || difference == 0, "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table | expected: " + collateralCard.Text + " was: " + token + " URL " + Browser.CurrentBrowser.Url);
             }
 
             catch (Exception exception)
