@@ -73,6 +73,23 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By BorrowPtwoPBtn = By.CssSelector(".btn-green");
         private static readonly By BorrowTokensGreenBtn = By.CssSelector("div.borrow-details > button.borrow-btn");
         private static readonly By TransactionMessage = By.CssSelector("div.fund-loan-success-header");
+        private static readonly By LendPageLink = By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(2)");
+        private static readonly By TokenAmount = By.CssSelector(".symbol-cell .top-cell");
+        private static readonly By UsdAmount = By.CssSelector(".width-s .bottom-cell");
+        private static readonly By TokensLiquidityPoolIcon = By.CssSelector(".token-cell");
+        private static readonly By PercentageIconinLiquidityPoolTable = By.CssSelector(".w-25 .cell-normal");
+        private static readonly By TokenItemsBoxes = By.CssSelector(".token-item");
+        private static readonly By MyWalletLink = By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(1)");
+        private static readonly By AssetsInWallet = By.CssSelector(".token-cell .top-cell");
+        private static readonly By UsdPriceWallet = By.CssSelector(".content-table-cell.text-right");
+        private static readonly By ColumnWallet = By.CssSelector(".header-text");
+        private static readonly By PermissionsWallet = By.CssSelector(".permission-button");
+        private static readonly By Permissions = By.CssSelector(".type-label");
+
+
+
+
+
 
         //METHODS
         public static ReadOnlyCollection<string> LoginToMainPage(string role)
@@ -742,19 +759,503 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string BloqboardTab = windows[1];
 
                 //Test started
+                Browser.MiddlePause();
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
 
-                IList<IWebElement> headers = Browser.CurrentBrowser.FindElements(By.CssSelector(".header-item"));
-                Assert.IsTrue(headers.Count == 17, "[" + Env + "] BLOQBOARD", "Borrow page headers are incorrect.");
-                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".header-item"));
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table .header-text"));
+
+                Assert.IsTrue(requests[0].Text.Contains("Created"), "[" + Env + "] BLOQBOARD", "Header 'Created' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[1].Text.Contains("Amount"), "[" + Env + "] BLOQBOARD", "Header 'Amount' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[3].Text.Contains("Term"), "[" + Env + "] BLOQBOARD", "Header 'Term' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[4].Text.Contains("APR"), "[" + Env + "] BLOQBOARD", "Header 'APR' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[5].Text.Contains("Interest"), "[" + Env + "] BLOQBOARD", "Header 'Interes' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[7].Text.Contains("Loan-to-value"), "[" + Env + "] BLOQBOARD", "Header 'Loan-to-value' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[8].Text.Contains("Collateral"), "[" + Env + "] BLOQBOARD", "Header 'Collateral' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[11].Text.Contains("Asset"), "[" + Env + "] BLOQBOARD", "Header 'Asset' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[12].Text.Contains("Price"), "[" + Env + "] BLOQBOARD", "Header 'Price' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[13].Text.Contains("APR to Lend"), "[" + Env + "] BLOQBOARD", "Header 'APR to Lend' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[15].Text.Contains("APR to Borrow"), "[" + Env + "] BLOQBOARD", "Header 'APR to Borrow' is not displayed on the Borrow page.");
+
+
+
+
+
             }
             catch (Exception exception)
             {
                 Browser.Close();
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
             }
+        }
+
+        public static void FieldsConsistentLendPageTest()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement lend = Browser.CurrentBrowser.FindElement(LendPageLink);
+                lend.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table .header-text"));
+
+                Assert.IsTrue(requests[0].Text.Contains("Created"), "[" + Env + "] BLOQBOARD", "Header 'Created' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[1].Text.Contains("Amount"), "[" + Env + "] BLOQBOARD", "Header 'Amount' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[3].Text.Contains("Term"), "[" + Env + "] BLOQBOARD", "Header 'Term' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[4].Text.Contains("APR"), "[" + Env + "] BLOQBOARD", "Header 'APR' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[5].Text.Contains("Interest"), "[" + Env + "] BLOQBOARD", "Header 'Interes' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[7].Text.Contains("Loan-to-value"), "[" + Env + "] BLOQBOARD", "Header 'Loan-to-value' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[8].Text.Contains("Collateral"), "[" + Env + "] BLOQBOARD", "Header 'Collateral' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[11].Text.Contains("Asset"), "[" + Env + "] BLOQBOARD", "Header 'Asset' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[12].Text.Contains("Price"), "[" + Env + "] BLOQBOARD", "Header 'Price' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[13].Text.Contains("APR to Lend"), "[" + Env + "] BLOQBOARD", "Header 'APR to Lend' is not displayed on the Borrow page.");
+                Assert.IsTrue(requests[15].Text.Contains("APR to Borrow"), "[" + Env + "] BLOQBOARD", "Header 'APR to Borrow' is not displayed on the Borrow page.");
+
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyTokenDisplayinAmountBorrowPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenAmount);
+                Assert.IsTrue(tokens.Count == 12, "[" + Env + "] BLOQBOARD", "Tokens are not displayed on the Borrow page.");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyTokenDisplayinAmountLendPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
+                lendPage.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenAmount);
+                Assert.IsTrue(tokens.Count == 12, "[" + Env + "] BLOQBOARD", "Tokens are not displayed on the Lend page.");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyUsdDisplayingBorrowPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> usd = Browser.CurrentBrowser.FindElements(UsdAmount);
+                Assert.IsTrue(usd.Count == 12, "[" + Env + "] BLOQBOARD", "USD is not displayed on the Borrow page.");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyUsdDisplayingLendPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                
+                IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
+                lendPage.Click();
+                Browser.MiddlePause();
+                IList<IWebElement> usd = Browser.CurrentBrowser.FindElements(UsdAmount);
+                Assert.IsTrue(usd.Count == 12, "[" + Env + "] BLOQBOARD", "USD is not displayed on the Lend page.");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyTokensDisplayinLiquidityPoolBorrowPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+
+
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokensLiquidityPoolIcon);
+                Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token is not displayed in the Liquidity Pool table on the Borrow page.");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyTokensDisplayinLiquidityPoolLendPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+
+                IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
+                lendPage.Click();
+                Browser.MiddlePause();
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokensLiquidityPoolIcon);
+                Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token is not displayed in the Liquidity Pool table on the Lend page.");
+
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyPercentageIconDisplayinLiquidityPoolBorrowPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> percentage = Browser.CurrentBrowser.FindElements(PercentageIconinLiquidityPoolTable);
+                Assert.IsTrue(percentage.Count == 10, "[" + Env + "] BLOQBOARD", "Percentage icon is not displayed in Liquidity Pool table on the Lend page");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyPercentageIconDisplayinLiquidityPoolLendPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
+                lendPage.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> percenatge = Browser.CurrentBrowser.FindElements(PercentageIconinLiquidityPoolTable);
+                Assert.IsTrue(percenatge.Count == 10, "[" + Env + "] BLOQBOARD", "Percentage icon is not displayed in Liquidity Pool table on the Lend page");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyTokenItemsareDisplayedontheBorrowPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
+                MyRequests.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenItemsBoxes);
+                Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token items are not displayed on the Borrow page");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyTokenItemsareDisplayedontheLendPage()
+        {
+
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
+                lendPage.Click();
+                Browser.MiddlePause();
+
+
+                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenItemsBoxes);
+                Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token items are not displayed on the Lend page");
+
+
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+        }
+
+        public static void VerifyAssetsDisplayInWallet()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
+                wallet.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> assets = Browser.CurrentBrowser.FindElements(AssetsInWallet);
+                Assert.IsTrue(assets.Count == 6, "[" + Env + "] BLOQBOARD", "Assets are not displayed on the Wallet page");
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+
+        }
+
+        public static void VerifyUsdIconDisplayinPriceWallet()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
+                wallet.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> price = Browser.CurrentBrowser.FindElements(UsdPriceWallet);
+                foreach (var usd in price)
+                {
+                    Assert.IsTrue(usd.Text.Contains("USD"), "[" + Env + "] BLOQBOARD", "Usd is not displayed on the Wallet page");
+
+                }
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+
+
+        }
+
+        public static void VerifyColumnsnDisplayWallet()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
+                wallet.Click();
+                Browser.MiddlePause();
+
+                IList<IWebElement> column = Browser.CurrentBrowser.FindElements(ColumnWallet);
+                Assert.IsTrue(column[0].Text.Contains("Asset"), "[" + Env + "] BLOQBOARD", "Header 'Asset' is not displayed on the Wallet page.");
+                Assert.IsTrue(column[1].Text.Contains("Price"), "[" + Env + "] BLOQBOARD", "Header 'Price' is not displayed on the Wallet page.");
+                Assert.IsTrue(column[2].Text.Contains("Available"), "[" + Env + "] BLOQBOARD", "Header 'Available' is not displayed on the Wallet page.");
+                Assert.IsTrue(column[3].Text.Contains("Actions"), "[" + Env + "] BLOQBOARD", "Header 'Actions' is not displayed on the Wallet page.");
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+
+
+
+        }
+        public static void VerifyPermissionsDisplayWallet()
+        {
+            try
+            {
+                //Login to the app
+                ReadOnlyCollection<string> windows = LoginToMainPage("maze");
+                string MetamaskTab = windows[0];
+                string BloqboardTab = windows[1];
+
+                //Test started
+                Browser.MiddlePause();
+                IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
+                wallet.Click();
+                Browser.MiddlePause();
+                IWebElement permissionsbtn = Browser.CurrentBrowser.FindElement(PermissionsWallet);
+                permissionsbtn.Click();
+
+                Browser.ShortPause();
+
+                IList<IWebElement> permissions = Browser.CurrentBrowser.FindElements(Permissions);
+
+                Assert.IsTrue(permissions.Count == 15, "[" + Env + "] BLOQBOARD", "Not all permissions are displayed on the Wallet page");
+
+
+            }
+            catch (Exception exception)
+            {
+                Browser.Close();
+                Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);
+            }
+
         }
 
         public static void VerifyNewZrxBorrowRequestCanBeCreated()

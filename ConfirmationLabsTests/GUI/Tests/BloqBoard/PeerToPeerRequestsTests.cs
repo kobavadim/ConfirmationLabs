@@ -22,6 +22,117 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.FieldsConsistentTest, 3, TestReInitialize);
         }
 
+        
+        [Category("Consistent_sk")]
+        [Test]
+        public void FieldsConsistencyLendPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.FieldsConsistentLendPageTest, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void TokenDisplayinAmountBorrowPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyTokenDisplayinAmountBorrowPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void TokenDisplayinAmountLendPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyTokenDisplayinAmountLendPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void UsdDisplayinAmountBorrowPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyUsdDisplayingBorrowPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void UsdDisplayinAmountLendPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyUsdDisplayingLendPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void TokenDisplayinLiquidityPoolTableBorrowPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyTokensDisplayinLiquidityPoolBorrowPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void TokenDisplayinLiquidityPoolTableLendPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyTokensDisplayinLiquidityPoolLendPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void PercentageIconDisplayBorrowPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyPercentageIconDisplayinLiquidityPoolBorrowPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void PercentageIconDisplayLendPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyPercentageIconDisplayinLiquidityPoolLendPage, 3, TestReInitialize);
+        }
+
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void TokenItemsDisplayBorrowPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyTokenItemsareDisplayedontheBorrowPage, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void TokenItemsDisplayLendPage_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyTokenItemsareDisplayedontheLendPage, 3, TestReInitialize);
+        }
+
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void AssetsDisplayinWallet_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyAssetsDisplayInWallet, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void UsdDisplayinWallet_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyUsdIconDisplayinPriceWallet, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void ColumnAvailabilityWallet_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyColumnsnDisplayWallet, 3, TestReInitialize);
+        }
+
+        [Category("Consistent_sk")]
+        [Test]
+        public void PermissionsDisplayyWallet_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyPermissionsDisplayWallet, 3, TestReInitialize);
+        }
+
+
+
+
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
