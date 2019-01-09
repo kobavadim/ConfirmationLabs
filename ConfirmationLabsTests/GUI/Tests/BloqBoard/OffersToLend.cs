@@ -45,7 +45,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
-        //[Ignore("No predefined data")]
+        [Ignore("Investigate")]
         [Category("Borrow_sk")]
         [Category("OFRSlndRequests_sk")]
         [Test]
