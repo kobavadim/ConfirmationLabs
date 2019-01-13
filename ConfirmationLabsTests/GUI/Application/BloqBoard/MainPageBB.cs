@@ -1330,6 +1330,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
+                Console.WriteLine("Log check...");
                 //Login to the app
                 ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
