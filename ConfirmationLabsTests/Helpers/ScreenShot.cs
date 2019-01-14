@@ -2,11 +2,15 @@
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using OpenQA.Selenium.Support.Extensions;
 
 namespace ConfirmationLabsTests.Helpers
@@ -78,7 +82,7 @@ namespace ConfirmationLabsTests.Helpers
                     var xDiff = rectangle.Right - previous.Right;
                     var yDiff = rectangle.Bottom - previous.Bottom;
                     // Scroll
-                    ((IJavaScriptExecutor)driver).ExecuteScript(String.Format("window.scrollBy({0}, {1})", xDiff, yDiff));
+                    ((IJavaScriptExecutor)driver).ExecuteScript(System.String.Format("window.scrollBy({0}, {1})", xDiff, yDiff));
                 }
                 // Take Screenshot
                 var screenshot = driver.TakeScreenshot();
@@ -105,6 +109,33 @@ namespace ConfirmationLabsTests.Helpers
                 screenshotImage = Image.FromStream(memStream);
             }
             return screenshotImage;
+        }
+
+        public static void TakeWebScreenshot()
+        {
+            try
+            {
+                ((IJavaScriptExecutor)Browser.CurrentBrowser).ExecuteScript("return window.stop();");
+                string base64EncodedString = ((ITakesScreenshot)Browser.CurrentBrowser).GetScreenshot().AsBase64EncodedString;
+                Thread.Sleep(1000);
+                using (var w = new WebClient())
+                {
+                    string clientID = "46757c56a7d6550";
+                    w.Headers.Add("Authorization", "Client-ID " + clientID);
+                    var values = new NameValueCollection
+                    {
+                        { "image", base64EncodedString }
+                    };
+
+                    byte[] response = w.UploadValues("https://api.imgur.com/3/upload.xml", values);
+                    var imageUrl = String.Between(XDocument.Load(new MemoryStream(response)).ToString(), "<link>", "</link>");
+                    Console.WriteLine(imageUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot take screenshot because of: " + ex.Message);
+            }
         }
     }
 }

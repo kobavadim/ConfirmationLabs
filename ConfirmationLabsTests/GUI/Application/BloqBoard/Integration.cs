@@ -53,7 +53,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             string LoanScan = handles[2];
             Browser.CurrentBrowser.SwitchTo().Window(LoanScan);
-            String currentURL = Browser.CurrentBrowser.Url;
+            var currentURL = Browser.CurrentBrowser.Url;
             IWebElement dateloanscan = Browser.CurrentBrowser.FindElement(DateLoanScan);
             var datevaluesloanscan  = dateloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
             var dayvalue = datevaluesloanscan[0].Split(stringSeparatorDate, StringSplitOptions.None);
