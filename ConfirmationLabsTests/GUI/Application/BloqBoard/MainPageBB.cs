@@ -2271,7 +2271,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.Close();
                 try
                 {
-                    ScreenShot.TakeScreenshot();
+                    ScreenShot.TakeWebScreenshot();
                 }
                 catch (Exception) { }
                 Assert.FinilizeErrors(Env, "BLOQBOARD", exception, false);

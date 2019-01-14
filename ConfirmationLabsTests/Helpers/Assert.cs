@@ -22,7 +22,7 @@ namespace ConfirmationLabsTests.Helpers
             string errormessage = "";
             try
             {
-                ScreenShot.TakeScreenshot();
+                ScreenShot.TakeWebScreenshot();
             }
             catch(Exception){}
 

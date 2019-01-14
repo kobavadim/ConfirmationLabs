@@ -224,7 +224,7 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
                 IWebElement firstrow = Engine.Browser.CurrentBrowser.FindElement(Row);
                 firstrow.Click();
                 Engine.Browser.LongPause();
-                String currentURL = Browser.CurrentBrowser.Url;
+                var currentURL = Browser.CurrentBrowser.Url;
                 IWebElement collateralCard = Engine.Browser.CurrentBrowser.FindElement(CollateralCard);
                 Assert.IsTrue(collateralCard.Text.Contains(dollar), "[" + Env + "] LOANSCAN", "Collateral vlaue on the card is not the same as in the table. expected: " + collateralCard.Text + " was: " + dollar + " url: " + currentURL);
 
