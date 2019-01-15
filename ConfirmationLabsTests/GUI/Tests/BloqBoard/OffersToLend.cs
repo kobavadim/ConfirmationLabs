@@ -67,7 +67,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckMyPendingBorrowingOfferConsistanceTest_sk()
         {
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Borrow_sk")]
@@ -83,7 +83,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CheckBorrowOfferFromLenderSideEtoE_sk()
         {
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyOffersToLandValuesPresenceAfterRequests, 3, TestReInitialize);
         }
 
         [Category("Lend_sk")]

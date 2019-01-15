@@ -2232,15 +2232,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         public static void VerifyOffersToLandValuesPresenceAfterRequests()
         {
             Console.WriteLine("Test started...");
-            //Console.WriteLine("Login to the app...");
-            //LoginToMainPage("lender");
+            LoginToMainPage("borrower");
 
-            //Console.WriteLine("Test started...");
-            //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
+            Console.WriteLine("Test started...");
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
 
-            //Browser.MiddlePause();
-            //TermsandConditionAceptance();
-            //Browser.ShortPause();
+            Browser.MiddlePause();
+            TermsandConditionAceptance();
+            Browser.ShortPause();
 
             //IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
             //borrowbtn.Click();

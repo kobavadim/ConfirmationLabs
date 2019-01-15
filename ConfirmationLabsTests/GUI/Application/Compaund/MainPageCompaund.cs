@@ -444,7 +444,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     Console.WriteLine("Do the final assert...");
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
                     Close.Click();
-                    //Browser.ShortPause();
+                    Browser.ShortPause();
 
                     //IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                     //MyLoansAfter.Click();
