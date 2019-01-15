@@ -63,7 +63,7 @@ namespace ConfirmationLabsTests.Helpers
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
@@ -71,14 +71,14 @@ namespace ConfirmationLabsTests.Helpers
                 //Borrow
                 for (int i = 0; i < 2; i++)
                 {
-                    //Test started
+                    Console.WriteLine("Test started...");
                     IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                     Borrow.Click();
                     Browser.MiddlePause();
                     Console.WriteLine("Creating new request...");
                     MainPageBb.CreateNewBorrowRequest("ZRX");
 
-                    //approve on MetaMask
+                    Console.WriteLine("Approve on MetaMask...");
                     Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
 
@@ -107,7 +107,7 @@ namespace ConfirmationLabsTests.Helpers
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
@@ -115,7 +115,7 @@ namespace ConfirmationLabsTests.Helpers
                 //Lend
                 for (int i = 0; i < 2; i++)
                 {
-                    //Test started
+                    Console.WriteLine("Test started...");
                     IWebElement Lend = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(2)"));
                     Lend.Click();
                     Browser.MiddlePause();
@@ -126,7 +126,7 @@ namespace ConfirmationLabsTests.Helpers
                     Console.WriteLine("Creating new request...");
                     MainPageBb.CreateNewOffersToLendRequest("ZRX");
 
-                    //approve on MetaMask
+                    Console.WriteLine("Approve on MetaMask...");
                     Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
                     //Check values

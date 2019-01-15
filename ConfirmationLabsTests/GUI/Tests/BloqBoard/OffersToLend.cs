@@ -211,7 +211,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnZRXLendTest_pm()
         {
-           
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
@@ -221,7 +220,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void OfferMyOwnDAILendTest_pm()
         {
-
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 

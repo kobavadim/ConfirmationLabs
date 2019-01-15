@@ -21,19 +21,39 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         static string Env = TestData.DefineEnvironmentDependingOnEnvironment();
 
 
-        //Methods
+
+        //Tests     
+        public static void VerifyLedgerDialoguePresence()
+        {
+            Console.WriteLine("Login to the app...");
+            Browser.CloseAdditionalWindows();
+            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment());
+            Browser.MiddlePause();
+
+            Console.WriteLine("Test started...");
+            MainPageBb.TermsandConditionAceptance();
+            Browser.MiddlePause();
+            IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.auth-module-wrapper"));
+            connectWallet.Click();
+            Browser.ShortPause();
+
+            IWebElement connectToLedger = Browser.CurrentBrowser.FindElement(By.CssSelector("ul.extensions-block > li:nth-of-type(2)"));
+            connectToLedger.Click();
+            Browser.MiddlePause();
+
+            IWebElement ledgerMessage = Browser.CurrentBrowser.FindElement(By.CssSelector("header.subheader"));
+            Assert.IsTrue(ledgerMessage.Text.Contains("Ledger"), "BloqBoard", "Ledger connection is abcent or not working.");
+        }
 
 
-
-        //Tests
         public static void VerifyDatefromRecentLoans()
         {
-            //Login to the app
+            Console.WriteLine("Login to the app...");
             ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
             string MetamaskTab = windows[0];
             string BloqboardTab = windows[1];
 
-            //Test started
+            Console.WriteLine("Test started...");
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
             Browser.LongPause();
 
@@ -58,10 +78,9 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             var datevaluesloanscan  = dateloanscan.Text.Split(stringSeparator, StringSplitOptions.None);
             var dayvalue = datevaluesloanscan[0].Split(stringSeparatorDate, StringSplitOptions.None);
 
-            //Console.WriteLine(dayvalue[1] + datevalues[2]);
+            Console.WriteLine(dayvalue[1] + datevalues[2]);
             var timeloanscan = datevaluesloanscan[1].Split(stringSeparatorColumn, StringSplitOptions.None);
             //Assert.IsTrue(timeloanscan[1].Equals(timevalue[1]), "BloqBoard", "Incorrect time is displayed on the recent loans table | url: " + currentURL);
-
             //Assert.IsTrue(dayvalue[1].Equals(datevalues[0]), "BloqBoard", "Incorrect date is displayed on the recent loans table expected.");
         }
 
@@ -69,10 +88,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 MainPageBb.LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.MiddlePause();
 
@@ -115,10 +134,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             {
                 try
                 {
-                    //Login to the app
+                    Console.WriteLine("Login to the app...");
                     MainPageBb.LoginToMainPage("lender");
 
-                    //Test started
+                    Console.WriteLine("Test started...");
                     Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                     Browser.MiddlePause();
 
@@ -150,12 +169,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyTermfromRecentLoans()
         {
-            //Login to the app
+            Console.WriteLine("Login to the app...");
             ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
             string MetamaskTab = windows[0];
             string BloqboardTab = windows[1];
 
-            //Test started
+            Console.WriteLine("Test started...");
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
             Browser.MiddlePause();
 

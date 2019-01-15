@@ -104,6 +104,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 
         public static void TermsandConditionAceptance()
         {
+            Console.WriteLine("Approve terms and conditions dialog...");
             IWebElement termschecbox = Browser.CurrentBrowser.FindElement(TermsAndCOnditionsCheckBox);
             termschecbox.Click();
             Browser.ShortPause();
@@ -117,12 +118,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started        
+                Console.WriteLine("Test started...");        
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
                 Browser.MiddlePause();
@@ -192,12 +193,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 MyLoans.Click();
                 Browser.LongPause();
@@ -239,11 +240,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 IWebElement confirm = Browser.CurrentBrowser.FindElement(ConfirmLendRedButton);
                 confirm.Click();
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
                 Browser.LongPause();
 
-                //check
+                Console.WriteLine("Do the final assert...");
                 IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
                 Close.Click();
                 Browser.ShortPause();
@@ -273,12 +274,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.LongPause();
 
@@ -361,12 +362,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 Borrow.Click();
                 Browser.LongPause();
@@ -436,11 +437,11 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     confirmBorrow.Click();
                     Browser.LongPause();
 
-                    //approve on MetaMask
+                    Console.WriteLine("Approve on MetaMask...");
                     Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
                     Browser.LongPause();
 
-                    //check
+                    Console.WriteLine("Do the final assert...");
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
                     Close.Click();
                     //Browser.ShortPause();
@@ -495,10 +496,10 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     IWebElement confirm = Browser.CurrentBrowser.FindElement(By.CssSelector("button.on-demand-modal__button.btn-green"));
                     confirm.Click();
 
-                    //approve on MetaMask
+                    Console.WriteLine("Approve on MetaMask...");
                     Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-                    //check
+                    Console.WriteLine("Do the final assert...");
                     string loanedAmountAfter = loanedcount;
                     var loanedAfter = CheckBorrowedAmount();
                     //Assert.IsTrue(loanedcount != loanedAfter, "[" + Env + "] BLOQBOARD", "Lend functionality is not working as expected");
@@ -515,12 +516,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.MiddlePause();
 
@@ -609,12 +610,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
 
                 Browser.MiddlePause();
@@ -654,12 +655,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyBorrowFunctionality()
         {
-            //Login to the app
+            Console.WriteLine("Login to the app...");
             ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
             string MetamaskTab = windows[0];
             string BloqboardTab = windows[1];
 
-            //Test started
+            Console.WriteLine("Test started...");
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
             Browser.MiddlePause();
 
@@ -694,12 +695,12 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
 
         public static void VerifyRepaytoLiquidityPoolFunctionality()
         {
-            //Login to the app
+            Console.WriteLine("Login to the app...");
             ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
             string MetamaskTab = windows[0];
             string BloqboardTab = windows[1];
 
-            //Test started
+            Console.WriteLine("Test started...");
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
             Browser.MiddlePause();
 
@@ -736,10 +737,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
             IWebElement msg = Browser.CurrentBrowser.FindElement(BorrowMessage);
             Assert.IsTrue(msg.Text.Contains("successfully"), "[" + Env + "] BLOQBOARD", "Repay functionlaity is not working as expected");
 
-
         }
-
     }
-
 }
 

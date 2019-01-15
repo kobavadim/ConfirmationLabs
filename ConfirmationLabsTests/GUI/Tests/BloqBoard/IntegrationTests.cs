@@ -15,6 +15,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         #region STAGING_Kovan
+        [Category("Consistent_sk")]
+        [Test]
+        public void LedgerDialogueTest_sk()
+        {
+            TestRetrier.RunWithRetry(Integration.VerifyLedgerDialoguePresence, 3, TestReInitialize);
+        }
+
         [Ignore("Recent loans removed from staging")]
         [Category("MPIntegration_sk")]
         [Test]
@@ -49,6 +56,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #endregion
 
         #region STAGING_Mainnet
+        [Category("Consistent_sm")]
+        [Test]
+        public void LedgerDialogueTest_sm()
+        {
+            TestRetrier.RunWithRetry(Integration.VerifyLedgerDialoguePresence, 3, TestReInitialize);
+        }
+
         [Category("MPIntegration_sm")]
         [Ignore("Recent loans removed from staging")]
         [Test]
@@ -83,6 +97,13 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #endregion
 
         #region PROD_Mainnet
+        [Category("Consistent_pm")]
+        [Test]
+        public void LedgerDialogueTest_pm()
+        {
+            TestRetrier.RunWithRetry(Integration.VerifyLedgerDialoguePresence, 3, TestReInitialize);
+        }
+
         [Category("MPIntegration_pm")]
         [Test]
         public void RecentLoansDateTest_pm()

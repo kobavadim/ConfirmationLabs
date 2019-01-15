@@ -33,12 +33,10 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
 
             Engine.Browser.MiddlePause();
-
         }
 
 
         //TESTS
-
         public static void VerifyElementsonDharmaSingleCard()
         {
             try

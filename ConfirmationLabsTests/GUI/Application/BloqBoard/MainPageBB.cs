@@ -14,6 +14,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
     class MainPageBb
     {
         //Elements
+        static string Env = TestData.DefineEnvironmentDependingOnEnvironment();
         private static readonly By TermsAndCOnditionsCheckBox = By.CssSelector("div.terms-checkbox > label > input");
         private static readonly By Continuebtn = By.CssSelector("div.modal-footer > button.btn-green");
         private static readonly By LiquidityTable = By.CssSelector(".content-table-row");
@@ -24,7 +25,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By DaiBtn = By.CssSelector(".token-item:nth-child(2) .token-item-name");
         private static readonly By AmountInput = By.CssSelector(".wallet-info__value-input");
         private static readonly By Wrap = By.CssSelector(".wallet-info__exchange-button+ .wallet-info__exchange-button");
-        static string Env = TestData.DefineEnvironmentDependingOnEnvironment();
         private static readonly By NewRequest = By.CssSelector(".token-item:nth-child(4) .token-item-name");
         private static readonly By AmountInputbyNewRequest = By.CssSelector("[name='amount']");
         private static readonly By InterestInputByNewRequest = By.CssSelector("[name='interestRate']");
@@ -88,9 +88,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
 
-
-
-
         //METHODS
         public static ReadOnlyCollection<string> LoginToMainPage(string role)
         {
@@ -135,8 +132,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.LongPause();
             TermsandConditionAceptance();
             Browser.ShortPause();
-
-            //Wallet approval
+      
+            Console.WriteLine("Wallet approval");
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
             Browser.MiddlePause();
             IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
@@ -464,15 +461,15 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
 
 
-        //Tests
+        //TESTS
         public static void VerifyPageisOpened()
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement table = Browser.CurrentBrowser.FindElement(LiquidityTable);
                 Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "BloqBoard page is not loaded correctly");
             }
@@ -486,10 +483,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement tokenstable = Browser.CurrentBrowser.FindElement(TokensTable);
                 Assert.IsTrue(tokenstable.Displayed, "[" + Env + "] BLOQBOARD", "Tokens Table is not loaded properly");
 
@@ -504,10 +501,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement table = Browser.CurrentBrowser.FindElement(RecentLoans);
                 Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "Recent Loans table is not loaded properly");
 
@@ -522,12 +519,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Lend);
                 Browser.MiddlePause();
                 IWebElement table = Browser.CurrentBrowser.FindElement(LoanTable);
@@ -544,10 +541,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
                 Browser.MiddlePause();
 
@@ -565,10 +562,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement table = Browser.CurrentBrowser.FindElement(MyWalletTable);
                 Assert.IsTrue(table.Displayed, "[" + Env + "] BLOQBOARD", "Assets table is not loaded properly");
             }
@@ -583,10 +580,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 MyLoans.Click();
                 Browser.MiddlePause();
@@ -605,10 +602,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 MyLoans.Click();
                 Browser.MiddlePause();
@@ -627,10 +624,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Requests);
                 Browser.MiddlePause();
 
@@ -665,11 +662,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void IgnoreAfterLogin(string reason)
         {
-            //throw new Exception("not implemented...");
-            //Login to the app
+            Console.WriteLine("Login to the app...");
             LoginToMainPage("lender");
 
-            //Test started
+            Console.WriteLine("Test started...");
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
 
             Browser.MiddlePause();
@@ -730,12 +726,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Requests);
                 Browser.MiddlePause();
 
@@ -753,12 +749,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 MyRequests.Click();
@@ -777,11 +773,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Assert.IsTrue(requests[12].Text.Contains("Price"), "[" + Env + "] BLOQBOARD", "Header 'Price' is not displayed on the Borrow page.");
                 Assert.IsTrue(requests[13].Text.Contains("APR to Lend"), "[" + Env + "] BLOQBOARD", "Header 'APR to Lend' is not displayed on the Borrow page.");
                 Assert.IsTrue(requests[15].Text.Contains("APR to Borrow"), "[" + Env + "] BLOQBOARD", "Header 'APR to Borrow' is not displayed on the Borrow page.");
-
-
-
-
-
             }
             catch (Exception exception)
             {
@@ -794,12 +785,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement lend = Browser.CurrentBrowser.FindElement(LendPageLink);
                 lend.Click();
@@ -819,10 +810,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Assert.IsTrue(requests[13].Text.Contains("APR to Lend"), "[" + Env + "] BLOQBOARD", "Header 'APR to Lend' is not displayed on the Borrow page.");
                 Assert.IsTrue(requests[15].Text.Contains("APR to Borrow"), "[" + Env + "] BLOQBOARD", "Header 'APR to Borrow' is not displayed on the Borrow page.");
 
-
-
-
-
             }
             catch (Exception exception)
             {
@@ -836,12 +823,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 MyRequests.Click();
@@ -849,9 +836,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenAmount);
                 Assert.IsTrue(tokens.Count == 12, "[" + Env + "] BLOQBOARD", "Tokens are not displayed on the Borrow page.");
-
-
-
 
             }
             catch (Exception exception)
@@ -866,12 +850,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
                 lendPage.Click();
@@ -879,9 +863,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenAmount);
                 Assert.IsTrue(tokens.Count == 12, "[" + Env + "] BLOQBOARD", "Tokens are not displayed on the Lend page.");
-
-
-
 
             }
             catch (Exception exception)
@@ -896,12 +877,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 MyRequests.Click();
@@ -909,8 +890,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IList<IWebElement> usd = Browser.CurrentBrowser.FindElements(UsdAmount);
                 Assert.IsTrue(usd.Count == 12, "[" + Env + "] BLOQBOARD", "USD is not displayed on the Borrow page.");
-
-
 
 
             }
@@ -926,12 +905,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 
                 IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
@@ -939,8 +918,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 IList<IWebElement> usd = Browser.CurrentBrowser.FindElements(UsdAmount);
                 Assert.IsTrue(usd.Count == 12, "[" + Env + "] BLOQBOARD", "USD is not displayed on the Lend page.");
-
-
 
 
             }
@@ -956,23 +933,19 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
 
-
-
                 IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokensLiquidityPoolIcon);
                 Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token is not displayed in the Liquidity Pool table on the Borrow page.");
-
-
 
 
             }
@@ -988,12 +961,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
 
                 IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
@@ -1001,10 +974,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
                 IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokensLiquidityPoolIcon);
                 Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token is not displayed in the Liquidity Pool table on the Lend page.");
-
-
-
-
 
             }
             catch (Exception exception)
@@ -1019,12 +988,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 MyRequests.Click();
@@ -1032,9 +1001,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IList<IWebElement> percentage = Browser.CurrentBrowser.FindElements(PercentageIconinLiquidityPoolTable);
                 Assert.IsTrue(percentage.Count == 10, "[" + Env + "] BLOQBOARD", "Percentage icon is not displayed in Liquidity Pool table on the Lend page");
-
-
-
 
             }
             catch (Exception exception)
@@ -1049,12 +1015,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
                 lendPage.Click();
@@ -1062,8 +1028,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IList<IWebElement> percenatge = Browser.CurrentBrowser.FindElements(PercentageIconinLiquidityPoolTable);
                 Assert.IsTrue(percenatge.Count == 10, "[" + Env + "] BLOQBOARD", "Percentage icon is not displayed in Liquidity Pool table on the Lend page");
-
-
 
 
             }
@@ -1079,12 +1043,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 MyRequests.Click();
@@ -1092,9 +1056,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenItemsBoxes);
                 Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token items are not displayed on the Borrow page");
-
-
-
 
             }
             catch (Exception exception)
@@ -1109,12 +1070,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement lendPage = Browser.CurrentBrowser.FindElement(LendPageLink);
                 lendPage.Click();
@@ -1123,9 +1084,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(TokenItemsBoxes);
                 Assert.IsTrue(tokens.Count == 5, "[" + Env + "] BLOQBOARD", "Token items are not displayed on the Lend page");
-
-
-
 
             }
             catch (Exception exception)
@@ -1139,12 +1097,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
                 wallet.Click();
@@ -1166,12 +1124,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
                 wallet.Click();
@@ -1198,12 +1156,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
                 wallet.Click();
@@ -1223,18 +1181,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             }
 
 
-
         }
         public static void VerifyPermissionsDisplayWallet()
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("maze");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.MiddlePause();
                 IWebElement wallet = Browser.CurrentBrowser.FindElement(MyWalletLink);
                 wallet.Click();
@@ -1262,17 +1219,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
 
-                //Check values before(Loan offers)
+                Console.WriteLine("Getting initial values before operation (Loan offers)...");
                 List<string> myRequestsBefore = new List<string>();
                 IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
                 foreach (var request in requests)
@@ -1287,11 +1244,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewBorrowRequest("ZRX");
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
 
-                //Check values
+                Console.WriteLine("Do the final assert...");
                 try
                 {
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
@@ -1331,17 +1288,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             try
             {
                 Console.WriteLine("Log check...");
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
 
-                //Check values before(Loan offers)
+                Console.WriteLine("Getting initial values before operation (Loan offers)...");
                 List<string> myRequestsBefore = new List<string>();
                 IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
                 foreach (var request in requests)
@@ -1356,11 +1313,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewBorrowRequest("DAI");
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
 
-                //Check values
+                Console.WriteLine("Do the final assert...");
                 try
                 {
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
@@ -1399,17 +1356,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
 
-                //Check values before(Loan offers)
+                Console.WriteLine("Getting initial values before operation (Loan offers)...");
                 List<string> myRequestsBefore = new List<string>();
                 IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
                 foreach (var request in requests)
@@ -1424,11 +1381,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewBorrowRequest("REP");
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
 
-                //Check values
+                Console.WriteLine("Do the final assert...");
                 try
                 {
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
@@ -1467,12 +1424,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequests.Click();
 
@@ -1481,8 +1438,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.ShortPause();
 
                 //CreateNewRequest();
-
-
 
                 IWebElement creationDate = Browser.CurrentBrowser.FindElement(LastRequestCreationDate);
                 string date = creationDate.Text;
@@ -1517,8 +1472,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
 
-
-                //добавить ообработку длинных транзакций
+                Console.WriteLine("Do the final assert...");
                 IWebElement cancelledcreationtime = Browser.CurrentBrowser.FindElement(CancelledCreationTime);
                 string cancelledtime = cancelledcreationtime.Text;
 
@@ -1534,10 +1488,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(Helpers.TestData.Urls.Loans);
                 Browser.MiddlePause();
 
@@ -1559,9 +1513,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 string[] stringSeparators = new string[] { ":" };
                 var result = dateissuedloanscan.Split(stringSeparators, StringSplitOptions.None);
 
-
+                Console.WriteLine("Do the final assert...");
                 Assert.IsTrue(dateissued.Contains(result[1]), "[" + Env + "] BLOQBOARD", "The card opened from Bloqboard in Loanscan seems to be incorrect");
-
 
             }
 
@@ -1575,12 +1528,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "lend");
                 Browser.MiddlePause();
 
@@ -1595,6 +1548,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 Browser.ShortPause();
 
+                Console.WriteLine("Choose filter values...");
                 IWebElement filterAmountDropdown = Browser.CurrentBrowser.FindElement(By.CssSelector("div.dropdown__header"));
                 filterAmountDropdown.Click();
 
@@ -1616,13 +1570,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
                 SignRequest();
 
+                Console.WriteLine("Do the final assert...");
                 Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
                 Browser.LongPause();
 
-                //добавить ожидание транзакции
                 IWebElement msg = Browser.CurrentBrowser.FindElement(TransactionSuccessfulMsg);
                 Assert.IsTrue(msg.Displayed, "[" + Env + "] BLOQBOARD", "Lend request transaction is not performed as expected");
-
             }
             catch (Exception exception)
             {
@@ -1635,12 +1588,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 Borrow.Click();
                 Browser.MiddlePause();
@@ -1739,6 +1692,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.SwitchTo().Window(Loanscannew);
                 Browser.MiddlePause();
 
+                Console.WriteLine("Do the final assert...");
                 IWebElement loanscanamountnew = Browser.CurrentBrowser.FindElement(RepaymanrAmountLoanscan);
                 string amountrepayednew = loanscanamountnew.Text;
 
@@ -1757,10 +1711,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
                 Borrow.Click();
                 Browser.MiddlePause();
@@ -1878,12 +1832,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyCollateralCanBeSeized()
         {
-            //Login to the app
+            Console.WriteLine("Login to the app...");
             ReadOnlyCollection<string> windows = LoginToMainPage("lender");
             string MetamaskTab = windows[0];
             string BloqboardTab = windows[1];
 
-            //Test started
+            Console.WriteLine("Test started...");
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.DefineRootAdressDependingOnEnvironment() + "loans");
             Browser.MiddlePause();
 
@@ -1905,6 +1859,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
             SignRequest();
 
+            Console.WriteLine("Do the final assert...");
             Browser.LongPause();
             Browser.CurrentBrowser.SwitchTo().Window(BloqboardTab);
             Browser.LongPause();
@@ -1921,16 +1876,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
-                //Check values before(Loan offers)
+                Console.WriteLine("Getting initial values before operation (Loan offers)...");
                 List<string> myRequestsBefore = new List<string>();
                 IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requests)
@@ -1944,10 +1899,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewOffersToLendRequest("ZRX");
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-                //Check values
+                Console.WriteLine("Do the final assert...");
                 try
                 {
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
@@ -1959,12 +1914,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 Browser.ShortPause();
 
-                //check
                 IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequestsAfter.Click();
                 Browser.MiddlePause();
 
-                //Check values
                 List<string> myRequestsAfter = new List<string>();
                 IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requestsAfter)
@@ -1986,16 +1939,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
-                //Check values before(Loan offers)
+                Console.WriteLine("Getting initial values before operation (Loan offers)...");
                 List<string> myRequestsBefore = new List<string>();
                 IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requests)
@@ -2009,10 +1962,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewOffersToLendRequest("DAI");
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-                //Check values
+                Console.WriteLine("Do the final assert...");
                 try
                 {
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
@@ -2024,12 +1977,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 Browser.ShortPause();
 
-                //check
                 IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequestsAfter.Click();
                 Browser.MiddlePause();
 
-                //Check values
                 List<string> myRequestsAfter = new List<string>();
                 IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requestsAfter)
@@ -2051,16 +2002,16 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyRequests = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequests.Click();
                 Browser.MiddlePause();
-                //Check values before(Loan offers)
+                Console.WriteLine("Getting initial values before operation (Loan offers)...");
                 List<string> myRequestsBefore = new List<string>();
                 IList<IWebElement> requests = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requests)
@@ -2074,10 +2025,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Creating new request...");
                 CreateNewOffersToLendRequest("REP");
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-                //Check values
+                Console.WriteLine("Do the final assert...");
                 try
                 {
                     IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
@@ -2089,12 +2040,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 }
                 Browser.ShortPause();
 
-                //check
                 IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequestsAfter.Click();
                 Browser.MiddlePause();
 
-                //Check values
                 List<string> myRequestsAfter = new List<string>();
                 IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table:nth-child(2) .first+ .bottom-cell"));
                 foreach (var request in requestsAfter)
@@ -2116,17 +2065,17 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                Console.WriteLine("Log started");
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("borrower");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 MyLoans.Click();
                 Browser.MiddlePause();
 
+                Console.WriteLine("Geting last request value...");
                 IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
                 string recentrequest = lastBorrowed.Text;
 
@@ -2134,7 +2083,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Borrow.Click();
                 Browser.MiddlePause();
 
-                //Choose low values
+                Console.WriteLine("Choose low values in requests filter...");
                 IWebElement openfilter = Browser.CurrentBrowser.FindElement(By.CssSelector("div.filter-button__filter-wrapper"));
                 openfilter.Click();
 
@@ -2158,19 +2107,20 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 lowamount.Click();
                 Browser.ShortPause();
 
+                Console.WriteLine("Choosing Borrow action...");
                 IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".borrow-table .btn-green"));
                 borrowbtns[0].Click();
                 Browser.MiddlePause();
                 IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
                 borrowtokens.Click();
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-                //check
+                Console.WriteLine("Do the final assert...");
                 IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
                 Close.Click();
-                //Browser.ShortPause();
+                Browser.ShortPause();
 
                 //IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 //MyLoansAfter.Click();
@@ -2191,12 +2141,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 IWebElement MyLoans = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
                 MyLoans.Click();
                 Browser.MiddlePause();
@@ -2207,7 +2157,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
 
                 Browser.LongPause();
-                //Choose low values
+                Console.WriteLine("Choose low values in requests filter");
                 IWebElement openfilter = Browser.CurrentBrowser.FindElement(By.CssSelector("div.filter-button__filter-wrapper"));
                 openfilter.Click();
 
@@ -2251,10 +2201,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 borrowtokens.Click();
                 Browser.ShortPause();
 
-                //approve on MetaMask
+                Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-                //check
+                Console.WriteLine("Do the final assert...");
                 IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
                 Close.Click();
                 //Browser.LongPause();
@@ -2281,11 +2231,11 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void VerifyOffersToLandValuesPresenceAfterRequests()
         {
-            Console.WriteLine("Test started");
-            ////Login to the app
+            Console.WriteLine("Test started...");
+            //Console.WriteLine("Login to the app...");
             //LoginToMainPage("lender");
 
-            ////Test started
+            //Console.WriteLine("Test started...");
             //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
 
             //Browser.MiddlePause();
@@ -2313,12 +2263,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -2365,12 +2315,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
 
                 Browser.MiddlePause();
@@ -2435,12 +2385,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 //Browser.MiddlePause();
 
@@ -2555,12 +2505,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 //Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 //Browser.MiddlePause();
 
@@ -2675,12 +2625,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -2724,12 +2674,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -2773,12 +2723,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -2822,12 +2772,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -2871,10 +2821,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 LoginToMainPage("lender");
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 Browser.MiddlePause();
 
@@ -2918,12 +2868,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             try
             {
-                //Login to the app
+                Console.WriteLine("Login to the app...");
                 ReadOnlyCollection<string> windows = MainPageBb.LoginToMainPage("lender");
                 string MetamaskTab = windows[0];
                 string BloqboardTab = windows[1];
 
-                //Test started
+                Console.WriteLine("Test started...");
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Assets);
                 Browser.MiddlePause();
 
