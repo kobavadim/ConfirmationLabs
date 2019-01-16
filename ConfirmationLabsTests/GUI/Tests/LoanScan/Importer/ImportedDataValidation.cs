@@ -182,16 +182,5 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
                 pageNumber++;
             } while (expectedData.Count > 1);
         }
-
-        [Category("Importer")]
-        [Test]
-        public void ValidateImportFromScript()
-        {
-            string path = @"C:\Users\Administrator\Documents\";
-            foreach (string s in Directory.GetDirectories(path))
-            {
-                Console.WriteLine(s.Remove(0, path.Length));
-            }
-        }
     }
 }

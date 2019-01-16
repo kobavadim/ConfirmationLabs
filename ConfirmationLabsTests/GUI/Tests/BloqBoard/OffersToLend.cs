@@ -1,4 +1,6 @@
-﻿using ConfirmationLabsTests.GUI.Application.BloqBoard;
+﻿using System;
+using System.IO;
+using ConfirmationLabsTests.GUI.Application.BloqBoard;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.Helpers;
 using NUnit.Framework;
@@ -145,6 +147,17 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void BorrowAlreadyExsistantLoanTest_sm()
         {
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewlyCreatedRequestToLendCanBeBorrowed, 3, TestReInitialize);
+        }
+
+        [Category("Importer")]
+        [Test]
+        public void ValidateImportFromScript()
+        {
+            string path = @"C:\Users\Administrator\Documents\";
+            foreach (string s in Directory.GetDirectories(path))
+            {
+                Console.WriteLine(s.Remove(0, path.Length));
+            }
         }
 
         [Category("Lend_sm")]
