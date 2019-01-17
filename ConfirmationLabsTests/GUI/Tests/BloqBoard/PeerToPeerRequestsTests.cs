@@ -164,6 +164,16 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
+        [Category("Borrow_sk")]
+        [Category("BlqRequests_sk")]
+        [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
+        [Test]
+        public void OfferMyOwnBATBorrowTest_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBatBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
         [Ignore("Waiting for tokens on kovan")]
         [Category("Cancel_sk")]
         [Category("BlqRequests_sk")]
@@ -232,6 +242,16 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void OfferMyOwnDAIBorrowTest_sm()
         {
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Borrow_sm")]
+        [Category("BlqRequests_sm")]
+        [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
+        [Test]
+        public void OfferMyOwnBatBorrowTest_sm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBatBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_sm")]
@@ -312,6 +332,16 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void OfferMyOwnDAIBorrowTest_pm()
         {
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiBorrowRequestCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Borrow_pm")]
+        [Category("BlqRequests_pm")]
+        [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
+        [Test]
+        public void OfferMyOwnBatBorrowTest_pm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBatBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Borrow_pm")]

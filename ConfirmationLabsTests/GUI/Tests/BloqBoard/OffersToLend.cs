@@ -45,6 +45,16 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Category("OFRSlndRequests_sk")]
         [Category("Create_sk")]
         [Test]
+        public void OfferMyOwnBatLendTest_sk()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBatOfferToLendCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Lend_sk")]
+        [Category("BlqRequests_sk")]
+        [Category("OFRSlndRequests_sk")]
+        [Category("Create_sk")]
+        [Test]
         public void OfferMyOwnREPLendTest_sk()
         {
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepOfferToLendCanBeCreated, 3, TestReInitialize);
@@ -144,6 +154,15 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewRepOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
+        [Category("Lend_sm")]
+        [Category("OFRSlndRequests_sm")]
+        [Category("Create_sm")]
+        [Test]
+        public void OfferMyOwnBATLendTest_sm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBatOfferToLendCanBeCreated, 3, TestReInitialize);
+        }
+
         [Category("Borrow_sm")]
         [Category("OFRSlndRequests_sm")]
         [Test]
@@ -226,6 +245,15 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         public void OfferMyOwnDAILendTest_pm()
         {
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewDaiOfferToLendCanBeCreated, 3, TestReInitialize);
+        }
+
+        [Category("Lend_pm")]
+        [Category("OFRSlndRequests_pm")]
+        [Category("Create_pm")]
+        [Test]
+        public void OfferMyOwnBATLendTest_pm()
+        {
+            TestRetrier.RunWithRetry(MainPageBb.VerifyNewBatOfferToLendCanBeCreated, 3, TestReInitialize);
         }
 
         [Category("Lend_pm")]

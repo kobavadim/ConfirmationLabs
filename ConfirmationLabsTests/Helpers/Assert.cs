@@ -20,11 +20,14 @@ namespace ConfirmationLabsTests.Helpers
         public static void FinilizeErrors(string ENV, string component, Exception exception, bool send)
        {
             string errormessage = "";
-            try
-            {
-                ScreenShot.TakeWebScreenshot();
-            }
-            catch(Exception){}
+           try
+           {
+               ScreenShot.TakeWebScreenshot();
+           }
+           catch (Exception ex)
+           {
+                Console.WriteLine("Cannot take screenshot " + ex.Message);
+           }
 
             try
             {
