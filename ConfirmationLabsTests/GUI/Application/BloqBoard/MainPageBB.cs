@@ -2238,8 +2238,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
 
             Browser.MiddlePause();
-            TermsandConditionAceptance();
-            Browser.ShortPause();
 
             //IWebElement borrowbtn = Browser.CurrentBrowser.FindElement(BorrowPtwoPBtn);
             //borrowbtn.Click();

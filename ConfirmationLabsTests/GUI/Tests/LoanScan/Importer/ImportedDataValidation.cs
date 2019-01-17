@@ -182,5 +182,18 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
                 pageNumber++;
             } while (expectedData.Count > 1);
         }
+
+        [Category("Importer")]
+        [Test]
+        public void ValidateImportFromScript()
+        {
+            string contents = File.ReadAllText(@"C:\\Users\\Administrator\\Documents\\result.txt");
+            var result = contents.Substring(contents.Length - 10);
+            Console.WriteLine(result);
+            if (result.Contains("ERROR"))
+            {
+                throw new Exception("Importer is working incorrectly");
+            }
+        }
     }
 }

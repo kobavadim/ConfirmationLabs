@@ -143,6 +143,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyNewZrxBorrowRequestCanBeCreated, 3, TestReInitialize);
         }
 
+        [Ignore("no DAI supported on Kovan")]
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
