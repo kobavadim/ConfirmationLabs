@@ -64,14 +64,14 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void WrapTest_sm()
         {
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyEthCanBeWrapped, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyEthCanBeWrapped, 3, TestReInitialize);
         }
 
         [Category("Wallet_sm")]
         [Test]
         public void UnwrapTest_sm()
         {
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyETHCanBeUnwrapped, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyETHCanBeUnwrapped, 3, TestReInitialize);
         }
 
         [Category("Wallet_sm")]
