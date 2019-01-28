@@ -131,8 +131,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
 
-
-
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
         [Category("OFRSlndRequests_sk")]
@@ -180,8 +178,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CancelRequestTest_sk()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanbeCancelled, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanbeCancelled, 3, TestReInitialize);
         }
 
         [Ignore("Waiting for tokens on kovan")]
@@ -198,8 +195,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void RepayFunctionalityTest_sk()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyRepayFunctionality, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyRepayFunctionality, 3, TestReInitialize);
         }
 
         [Ignore("Waiting for tokens on kovan")]
@@ -208,8 +204,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void ReturnCollateralTest_sk()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyCollatrealCanbeReturned, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyCollatrealCanbeReturned, 3, TestReInitialize);
         }
 
         [Ignore("Waiting for tokens on kovan")]
@@ -218,8 +213,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void SeizeCollateralTest_sk()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyCollateralCanBeSeized, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyCollateralCanBeSeized, 3, TestReInitialize);
         }
         #endregion
 
@@ -270,8 +264,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CancelRequestTest_sm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanbeCancelled, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanbeCancelled, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -288,8 +281,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void RepayFunctionalityTest_sm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyRepayFunctionality, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyRepayFunctionality, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -298,8 +290,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void ReturnCollateralTest_sm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyCollatrealCanbeReturned, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyCollatrealCanbeReturned, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -308,8 +299,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void SeizeCollateralTest_sm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyCollateralCanBeSeized, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyCollateralCanBeSeized, 3, TestReInitialize);
         }
         #endregion
 
@@ -360,8 +350,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void CancelRequestTest_pm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanbeCancelled, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanbeCancelled, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -378,8 +367,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void RepayFunctionalityTest_pm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyRepayFunctionality, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyRepayFunctionality, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -388,8 +376,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void ReturnCollateralTest_pm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyCollatrealCanbeReturned, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyCollatrealCanbeReturned, 3, TestReInitialize);
         }
 
         [Ignore("Fix after redesign")]
@@ -398,8 +385,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Test]
         public void SeizeCollateralTest_pm()
         {
-            Browser.LongPause();
-            //TestRetrier.RunWithRetry(MainPageBb.VerifyCollateralCanBeSeized, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyCollateralCanBeSeized, 3, TestReInitialize);
         }
         #endregion
 

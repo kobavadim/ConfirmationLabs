@@ -23,7 +23,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void CheckLiquidityTableAvailabilityTest_sk()
         {
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
         }
         #endregion
 
@@ -32,7 +32,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void CheckLiquidityTableAvailabilityTest_sm()
         {
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
         }
         #endregion
 
@@ -41,10 +41,7 @@ namespace ConfirmationLabsTests.GUI.Tests.Compaund
         [Test]
         public void CheckLiquidityTableAvailabilityTest_pm()
         {
-            Browser.Pause(3000);
-            Browser.Pause(8000);
-            Browser.Pause(3000);
-            //TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageCompaund.VerifyLendToLiquidityPoolTableisOpened, 3, TestReInitialize);
         }
         #endregion
 
