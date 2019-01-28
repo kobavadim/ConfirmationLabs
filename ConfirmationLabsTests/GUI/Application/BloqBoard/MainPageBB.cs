@@ -134,10 +134,12 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.ShortPause();
       
             Console.WriteLine("Wallet approval");
-            Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Requests);
-            Browser.MiddlePause();
-            IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+            IWebElement connectWallet = Browser.CurrentBrowser.FindElement(By.CssSelector("div.auth-module-wrapper"));
             connectWallet.Click();
+            Browser.MiddlePause();
+
+            IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("ul.extensions-block > li:first-child"));
+            submit.Click();
             Browser.MiddlePause();
 
             Browser.CurrentBrowser.SwitchTo().Window(metamaskTab);
@@ -145,14 +147,19 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.MiddlePause();
 
-            IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
-            submit.Click();
+            IWebElement submitFromMetamask = Browser.CurrentBrowser.FindElement(By.CssSelector(".btn-confirm"));
+            submitFromMetamask.Click();
             Browser.MiddlePause();
+
             Browser.CurrentBrowser.SwitchTo().Window(bloqboardTab);
             Browser.CurrentBrowser.Navigate().Refresh();
             Browser.ShortPause();
-            IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.connect-label"));
+            IWebElement connectWalletAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("div.auth-module-wrapper"));
             connectWalletAgain.Click();
+            Browser.MiddlePause();
+
+            IWebElement submitAgain = Browser.CurrentBrowser.FindElement(By.CssSelector("ul.extensions-block > li:first-child"));
+            submitAgain.Click();
             Browser.MiddlePause();
 
             return handles;
