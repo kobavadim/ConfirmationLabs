@@ -19,6 +19,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         MakerDao = 2
     }
 
+    [BsonIgnoreExtraElements]
     public class TransactionBase
     {
         //[BsonElement("txHash")]
@@ -32,6 +33,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         public string networkId { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class Agreement : TransactionBaseWithNetworkId
     {
         /// <summary>
@@ -59,6 +61,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         public MakerDaoFields makerDaoFields { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class IssuanceUpdate : TransactionBase
     {
         // this is reference field
@@ -74,6 +77,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
     }
 
     //consider using the same model for IssuanceUpdated and RepaymentUpdated with proper naming
+    [BsonIgnoreExtraElements]
     public class RepaymentUpdate : TransactionBase
     {
         [BsonIgnore]
@@ -85,6 +89,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         public string tokenAddress { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class CollateralModification : TransactionBase
     {
         // this is reference field
@@ -129,11 +134,13 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         public List<MakerDaoRates> rates { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class InterestFee : TransactionBase
     {
         public string value { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class MakerDaoRates
     {
         public ulong blockNumber { get; set; }
@@ -144,6 +151,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         public string mkrToUsd { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class Fee : TransactionBase
     {
         public string payerAddress { get; set; }
@@ -152,6 +160,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         public string tokenAddress { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class Bite : TransactionBase
     {
         public string beneficiaryAddress { get; set; }
@@ -159,6 +168,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
         public string tokenAddress { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
     public class OwnerUpdate : TransactionBase
     {
         public string value { get; set; }
