@@ -245,7 +245,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                 Browser.LongPause();
 
                 Console.WriteLine("Do the final assert...");
-                IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.main-btn"));
                 Close.Click();
                 Browser.ShortPause();
 
@@ -442,7 +442,7 @@ namespace ConfirmationLabsTests.GUI.Application.Compaund
                     Browser.LongPause();
 
                     Console.WriteLine("Do the final assert...");
-                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.main-btn"));
                     Close.Click();
                     Browser.ShortPause();
 

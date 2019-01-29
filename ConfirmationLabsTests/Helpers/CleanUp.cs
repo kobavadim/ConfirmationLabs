@@ -85,7 +85,7 @@ namespace ConfirmationLabsTests.Helpers
                     //Check values
                     try
                     {
-                        IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                        IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.main-btn"));
                         Close.Click();
                     }
                     catch (Exception)
@@ -132,7 +132,7 @@ namespace ConfirmationLabsTests.Helpers
                     //Check values
                     try
                     {
-                        IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.ok-btn"));
+                        IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.main-btn"));
                         Close.Click();
                     }
                     catch (Exception)
