@@ -115,6 +115,7 @@
     <Compile Include="GUI\Tests\BloqBoard\CalculationTests.cs" />
     <Compile Include="GUI\Tests\BloqBoard\WalletTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\Importer\Agreement.cs" />
+    <Compile Include="GUI\Tests\LoanScan\Importer\DataValidationUtils.cs" />
     <Compile Include="GUI\Tests\LoanScan\Importer\ImportedDataValidation.cs" />
     <Compile Include="GUI\Application\LoanScan\Integration.cs" />
     <Compile Include="GUI\Application\LoanScan\LoanScanMobile.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="GUI\Tests\BloqBoard\MainPageTests.cs" />
     <Compile Include="GUI\Tests\Compaund\LiquidityPoolRequestsTests.cs" />
     <Compile Include="GUI\Tests\Compaund\MainPageCompaundTests.cs" />
+    <Compile Include="GUI\Tests\LoanScan\Importer\MakerDaoValidation.cs" />
     <Compile Include="GUI\Tests\LoanScan\Importer\TermsParams.cs" />
     <Compile Include="GUI\Tests\LoanScan\LoanScanMobileTests.cs" />
     <Compile Include="GUI\Tests\LoanScan\CardPageTests.cs" />

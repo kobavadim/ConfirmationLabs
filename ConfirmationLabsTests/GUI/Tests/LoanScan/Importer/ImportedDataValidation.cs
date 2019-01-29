@@ -1,199 +1,241 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using MongoDB.Driver;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 
 namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
 {
     [TestFixture]
     public class ImportedDataValidationTests
     {
+        private const ulong BlockNumberPrecision = 5;
+        private static readonly TimeSpan TimestampPrecision = TimeSpan.FromMinutes(5);
+        
         [TestCase(
-            120,
             "mongodb+srv://stage-one:HpiKyWZ00U8CyrkG@bloqboard-twwqb.mongodb.net/Loans?retryWrites=true",
-            "Loans",
-            "agreements",
+            "LoansProdCopy2",
+            "agreementsLoanscanConsumers",
             "mongodb+srv://stage-one:HpiKyWZ00U8CyrkG@bloqboard-twwqb.mongodb.net/Loans?retryWrites=true",
-            "Loans",
+            "LoansProdCopy2",
             "agreements")]
         public void ValidateImportedData(
-            long lookBackPeriodInMinutes,
-            string expectedDataDatabaseConnectionString,
-            string expectedDataDatabaseName,
-            string expectedDataCollectionName,
-            string actualDataDatabaseConnectionString,
-            string actualDataDatabaseName,
-            string actualDataCollectionName)
+            string newCollectionDatabaseConnectionString,
+            string newCollectionDatabaseName,
+            string newCollectionName,    
+            string oldCollectionDatabaseConnectionString,
+            string oldCollectionDatabaseName,
+            string oldCollectionName)
         {
-            // initialize fields
-            var lookBackDateTime = DateTime.UtcNow.AddMinutes((-1) * lookBackPeriodInMinutes);
-            var pageNumber = 0;
-            var pageSize = 1000;
+            var newCollectionClient = new MongoClient(newCollectionDatabaseConnectionString);
+            var newCollection = newCollectionClient.GetDatabase(newCollectionDatabaseName).GetCollection<Agreement>(newCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
 
-            var expectedDataClient = new MongoClient(expectedDataDatabaseConnectionString);
-            var expectedDataCollection = expectedDataClient.GetDatabase(expectedDataDatabaseName).GetCollection<Agreement>(expectedDataCollectionName);  //here can be different Agreement classes
+            var oldCollectionClient = new MongoClient(oldCollectionDatabaseConnectionString);
+            var oldCollection = oldCollectionClient.GetDatabase(oldCollectionDatabaseName).GetCollection<Agreement>(oldCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
 
-            var actualDataClient = new MongoClient(actualDataDatabaseConnectionString);
-            var actualDataCollection = actualDataClient.GetDatabase(actualDataDatabaseName).GetCollection<Agreement>(actualDataCollectionName);  //here can be different Agreement classes
-
-            //enumerate and compare entries
-            List<Agreement> expectedData;
-            List<Agreement> actualData;
-            do
-            {
-                expectedData = expectedDataCollection.AsQueryable().Skip(pageNumber * pageSize).Take(pageSize).ToList();
-                actualData = actualDataCollection.AsQueryable().Skip(pageNumber * pageSize).Take(pageSize).ToList();
-
-                // we are applying predicates on items in memory as IQueryable for Mongo does not seem to support queries against embedded arrays
-                var expectedDataRefinedAgainstLookBackPeriod = expectedData
-                    .Where(x => x.blockTimeStamp < lookBackDateTime
-                                && x.issuances.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.repayments.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.collateralModifications.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && (x.makerDaoFields == null
-                                    || (x.makerDaoFields.ownerUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.bites.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.governanceFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.liquidationFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.interestFeeUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && (x.makerDaoFields.shut == null || x.makerDaoFields.shut.blockTimeStamp < lookBackDateTime)
-                                        )
-                                    )
-                            )
-                    .ToList();
-
-                var actualDataRefinedAgainstLookBackPeriod = actualData
-                    .Where(x => x.blockTimeStamp < lookBackDateTime
-                                && x.issuances.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.repayments.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.collateralModifications.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && (x.makerDaoFields == null
-                                    || (x.makerDaoFields.ownerUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.bites.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.governanceFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.liquidationFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.interestFeeUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && (x.makerDaoFields.shut == null || x.makerDaoFields.shut.blockTimeStamp < lookBackDateTime)
-                                        )
-                                )
-                    )
-                    .ToList();
-
-                actualDataRefinedAgainstLookBackPeriod.Count.Should().Be(expectedDataRefinedAgainstLookBackPeriod.Count);
-                for (var index = 0; index < actualDataRefinedAgainstLookBackPeriod.Count; index++)
-                {
-                    // logging id of the mismatched agreement into "because" part of the assertion message
-                    actualDataRefinedAgainstLookBackPeriod[index].Should().BeEquivalentTo(expectedDataRefinedAgainstLookBackPeriod[index], expectedDataRefinedAgainstLookBackPeriod[index].AgreementId);
-                }
-
-                pageNumber++;
-            } while (expectedData.Count > 1);
+            var areEqual = CompareAgreementsCollections(newCollection, oldCollection);
+            
+            areEqual.Should().Be(true);
         }
 
-        [Test]
+       [Test]
         public void ValidateImportedDataParameterized()
         {
-            string lookBackPeriodInMinutes = TestContext.Parameters["lookBackPeriodInMinutes"];
-            long lookBackPeriodInMinutesLong = (long)Convert.ToDouble(lookBackPeriodInMinutes);
-         
-            Console.WriteLine(lookBackPeriodInMinutes);
-            
-            string expectedDataDatabaseConnectionString = TestContext.Parameters["expectedDataDatabaseConnectionString"];
-            string expectedDataDatabaseName = TestContext.Parameters["expectedDataDatabaseName"];
-            string expectedDataCollectionName = TestContext.Parameters["expectedDataCollectionName"];
-            string actualDataDatabaseConnectionString = TestContext.Parameters["actualDataDatabaseConnectionString"];
-            string actualDataDatabaseName = TestContext.Parameters["actualDataDatabaseName"];
-            string actualDataCollectionName = TestContext.Parameters["actualDataCollectionName"];
+            string newCollectionDatabaseConnectionString = TestContext.Parameters["newCollectionDatabaseConnectionString"];
+            string newCollectionDatabaseName = TestContext.Parameters["newCollectionDatabaseName"];
+            string newCollectionName = TestContext.Parameters["newCollectionName"];
+            string oldCollectionDatabaseConnectionString = TestContext.Parameters["oldCollectionDatabaseConnectionString"];
+            string oldCollectionDatabaseName = TestContext.Parameters["oldCollectionDatabaseName"];
+            string oldCollectionName = TestContext.Parameters["oldCollectionName"];
 
-            Console.WriteLine(expectedDataDatabaseConnectionString);
-            Console.WriteLine(expectedDataDatabaseName);
-            Console.WriteLine(expectedDataCollectionName);
-            Console.WriteLine(actualDataDatabaseConnectionString);
-            Console.WriteLine(actualDataDatabaseName);
-            Console.WriteLine(actualDataCollectionName);
+            Console.WriteLine(newCollectionDatabaseConnectionString);
+            Console.WriteLine(newCollectionDatabaseName);
+            Console.WriteLine(newCollectionName);
+            Console.WriteLine(oldCollectionDatabaseConnectionString);
+            Console.WriteLine(oldCollectionDatabaseName);
+            Console.WriteLine(oldCollectionName);
 
-            // initialize fields
-            var lookBackDateTime = DateTime.UtcNow.AddMinutes((-1) * lookBackPeriodInMinutesLong);
-            var pageNumber = 0;
-            var pageSize = 1000;
+            var newCollectionClient = new MongoClient(newCollectionDatabaseConnectionString);
+            var newCollection = newCollectionClient.GetDatabase(newCollectionDatabaseName).GetCollection<Agreement>(newCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
 
-            var expectedDataClient = new MongoClient(expectedDataDatabaseConnectionString);
-            var expectedDataCollection = expectedDataClient.GetDatabase(expectedDataDatabaseName).GetCollection<Agreement>(expectedDataCollectionName);  //here can be different Agreement classes
+            var oldCollectionClient = new MongoClient(oldCollectionDatabaseConnectionString);
+            var oldCollection = oldCollectionClient.GetDatabase(oldCollectionDatabaseName).GetCollection<Agreement>(oldCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
 
-            var actualDataClient = new MongoClient(actualDataDatabaseConnectionString);
-            var actualDataCollection = actualDataClient.GetDatabase(actualDataDatabaseName).GetCollection<Agreement>(actualDataCollectionName);  //here can be different Agreement classes
+            var areEqual = CompareAgreementsCollections(newCollection, oldCollection);
 
-            //enumerate and compare entries
-            List<Agreement> expectedData;
-            List<Agreement> actualData;
-            do
-            {
-                expectedData = expectedDataCollection.AsQueryable().Skip(pageNumber * pageSize).Take(pageSize).ToList();
-                actualData = actualDataCollection.AsQueryable().Skip(pageNumber * pageSize).Take(pageSize).ToList();
-
-                // we are applying predicates on items in memory as IQueryable for Mongo does not seem to support queries against embedded arrays
-                var expectedDataRefinedAgainstLookBackPeriod = expectedData
-                    .Where(x => x.blockTimeStamp < lookBackDateTime
-                                && x.issuances.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.repayments.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.collateralModifications.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && (x.makerDaoFields == null
-                                    || (x.makerDaoFields.ownerUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.bites.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.governanceFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.liquidationFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.interestFeeUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && (x.makerDaoFields.shut == null || x.makerDaoFields.shut.blockTimeStamp < lookBackDateTime)
-                                        )
-                                    )
-                            )
-                    .ToList();
-
-                var actualDataRefinedAgainstLookBackPeriod = actualData
-                    .Where(x => x.blockTimeStamp < lookBackDateTime
-                                && x.issuances.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.repayments.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && x.collateralModifications.All(y => y.blockTimeStamp < lookBackDateTime)
-                                && (x.makerDaoFields == null
-                                    || (x.makerDaoFields.ownerUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.bites.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.governanceFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.liquidationFees.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && x.makerDaoFields.interestFeeUpdates.All(y => y.blockTimeStamp < lookBackDateTime)
-                                        && (x.makerDaoFields.shut == null || x.makerDaoFields.shut.blockTimeStamp < lookBackDateTime)
-                                        )
-                                )
-                    )
-                    .ToList();
-
-                actualDataRefinedAgainstLookBackPeriod.Count.Should().Be(expectedDataRefinedAgainstLookBackPeriod.Count);
-                for (var index = 0; index < actualDataRefinedAgainstLookBackPeriod.Count; index++)
-                {
-                    // logging id of the mismatched agreement into "because" part of the assertion message
-                    actualDataRefinedAgainstLookBackPeriod[index].Should().BeEquivalentTo(expectedDataRefinedAgainstLookBackPeriod[index], expectedDataRefinedAgainstLookBackPeriod[index].AgreementId);
-                }
-
-                pageNumber++;
-            } while (expectedData.Count > 1);
+            areEqual.Should().Be(true);
         }
 
-        [Category("Importer")]
-        [Test]
-        public void ValidateImportFromScript()
+        private bool CompareAgreementsCollections(List<Agreement> newCollection, List<Agreement> oldCollection)
         {
-            string contents = File.ReadAllText(@"C:\\Users\\Administrator\\Documents\\result.txt");
-            var result = contents.Substring(contents.Length - 10);
-            Console.WriteLine(result);
-            if (result.Contains("ERROR"))
+            Console.WriteLine($"New collection length: {newCollection.Count}");
+            Console.WriteLine($"Old collection length: {oldCollection.Count}");
+
+            var areEqual = true;
+
+            var commonAgreementIds = newCollection
+                .Select(x => new {Id = x.AgreementId, Protocol = x.agreementProtocolType})
+                .Intersect(oldCollection.Select(x => new {Id = x.AgreementId, Protocol = x.agreementProtocolType}))
+                .ToList();
+
+            foreach (var agreement in newCollection)
             {
-                throw new Exception("Importer is working incorrectly");
+                if (commonAgreementIds.FirstOrDefault(x => x.Id == agreement.AgreementId && x.Protocol == agreement.agreementProtocolType) == null)
+                {
+                    Console.WriteLine($"Agreement with id {agreement.AgreementId} and protocol {agreement.agreementProtocolType} is not found in old collection");
+                    areEqual = false;
+                }
             }
+
+            foreach (var agreement in oldCollection)
+            {
+                if (commonAgreementIds.FirstOrDefault(x => x.Id == agreement.AgreementId && x.Protocol == agreement.agreementProtocolType) == null)
+                {
+                    Console.WriteLine($"Agreement with id {agreement.AgreementId} and protocol {agreement.agreementProtocolType} is not found in new collection");
+                    areEqual = false;
+                }
+            }
+
+            var diffAgreementsCount = 0;
+            foreach (var agreement in commonAgreementIds)
+            {
+                var newAgreement = newCollection.Find(x => x.AgreementId == agreement.Id && x.agreementProtocolType == agreement.Protocol);
+                var oldAgreement = oldCollection.Find(x => x.AgreementId == agreement.Id && x.agreementProtocolType == agreement.Protocol);
+
+                if (!CompareAgreements(newAgreement, oldAgreement))
+                {
+                    diffAgreementsCount++;
+                    areEqual = false;
+                    Console.WriteLine();
+                };
+            }
+            
+            Console.WriteLine($"{diffAgreementsCount} agreements are not equal between new and old collections");
+
+            return areEqual;
         }
+
+        private bool CompareAgreements(Agreement newAgreement, Agreement oldAgreement)
+        {
+            var agreementId = newAgreement.AgreementId;
+            
+            //exclude all lists and objects with nested collections
+            //we assume that there can be chain reorganization that affects value of block number and block timestamp
+            //Standard fluent assertion workflow is not applicable as we want to continue comparison even after AssertionException
+            //use single & to check all conditions and write logs about all differences
+            //agreements are not equal if one of these comparisons will fail
+            //same solution in methods below
+            bool areEqual = 
+                DataValidationUtils.CompareEntities(newAgreement.interestRate, oldAgreement.interestRate, agreementId, decimal.Equals, "interest rate") &
+                DataValidationUtils.CompareEntities(newAgreement.loanTerm, oldAgreement.loanTerm, agreementId, LoanTermsAreEqual, "loan term") &
+                DataValidationUtils.CompareEntities(newAgreement.totalAmountToRepay, oldAgreement.totalAmountToRepay, agreementId, string.Equals, "total amount to repay") &
+                DataValidationUtils.CompareEntities(newAgreement.dharmaFields, oldAgreement.dharmaFields, agreementId, DharmaFieldsAreEqual, "dharma fields") &
+                DataValidationUtils.CompareEntities(newAgreement.networkId, oldAgreement.networkId, agreementId, string.Equals, "network id") &
+                DataValidationUtils.CompareEntities(newAgreement.blockTimeStamp, oldAgreement.blockTimeStamp, agreementId, CompareBlockTimestamps, "block timestamp") &
+                DataValidationUtils.CompareEntities(newAgreement.blockNumber, oldAgreement.blockNumber, agreementId, CompareBlockNumber, "block number");
+            
+            if (
+                !MakerDaoValidation.CompareMakerDaoFields(newAgreement.makerDaoFields, oldAgreement.makerDaoFields, agreementId) |
+                !DataValidationUtils.CompareCollections(newAgreement.collateralModifications, oldAgreement.collateralModifications, agreementId, CollateralModificationsMatcher, "collateral") |
+                !DataValidationUtils.CompareCollections(newAgreement.repayments, oldAgreement.repayments, agreementId, RepaymentsMatcher, "repayment") |
+                !DataValidationUtils.CompareCollections(newAgreement.issuances, oldAgreement.issuances, agreementId, IssuancesMatcher, "issuance")
+            )
+            {
+                areEqual = false;
+            }
+
+            return areEqual;
+        }
+
+        private bool LoanTermsAreEqual(TimeSpan? a, TimeSpan? b)
+        {
+            if (a == null && b == null)
+                return true;
+            if (a == null || b == null)
+                return false;
+
+            return a.Value == b.Value;
+        }
+
+        private bool DharmaFieldsAreEqual(DharmaFields a, DharmaFields b)
+        {
+            if (a == null && b == null)
+                return true;
+
+            //case when only one shut is not null
+            if (a == null || b == null)
+                return false;
+
+            return a.relayer == b.relayer &&
+                   a.underwriter == b.underwriter &&
+                   a.creditorFee == b.creditorFee &&
+                   a.debtorFee == b.debtorFee &&
+                   a.kernelAddress == b.kernelAddress &&
+                   a.relayerFee == b.relayerFee &&
+                   a.repaymentAddress == b.repaymentAddress &&
+                   a.repaymentFrequency == b.repaymentFrequency &&
+                   a.termsContract == b.termsContract &&
+                   a.underwriterFee == b.underwriterFee &&
+                   a.termsContractParameters.SequenceEqual(b.termsContractParameters) &&
+                   a.underwriterRiskRating == b.underwriterRiskRating;
+        }
+
+        private bool CompareBlockNumber(ulong a, ulong b)
+        {
+            return Math.Abs((decimal) a - b) < BlockNumberPrecision;
+        }
+
+        private bool CompareBlockTimestamps(DateTime a, DateTime b)
+        {
+            return (a > b - TimestampPrecision) && (a < b + TimestampPrecision);
+        }
+
+        private bool CollateralModificationsMatcher(CollateralModification a, CollateralModification b)
+        {
+            return a.amount == b.amount &&
+                   a.beneficiaryAddress == b.beneficiaryAddress &&
+                   a.payerAddress == b.payerAddress &&
+                   a.tokenAddress == b.tokenAddress &&
+                   Math.Abs((decimal) a.blockNumber - b.blockNumber) < BlockNumberPrecision &&
+                   a.blockTimeStamp > b.blockTimeStamp - TimestampPrecision &&
+                   a.blockTimeStamp < b.blockTimeStamp + TimestampPrecision &&
+                   a.modificationType == b.modificationType;
+        }
+
+        public bool RepaymentsMatcher(RepaymentUpdate a, RepaymentUpdate b)
+        {
+            return a.amount == b.amount &&
+                   a.beneficiaryAddress == b.beneficiaryAddress &&
+                   a.payerAddress == b.payerAddress &&
+                   a.tokenAddress == b.tokenAddress &&
+                   Math.Abs((decimal) a.blockNumber - b.blockNumber) < BlockNumberPrecision &&
+                   a.blockTimeStamp > b.blockTimeStamp - TimestampPrecision &&
+                   a.blockTimeStamp < b.blockTimeStamp + TimestampPrecision;
+        }
+
+        public bool IssuancesMatcher(IssuanceUpdate a, IssuanceUpdate b)
+        {
+            return a.amount == b.amount &&
+                   a.tokenAddress == b.tokenAddress &&
+                   a.payerAddress == b.payerAddress &&
+                   a.interestRateAtOrigination == b.interestRateAtOrigination &&
+                   Math.Abs((decimal) a.blockNumber - b.blockNumber) < BlockNumberPrecision &&
+                   a.blockTimeStamp > b.blockTimeStamp - TimestampPrecision &&
+                   a.blockTimeStamp < b.blockTimeStamp + TimestampPrecision;
+        }
+
+//        [Category("Importer")]
+//        [Test]
+//        public void ValidateImportFromScript()
+//        {
+//            string contents = File.ReadAllText(@"C:\\Users\\Administrator\\Documents\\result.txt");
+//            var result = contents.Substring(contents.Length - 10);
+//            Console.WriteLine(result);
+//            if (result.Contains("ERROR"))
+//            {
+//                throw new Exception("Importer is working incorrectly");
+//            }
+//        }
     }
 }
