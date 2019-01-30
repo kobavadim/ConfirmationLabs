@@ -47,8 +47,8 @@ namespace ConfirmationLabsTests.Helpers
             public static string CompaundProd = "https://compound.bloqboard.com/";
             public static string CompaundKovan = "http://compound-rinkeby.bloqboard.com.s3-website-us-east-1.amazonaws.com/";
             public static string MetaMaskWeb = "chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#";
-            //public static string BloqBoardStaging = "https://staging.bloqboard.com/";          
-            public static string BloqBoardStaging = "https://test.bloqboard.com/";
+            public static string BloqBoardStaging = "https://staging.bloqboard.com/";          
+            //public static string BloqBoardStaging = "https://test.bloqboard.com/";
             public static string Requests = DefineRootAdressDependingOnEnvironment() + "requests";
             public static string Lend = DefineRootAdressDependingOnEnvironment() + "lend";
             public static string Assets = DefineRootAdressDependingOnEnvironment() + "assets";

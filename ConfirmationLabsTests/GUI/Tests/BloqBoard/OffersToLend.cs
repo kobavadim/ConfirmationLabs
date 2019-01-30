@@ -1,12 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using ConfirmationLabsTests.GUI.Application.BloqBoard;
+﻿using ConfirmationLabsTests.GUI.Application.BloqBoard;
 using ConfirmationLabsTests.GUI.Engine;
 using ConfirmationLabsTests.Helpers;
 using NUnit.Core;
 using NUnit.Framework;
-using Assert = ConfirmationLabsTests.Helpers.Assert;
 
 namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 {
@@ -22,7 +18,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         #region STAGING_Kovan
         [Category("Lend_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnZRXLendTest_sk()
@@ -32,7 +28,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Lend_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnDAILendTest_sk()
@@ -42,7 +38,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Lend_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnBatLendTest_sk()
@@ -52,7 +48,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Lend_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnREPLendTest_sk()
@@ -62,7 +58,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Ignore("Investigate")]
         [Category("Borrow_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void BorrowAlreadyExsistantLoanTest_sk()
         {
@@ -70,7 +66,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Lend_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void LendToAlreadyExsistantBorrowTestTest_sk()
         {
@@ -78,7 +74,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Borrow_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void CheckMyPendingBorrowingOfferConsistanceTest_sk()
         {
@@ -86,7 +82,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Borrow_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void CheckAlreadyBorrowedConsistanceTest()
         {
@@ -94,7 +90,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Borrow_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void CheckBorrowOfferFromLenderSideEtoE_sk()
         {
@@ -102,7 +98,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Lend_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void CheckMyPendingLendingOfferConsistanceTest_sk()
         {
@@ -110,7 +106,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Lend_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void CheckAlreadyLoanedConsistanceTest_sk()
         {
@@ -118,7 +114,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         }
 
         [Category("Lend_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Test]
         public void CheckLendingOfferFromBorrowerSideEtoE_sk()
         {

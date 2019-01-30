@@ -46,7 +46,6 @@ namespace ConfirmationLabsTests.Helpers
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.MetaMaskMainPageKovan);
                 Browser.MiddlePause();
                
-
                 IWebElement agreed = Browser.CurrentBrowser.FindElement(By.CssSelector(".welcome-screen__button"));
                 agreed.Click();
                 Browser.ShortPause();
@@ -89,14 +88,11 @@ namespace ConfirmationLabsTests.Helpers
                 IWebElement proceedPhrase = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
                 proceedPhrase.Click();
                 Browser.ShortPause();
-
-
             }
             catch(Exception)
             {
-                Console.WriteLine("Exy");
+                Console.WriteLine("Cannot login to Metamask!");
             }
-
 
 
             try
@@ -104,8 +100,7 @@ namespace ConfirmationLabsTests.Helpers
 
                 IWebElement Button = Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button"));
 
-                IList<IWebElement> values = GUI.Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".markdown p"));
-
+                IList<IWebElement> values = Browser.CurrentBrowser.FindElements(By.CssSelector(".markdown p"));
 
 
                 try
@@ -161,16 +156,6 @@ namespace ConfirmationLabsTests.Helpers
                 Browser.CurrentBrowser.Navigate().Refresh();
             }
 
-            //cleaning
-            //try
-            //{
-            //    Browser.CurrentBrowser.FindElement(By.CssSelector(".first-time-flow__button")).SendKeys(OpenQA.Selenium.Keys.Return);
-            //    Browser.ShortPause();
-            //}
-            //catch (Exception)
-            //{
-            //    //Browser.CurrentBrowser.Navigate().Refresh();
-            //}
         }
 
         public static void LoginToMetaMaskWalletWithNewUser()

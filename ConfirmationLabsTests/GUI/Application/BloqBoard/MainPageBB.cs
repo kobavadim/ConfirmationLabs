@@ -299,15 +299,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         {
             IWebElement createOffer = Browser.CurrentBrowser.FindElement(By.CssSelector("button.transparent-button"));
             createOffer.Click();
-            //IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-item-name"));
-            //foreach (var btn in buttons)
-            //{
-            //    if (btn.Text == "WETH")
-            //    {
-            //        btn.Click();
-            //        break;
-            //    }
-            //}
+
             Browser.ShortPause();
 
             IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
@@ -352,15 +344,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
 
         public static void CreateNewBorrowRequest(string token)
         {
-            IList<IWebElement> buttons = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-item-name"));
-            foreach (var btn in buttons)
-            {
-                if (btn.Text == "WETH")
-                {
-                    btn.Click();
-                    break;
-                }
-            }
+            IWebElement createOffer = Browser.CurrentBrowser.FindElement(By.CssSelector("button.transparent-button"));
+            createOffer.Click();
             Browser.ShortPause();
 
             IWebElement amount = Browser.CurrentBrowser.FindElement(AmountInputbyNewRequest);
@@ -1268,24 +1253,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Approve on MetaMask...");
                 Wallets.ApproveTransaction(MetamaskTab, BloqboardTab);
 
-
                 Console.WriteLine("Do the final assert...");
-                try
-                {
-                    IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.main-btn"));
-                    Close.Click();
-                }
-                catch (Exception)
-                {
-
-                }
+                IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.main-btn"));
+                Close.Click();
 
                 Browser.ShortPause();
-
                 IWebElement MyRequestsAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(3)"));
                 MyRequestsAfter.Click();
                 Browser.LongPause();
-
 
                 List<string> myRequestsAfter = new List<string>();
                 IList<IWebElement> requestsAfter = Browser.CurrentBrowser.FindElements(By.CssSelector(".content-table~ .content-table .first+ .bottom-cell"));
@@ -2327,7 +2302,6 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                         collateral[i].Click();
                     }
                 }
-
 
                 IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
                 apply.Click();

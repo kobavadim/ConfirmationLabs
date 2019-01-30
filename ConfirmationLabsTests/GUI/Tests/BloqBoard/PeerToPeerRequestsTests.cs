@@ -133,7 +133,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnZRXBorrowTest_sk()
@@ -144,7 +144,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         [Ignore("no DAI supported on Kovan")]
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnDAIBorrowTest_sk()
@@ -154,7 +154,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnREPBorrowTest_sk()
@@ -164,7 +164,7 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Borrow_sk")]
         [Category("BlqRequests_sk")]
-        [Category("OFRSlndRequests_sk")]
+        [Category("RedesignedOfrslndRequests_sk")]
         [Category("Create_sk")]
         [Test]
         public void OfferMyOwnBATBorrowTest_sk()
