@@ -71,7 +71,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
         private static readonly By NextPage = By.CssSelector("ul.pagination > li:nth-of-type(6) > a.page-link > span");
         private static readonly By ConfirmSeizing = By.CssSelector("button.confirm-btn");
         private static readonly By BorrowPtwoPBtn = By.CssSelector(".btn-green");
-        private static readonly By BorrowTokensGreenBtn = By.CssSelector("div.borrow-details > button.borrow-btn");
+        private static readonly By BorrowTokensGreenBtn = By.CssSelector("button.borrow-btn");
         private static readonly By TransactionMessage = By.CssSelector("div.fund-loan-success-header");
         private static readonly By LendPageLink = By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(2)");
         private static readonly By TokenAmount = By.CssSelector(".symbol-cell .top-cell");
@@ -2197,7 +2197,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.MiddlePause();
 
                 Console.WriteLine("Geting last request value...");
-                IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.borrowed-assets-wrapper > div.content-table > div.content-table-body > div:first-child > div.content-table-cell.text-left.width-m > div.bottom-cell"));
                 string recentrequest = lastBorrowed.Text;
 
                 IWebElement Borrow = Browser.CurrentBrowser.FindElement(By.CssSelector("div.sidebar-block.loans-block > a:nth-of-type(1)"));
@@ -2211,10 +2211,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 IWebElement showallvalues = Browser.CurrentBrowser.FindElement(By.CssSelector("div.token-list-filter__collapse-label > span"));
                 showallvalues.Click();
 
-                IWebElement chooseLowValuesToken = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(4) > div.token-list-filter__cell.token-list-filter__cell--token-principal > label"));
-                chooseLowValuesToken.Click();
-
-                IWebElement choosecollateral = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(5) > div:nth-of-type(3) > label"));
+                IWebElement choosecollateral = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(5) > div:nth-of-type(2) > label"));
                 choosecollateral.Click();
 
                 IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
@@ -2229,8 +2226,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.ShortPause();
 
                 Console.WriteLine("Choosing Borrow action...");
-                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".borrow-table .btn-green"));
-                borrowbtns[0].Click();
+                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-green"));
+                borrowbtns[1].Click();
                 Browser.MiddlePause();
                 IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(BorrowTokensGreenBtn);
                 borrowtokens.Click();
@@ -2243,13 +2240,13 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Close.Click();
                 Browser.ShortPause();
 
-                //IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                //MyLoansAfter.Click();
-                //Browser.MiddlePause();
+                IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoansAfter.Click();
+                Browser.MiddlePause();
 
-                //IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.content-table.first > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
-                //string recentrequestChanged = lastBorrowedChanged.Text;
-                //Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
+                IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.borrowed-assets-wrapper > div.content-table > div.content-table-body > div:first-child > div.content-table-cell.text-left.width-m > div.bottom-cell"));
+                string recentrequestChanged = lastBorrowedChanged.Text;
+                Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
             }
             catch (Exception exception)
             {
@@ -2272,7 +2269,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 MyLoans.Click();
                 Browser.MiddlePause();
 
-                IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.side-splitter > div:nth-of-type(2) > div.content-table > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
+                IWebElement lastBorrowed = Browser.CurrentBrowser.FindElement(By.CssSelector("div.loaned-assets-wrapper > div.content-table > div.content-table-body > div:first-child > div.content-table-cell.text-left.width-m > div.bottom-cell"));
                 string recentrequest = lastBorrowed.Text;
 
                 Browser.CurrentBrowser.Navigate().GoToUrl(TestData.Urls.Lend);
@@ -2287,21 +2284,8 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Browser.ShortPause();
 
 
-                IList<IWebElement> tokennames = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-list-filter__cell--token-name"));
-                IList<IWebElement> tokens = Browser.CurrentBrowser.FindElements(By.CssSelector("div.token-list-filter__cell--token-principal.token-list-filter__cell"));
-                IList<IWebElement> collateral = Browser.CurrentBrowser.FindElements(By.CssSelector(".token-list-filter__cell--token-principal+ .token-list-filter__cell label"));
-                for (int i = 0; i < tokennames.Count; i++)
-                {
-                    if (tokennames[i].Text.Contains("WETH"))
-                    {
-                        tokens[i].Click();
-                    }
-
-                    if (tokennames[i].Text.Contains("ZRX"))
-                    {
-                        collateral[i].Click();
-                    }
-                }
+                IWebElement collateral = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(5) > div:nth-of-type(2) > label"));
+                collateral.Click();
 
                 IWebElement apply = Browser.CurrentBrowser.FindElement(By.CssSelector("button.filter-modal__btn.filter-modal__btn--apply"));
                 apply.Click();
@@ -2314,10 +2298,10 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 lowamount.Click();
                 Browser.ShortPause();
 
-                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".loan-table .btn-red"));
-                borrowbtns[0].Click();
+                IList<IWebElement> borrowbtns = Browser.CurrentBrowser.FindElements(By.CssSelector(".btn-red"));
+                borrowbtns[1].Click();
                 Browser.MiddlePause();
-                IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-details-btn.fill"));
+                IWebElement borrowtokens = Browser.CurrentBrowser.FindElement(By.CssSelector("button.loan-details-btn.btn-red"));
                 borrowtokens.Click();
                 Browser.ShortPause();
 
@@ -2327,14 +2311,14 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                 Console.WriteLine("Do the final assert...");
                 IWebElement Close = Browser.CurrentBrowser.FindElement(By.CssSelector("button.main-btn"));
                 Close.Click();
-                //Browser.LongPause();
-                //IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
-                //MyLoansAfter.Click();
-                //Browser.LongPause();
+                Browser.LongPause();
+                IWebElement MyLoansAfter = Browser.CurrentBrowser.FindElement(By.CssSelector("div > div:nth-of-type(2) > a:nth-of-type(2)"));
+                MyLoansAfter.Click();
+                Browser.LongPause();
 
-                //IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.side-splitter > div:nth-of-type(2) > div.content-table > div.content-table-body > div:first-child > div:first-child > div.bottom-cell"));
-                //string recentrequestChanged = lastBorrowedChanged.Text;
-                //Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
+                IWebElement lastBorrowedChanged = Browser.CurrentBrowser.FindElement(By.CssSelector("div.loaned-assets-wrapper > div.content-table > div.content-table-body > div:first-child > div.content-table-cell.text-left.width-m > div.bottom-cell"));
+                string recentrequestChanged = lastBorrowedChanged.Text;
+                Assert.IsTrue(!recentrequestChanged.Contains(recentrequest), "[" + Env + "] BLOQBOARD", "Peer-to-peer borrowing is probably not working. Please check manually.");
             }
             catch (Exception exception)
             {
