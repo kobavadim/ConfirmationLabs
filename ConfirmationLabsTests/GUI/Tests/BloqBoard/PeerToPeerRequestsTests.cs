@@ -275,7 +275,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanBeLended, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
         [Category("Repay_sm")]
         [Category("BlqRequests_sm")]
         [Test]
@@ -361,7 +360,6 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
             TestRetrier.RunWithRetry(MainPageBb.VerifyRequestCanBeLended, 3, TestReInitialize);
         }
 
-        [Ignore("Fix after redesign")]
         [Category("Repay_pm")]
         [Category("BlqRequests_pm")]
         [Test]

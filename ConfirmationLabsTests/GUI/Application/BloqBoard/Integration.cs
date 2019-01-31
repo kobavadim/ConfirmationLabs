@@ -41,6 +41,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
             connectToLedger.Click();
             Browser.MiddlePause();
 
+
             IWebElement ledgerMessage = Browser.CurrentBrowser.FindElement(By.CssSelector("header.subheader"));
             Assert.IsTrue(ledgerMessage.Text.Contains("Ledger"), "BloqBoard", "Ledger connection is abcent or not working.");
         }
