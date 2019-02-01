@@ -186,24 +186,39 @@ namespace ConfirmationLabsTests.GUI.Application.LoanScan
             }
         }
 
-        public static void VerifyPaidOfDharmaSingleCard()
+        public static void VerifyProtocolsSingleCards()
         {
             try
             {
-                Engine.Browser.CurrentBrowser.Navigate().GoToUrl("https://loanscan.io/Agreements/Dharma/0xa17912dffc430b2d9e346905e695d74e432fb45edaa9b6fe6fc216b41ec117c1");
+                Engine.Browser.CurrentBrowser.Navigate().GoToUrl("https://loanscan.io/agreements/MakerDao/14142");
                 Engine.Browser.MiddlePause();
 
                 string valuesStr = "";
-                IList<IWebElement> values = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector("span"));
+                IList<IWebElement> values = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".col-sm-3"));
                 foreach(var val in values)
                 {
                     valuesStr += val.Text;
                 }
-                if(valuesStr != "BETA100% of 0.000202 WETH repaidrepaid0.0002 WETH ($0.04) paid offpaid off1 hour8,760.00% / 1.00%September-25-2018 17:03:29 PM UTCSeptember-25-2018 18:03:29 PM UTC10.0%0xd840d02bb3a715027343fc8428b61a7f83dcb6e70xd840d02bb3a715027343fc8428b61a7f83dcb6e7heldin a smart contract0.000202 WETH ($0.04)1Hourly0xa17912dffc430b2d9e346905e695d74e432fb45edaa9b6fe6fc216b41ec117c10xa17912dffc430b2d9e346905e695d74e432fb45edaa9b6fe6fc216b41ec117c1Bloqboard0x00f34ad48a326b406bf995e04189e42d285d57730x860c058b354b0a63066cd030ac80a60df0cbce933da6ad86c2165cf5db0c60010x5de2538838b4eb7fa2dbdea09d642b88546e5f20Dharma")
+                if(valuesStr != "Repayment progressLoan balanceLoan termLoan interest rate (annual)Loan-to-value (LTV) currentBorrower addressLender addressLoan drawsCollateralRepaymentsCumulative liquidation feeCDP creation linkLending platformLending protocol")
                 {
-                    throw new Exception("[" + Env + "] LOANSCAN: paid of values are probably broken. Please check manually.");
+                    throw new Exception("[" + Env + "] LOANSCAN: MakerDao card is probably broken. Please check manually.");
                 }
-               
+
+                Engine.Browser.MiddlePause();
+                Engine.Browser.CurrentBrowser.Navigate().GoToUrl("https://loanscan.io/agreements/Dharma/0x2544c6eeb2cc029f216b7d032b31b35b8efd01ac243b8a391cf7bb23e33e05be");
+                Engine.Browser.MiddlePause();
+
+                string valuesDharmaStr = "";
+                IList<IWebElement> valuesDharma = Engine.Browser.CurrentBrowser.FindElements(By.CssSelector(".col-sm-3"));
+                foreach (var val in valuesDharma)
+                {
+                    valuesDharmaStr += val.Text;
+                }
+                var finalDharma = valuesDharmaStr.Replace(" ", string.Empty);
+                if (!valuesDharmaStr.Contains("(annual)/(per loan term)Loan issuance dateLoan maturity dateLoan-to-value (LTV) at originationLoan-to-value (LTV) currentBorrower addressLender addressCollateralRepaymentsRepayment frequencyAgreement IdLending platformLending platform addressLending platform feesUnderwriter nameUnderwriter addressUnderwriter feesUnderwriter risk ratingLoan issuance linkLoan contractLending protocol"))
+                {
+                    throw new Exception("[" + Env + "] LOANSCAN: Dharma card is probably broken. Please check manually.");
+                }
             }
             catch (Exception exception)
             {

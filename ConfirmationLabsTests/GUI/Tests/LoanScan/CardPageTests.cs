@@ -23,12 +23,11 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan
             CardPage.VerifyElementsonDharmaSingleCard();
         }
 
-        [Ignore("Fix")]
         [Category("Loanscan")]
         [Test]
         public void PaidOfCardsElementsValueDharmaPrortocolTest()
         {
-            CardPage.VerifyPaidOfDharmaSingleCard();
+            CardPage.VerifyProtocolsSingleCards();
         }
 
         [Category("Loanscan")]
