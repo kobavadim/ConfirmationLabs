@@ -30,16 +30,23 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
             string oldCollectionDatabaseName,
             string oldCollectionName)
         {
-            var newCollectionClient = new MongoClient(newCollectionDatabaseConnectionString);
-            var newCollection = newCollectionClient.GetDatabase(newCollectionDatabaseName).GetCollection<Agreement>(newCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
+            try
+            {
+                var newCollectionClient = new MongoClient(newCollectionDatabaseConnectionString);
+                var newCollection = newCollectionClient.GetDatabase(newCollectionDatabaseName).GetCollection<Agreement>(newCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
 
-            var oldCollectionClient = new MongoClient(oldCollectionDatabaseConnectionString);
-            var oldCollection = oldCollectionClient.GetDatabase(oldCollectionDatabaseName).GetCollection<Agreement>(oldCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
+                var oldCollectionClient = new MongoClient(oldCollectionDatabaseConnectionString);
+                var oldCollection = oldCollectionClient.GetDatabase(oldCollectionDatabaseName).GetCollection<Agreement>(oldCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
 
-            var areEqual = CompareAgreementsCollections(newCollection, oldCollection);
+                var areEqual = CompareAgreementsCollections(newCollection, oldCollection);
 
-            Console.WriteLine("new collection: " + newCollection.Count + " old collection: " + oldCollection.Count);
-            areEqual.Should().Be(true);
+                Console.WriteLine("new collection: " + newCollection.Count + " old collection: " + oldCollection.Count);
+                areEqual.Should().Be(true);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         [Test]
