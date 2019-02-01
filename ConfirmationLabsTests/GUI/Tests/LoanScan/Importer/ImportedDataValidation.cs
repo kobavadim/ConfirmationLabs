@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using FluentAssertions;
 using MongoDB.Driver;
@@ -20,6 +21,7 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
             "mongodb+srv://stage-one:HpiKyWZ00U8CyrkG@bloqboard-twwqb.mongodb.net/Loans?retryWrites=true",
             "LoansProdCopy2",
             "agreements")]
+        [Category("Importer")]
         public void ValidateImportedData(
             string newCollectionDatabaseConnectionString,
             string newCollectionDatabaseName,
@@ -35,11 +37,12 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
             var oldCollection = oldCollectionClient.GetDatabase(oldCollectionDatabaseName).GetCollection<Agreement>(oldCollectionName).AsQueryable().ToList();  //here can be different Agreement classes
 
             var areEqual = CompareAgreementsCollections(newCollection, oldCollection);
-            
+
+            Console.WriteLine("new collection: " + newCollection.Count + " old collection: " + oldCollection.Count);
             areEqual.Should().Be(true);
         }
 
-       [Test]
+        [Test]
         public void ValidateImportedDataParameterized()
         {
             string newCollectionDatabaseConnectionString = TestContext.Parameters["newCollectionDatabaseConnectionString"];
@@ -224,18 +227,5 @@ namespace ConfirmationLabsTests.GUI.Tests.LoanScan.Importer
                    a.blockTimeStamp > b.blockTimeStamp - TimestampPrecision &&
                    a.blockTimeStamp < b.blockTimeStamp + TimestampPrecision;
         }
-
-//        [Category("Importer")]
-//        [Test]
-//        public void ValidateImportFromScript()
-//        {
-//            string contents = File.ReadAllText(@"C:\\Users\\Administrator\\Documents\\result.txt");
-//            var result = contents.Substring(contents.Length - 10);
-//            Console.WriteLine(result);
-//            if (result.Contains("ERROR"))
-//            {
-//                throw new Exception("Importer is working incorrectly");
-//            }
-//        }
     }
 }

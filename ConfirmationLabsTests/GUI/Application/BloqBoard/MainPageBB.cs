@@ -1674,7 +1674,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     string[] repayment = repaySumm.Text.Split(' ');
 
                     IWebElement repayInput = Browser.CurrentBrowser.FindElement(By.CssSelector("[name=\"amount\"]"));
-                    repayInput.SendKeys(repayment[0]);
+                    repayInput.SendKeys("0.000000001");
 
                     IWebElement submit = Browser.CurrentBrowser.FindElement(By.CssSelector("button.confirm-repay-btn"));
                     submit.Click();
@@ -1691,7 +1691,7 @@ namespace ConfirmationLabsTests.GUI.Application.BloqBoard
                     IList<IWebElement> RepayButtonsAfterRepay = Browser.CurrentBrowser.FindElements(By.CssSelector(".borrowed-assets-wrapper .btn-red"));
                     var repCountAfterRepay = RepayButtonsAfterRepay.Count;
 
-                    Assert.IsTrue(repCount != repCountAfterRepay, "[" + Env + "] BLOQBOARD", "Repay transaction is not performed as expected");
+                    Assert.IsTrue(repCount == repCountAfterRepay, "[" + Env + "] BLOQBOARD", "Repay transaction is not performed as expected");
                 }
 
             }
