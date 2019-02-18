@@ -25,9 +25,9 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
         
         [Category("Consistent_sk")]
         [Test]
-        public void FieldsConsistencyLendPage_sk()
+        public void FieldsConsistencyLoanOfferTableMyRequestsPage_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.FieldsConsistentLendPageTest, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.FieldsConsistentMyRequestsPageLoanOfferTableTest, 3, TestReInitialize);
         }
 
         [Category("Consistent_sk")]
@@ -60,16 +60,16 @@ namespace ConfirmationLabsTests.GUI.Tests.BloqBoard
 
         [Category("Consistent_sk")]
         [Test]
-        public void TokenDisplayinLiquidityPoolTableBorrowPage_sk()
+        public void ColumnDisplayinBorrowPage_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyTokensDisplayinLiquidityPoolBorrowPage, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyCOlumnsDisplayinBorrowPage, 3, TestReInitialize);
         }
 
         [Category("Consistent_sk")]
         [Test]
-        public void TokenDisplayinLiquidityPoolTableLendPage_sk()
+        public void VerifyColumnsDisplayinLendPage_sk()
         {
-            TestRetrier.RunWithRetry(MainPageBb.VerifyTokensDisplayinLiquidityPoolLendPage, 3, TestReInitialize);
+            TestRetrier.RunWithRetry(MainPageBb.VerifyColumnsDisplayinLendPage, 3, TestReInitialize);
         }
 
         [Category("Consistent_sk")]
